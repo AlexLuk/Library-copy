@@ -1,0 +1,17 @@
+Get status:
+    git status
+
+Removes a file from version control:
+    git rm --cached <file>
+
+Recursively removes files/folders from a directory from version control:
+    git rm -r --cached <dir>
+
+Adds all untracked files to version control (filtering by .gitignore)
+    git add --all
+
+Stop tracking changes for a specific file/folder:
+    git update-index --assume-unchanged <file/folder>
+
+Undo the previous step:
+    git update-index --no-assume-unchanged <file/folder>
