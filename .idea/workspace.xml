@@ -2,10 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2d665fbc-b64d-404b-a1c7-8f8aa918b9c2" name="Default" comment="getting rid of .idea">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Library.iml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path=".idea/" />
@@ -785,7 +781,7 @@
       <workItem from="1508657808339" duration="1905000" />
       <workItem from="1508661359511" duration="246000" />
       <workItem from="1508661876620" duration="138000" />
-      <workItem from="1508662329499" duration="1419000" />
+      <workItem from="1508662329499" duration="1485000" />
     </task>
     <task id="LOCAL-00001" summary="update DB - change ISBN primary key to shelf_id">
       <created>1508505640504</created>
@@ -864,11 +860,25 @@
       <option name="project" value="LOCAL" />
       <updated>1508666290276</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="getting rid of .idea">
+      <created>1508666327415</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1508666327415</updated>
+    </task>
+    <task id="LOCAL-00013" summary="getting rid of .idea">
+      <created>1508666356135</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1508666356135</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23601000" />
+    <option name="totallyTimeSpent" value="23667000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
