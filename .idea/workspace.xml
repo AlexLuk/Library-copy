@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2d665fbc-b64d-404b-a1c7-8f8aa918b9c2" name="Default" comment="getting rid of .idea">
+    <list default="true" id="2d665fbc-b64d-404b-a1c7-8f8aa918b9c2" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path=".idea/" />
@@ -777,7 +777,7 @@
       <workItem from="1508661359511" duration="246000" />
       <workItem from="1508661876620" duration="138000" />
       <workItem from="1508662329499" duration="1485000" />
-      <workItem from="1508666832223" duration="106000" />
+      <workItem from="1508666832223" duration="148000" />
     </task>
     <task id="LOCAL-00001" summary="update DB - change ISBN primary key to shelf_id">
       <created>1508505640504</created>
@@ -870,11 +870,18 @@
       <option name="project" value="LOCAL" />
       <updated>1508666356135</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="getting rid of .idea">
+      <created>1508666943377</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1508666943377</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23773000" />
+    <option name="totallyTimeSpent" value="23815000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -972,6 +979,7 @@
     <MESSAGE value="add persistence entities + basic DAO controls (still lacking DAO for specific tables)" />
     <MESSAGE value="getting rid of .idea" />
     <option name="LAST_COMMIT_MESSAGE" value="getting rid of .idea" />
+    <option name="UPDATE_GROUP_BY_PACKAGES" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
