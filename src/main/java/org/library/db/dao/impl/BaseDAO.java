@@ -1,16 +1,16 @@
 package org.library.db.dao.impl;
 
 import org.library.db.dao.DAOable;
-import org.library.db.models.BaseEntity;
+import org.library.db.models.Base;
 
 import javax.persistence.*;
 
-public class BaseEntityDAO<T extends BaseEntity> implements DAOable<T>
+public class BaseDAO<T extends Base> implements DAOable<T>
 {
     @PersistenceContext
     private EntityManager entityManager = null;
 
-    BaseEntityDAO( EntityManagerFactory factory )
+    BaseDAO(EntityManagerFactory factory )
     {
         if( entityManager == null )
             entityManager = factory.createEntityManager();

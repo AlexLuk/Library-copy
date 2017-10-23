@@ -1,16 +1,13 @@
 package org.library.db.models;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
 
 @Entity
-@Table(name = "delivery")
-public class DeliveryEntity {
+@Table(name = "order")
+public class Order extends Base {
     private int id;
-    private ReaderEntity reader;
-    private LibrarianEntity librarian;
-    private BookEntity book;
-    private Timestamp time;
+    private Reader reader;
+    private Book book;
     private byte onHands;
 
     @Id
@@ -25,39 +22,20 @@ public class DeliveryEntity {
 
     @ManyToOne
     @JoinColumn( name = "reader_id" )
-    public ReaderEntity getReader() {
+    public Reader getReader() {
         return reader;
     }
-    public void setReader(ReaderEntity reader) {
+    public void setReader(Reader reader) {
         this.reader = reader;
     }
 
     @ManyToOne
-    @JoinColumn( name = "librarian_id" )
-    public LibrarianEntity getLibrarian() {
-        return librarian;
-    }
-    public void setLibrarian(LibrarianEntity librarian) {
-        this.librarian = librarian;
-    }
-
-    @ManyToOne
     @JoinColumn( name = "book_id" )
-    public BookEntity getBook() {
+    public Book getBook() {
         return book;
     }
-    public void setBook(BookEntity book) {
+    public void setBook(Book book) {
         this.book = book;
-    }
-
-    @Basic
-    @Column(name = "time")
-    public Timestamp getTime() {
-        return time;
-    }
-
-    public void setTime(Timestamp time) {
-        this.time = time;
     }
 
     @Basic
@@ -75,11 +53,10 @@ public class DeliveryEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        DeliveryEntity that = (DeliveryEntity) o;
+        Order that = (Order) o;
 
         if (id != that.id) return false;
         if (onHands != that.onHands) return false;
-        if (time != null ? !time.equals(that.time) : that.time != null) return false;
 
         return true;
     }
@@ -87,7 +64,6 @@ public class DeliveryEntity {
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + (time != null ? time.hashCode() : 0);
         result = 31 * result + (int) onHands;
         return result;
     }

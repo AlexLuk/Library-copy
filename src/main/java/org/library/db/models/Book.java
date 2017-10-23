@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "book")
-public class BookEntity {
+public class Book extends Base {
     private String isbn;
     private String shelfId;
     private String title;
@@ -13,7 +13,7 @@ public class BookEntity {
     private short amount;
     private byte onHand;
     private boolean is_rare;
-    private GenreEntity genre;
+    private Genre genre;
 
     @Basic
     @Column(name = "is_rare")
@@ -26,10 +26,10 @@ public class BookEntity {
 
     @ManyToOne
     @JoinColumn( name = "genre_id" )
-    public GenreEntity getGenre() {
+    public Genre getGenre() {
         return genre;
     }
-    public void setGenre(GenreEntity genre) {
+    public void setGenre(Genre genre) {
         this.genre = genre;
     }
 
@@ -94,7 +94,7 @@ public class BookEntity {
     }
 
     @Basic
-    @Column(name = "on_hand")
+    @Column(name = "is_rare")
     public byte getOnHand() {
         return onHand;
     }
@@ -108,7 +108,7 @@ public class BookEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        BookEntity that = (BookEntity) o;
+        Book that = (Book) o;
 
         if (year != that.year) return false;
         if (amount != that.amount) return false;

@@ -1,10 +1,10 @@
 package org.library.db.dao;
 
-import org.library.db.models.BaseEntity;
+import org.library.db.models.Base;
 
 import javax.persistence.PersistenceException;
 
-public interface DAOable<T extends BaseEntity>
+public interface DAOable<T extends Base>
 {
     /**
      * Adds object.

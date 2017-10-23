@@ -3,7 +3,7 @@ package org.library.db.models;
 import javax.persistence.*;
 
 @MappedSuperclass
-public class BaseEntity
+public class Base
 {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY )

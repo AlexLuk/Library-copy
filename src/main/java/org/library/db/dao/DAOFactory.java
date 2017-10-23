@@ -1,6 +1,6 @@
 package org.library.db.dao;
 
-import org.library.db.dao.impl.BaseEntityDAO;
+import org.library.db.dao.impl.BaseDAO;
 import org.library.db.models.AuthorBookEntity;
 
 import javax.persistence.*;
@@ -34,9 +34,9 @@ public class DAOFactory
      * Gets the necessary DAO model.
      *
      * @param entityType    class of the entity
-     * @return Ref to the specific BaseEntityDAO.
+     * @return Ref to the specific BaseDAO.
      */
-    public Optional<BaseEntityDAO> getModel(Class entityType )
+    public Optional<BaseDAO> getModel(Class entityType )
     {
         return Optional.empty();
     }

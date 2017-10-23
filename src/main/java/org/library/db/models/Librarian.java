@@ -1,20 +1,16 @@
 package org.library.db.models;
 
 import javax.persistence.*;
-import java.sql.Date;
 
 @Entity
-@Table(name = "reader")
-public class ReaderEntity {
+@Table(name = "librarian")
+public class Librarian extends Base {
     private int id;
     private String login;
     private String password;
     private String name;
     private String surname;
     private String patronymic;
-    private String passport;
-    private Date registrationDate;
-    private Double fines;
 
     @Id
     @Column(name = "id")
@@ -76,41 +72,12 @@ public class ReaderEntity {
         this.patronymic = patronymic;
     }
 
-    @Basic
-    @Column(name = "passport")
-    public String getPassport() {
-        return passport;
-    }
-
-    public void setPassport(String passport) {
-        this.passport = passport;
-    }
-
-    @Basic
-    @Column(name = "registration_date")
-    public Date getRegistrationDate() {
-        return registrationDate;
-    }
-
-    public void setRegistrationDate(Date registrationDate) {
-        this.registrationDate = registrationDate;
-    }
-
-    @Basic
-    @Column(name = "fines")
-    public Double getFines() {
-        return fines;
-    }
-    public void setFines(Double fines) {
-        this.fines = fines;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        ReaderEntity that = (ReaderEntity) o;
+        Librarian that = (Librarian) o;
 
         if (id != that.id) return false;
         if (login != null ? !login.equals(that.login) : that.login != null) return false;
@@ -118,9 +85,6 @@ public class ReaderEntity {
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (surname != null ? !surname.equals(that.surname) : that.surname != null) return false;
         if (patronymic != null ? !patronymic.equals(that.patronymic) : that.patronymic != null) return false;
-        if (passport != null ? !passport.equals(that.passport) : that.passport != null) return false;
-        if (registrationDate != null ? !registrationDate.equals(that.registrationDate) : that.registrationDate != null)
-            return false;
 
         return true;
     }
@@ -133,8 +97,6 @@ public class ReaderEntity {
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (surname != null ? surname.hashCode() : 0);
         result = 31 * result + (patronymic != null ? patronymic.hashCode() : 0);
-        result = 31 * result + (passport != null ? passport.hashCode() : 0);
-        result = 31 * result + (registrationDate != null ? registrationDate.hashCode() : 0);
         return result;
     }
 }
