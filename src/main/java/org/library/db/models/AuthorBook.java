@@ -5,25 +5,24 @@ import javax.persistence.*;
 @Entity
 @Table(name = "author_book")
 public class AuthorBook extends Base {
-    public void setId(int id) {
-        this.id = id;
+    private Author authorId;
+    private Book bookId;
+
+    @ManyToOne
+    @JoinColumn( name = "author_id" )
+    public Author getAuthorId() {
+        return authorId;
+    }
+    public void setAuthorId(Author authorId) {
+        this.authorId = authorId;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        AuthorBook that = (AuthorBook) o;
-
-        if (id != that.id) return false;
-
-        return true;
+    @ManyToOne
+    @JoinColumn( name = "book_id" )
+    public Book getBookId() {
+        return bookId;
     }
-
-    @Override
-    public int hashCode() {
-        return id;
+    public void setBookId(Book bookId) {
+        this.bookId = bookId;
     }
 }
-

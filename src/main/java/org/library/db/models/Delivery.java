@@ -7,7 +7,7 @@ import java.sql.Timestamp;
 @Table(name = "delivery")
 public class Delivery extends Base {
     private Reader reader;
-    private Librarian librarian;
+    private Reader librarian;
     private Book book;
     private Timestamp time;
     private byte onHands;
@@ -23,10 +23,10 @@ public class Delivery extends Base {
 
     @ManyToOne
     @JoinColumn( name = "librarian_id" )
-    public Librarian getLibrarian() {
+    public Reader getLibrarian() {
         return librarian;
     }
-    public void setLibrarian(Librarian librarian) {
+    public void setLibrarian(Reader librarian) {
         this.librarian = librarian;
     }
 
@@ -58,28 +58,4 @@ public class Delivery extends Base {
     public void setOnHands(byte onHands) {
         this.onHands = onHands;
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Delivery that = (Delivery) o;
-
-        if (id != that.id) return false;
-        if (onHands != that.onHands) return false;
-        if (time != null ? !time.equals(that.time) : that.time != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id;
-        result = 31 * result + (time != null ? time.hashCode() : 0);
-        result = 31 * result + (int) onHands;
-        return result;
-    }
 }
-
-

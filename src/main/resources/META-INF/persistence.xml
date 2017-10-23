@@ -12,16 +12,14 @@ http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
         <class>org.library.db.models.Book</class>
         <class>org.library.db.models.Delivery</class>
         <class>org.library.db.models.Genre</class>
-        <class>org.library.db.models.Librarian</class>
         <class>org.library.db.models.Order</class>
         <class>org.library.db.models.Reader</class>
 
         <properties>
-            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
             <property name="hibernate.connection.url"
                       value="jdbc:mysql://localhost:3306/library?serverTimezone=Europe/Moscow&amp;useSSL=false"/>
             <property name="hibernate.connection.username" value="root"/>
-            <property name="hibernate.connection.password" value="526526"/>
+            <property name="hibernate.connection.password" value=""/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
             <property name="hibernate.hbm2ddl.auto" value="update"/>
             <property name="hibernate.id.new_generator_mappings" value="false"/>

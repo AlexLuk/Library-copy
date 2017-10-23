@@ -32,30 +32,7 @@ public class Order extends Base {
     public byte getOnHands() {
         return onHands;
     }
-
     public void setOnHands(byte onHands) {
         this.onHands = onHands;
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Order that = (Order) o;
-
-        if (id != that.id) return false;
-        if (onHands != that.onHands) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id;
-        result = 31 * result + (int) onHands;
-        return result;
-    }
 }
-
-

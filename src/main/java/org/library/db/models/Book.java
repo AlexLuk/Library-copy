@@ -4,6 +4,11 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "book")
+@NamedQueries
+({
+    @NamedQuery( name = "Book.getByTitle",
+            query = "SELECT b from Book b where b.title like concat('%',:title,'%')" )
+})
 public class Book extends Base {
     private String isbn;
     private String shelfId;
@@ -14,6 +19,15 @@ public class Book extends Base {
     private byte onHand;
     private boolean is_rare;
     private Genre genre;
+
+    @Id
+    @Column(name = "ISBN")
+    public String getIsbn() {
+        return isbn;
+    }
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
 
     @Basic
     @Column(name = "is_rare")
@@ -34,21 +48,10 @@ public class Book extends Base {
     }
 
     @Basic
-    @Column(name = "ISBN")
-    public String getIsbn() {
-        return isbn;
-    }
-
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
-
-    @Id
     @Column(name = "shelf_id")
     public String getShelfId() {
         return shelfId;
     }
-
     public void setShelfId(String shelfId) {
         this.shelfId = shelfId;
     }
@@ -58,7 +61,6 @@ public class Book extends Base {
     public String getTitle() {
         return title;
     }
-
     public void setTitle(String title) {
         this.title = title;
     }
@@ -68,7 +70,6 @@ public class Book extends Base {
     public String getLanguage() {
         return language;
     }
-
     public void setLanguage(String language) {
         this.language = language;
     }
@@ -78,7 +79,6 @@ public class Book extends Base {
     public int getYear() {
         return year;
     }
-
     public void setYear(int year) {
         this.year = year;
     }
@@ -88,7 +88,6 @@ public class Book extends Base {
     public short getAmount() {
         return amount;
     }
-
     public void setAmount(short amount) {
         this.amount = amount;
     }
@@ -98,39 +97,7 @@ public class Book extends Base {
     public byte getOnHand() {
         return onHand;
     }
-
     public void setOnHand(byte onHand) {
         this.onHand = onHand;
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Book that = (Book) o;
-
-        if (year != that.year) return false;
-        if (amount != that.amount) return false;
-        if (onHand != that.onHand) return false;
-        if (shelfId != null ? !shelfId.equals(that.shelfId) : that.shelfId != null) return false;
-        if (isbn != null ? !isbn.equals(that.isbn) : that.isbn != null) return false;
-        if (title != null ? !title.equals(that.title) : that.title != null) return false;
-        if (language != null ? !language.equals(that.language) : that.language != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = shelfId != null ? shelfId.hashCode() : 0;
-        result = 31 * result + (isbn != null ? isbn.hashCode() : 0);
-        result = 31 * result + (title != null ? title.hashCode() : 0);
-        result = 31 * result + (language != null ? language.hashCode() : 0);
-        result = 31 * result + year;
-        result = 31 * result + (int) amount;
-        result = 31 * result + (int) onHand;
-        return result;
-    }
 }
-

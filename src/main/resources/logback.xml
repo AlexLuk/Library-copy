@@ -8,7 +8,7 @@
         </filter>
     </appender>
 
-    <logger name="org.hibernate" level="ERROR"/>
+    <logger name="org.hibernate" level="WARN"/>
     <logger name="ch.qos.logback" level="WARN"/>
     <logger name="org.apache" level="ERROR"/>
 
