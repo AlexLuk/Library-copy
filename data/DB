@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS `author`
   `id` int AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `surname` varchar(255) NOT NULL,
-  `patronymic` varchar(255) NOT NULL,
+  `patronymic` varchar(255),
   `yearOfBirth` int(4) NOT NULL,
 
   PRIMARY KEY (`id`)
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `reader`
   `password` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
   `surname` varchar(255) NOT NULL,
-  `patronymic` varchar(255) NOT NULL,
+  `patronymic` varchar(255),
   `passport` varchar(255) NOT NULL,
   `registration_date` date NOT NULL,
   `fines` double NOT NULL,
@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `librarian`
   `password` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
   `surname` varchar(255) NOT NULL,
-  `patronymic` varchar(255) NOT NULL,
+  `patronymic` varchar(255),
 
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
