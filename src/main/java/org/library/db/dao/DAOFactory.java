@@ -24,7 +24,7 @@ public class DAOFactory
     {
         if( factory == null )
         {
-            factory = Persistence.createEntityManagerFactory( "doctor" );
+            factory = Persistence.createEntityManagerFactory( "library" );
             int i = 0;
         }
         return _instance;
