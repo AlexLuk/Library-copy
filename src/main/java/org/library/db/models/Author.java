@@ -76,3 +76,4 @@ public class Author extends Base {
         return result;
     }
 }
+

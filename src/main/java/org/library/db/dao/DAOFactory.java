@@ -1,7 +1,6 @@
 package org.library.db.dao;
 
 import org.library.db.dao.impl.BaseDAO;
-import org.library.db.models.AuthorBookEntity;
 
 import javax.persistence.*;
 import java.util.Optional;
