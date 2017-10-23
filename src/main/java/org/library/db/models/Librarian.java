@@ -5,22 +5,11 @@ import javax.persistence.*;
 @Entity
 @Table(name = "librarian")
 public class Librarian extends Base {
-    private int id;
     private String login;
     private String password;
     private String name;
     private String surname;
     private String patronymic;
-
-    @Id
-    @Column(name = "id")
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     @Basic
     @Column(name = "login")

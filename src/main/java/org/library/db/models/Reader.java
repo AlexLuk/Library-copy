@@ -6,7 +6,6 @@ import java.sql.Date;
 @Entity
 @Table(name = "reader")
 public class Reader extends Base {
-    private int id;
     private String login;
     private String password;
     private String name;
@@ -15,16 +14,6 @@ public class Reader extends Base {
     private String passport;
     private Date registrationDate;
     private Double fines;
-
-    @Id
-    @Column(name = "id")
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     @Basic
     @Column(name = "login")

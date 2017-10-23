@@ -5,20 +5,9 @@ import javax.persistence.*;
 @Entity
 @Table(name = "order")
 public class Order extends Base {
-    private int id;
     private Reader reader;
     private Book book;
     private byte onHands;
-
-    @Id
-    @Column(name = "id")
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     @ManyToOne
     @JoinColumn( name = "reader_id" )

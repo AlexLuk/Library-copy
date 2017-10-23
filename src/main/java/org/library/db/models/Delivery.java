@@ -6,22 +6,11 @@ import java.sql.Timestamp;
 @Entity
 @Table(name = "delivery")
 public class Delivery extends Base {
-    private int id;
     private Reader reader;
     private Librarian librarian;
     private Book book;
     private Timestamp time;
     private byte onHands;
-
-    @Id
-    @Column(name = "id")
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     @ManyToOne
     @JoinColumn( name = "reader_id" )

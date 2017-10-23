@@ -5,18 +5,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "genre")
 public class Genre extends Base {
-    private int id;
     private String name;
-
-    @Id
-    @Column(name = "id")
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     @Basic
     @Column(name = "name")

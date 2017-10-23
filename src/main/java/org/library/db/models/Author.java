@@ -5,21 +5,10 @@ import javax.persistence.*;
 @Entity
 @Table(name = "author")
 public class Author extends Base {
-    private int id;
     private String name;
     private String surname;
     private String patronymic;
     private int yearOfBirth;
-
-    @Id
-    @Column(name = "id")
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     @Basic
     @Column(name = "name")
