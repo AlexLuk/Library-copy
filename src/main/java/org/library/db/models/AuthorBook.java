@@ -5,14 +5,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "author_book")
 public class AuthorBook extends Base {
-    private int id;
-
-    @Id
-    @Column(name = "id")
-    public int getId() {
-        return id;
-    }
-
     public void setId(int id) {
         this.id = id;
     }
