@@ -36,3 +36,6 @@
     validate - Validates the applied migrations against the available ones.
     info - Prints the details and status information about all the migrations
     repair - Repairs the metadata table
+
+    некоторые проблемы, которые могут возникнуть и их решение.
+    https://www.romexsoft.com/blog/flyway-db-migration/
