@@ -1,3 +1,5 @@
+create schema library;
+
 use library;
 
 CREATE TABLE IF NOT EXISTS `genre`
@@ -21,7 +23,7 @@ CREATE TABLE IF NOT EXISTS `author`
 
 CREATE TABLE IF NOT EXISTS `book`
 (
-  `ISBN` varchar(30) NOT NULL,
+  `id` int AUTO_INCREMENT,
   `shelf_id` varchar(30) NOT NULL,
   `genre_id` int NOT NULL,
   `title` varchar(255) NOT NULL,
@@ -30,47 +32,47 @@ CREATE TABLE IF NOT EXISTS `book`
   `amount` smallint NOT NULL,
   `is_rare` boolean NOT NULL COMMENT 'For old books',
 
-  PRIMARY KEY (`ISBN`),
+  PRIMARY KEY (`id`),
   FOREIGN KEY( `genre_id` ) REFERENCES genre( `id` )
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+CREATE TABLE IF NOT EXISTS `book_item`
+(
+  `id` int AUTO_INCREMENT,
+  `book_id` int NOT NULL,
+  `item_id` smallint NOT NULL,
+  `status` ENUM('on_shelf', 'on_hands', 'in_study', 'in_order'), -- на полке-сдана, выдана на руки, выдана в читальный зал, заказана
+
+  UNIQUE (`book_id`, `item_id`),
+  PRIMARY KEY (`id`),
+  FOREIGN KEY( `book_id` ) REFERENCES book( `id` )
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 CREATE TABLE IF NOT EXISTS `reader`
 (
   `id` int AUTO_INCREMENT,
   `login` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
+  `password` CHAR(32) NOT NULL,
   `name` varchar(255) NOT NULL,
   `surname` varchar(255) NOT NULL,
   `patronymic` varchar(255),
   `passport` varchar(255) NOT NULL,
   `registration_date` date NOT NULL,
   `fines` double NOT NULL,
+  `is_admin` boolean,
 
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
-CREATE TABLE IF NOT EXISTS `librarian`
-(
-  `id` int AUTO_INCREMENT,
-  `login` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `surname` varchar(255) NOT NULL,
-  `patronymic` varchar(255),
-
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
 
 CREATE TABLE IF NOT EXISTS `author_book`
 (
   `id` int AUTO_INCREMENT,
   `author_id` int NOT NULL,
-  `book_id` varchar(30) NOT NULL,
+  `book_id` int NOT NULL,
 
   PRIMARY KEY (`id`),
   FOREIGN KEY( `author_id` ) REFERENCES author( `id` ),
-  FOREIGN KEY( `book_id` ) REFERENCES book( `ISBN` )
+  FOREIGN KEY( `book_id` ) REFERENCES book( `id` )
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 
@@ -78,15 +80,13 @@ CREATE TABLE IF NOT EXISTS `delivery`
 (
   `id` int AUTO_INCREMENT,
   `reader_id` int NOT NULL,
-  `librarian_id` int NOT NULL,
-  `book_id` varchar(30) NOT NULL,
+  `book_item_id` int NOT NULL,
   `time` timestamp NOT NULL,
   `on_hands` boolean NOT NULL,
 
   PRIMARY KEY (`id`),
   FOREIGN KEY( `reader_id` ) REFERENCES reader( `id` ),
-  FOREIGN KEY( `librarian_id` ) REFERENCES librarian( `id` ),
-  FOREIGN KEY( `book_id` ) REFERENCES book( `ISBN` )
+  FOREIGN KEY( `book_item_id` ) REFERENCES book_item( `id` )
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -94,10 +94,10 @@ CREATE TABLE IF NOT EXISTS `order`
 (
   `id` int AUTO_INCREMENT,
   `reader_id` int NOT NULL,
-  `book_id` varchar(30) NOT NULL,
+  `book_id` int NOT NULL,
   `on_hands` boolean NOT NULL,
 
   PRIMARY KEY (`id`),
   FOREIGN KEY( `reader_id` ) REFERENCES reader( `id` ),
-  FOREIGN KEY( `book_id` ) REFERENCES book( `ISBN` )
+  FOREIGN KEY( `book_id` ) REFERENCES book( `id` )
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
