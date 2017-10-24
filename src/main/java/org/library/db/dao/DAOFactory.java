@@ -21,10 +21,8 @@ public class DAOFactory
      */
     public static DAOFactory getInstance() throws PersistenceException
     {
-        if( factory == null )
-        {
+        if( factory == null ) {
             factory = Persistence.createEntityManagerFactory( "library" );
-            int i = 0;
         }
         return _instance;
     }
