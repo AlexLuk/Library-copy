@@ -28,7 +28,7 @@ public class BookDAO extends BaseDAO<Book> implements DAOable<Book> {
 
         try
         {
-            return Optional.of( namedQuery.getSingleResult() );
+            return Optional.of(namedQuery.getSingleResult() );
         } catch( Exception ex ){}
         return Optional.empty();
     }

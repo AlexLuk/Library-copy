@@ -9,7 +9,7 @@ public class AuthorBook extends Base {
     private Book bookId;
 
     @ManyToOne
-    @JoinColumn( name = "author_id" )
+    @JoinColumn(name = "author_id" )
     public Author getAuthorId() {
         return authorId;
     }
@@ -18,7 +18,7 @@ public class AuthorBook extends Base {
     }
 
     @ManyToOne
-    @JoinColumn( name = "book_id" )
+    @JoinColumn(name = "book_id" )
     public Book getBookId() {
         return bookId;
     }

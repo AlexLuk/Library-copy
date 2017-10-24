@@ -14,6 +14,7 @@ public class Reader extends Base {
     private String passport;
     private Date registrationDate;
     private Double fines;
+    private Byte isAdmin;
 
     @Basic
     @Column(name = "login")
@@ -85,5 +86,14 @@ public class Reader extends Base {
     }
     public void setFines(Double fines) {
         this.fines = fines;
+    }
+
+    @Basic
+    @Column(name = "is_admin")
+    public Byte getIsAdmin() {
+        return isAdmin;
+    }
+    public void setIsAdmin(Byte isAdmin) {
+        this.isAdmin = isAdmin;
     }
 }

@@ -7,13 +7,11 @@ import java.sql.Timestamp;
 @Table(name = "delivery")
 public class Delivery extends Base {
     private Reader reader;
-    private Reader librarian;
-    private Book book;
+    private BookItem bookItem;
     private Timestamp time;
-    private byte onHands;
 
     @ManyToOne
-    @JoinColumn( name = "reader_id" )
+    @JoinColumn(name = "reader_id")
     public Reader getReader() {
         return reader;
     }
@@ -22,21 +20,12 @@ public class Delivery extends Base {
     }
 
     @ManyToOne
-    @JoinColumn( name = "librarian_id" )
-    public Reader getLibrarian() {
-        return librarian;
+    @JoinColumn(name = "book_item_id")
+    public BookItem getBookItem() {
+        return bookItem;
     }
-    public void setLibrarian(Reader librarian) {
-        this.librarian = librarian;
-    }
-
-    @ManyToOne
-    @JoinColumn( name = "book_id" )
-    public Book getBook() {
-        return book;
-    }
-    public void setBook(Book book) {
-        this.book = book;
+    public void setBookItem(BookItem bookItem) {
+        this.bookItem = bookItem;
     }
 
     @Basic
@@ -44,18 +33,7 @@ public class Delivery extends Base {
     public Timestamp getTime() {
         return time;
     }
-
     public void setTime(Timestamp time) {
         this.time = time;
-    }
-
-    @Basic
-    @Column(name = "on_hands")
-    public byte getOnHands() {
-        return onHands;
-    }
-
-    public void setOnHands(byte onHands) {
-        this.onHands = onHands;
     }
 }

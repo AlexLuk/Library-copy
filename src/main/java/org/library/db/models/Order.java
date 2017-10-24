@@ -5,12 +5,12 @@ import javax.persistence.*;
 @Entity
 @Table(name = "order")
 public class Order extends Base {
+    private Byte onHands;
     private Reader reader;
     private Book book;
-    private byte onHands;
 
     @ManyToOne
-    @JoinColumn( name = "reader_id" )
+    @JoinColumn(name = "reader_id")
     public Reader getReader() {
         return reader;
     }
@@ -19,7 +19,7 @@ public class Order extends Base {
     }
 
     @ManyToOne
-    @JoinColumn( name = "book_id" )
+    @JoinColumn(name = "book_id")
     public Book getBook() {
         return book;
     }
@@ -29,10 +29,10 @@ public class Order extends Base {
 
     @Basic
     @Column(name = "on_hands")
-    public byte getOnHands() {
+    public Byte getOnHands() {
         return onHands;
     }
-    public void setOnHands(byte onHands) {
+    public void setOnHands(Byte onHands) {
         this.onHands = onHands;
     }
 }

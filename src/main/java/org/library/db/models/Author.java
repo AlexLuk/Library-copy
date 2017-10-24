@@ -8,7 +8,7 @@ public class Author extends Base {
     private String name;
     private String surname;
     private String patronymic;
-    private int yearOfBirth;
+    private Integer yearOfBirth;
 
     @Basic
     @Column(name = "name")
@@ -39,10 +39,10 @@ public class Author extends Base {
 
     @Basic
     @Column(name = "yearOfBirth")
-    public int getYearOfBirth() {
+    public Integer getYearOfBirth() {
         return yearOfBirth;
     }
-    public void setYearOfBirth(int yearOfBirth) {
+    public void setYearOfBirth(Integer yearOfBirth) {
         this.yearOfBirth = yearOfBirth;
     }
 }

@@ -10,42 +10,13 @@ import javax.persistence.*;
             query = "SELECT b from Book b where b.title like concat('%',:title,'%')" )
 })
 public class Book extends Base {
-    private String isbn;
     private String shelfId;
+    private Genre genre;
     private String title;
     private String language;
-    private int year;
-    private short amount;
-    private byte onHand;
-    private boolean is_rare;
-    private Genre genre;
-
-    @Id
-    @Column(name = "ISBN")
-    public String getIsbn() {
-        return isbn;
-    }
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
-
-    @Basic
-    @Column(name = "is_rare")
-    public boolean getIs_rare() {
-        return is_rare;
-    }
-    public void setIs_rare(boolean is_rare) {
-        this.is_rare = is_rare;
-    }
-
-    @ManyToOne
-    @JoinColumn( name = "genre_id" )
-    public Genre getGenre() {
-        return genre;
-    }
-    public void setGenre(Genre genre) {
-        this.genre = genre;
-    }
+    private Integer year;
+    private Short amount;
+    private Byte isRare;
 
     @Basic
     @Column(name = "shelf_id")
@@ -54,6 +25,15 @@ public class Book extends Base {
     }
     public void setShelfId(String shelfId) {
         this.shelfId = shelfId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "genre_id" )
+    public Genre getGenre() {
+        return genre;
+    }
+    public void setGenre(Genre genre) {
+        this.genre = genre;
     }
 
     @Basic
@@ -76,28 +56,28 @@ public class Book extends Base {
 
     @Basic
     @Column(name = "year")
-    public int getYear() {
+    public Integer getYear() {
         return year;
     }
-    public void setYear(int year) {
+    public void setYear(Integer year) {
         this.year = year;
     }
 
     @Basic
     @Column(name = "amount")
-    public short getAmount() {
+    public Short getAmount() {
         return amount;
     }
-    public void setAmount(short amount) {
+    public void setAmount(Short amount) {
         this.amount = amount;
     }
 
     @Basic
     @Column(name = "is_rare")
-    public byte getOnHand() {
-        return onHand;
+    public Byte getIsRare() {
+        return isRare;
     }
-    public void setOnHand(byte onHand) {
-        this.onHand = onHand;
+    public void setIsRare(Byte isRare) {
+        this.isRare = isRare;
     }
 }
