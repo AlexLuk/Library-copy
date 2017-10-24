@@ -13,8 +13,12 @@ import cucumber.api.junit.Cucumber;
                 "html:target/cucumber/userLogin.html",
                 "pretty"
         },
-        features = "src/test/resources/org.library/features/userLogin.feature",
+        //features - path to folder with .feature files
+        features = "src/test/resources/org.library/features",
+
         tags = "~@ignore"
+        //glue - name of package with StepDef (in case it is not the same with runner)
+        //,glue = "org.library.steps"
 )
 public class LoginRunnerTest {
 }

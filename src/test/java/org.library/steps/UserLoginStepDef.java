@@ -14,7 +14,7 @@ public class UserLoginStepDef {
     @When("^User enter login \"([^\"]*)\" and password \"([^\"]*)\"$")
     public void userEnterLoginAndPassword(String login, String password) throws Throwable {
         userLogin = login;
-        userPassword = password;
+        userPassword = getSaltedMD5(password);
     }
 
     @Then("^Then Login should execute$")
@@ -38,5 +38,16 @@ public class UserLoginStepDef {
         //temporary code for cucumber test
         //userPasswordFromDatabase = getPasswordFromDatabase
         userPasswordFromDatabase = "password1";
+    }
+
+
+    /**Method provide user password as it is stored in database
+     * @param userPassword - clear user password from input
+     * @return userPassword converted with salt and md5
+     */
+    private String getSaltedMD5(String userPassword) {
+        //perform salting and md5 conversion of password
+        //String md5UserPassword =
+        return userPassword;
     }
 }
