@@ -8,6 +8,9 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+            <flyway.user>root</flyway.user>
+            <flyway.password>root</flyway.password>
+            <flyway.schemas>library</flyway.schemas>
     </properties>
 
     <dependencies>
@@ -15,7 +18,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>6.0.5</version>
+            <version>6.0.3</version>
         </dependency>
         <!-- Hibernate -->
         <dependency>
@@ -47,7 +50,6 @@
 
     <build>
         <finalName>Library</finalName>
-
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -56,6 +58,14 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+                <version>4.2.0</version>
+                <configuration>
+                    <url>jdbc:mysql://localhost:3306/library?useSSL=false&amp;useUnicode=true&amp;serverTimezone=UTC</url>
                 </configuration>
             </plugin>
         </plugins>
