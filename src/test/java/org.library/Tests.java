@@ -11,16 +11,14 @@ public class Tests {
         DAOFactory daoFactory = DAOFactory.getInstance();
 
         if (daoFactory.isConnected()) {
-            Optional<ReaderDAO> dao =
-                    (Optional<ReaderDAO>) daoFactory.getModel(ReaderDAO.class);
+            Optional<BookDAO> dao =
+                    (Optional<BookDAO>) daoFactory.getModel(BookDAO.class);
             dao.ifPresent(daoObj -> {
-                System.out.println(daoObj.getById(2, Reader.class).getName());
-                /*daoObj.getByTitle("Керри").ifPresent(obj -> {
+                daoObj.getByTitle("Керри").ifPresent(obj -> {
                     System.out.println(obj.getTitle());
                     System.out.println(obj.getGenre().getName());
                     System.out.println(obj.getIsRare());
                 });
-                */
             });
         }
         daoFactory.closeConn();

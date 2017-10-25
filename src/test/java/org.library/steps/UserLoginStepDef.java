@@ -8,7 +8,6 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.library.db.dao.DAOFactory;
 import org.library.db.dao.impl.ReaderDAO;
-import org.library.db.models.Reader;
 
 import java.util.Optional;
 
@@ -24,7 +23,7 @@ public class UserLoginStepDef {
      * Establish connection to database before each
      */
     @Before
-    public void establishDatabaseConnection(){
+    public void establishDatabaseConnection() {
         daoFactory = DAOFactory.getInstance();
     }
 
@@ -43,7 +42,7 @@ public class UserLoginStepDef {
 
     @Then("^Then Login should fail$")
     public void thenLoginShouldFail() throws Throwable {
-        if (userPasswordFromDatabase.equals(userPassword)) {
+        if (userPasswordFromDatabase != null && userPasswordFromDatabase.equals(userPassword)) {
             throw new PendingException();
         }
     }
@@ -54,28 +53,25 @@ public class UserLoginStepDef {
             Optional<ReaderDAO> dao =
                     (Optional<ReaderDAO>) daoFactory.getModel(ReaderDAO.class);
             dao.ifPresent(daoObj -> {
-                System.out.println(daoObj.getById(2, Reader.class).getName());
-                /*daoObj.getByTitle("Керри").ifPresent(obj -> {
-                    System.out.println(obj.getTitle());
-                    System.out.println(obj.getGenre().getName());
-                    System.out.println(obj.getIsRare());
+                daoObj.getByLogin("user1").ifPresent(obj -> {
+                    userPasswordFromDatabase = obj.getPassword();
                 });
-                */
             });
         }
-        userPasswordFromDatabase = "password1";
     }
 
     /**
      * Closing database connection after each run of scenario
      */
     @After
-    public void closeDatabaseConnection(){
+    public void closeDatabaseConnection() {
         daoFactory.closeConn();
     }
 
 
-    /**Method provide user password as it is stored in database
+    /**
+     * Method provide user password as it is stored in database
+     *
      * @param userPassword - clear user password from input
      * @return userPassword converted with salt and md5
      */
