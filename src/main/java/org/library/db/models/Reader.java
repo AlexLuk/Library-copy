@@ -6,18 +6,49 @@ import java.sql.Date;
 @Entity
 @Table(name = "reader")
 public class Reader extends Base {
-    private String login;
-    private String password;
-    private String name;
-    private String surname;
-    private String patronymic;
-    private String passport;
-    private Date registrationDate;
-    private Double fines;
-    private Byte isAdmin;
-
     @Basic
     @Column(name = "login")
+    private String login;
+
+    @Basic
+    @Column(name = "password")
+    private String password;
+
+    @Basic
+    @Column(name = "name")
+    private String name;
+
+    @Basic
+    @Column(name = "surname")
+    private String surname;
+
+    @Basic
+    @Column(name = "patronymic")
+    private String patronymic;
+
+    @Basic
+    @Column(name = "passport")
+    private String passport;
+
+    @Basic
+    @Column(name = "registration_date")
+    private Date registrationDate;
+
+    @Basic
+    @Column(name = "fines")
+    private Double fines;
+
+    @Basic
+    @Column(name = "is_admin")
+    private boolean isAdmin;
+
+    public Reader() {}
+
+    public Reader(String login, String password) {
+        this.login = login;
+        this.password = password;
+    }
+
     public String getLogin() {
         return login;
     }
@@ -25,8 +56,6 @@ public class Reader extends Base {
         this.login = login;
     }
 
-    @Basic
-    @Column(name = "password")
     public String getPassword() {
         return password;
     }
@@ -34,8 +63,6 @@ public class Reader extends Base {
         this.password = password;
     }
 
-    @Basic
-    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -43,8 +70,6 @@ public class Reader extends Base {
         this.name = name;
     }
 
-    @Basic
-    @Column(name = "surname")
     public String getSurname() {
         return surname;
     }
@@ -52,8 +77,6 @@ public class Reader extends Base {
         this.surname = surname;
     }
 
-    @Basic
-    @Column(name = "patronymic")
     public String getPatronymic() {
         return patronymic;
     }
@@ -61,8 +84,6 @@ public class Reader extends Base {
         this.patronymic = patronymic;
     }
 
-    @Basic
-    @Column(name = "passport")
     public String getPassport() {
         return passport;
     }
@@ -70,8 +91,6 @@ public class Reader extends Base {
         this.passport = passport;
     }
 
-    @Basic
-    @Column(name = "registration_date")
     public Date getRegistrationDate() {
         return registrationDate;
     }
@@ -79,8 +98,6 @@ public class Reader extends Base {
         this.registrationDate = registrationDate;
     }
 
-    @Basic
-    @Column(name = "fines")
     public Double getFines() {
         return fines;
     }
@@ -88,12 +105,10 @@ public class Reader extends Base {
         this.fines = fines;
     }
 
-    @Basic
-    @Column(name = "is_admin")
-    public Byte getIsAdmin() {
+    public boolean getIsAdmin() {
         return isAdmin;
     }
-    public void setIsAdmin(Byte isAdmin) {
+    public void setIsAdmin(boolean isAdmin) {
         this.isAdmin = isAdmin;
     }
 }

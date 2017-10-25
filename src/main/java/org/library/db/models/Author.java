@@ -5,13 +5,31 @@ import javax.persistence.*;
 @Entity
 @Table(name = "author")
 public class Author extends Base {
-    private String name;
-    private String surname;
-    private String patronymic;
-    private Integer yearOfBirth;
-
     @Basic
     @Column(name = "name")
+    private String name;
+
+    @Basic
+    @Column(name = "surname")
+    private String surname;
+
+    @Basic
+    @Column(name = "patronymic")
+    private String patronymic;
+
+    @Basic
+    @Column(name = "yearOfBirth")
+    private int yearOfBirth;
+
+    public Author(){}
+
+    public Author(String name, String surname, String patronymic, int yearOfBirth) {
+        this.name = name;
+        this.surname = surname;
+        this.patronymic = patronymic;
+        this.yearOfBirth = yearOfBirth;
+    }
+
     public String getName() {
         return name;
     }
@@ -19,8 +37,6 @@ public class Author extends Base {
         this.name = name;
     }
 
-    @Basic
-    @Column(name = "surname")
     public String getSurname() {
         return surname;
     }
@@ -28,8 +44,6 @@ public class Author extends Base {
         this.surname = surname;
     }
 
-    @Basic
-    @Column(name = "patronymic")
     public String getPatronymic() {
         return patronymic;
     }
@@ -37,12 +51,10 @@ public class Author extends Base {
         this.patronymic = patronymic;
     }
 
-    @Basic
-    @Column(name = "yearOfBirth")
-    public Integer getYearOfBirth() {
+    public int getYearOfBirth() {
         return yearOfBirth;
     }
-    public void setYearOfBirth(Integer yearOfBirth) {
+    public void setYearOfBirth(int yearOfBirth) {
         this.yearOfBirth = yearOfBirth;
     }
 }

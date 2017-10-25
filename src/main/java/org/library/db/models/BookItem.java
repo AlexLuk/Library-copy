@@ -5,12 +5,31 @@ import javax.persistence.*;
 @Entity
 @Table(name = "book_item")
 public class BookItem extends Base {
-    private Book book;
-    private Integer itemId;
-    private ItemStatus status;
+    @Basic
+    @Column(name = "item_id")
+    private int itemId;
 
     @ManyToOne
-    @JoinColumn( name = "book_id" )
+    @JoinColumn(name = "book_id" )
+    private Book book;
+
+    @ManyToOne
+    @JoinColumn(name = "status_id")
+    private ItemStatus status;
+
+    public BookItem() {}
+
+    public BookItem(int itemId) {
+        this.itemId = itemId;
+    }
+
+    public int getItemId() {
+        return itemId;
+    }
+    public void setItemId(int itemId) {
+        this.itemId = itemId;
+    }
+
     public Book getBook() {
         return book;
     }
@@ -18,17 +37,6 @@ public class BookItem extends Base {
         this.book = book;
     }
 
-    @Basic
-    @Column(name = "item_id")
-    public Integer getItemId() {
-        return itemId;
-    }
-    public void setItemId(Integer itemId) {
-        this.itemId = itemId;
-    }
-
-    @ManyToOne
-    @JoinColumn (name = "status_id")
     public ItemStatus getStatus() {
         return status;
     }

@@ -1,24 +1,28 @@
 package org.library;
 
-import org.library.db.DBController;
-import org.library.db.ResourcesManager;
-import org.library.db.dao.impl.BookDAO;
-import org.library.db.models.Book;
+import org.library.db.dao.DAOFactory;
+import org.library.db.dao.impl.*;
+import org.library.db.models.*;
 
 import java.util.Optional;
 
 public class Tests {
     public static void main(String[] args) {
-        DBController dbController = new DBController();
-        dbController.openConn();
+        DAOFactory daoFactory = DAOFactory.getInstance();
 
-        if( dbController.isConnected() ) {
-            Optional<BookDAO> bookDAO = ResourcesManager.getBookDAO();
-            if (bookDAO.isPresent()) {
-                Optional<Book> book = bookDAO.get().getByTitle("Eden");
-
-                book.ifPresent(bookObj -> System.out.println(bookObj.getGenre()));
-            }
+        if (daoFactory.isConnected()) {
+            Optional<ReaderDAO> dao =
+                    (Optional<ReaderDAO>) daoFactory.getModel(ReaderDAO.class);
+            dao.ifPresent(daoObj -> {
+                System.out.println(daoObj.getById(2, Reader.class).getName());
+                /*daoObj.getByTitle("Керри").ifPresent(obj -> {
+                    System.out.println(obj.getTitle());
+                    System.out.println(obj.getGenre().getName());
+                    System.out.println(obj.getIsRare());
+                });
+                */
+            });
         }
+        daoFactory.closeConn();
     }
 }

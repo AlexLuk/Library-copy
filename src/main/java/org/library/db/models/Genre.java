@@ -5,10 +5,16 @@ import javax.persistence.*;
 @Entity
 @Table(name = "genre")
 public class Genre extends Base {
-    private String name;
-
     @Basic
     @Column(name = "name")
+    private String name;
+
+    public Genre() {}
+
+    public Genre(String name) {
+        this.name = name;
+    }
+
     public String getName() {
         return name;
     }

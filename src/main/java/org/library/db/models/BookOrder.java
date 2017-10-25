@@ -3,14 +3,20 @@ package org.library.db.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "order")
-public class Order extends Base {
-    private Byte onHands;
-    private Reader reader;
-    private Book book;
-
+@Table(name = "book_order")
+public class BookOrder extends Base {
     @ManyToOne
     @JoinColumn(name = "reader_id")
+    private Reader reader;
+
+    @ManyToOne
+    @JoinColumn(name = "book_id")
+    private Book book;
+
+    @Basic
+    @Column(name = "on_hands")
+    private boolean onHands;
+
     public Reader getReader() {
         return reader;
     }
@@ -18,8 +24,6 @@ public class Order extends Base {
         this.reader = reader;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "book_id")
     public Book getBook() {
         return book;
     }
@@ -27,12 +31,10 @@ public class Order extends Base {
         this.book = book;
     }
 
-    @Basic
-    @Column(name = "on_hands")
-    public Byte getOnHands() {
+    public boolean getOnHands() {
         return onHands;
     }
-    public void setOnHands(Byte onHands) {
+    public void setOnHands(boolean onHands) {
         this.onHands = onHands;
     }
 }

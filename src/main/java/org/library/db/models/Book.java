@@ -10,16 +10,47 @@ import javax.persistence.*;
             query = "SELECT b from Book b where b.title like concat('%',:title,'%')" )
 })
 public class Book extends Base {
-    private String shelfId;
-    private Genre genre;
-    private String title;
-    private String language;
-    private Integer year;
-    private Short amount;
-    private Byte isRare;
-
     @Basic
     @Column(name = "shelf_id")
+    private String shelfId;
+
+    @ManyToOne
+    @JoinColumn(name = "genre_id" )
+    private Genre genre;
+
+    @Basic
+    @Column(name = "title")
+    private String title;
+
+    @Basic
+    @Column(name = "language")
+    private String language;
+
+    @Basic
+    @Column(name = "year")
+    private int year;
+
+    @Basic
+    @Column(name = "amount")
+    private short amount;
+
+    @Basic
+    @Column(name = "is_rare")
+    private boolean isRare;
+
+    public Book() {}
+
+    public Book(String shelfId, Genre genre, String title,
+                String language, int year, short amount, boolean isRare) {
+        this.shelfId = shelfId;
+        this.genre = genre;
+        this.title = title;
+        this.language = language;
+        this.year = year;
+        this.amount = amount;
+        this.isRare = isRare;
+    }
+
     public String getShelfId() {
         return shelfId;
     }
@@ -27,8 +58,6 @@ public class Book extends Base {
         this.shelfId = shelfId;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "genre_id" )
     public Genre getGenre() {
         return genre;
     }
@@ -36,8 +65,6 @@ public class Book extends Base {
         this.genre = genre;
     }
 
-    @Basic
-    @Column(name = "title")
     public String getTitle() {
         return title;
     }
@@ -45,8 +72,6 @@ public class Book extends Base {
         this.title = title;
     }
 
-    @Basic
-    @Column(name = "language")
     public String getLanguage() {
         return language;
     }
@@ -54,30 +79,24 @@ public class Book extends Base {
         this.language = language;
     }
 
-    @Basic
-    @Column(name = "year")
-    public Integer getYear() {
+    public int getYear() {
         return year;
     }
-    public void setYear(Integer year) {
+    public void setYear(int year) {
         this.year = year;
     }
 
-    @Basic
-    @Column(name = "amount")
-    public Short getAmount() {
+    public short getAmount() {
         return amount;
     }
-    public void setAmount(Short amount) {
+    public void setAmount(short amount) {
         this.amount = amount;
     }
 
-    @Basic
-    @Column(name = "is_rare")
-    public Byte getIsRare() {
+    public boolean getIsRare() {
         return isRare;
     }
-    public void setIsRare(Byte isRare) {
+    public void setIsRare(boolean isRare) {
         this.isRare = isRare;
     }
 }

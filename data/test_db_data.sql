@@ -22,17 +22,17 @@
 LOCK TABLES `reader` WRITE;
 -- /*!40000 ALTER TABLE `reader` DISABLE KEYS */;
 INSERT INTO `reader` VALUES
-  (0, 'admin', md5('password'), 'admin', 'admin', '', '0000 000000', '2000-01-01', 0, 1),
-  (1,'user1', md5('password'), 'Madonna','Malone','Edward','1111 1111111','2014-03-16',5,0),
-  (2,'user2',md5('password'),'Kellie','Suarez','Zeus','1111 1111111','2002-11-00',20,0),
-  (3,'user3',md5('password'),'Kevin','Mcclure','Carter','1111 1111111','2010-04-14',10,0),
-  (4,'user4',md5('password'),'Alana','Hurst','Tiger','1111 1111111','2006-02-09',15,0),
-  (5,'user5',md5('password'),'Lillian','Nelson','Dillon','1111 1111111','2015-11-12',0,0),
-  (6,'user6',md5('password'),'Sopoline','Rush','Uriah','1111 1111111','2016-03-04',0,0),
-  (7,'user7',md5('password'),'Helen','Berg','','1111 1111111','2014-02-04',0,0),
-  (8,'user8',md5('password'),'Xanthus','Fletcher','Merrill','1111 1111111','2011-04-10',0,0),
-  (9,'user9',md5('password'),'Kellie','Carney','Judah','1111 1111111','2005-01-14',0,0),
-  (10,'user10',md5('password'),'Tanner','Montoya','Ashton','1111 1111111','2003-07-12',0,0);
+  (1, 'admin', md5('password'), 'admin', 'admin', '', '0000 000000', '2000-01-01', 0, 1),
+  (2,'user1', md5('password'), 'Madonna','Malone','Edward','1111 1111111','2014-03-16',5,0),
+  (3,'user2',md5('password'),'Kellie','Suarez','Zeus','1111 1111111','2002-11-00',20,0),
+  (4,'user3',md5('password'),'Kevin','Mcclure','Carter','1111 1111111','2010-04-14',10,0),
+  (5,'user4',md5('password'),'Alana','Hurst','Tiger','1111 1111111','2006-02-09',15,0),
+  (6,'user5',md5('password'),'Lillian','Nelson','Dillon','1111 1111111','2015-11-12',0,0),
+  (7,'user6',md5('password'),'Sopoline','Rush','Uriah','1111 1111111','2016-03-04',0,0),
+  (8,'user7',md5('password'),'Helen','Berg','','1111 1111111','2014-02-04',0,0),
+  (9,'user8',md5('password'),'Xanthus','Fletcher','Merrill','1111 1111111','2011-04-10',0,0),
+  (10,'user9',md5('password'),'Kellie','Carney','Judah','1111 1111111','2005-01-14',0,0),
+  (11,'user10',md5('password'),'Tanner','Montoya','Ashton','1111 1111111','2003-07-12',0,0);
 -- /*!40000 ALTER TABLE `reader` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -172,12 +172,12 @@ UNLOCK TABLES;
 -- Dumping data for table `order`
 --
 
-LOCK TABLES `order` WRITE;
+LOCK TABLES `book_order` WRITE;
 -- /*!40000 ALTER TABLE `order` DISABLE KEYS */;
-INSERT INTO `order` VALUES
-  (1,1,11,1),
-  (2,5,17,1),
-  (3,6,16,0),
+INSERT INTO `book_order` VALUES
+  (1,2,4,1),
+  (2,5,2,1),
+  (3,6,7,0),
   (4,7,3,1);
 -- /*!40000 ALTER TABLE `order` ENABLE KEYS */;
 UNLOCK TABLES;

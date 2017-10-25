@@ -3,15 +3,28 @@ package org.library.db.models;
 import javax.persistence.*;
 import java.sql.Timestamp;
 
+
 @Entity
 @Table(name = "delivery")
 public class Delivery extends Base {
-    private Reader reader;
-    private BookItem bookItem;
-    private Timestamp time;
-
     @ManyToOne
     @JoinColumn(name = "reader_id")
+    private Reader reader;
+
+    @ManyToOne
+    @JoinColumn(name = "book_item_id")
+    private BookItem bookItem;
+
+    @Basic
+    @Column(name = "time")
+    private Timestamp time;
+
+    public Delivery() {}
+
+    public Delivery(Timestamp time) {
+        this.time = time;
+    }
+
     public Reader getReader() {
         return reader;
     }
@@ -19,8 +32,6 @@ public class Delivery extends Base {
         this.reader = reader;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "book_item_id")
     public BookItem getBookItem() {
         return bookItem;
     }
@@ -28,8 +39,6 @@ public class Delivery extends Base {
         this.bookItem = bookItem;
     }
 
-    @Basic
-    @Column(name = "time")
     public Timestamp getTime() {
         return time;
     }

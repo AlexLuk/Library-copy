@@ -5,11 +5,14 @@ import javax.persistence.*;
 @Entity
 @Table(name = "author_book")
 public class AuthorBook extends Base {
-    private Author authorId;
-    private Book bookId;
-
     @ManyToOne
     @JoinColumn(name = "author_id" )
+    private Author authorId;
+
+    @ManyToOne
+    @JoinColumn(name = "book_id" )
+    private Book bookId;
+
     public Author getAuthorId() {
         return authorId;
     }
@@ -17,8 +20,6 @@ public class AuthorBook extends Base {
         this.authorId = authorId;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "book_id" )
     public Book getBookId() {
         return bookId;
     }

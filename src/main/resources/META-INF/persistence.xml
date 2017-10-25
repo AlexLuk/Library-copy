@@ -6,15 +6,16 @@ http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 
     <persistence-unit name="library" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
         <class>org.library.db.models.Author</class>
-        <class>org.library.db.models.AuthorBook</class>
-        <class>org.library.db.models.Book</class>
-        <class>org.library.db.models.BookItem</class>
-        <class>org.library.db.models.Delivery</class>
         <class>org.library.db.models.Genre</class>
+        <class>org.library.db.models.Book</class>
         <class>org.library.db.models.ItemStatus</class>
-        <class>org.library.db.models.Order</class>
+        <class>org.library.db.models.BookItem</class>
         <class>org.library.db.models.Reader</class>
+        <class>org.library.db.models.AuthorBook</class>
+        <class>org.library.db.models.Delivery</class>
+        <class>org.library.db.models.BookOrder</class>
 
         <properties>
             <property name="hibernate.connection.url"

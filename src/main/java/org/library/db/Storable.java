@@ -1,13 +1,18 @@
 package org.library.db;
 
+import org.library.db.dao.impl.BaseDAO;
+
+import java.util.Optional;
+
 public interface Storable
 {
     /*
-     * Opens connection to the storage
+     * Gets a particular DAO implementation
      *
-     * @return	flag of success
+     * @param daoClass    model class
+     * @return	Optional with DAO impl
      */
-    boolean openConn();
+    Optional<? extends BaseDAO> getModel(Class<? extends BaseDAO> daoClass);
 
     /*
      * Checks whether the connection is established

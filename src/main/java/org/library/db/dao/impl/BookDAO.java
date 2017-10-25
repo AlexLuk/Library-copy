@@ -3,9 +3,7 @@ package org.library.db.dao.impl;
 import org.library.db.dao.DAOable;
 import org.library.db.models.Book;
 
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceException;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
 import java.util.Optional;
 
 public class BookDAO extends BaseDAO<Book> implements DAOable<Book> {
