@@ -1,5 +1,6 @@
-create schema library;
-
+-- create schema library;
+-- CREATE USER 'lib_admin'@'localhost' IDENTIFIED BY 'admin';
+-- GRANT ALL PRIVILEGES ON library.* TO 'lib_admin'@'localhost';
 use library;
 
 CREATE TABLE IF NOT EXISTS `genre`
@@ -47,8 +48,8 @@ CREATE TABLE IF NOT EXISTS `item_status`
 CREATE TABLE IF NOT EXISTS `book_item`
 (
   `id` int AUTO_INCREMENT,
-  `book_id` int NOT NULL,
   `item_id` int NOT NULL,
+  `book_id` int NOT NULL,
   `status_id` int NOT NULL,
 
   PRIMARY KEY (`id`),
@@ -68,7 +69,7 @@ CREATE TABLE IF NOT EXISTS `reader`
   `passport` varchar(255) NOT NULL,
   `registration_date` date NOT NULL,
   `fines` double NOT NULL,
-  `is_admin` boolean,
+  `is_admin` boolean NOT NULL,
 
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -98,7 +99,7 @@ CREATE TABLE IF NOT EXISTS `delivery`
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-CREATE TABLE IF NOT EXISTS `order`
+CREATE TABLE IF NOT EXISTS `book_order`
 (
   `id` int AUTO_INCREMENT,
   `reader_id` int NOT NULL,
