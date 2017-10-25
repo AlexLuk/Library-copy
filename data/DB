@@ -2,6 +2,9 @@ create schema library;
 
 use library;
 
+CREATE USER 'lib_admin'@'localhost' IDENTIFIED BY 'admin';
+GRANT ALL PRIVILEGES ON library.* TO 'lib_admin'@'localhost';
+
 CREATE TABLE IF NOT EXISTS `genre`
 (
   `id` int AUTO_INCREMENT,
