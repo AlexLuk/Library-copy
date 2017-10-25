@@ -20,8 +20,8 @@ http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
         <properties>
             <property name="hibernate.connection.url"
                       value="jdbc:mysql://localhost:3306/library?serverTimezone=Europe/Moscow&amp;useSSL=false"/>
-            <property name="hibernate.connection.username" value="lib_admin"/>
-            <property name="hibernate.connection.password" value="admin"/>
+            <property name="hibernate.connection.username" value="root"/>
+            <property name="hibernate.connection.password" value="root"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
             <property name="hibernate.hbm2ddl.auto" value="update"/>
             <property name="hibernate.id.new_generator_mappings" value="false"/>
