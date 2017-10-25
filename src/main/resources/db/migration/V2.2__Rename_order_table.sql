@@ -1,0 +1,1 @@
+ALTER TABLE `order` RENAME TO book_order;
