@@ -8,8 +8,8 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-            <flyway.user>lib_admin</flyway.user>
-            <flyway.password>admin</flyway.password>
+            <flyway.user>be4c06dde099c6</flyway.user>
+            <flyway.password>58672378</flyway.password>
             <flyway.schemas>library</flyway.schemas>
     </properties>
 
