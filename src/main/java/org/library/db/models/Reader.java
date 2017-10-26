@@ -7,7 +7,7 @@ import java.sql.Date;
 @Table(name = "reader")
 @NamedQueries({
         @NamedQuery(name = "Reader.getByLogin",
-        query = "SELECT r from Reader r where r.login like :login" )
+        query = "SELECT r from Reader r where r.login = :login" )
 })
 public class Reader extends Base {
     @Basic
