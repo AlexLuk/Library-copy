@@ -4,6 +4,13 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "author_book")
+
+@NamedQueries
+({
+        @NamedQuery( name = "AuthorBook.getByAuthorId",
+                query = "SELECT a from AuthorBook a where a.authorId = :authorID" )
+})
+
 public class AuthorBook extends Base {
     @ManyToOne
     @JoinColumn(name = "author_id" )

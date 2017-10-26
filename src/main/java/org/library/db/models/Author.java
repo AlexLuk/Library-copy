@@ -3,6 +3,12 @@ package org.library.db.models;
 import javax.persistence.*;
 
 @Entity
+@NamedQueries
+({
+        @NamedQuery( name = "Author.getAuthor",
+                query = "SELECT a from Author a where a.surname like concat('%',:author,'%')" )
+})
+
 @Table(name = "author")
 public class Author extends Base {
     @Basic

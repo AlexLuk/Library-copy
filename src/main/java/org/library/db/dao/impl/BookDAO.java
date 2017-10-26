@@ -2,6 +2,9 @@ package org.library.db.dao.impl;
 
 import org.library.db.dao.DAOable;
 import org.library.db.models.Book;
+import org.library.db.models.Author;
+import org.library.db.models.AuthorBook;
+import org.library.db.dao.impl.AuthorDAO;
 
 import javax.persistence.*;
 import java.util.Optional;
@@ -30,4 +33,8 @@ public class BookDAO extends BaseDAO<Book> implements DAOable<Book> {
         } catch( Exception ex ){}
         return Optional.empty();
     }
+
+
+    //select * from book where id in(select id from author_book where author_id in(select id from author where author.surname = 'Драйзер'));
+
 }

@@ -9,6 +9,7 @@ import javax.persistence.*;
     @NamedQuery( name = "Book.getByTitle",
             query = "SELECT b from Book b where b.title like concat('%',:title,'%')" )
 })
+
 public class Book extends Base {
     @Basic
     @Column(name = "shelf_id")
