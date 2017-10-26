@@ -5,6 +5,10 @@ import java.sql.Date;
 
 @Entity
 @Table(name = "reader")
+@NamedQueries({
+        @NamedQuery(name = "Reader.getByLogin",
+        query = "SELECT r from Reader r where r.login = :login" )
+})
 public class Reader extends Base {
     @Basic
     @Column(name = "login")
