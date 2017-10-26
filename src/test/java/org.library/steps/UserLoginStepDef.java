@@ -4,6 +4,7 @@ import cucumber.api.PendingException;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
+import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.library.db.dao.DAOFactory;
@@ -79,5 +80,17 @@ public class UserLoginStepDef {
         //perform salting and md5 conversion of password
         //String md5UserPassword =
         return userPassword;
+    }
+
+    @Given("^User open login page$")
+    public void userOpenLoginPage() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @And("^Login to library$")
+    public void loginToLibrary() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
     }
 }

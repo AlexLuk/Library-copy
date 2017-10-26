@@ -7,7 +7,7 @@ import javax.persistence.*;
 @NamedQueries
 ({
     @NamedQuery( name = "Book.getByTitle",
-            query = "SELECT b from Book b where b.title like concat('%',:title,'%')" )
+            query = "SELECT b from Book b where b.title like :title" )
 })
 
 public class Book extends Base {
