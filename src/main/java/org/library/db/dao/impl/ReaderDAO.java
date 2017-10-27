@@ -21,15 +21,6 @@ public class ReaderDAO extends BaseDAO<Reader> implements DAOable<Reader> {
      * @return reader
      */
     public Optional<Reader> getByLogin(String login) throws PersistenceException {
-        TypedQuery<Reader> namedQuery = getEntityManager()
-                .createNamedQuery("Reader.getByLogin", Reader.class);
-        namedQuery.setParameter("login", login);
-
-        try {
-            return Optional.of(namedQuery.getSingleResult());
-        } catch (Exception ex) {
-        }
-        return Optional.empty();
+        return getSingleResult("Reader.getByLogin", new String[]{"login"}, new String[]{login});
     }
-
 }

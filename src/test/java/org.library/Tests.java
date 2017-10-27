@@ -15,9 +15,11 @@ public class Tests {
                     (Optional<BookDAO>) daoFactory.getModel(BookDAO.class);
             dao.ifPresent(daoObj -> {
                 daoObj.getByTitle("Керри").ifPresent(obj -> {
-                    System.out.println(obj.getTitle());
-                    System.out.println(obj.getGenre().getName());
-                    System.out.println(obj.getIsRare());
+                    for(Book book : obj) {
+                        System.out.println(book.getTitle());
+                        System.out.println(book.getGenre().getName());
+                        System.out.println(book.getIsRare());
+                    }
                 });
             });
         }

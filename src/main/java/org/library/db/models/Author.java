@@ -5,8 +5,9 @@ import javax.persistence.*;
 @Entity
 @NamedQueries
 ({
-        @NamedQuery( name = "Author.getAuthor",
-                query = "SELECT a from Author a where a.surname like concat('%',:author,'%')" )
+    @NamedQuery( name = "Author.getAuthor",
+            query = "SELECT a from Author a where a.surname like concat('%',:surname,'%')" )
+
 })
 
 @Table(name = "author")

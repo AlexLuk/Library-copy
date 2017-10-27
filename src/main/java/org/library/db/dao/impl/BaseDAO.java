@@ -2,11 +2,19 @@ package org.library.db.dao.impl;
 
 import org.library.db.dao.DAOable;
 import org.library.db.models.Base;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.persistence.*;
+import java.lang.reflect.ParameterizedType;
+import java.sql.ResultSet;
+import java.util.List;
+import java.util.Optional;
 
 public class BaseDAO<T extends Base> implements DAOable<T>
 {
+    private final static Logger logger = LoggerFactory.getLogger( BaseDAO.class );
+
     @PersistenceContext
     private EntityManager entityManager = null;
 
@@ -96,5 +104,42 @@ public class BaseDAO<T extends Base> implements DAOable<T>
             if( entityManager.getTransaction().isActive() )
                 entityManager.getTransaction().rollback();
         }
+    }
+
+    public <M> Optional<List<M>> getResults(String methodName, String[] args, Object[] vals) {
+        TypedQuery<M> namedQuery = getEntityManager()
+                .createNamedQuery(methodName, (Class<M>) ((ParameterizedType) getClass()
+                        .getGenericSuperclass()).getActualTypeArguments()[0]  );
+
+        for(int i = 0; i < args.length; i++) {
+            namedQuery.setParameter(args[i], vals[i]);
+        }
+
+        try
+        {
+            List<M> res = namedQuery.getResultList();
+            return Optional.of(res);
+        } catch( Exception ex ) {
+            logger.warn("Error while retrieving results: " + ex.getMessage());
+        }
+        return Optional.empty();
+    }
+
+    public <M> Optional<M> getSingleResult(String methodName, String[] args, Object[] vals) {
+        TypedQuery<M> namedQuery = getEntityManager()
+                .createNamedQuery(methodName, (Class<M>) ((ParameterizedType) getClass()
+                        .getGenericSuperclass()).getActualTypeArguments()[0]);
+
+        for(int i = 0; i < args.length; i++) {
+            namedQuery.setParameter(args[i], vals[i]);
+        }
+
+        try
+        {
+            return Optional.of(namedQuery.getSingleResult() );
+        } catch( Exception ex ) {
+            logger.warn("Error while retrieving a single result: " + ex.getMessage());
+        }
+        return Optional.empty();
     }
 }
