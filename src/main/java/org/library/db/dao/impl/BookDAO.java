@@ -23,6 +23,4 @@ public class BookDAO extends BaseDAO<Book> implements DAOable<Book> {
     {
         return getResults("Book.getByTitle", new String[]{"title"}, new String[]{title});
     }
-
-    //select * from book where id in(select id from author_book where author_id in(select id from author where author.surname = 'Драйзер'));
 }
