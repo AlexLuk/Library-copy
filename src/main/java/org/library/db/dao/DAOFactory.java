@@ -41,7 +41,7 @@ public class DAOFactory implements Storable
     }
 
     @Override
-    public Optional<? extends BaseDAO> getModel(Class<? extends BaseDAO> daoClass) {
+    public <T extends BaseDAO> Optional<T> getModel(Class<T> daoClass) {
         try {
             return Optional.of(daoClass.getConstructor(EntityManagerFactory.class).newInstance(factory));
         } catch (Exception ex) {

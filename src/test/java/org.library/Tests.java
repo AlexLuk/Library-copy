@@ -11,8 +11,7 @@ public class Tests {
         DAOFactory daoFactory = DAOFactory.getInstance();
 
         if (daoFactory.isConnected()) {
-            Optional<BookDAO> dao =
-                    (Optional<BookDAO>) daoFactory.getModel(BookDAO.class);
+            Optional<BookDAO> dao = daoFactory.getModel(BookDAO.class);
             dao.ifPresent(daoObj -> {
                 daoObj.getByTitle("Керри").ifPresent(obj -> {
                     for(Book book : obj) {

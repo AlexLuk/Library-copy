@@ -7,30 +7,30 @@ import javax.persistence.*;
 
 @NamedQueries
 ({
-        @NamedQuery( name = "AuthorBook.getByAuthorId",
-                query = "SELECT a from AuthorBook a where a.authorId = :authorID" )
+    @NamedQuery( name = "AuthorBook.getByAuthorId",
+            query = "SELECT a from AuthorBook a where a.author = :authorID" )
 })
 
 public class AuthorBook extends Base {
     @ManyToOne
     @JoinColumn(name = "author_id" )
-    private Author authorId;
+    private Author author;
 
     @ManyToOne
     @JoinColumn(name = "book_id" )
-    private Book bookId;
+    private Book book;
 
-    public Author getAuthorId() {
-        return authorId;
+    public Author getAuthor() {
+        return author;
     }
-    public void setAuthorId(Author authorId) {
-        this.authorId = authorId;
+    public void setAuthor(Author author) {
+        this.author = author;
     }
 
-    public Book getBookId() {
-        return bookId;
+    public Book getBook() {
+        return book;
     }
-    public void setBookId(Book bookId) {
-        this.bookId = bookId;
+    public void setBook(Book book) {
+        this.book = book;
     }
 }

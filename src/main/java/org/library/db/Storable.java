@@ -12,7 +12,7 @@ public interface Storable
      * @param daoClass    model class
      * @return	Optional with DAO impl
      */
-    Optional<? extends BaseDAO> getModel(Class<? extends BaseDAO> daoClass);
+    <T extends BaseDAO> Optional<T> getModel(Class<T> daoClass);
 
     /*
      * Checks whether the connection is established
