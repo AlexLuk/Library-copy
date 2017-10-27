@@ -16,20 +16,13 @@ public class LibraryController {
 
     @RequestMapping("/")
     public String echo () {
-
-
-        String[] res = new String[3];
+        String[] res = new String[1];
         if (_daoFactory.isConnected()) {
             Optional<BookDAO> dao = _daoFactory.getModel(BookDAO.class);
             dao.ifPresent(daoObj -> {
                 daoObj.getByTitle("Керри").ifPresent(obj -> {
                     for(Book book : obj) {
-                        System.out.println(book.getTitle());
-                        res[0] = book.getTitle();
-                        System.out.println(book.getGenre().getName());
-                        res[1] = book.getGenre().getName();
-                        System.out.println(book.getIsRare());
-                        res[2] = "" + book.getIsRare();
+                        res[0] = book.getTitle() + " - " + book.getGenre().getName() + " - " + book.getIsRare();
                     }
                 });
             });
