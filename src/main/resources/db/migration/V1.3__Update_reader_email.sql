@@ -1,0 +1,3 @@
+ALTER TABLE `reader` DROP COLUMN `passport`;
+ALTER TABLE `reader` DROP COLUMN `login`;
+ALTER TABLE `reader` ADD COLUMN `email` VARCHAR(255) NOT NULL AFTER `id`

@@ -6,13 +6,13 @@ import java.sql.Date;
 @Entity
 @Table(name = "reader")
 @NamedQueries({
-        @NamedQuery(name = "Reader.getByLogin",
-        query = "SELECT r from Reader r where r.login = :login" )
+        @NamedQuery(name = "Reader.getByEmail",
+        query = "SELECT r from Reader r where r.email = :email" )
 })
 public class Reader extends Base {
     @Basic
-    @Column(name = "login")
-    private String login;
+    @Column(name = "email")
+    private String email;
 
     @Basic
     @Column(name = "password")
@@ -31,10 +31,6 @@ public class Reader extends Base {
     private String patronymic;
 
     @Basic
-    @Column(name = "passport")
-    private String passport;
-
-    @Basic
     @Column(name = "registration_date")
     private Date registrationDate;
 
@@ -48,16 +44,16 @@ public class Reader extends Base {
 
     public Reader() {}
 
-    public Reader(String login, String password) {
-        this.login = login;
+    public Reader(String email, String password) {
+        this.email = email;
         this.password = password;
     }
 
-    public String getLogin() {
-        return login;
+    public String getEmail() {
+        return email;
     }
-    public void setLogin(String login) {
-        this.login = login;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
@@ -86,13 +82,6 @@ public class Reader extends Base {
     }
     public void setPatronymic(String patronymic) {
         this.patronymic = patronymic;
-    }
-
-    public String getPassport() {
-        return passport;
-    }
-    public void setPassport(String passport) {
-        this.passport = passport;
     }
 
     public Date getRegistrationDate() {

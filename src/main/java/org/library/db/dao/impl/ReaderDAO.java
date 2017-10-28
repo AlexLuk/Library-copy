@@ -15,12 +15,12 @@ public class ReaderDAO extends BaseDAO<Reader> implements DAOable<Reader> {
     }
 
     /**
-     * Gets reader by login
+     * Gets reader by email
      *
-     * @param login reader login
+     * @param email reader email
      * @return reader
      */
-    public Optional<Reader> getByLogin(String login) throws PersistenceException {
-        return getSingleResult("Reader.getByLogin", new String[]{"login"}, new String[]{login});
+    public Optional<Reader> getByEmail(String email) throws PersistenceException {
+        return getSingleResult("Reader.getByEmail", new String[]{"email"}, new String[]{email});
     }
 }

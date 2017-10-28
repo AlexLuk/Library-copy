@@ -51,10 +51,9 @@ public class UserLoginStepDef {
     @And("^Execute query to database$")
     public void executeQueryToDatabase() throws Throwable {
         if (daoFactory.isConnected()) {
-            Optional<ReaderDAO> dao =
-                    (Optional<ReaderDAO>) daoFactory.getModel(ReaderDAO.class);
+            Optional<ReaderDAO> dao = daoFactory.getModel(ReaderDAO.class);
             dao.ifPresent(daoObj -> {
-                daoObj.getByLogin("user1").ifPresent(obj -> {
+                daoObj.getByEmail("Madonna@mail.ru").ifPresent(obj -> {
                     userPasswordFromDatabase = obj.getPassword();
                 });
             });
