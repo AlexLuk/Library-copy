@@ -19,22 +19,30 @@ import org.library.services.UserDetailsServiceImpl;
 @EnableJpaRepositories(basePackageClasses = ReadersRepository.class)
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+
     @Autowired
-    private UserDetailsServiceImpl readerDetailsService;
+    private UserDetailsServiceImpl userDetailsService;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(readerDetailsService)
+        auth.userDetailsService(userDetailsService)
                 .passwordEncoder(new Md5PasswordEncoder());
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
-        http.authorizeRequests().antMatchers("**/secured/**")
-                .authenticated().anyRequest().permitAll().and().formLogin()
+        http.authorizeRequests()
+                .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/account/**")
+                .authenticated().anyRequest().permitAll()
+                .and()
+                .formLogin()
                 // .loginPage("/loginpage")   //указать страницу авторизации
-                .permitAll();
+                .permitAll()
+                .and()
+                .logout()
+                .permitAll();;
     }
 }
 
