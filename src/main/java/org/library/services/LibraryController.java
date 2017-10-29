@@ -22,6 +22,13 @@ public class LibraryController {
         return "index";
     }
 
+    /*
+    @RequestMapping("/error")
+    public String error() {
+        return "error404";
+    }
+    */
+
     @RequestMapping("/search")
     public String auth() {
         String[] res = new String[1];
