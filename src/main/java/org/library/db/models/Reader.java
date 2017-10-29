@@ -10,6 +10,19 @@ import java.sql.Date;
         query = "SELECT r from Reader r where r.email = :email" )
 })
 public class Reader extends Base {
+
+    public Reader(Reader reader) {
+        this.email = reader.getEmail();
+        this.fines = reader.getFines();
+        this.isAdmin = reader.getIsAdmin();
+        this.name = reader.getName();
+        this.password = reader.getPassword();
+        this.patronymic = reader.getPatronymic();
+        this.registrationDate = reader.getRegistrationDate();
+        this.surname = reader.getSurname();
+        this.id = reader.getId();
+    }
+
     @Basic
     @Column(name = "email")
     private String email;
