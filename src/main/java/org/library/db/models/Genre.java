@@ -4,6 +4,12 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "genre")
+@NamedQueries
+({
+    @NamedQuery( name = "Genre.getByGenre",
+        query = "SELECT a from Genre a where a.name like concat('%',:genre,'%')" )
+})
+
 public class Genre extends Base {
     @Basic
     @Column(name = "name")

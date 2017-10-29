@@ -1,9 +1,10 @@
 package org.library.db.dao.impl;
 
 import org.library.db.dao.DAOable;
-import org.library.db.models.*;
+import org.library.db.models.Author;
 
-import javax.persistence.*;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceException;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,11 +17,11 @@ public class AuthorDAO extends BaseDAO<Author> implements DAOable<Author> {
     /**
      * Gets book by author
      *
-     * @param surname book author surname
-     * @return book
+     * @param author book author author
+     * @return author
      */
-    public Optional<List<Author>> getAuthorBySurname(String surname) throws PersistenceException
+    public Optional<List<Author>> getAuthorBySurname(String author) throws PersistenceException
     {
-        return getResults("Author.getAuthor", new String[]{"surname"}, new String[]{surname});
+        return getResults("Author.getAuthor", new String[]{"author"}, new String[]{author});
     }
 }
