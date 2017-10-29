@@ -1,0 +1,41 @@
+В файл pom.xml добавляем свойсва и зависимости сборки:
+
+ <properties>
+       ...
+            <flyway.user>root</flyway.user>
+            <flyway.password>root</flyway.password>
+            <flyway.schemas>library</flyway.schemas>
+        ...
+ </properties>
+
+ <build>
+        ...
+        <plugins>
+            ...
+            <plugin>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+                <version>4.2.0</version>
+                <configuration>
+                    <url>jdbc:mysql://localhost:3306/library?useSSL=false&amp;useUnicode=true&amp;serverTimezone=UTC</url>
+                </configuration>
+            </plugin>
+            ...
+        </plugins>
+    </build>
+
+    Создаем файл V1__Base_version.sql с дампом базы, если он не отличается от требуемого.
+    Запускаем команду flyway:baseline из Maven Projects ->Plugins -> flyway
+    В базе появляется таблица schema_version.
+    Для следующего изменения схемы создаем новый sql файл с необходимыми командами(create, insert...).
+    Выполняем команду flyway:migrate.
+
+    baseline - Baselines an existing database, excluding all migrations upto and including baselineVersion.
+    migrate - Migrates the schema to the latest version. Flyway will create the metadata table automatically if it doesn't exist.
+    clean - All objects (tables, views, procedures, ...) will be dropped.
+    validate - Validates the applied migrations against the available ones.
+    info - Prints the details and status information about all the migrations
+    repair - Repairs the metadata table
+
+    некоторые проблемы, которые могут возникнуть и их решение.
+    https://www.romexsoft.com/blog/flyway-db-migration/
