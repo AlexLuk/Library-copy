@@ -16,7 +16,7 @@ public class LibraryResource {
 
     //    @PreAuthorize("hasAnyRole('ADMIN')")
     @GetMapping("/secured/all")
-    public String secureHello() {
+    public String securedHello() {
         return "После входа - личный кабинет";
     }
 }
