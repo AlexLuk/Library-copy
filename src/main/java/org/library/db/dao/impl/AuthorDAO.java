@@ -57,4 +57,16 @@ public class AuthorDAO extends BaseDAO<Author> implements DAOable<Author> {
     {
         return getResults(Author.GET_BY_YEAR, new String[]{"year"}, new Integer[]{year});
     }
+
+    /**
+     * Get list of authors by their genre
+     * @param genreId specified genre id
+     * @return list of authors by commanded genre
+     * @throws PersistenceException
+     */
+    public Optional<List<Author>> getAuthorByGenre(String genreId) throws PersistenceException
+    {
+        Optional<List<Author>> authors = null;
+        return authors;
+    }
 }

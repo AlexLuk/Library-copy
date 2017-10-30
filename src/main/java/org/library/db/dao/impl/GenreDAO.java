@@ -24,4 +24,16 @@ public class GenreDAO extends BaseDAO<Genre> implements DAOable<Genre> {
     {
         return getResults("Genre.getByGenre", new String[]{"genre"}, new String[]{genre});
     }
+
+    /**
+     * Get list of genres by specified author id
+     * @param authorId
+     * @return
+     * @throws PersistenceException
+     */
+    public Optional<List<Genre>> getGenresByAuthor(int authorId) throws PersistenceException
+    {
+        Optional<List<Genre>> genres = null;
+        return genres;
+    }
 }

@@ -46,27 +46,4 @@ public class BookDAO extends BaseDAO<Book> implements DAOable<Book> {
     {
         return getResults(Book.GET_BY_AUTHOR, new String[]{"authorId"}, new Integer[]{authorId});
     }
-
-    /**
-     * Gets book by genreId
-     *
-     * @param genreId book's genreId
-     * @return book
-     */
-    public Optional<List<Book>> getByGenre(int genreId) throws PersistenceException
-    {
-        return getResults("Book.getByGenre", new String[]{"genreId"}, new Integer[]{genreId});
-    }
-
-    /**
-     * Gets book by authorId
-     *
-     * @param authorId book's authorId
-     * @return book
-     */
-    public Optional<List<Book>> getByAuthorId(int authorId) throws PersistenceException
-    {
-        return getResults("Book.getByAuthor", new String[]{"authorId"}, new Integer[]{authorId});
-    }
-
 }
