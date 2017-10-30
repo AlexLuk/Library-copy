@@ -7,23 +7,21 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.library.db.domain.Reader;
+import org.library.db.repo.ReaderRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import java.util.Optional;
 
-
+@EnableJpaRepositories(basePackageClasses = ReaderRepository.class)
 public class UserLoginStepDef {
+    @Autowired
+    ReaderRepository readerRepository;
+
     private String userLogin;
     private String userPassword;
     private String userPasswordFromDatabase;
-
-
-    /**
-     * Establish connection to database before each
-     */
-    //@Before
-    /*public void establishDatabaseConnection() {
-        daoFactory = DAOFactory.getInstance();
-    }*/
 
     @When("^User enter login \"([^\"]*)\" and password \"([^\"]*)\"$")
     public void userEnterLoginAndPassword(String login, String password) throws Throwable {
@@ -47,24 +45,12 @@ public class UserLoginStepDef {
 
     @And("^Execute query to database$")
     public void executeQueryToDatabase() throws Throwable {
-        /*if (daoFactory.isConnected()) {
-            Optional<ReaderDAO> dao = daoFactory.getModel(ReaderDAO.class);
-            dao.ifPresent(daoObj -> {
-                daoObj.getByEmail("Madonna@mail.ru").ifPresent(obj -> {
-                    userPasswordFromDatabase = obj.getPassword();
-                });
-            });
-        }*/
-    }
+        Optional<Reader> reader = readerRepository.findByEmail("Madonna@mail.ru");
 
-    /**
-     * Closing database connection after each run of scenario
-     */
-    //@After
-    /*public void closeDatabaseConnection() {
-        daoFactory.closeConn();
+        reader.ifPresent(obj -> {
+            userPasswordFromDatabase = obj.getPassword();
+        });
     }
-    */
 
     /**
      * Method provide user password as it is stored in database

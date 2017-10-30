@@ -1,6 +1,4 @@
-package org.library.config;
-
-//import com.sun.deploy.association.utility.AppConstants;
+package org.library.security;
 
 import org.library.db.repo.ReaderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +10,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.library.services.UserDetailsServiceImpl;
+import org.library.services.LibraryUserDetailsService;
 
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableWebSecurity
@@ -21,7 +19,7 @@ import org.library.services.UserDetailsServiceImpl;
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private UserDetailsServiceImpl userDetailsService;
+    private LibraryUserDetailsService userDetailsService;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {

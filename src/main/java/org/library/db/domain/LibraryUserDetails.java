@@ -8,10 +8,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class UserDetails extends Reader implements UserDetails {
+public class LibraryUserDetails extends Reader implements UserDetails {
 
-    public UserDetails(final Reader reader) {
-        super(reader);
+    public LibraryUserDetails(final Reader reader) {
     }
 
     @Override
