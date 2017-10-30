@@ -6,7 +6,10 @@ import javax.persistence.*;
 @NamedQueries
 ({
     @NamedQuery( name = "Author.getAuthor",
-            query = "SELECT a from Author a where a.surname like concat('%',:surname,'%')" )
+            query = "SELECT a from Author a where a.surname like concat('%',:author,'%') " +
+                    "or a.name like concat('%',:author,'%')" +
+                    "or a.patronymic like concat('%',:author,'%')" +
+                    "or a.yearOfBirth = :author" )
 
 })
 
