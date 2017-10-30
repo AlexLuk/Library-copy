@@ -12,7 +12,7 @@ import javax.persistence.*;
 })
 
 public class AuthorBook extends Base {
-    public static final String GET_AUTHOR_ID = "Author.getAuthorId";
+    public static final String GET_AUTHOR_ID = "AuthorBook.getAuthorId";
 
     @ManyToOne
     @JoinColumn(name = "author_id" )

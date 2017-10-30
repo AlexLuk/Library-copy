@@ -5,16 +5,25 @@ import javax.persistence.*;
 @Entity
 @NamedQueries
 ({
-    @NamedQuery( name = Author.GET_AUTHOR,
-            query = "SELECT a from Author a where a.surname like concat('%',:author,'%') " +
-                    "or a.name like concat('%',:author,'%')" +
-                    "or a.patronymic like concat('%',:author,'%')" +
-                    "or a.yearOfBirth = :author" )
+        @NamedQuery( name = Author.GET_BY_SURNAME,
+                query = "SELECT a from Author a where a.surname like concat('%',:surname,'%') "),
+
+        @NamedQuery( name = Author.GET_BY_NAME,
+                query = "SELECT a from Author a where a.name like concat('%',:name,'%') "),
+
+        @NamedQuery( name = Author.GET_BY_PATRONYMIC,
+                query = "SELECT a from Author a where a.patronymic like concat('%',:patronymic,'%') "),
+
+        @NamedQuery( name = Author.GET_BY_YEAR,
+                query = "SELECT a from Author a where a.yearOfBirth = :year")
 
 })
 @Table(name = "author")
 public class Author extends Base {
-    public static final String GET_AUTHOR = "Author.getAuthor";
+    public static final String GET_BY_SURNAME = "Author.getBySurname";
+    public static final String GET_BY_NAME = "Author.getByName";
+    public static final String GET_BY_PATRONYMIC = "Author.getByPatronymic";
+    public static final String GET_BY_YEAR = "Author.getByYear";
 
     @Basic
     @Column(name = "name")
