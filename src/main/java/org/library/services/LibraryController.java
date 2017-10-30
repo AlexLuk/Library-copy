@@ -25,7 +25,7 @@ public class LibraryController {
     /*
     @RequestMapping("/error")
     public String error() {
-        return "error404";
+        return "errorPages/error404";
     }
     */
 
