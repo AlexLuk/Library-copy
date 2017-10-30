@@ -22,6 +22,6 @@ public class AuthorDAO extends BaseDAO<Author> implements DAOable<Author> {
      */
     public Optional<List<Author>> getAuthorBySurname(String author) throws PersistenceException
     {
-        return getResults("Author.getAuthor", new String[]{"author"}, new String[]{author});
+        return getResults(Author.GET_AUTHOR, new String[]{"author"}, new String[]{author});
     }
 }

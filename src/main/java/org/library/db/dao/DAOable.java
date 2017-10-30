@@ -29,7 +29,7 @@ public interface DAOable<T extends Base>
      * @param objClass Object class
      * @throws PersistenceException
     */
-    T getById(int id, Class objClass) throws PersistenceException;
+    T getById(int id, Class<T> objClass) throws PersistenceException;
 
     /**
      * Removes object.
@@ -38,5 +38,5 @@ public interface DAOable<T extends Base>
      * @param objClass Object class
      * @throws PersistenceException
     */
-    void delete(T obj, Class objClass) throws PersistenceException;
+    void delete(T obj, Class<T> objClass) throws PersistenceException;
 }

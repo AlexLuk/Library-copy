@@ -6,17 +6,21 @@ import javax.persistence.*;
 @Table(name = "book")
 @NamedQueries
 ({
-    @NamedQuery( name = "Book.getByTitle",
+    @NamedQuery( name = Book.GET_BY_TITLE,
             query = "SELECT b from Book b where b.title like concat('%',:title,'%')" ),
 
-    @NamedQuery( name = "Book.getByGenre",
+    @NamedQuery( name = Book.GET_BY_GENRE,
             query = "SELECT b from Book b where b.genre = :genreId" ),
 
-    @NamedQuery( name = "Book.getByAuthor",
+    @NamedQuery( name = Book.GET_BY_AUTHOR,
             query = "SELECT b from Book b where b.id = :authorId" )
 })
 
 public class Book extends Base {
+    public static final String GET_BY_TITLE = "Book.getByTitle";
+    public static final String GET_BY_GENRE = "Book.getByGenre";
+    public static final String GET_BY_AUTHOR = "Book.getByAuthor";
+
     @Basic
     @Column(name = "shelf_id")
     private String shelfId;

@@ -6,22 +6,11 @@ import java.sql.Date;
 @Entity
 @Table(name = "reader")
 @NamedQueries({
-        @NamedQuery(name = "Reader.getByEmail",
+        @NamedQuery(name = Reader.GET_BY_EMAIL,
         query = "SELECT r from Reader r where r.email = :email" )
 })
 public class Reader extends Base {
-
-    public Reader(Reader reader) {
-        this.email = reader.getEmail();
-        this.fines = reader.getFines();
-        this.isAdmin = reader.getIsAdmin();
-        this.name = reader.getName();
-        this.password = reader.getPassword();
-        this.patronymic = reader.getPatronymic();
-        this.registrationDate = reader.getRegistrationDate();
-        this.surname = reader.getSurname();
-        this.id = reader.getId();
-    }
+    public static final String GET_BY_EMAIL = "Reader.getByEmail";
 
     @Basic
     @Column(name = "email")

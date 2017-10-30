@@ -7,11 +7,13 @@ import javax.persistence.*;
 
 @NamedQueries
 ({
-    @NamedQuery( name = "AuthorBook.getByAuthorId",
+    @NamedQuery( name = AuthorBook.GET_AUTHOR_ID,
             query = "SELECT a from AuthorBook a where a.author = :authorID" )
 })
 
 public class AuthorBook extends Base {
+    public static final String GET_AUTHOR_ID = "Author.getAuthorId";
+
     @ManyToOne
     @JoinColumn(name = "author_id" )
     private Author author;

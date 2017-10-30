@@ -1,15 +1,9 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="templates/header.jsp" %>
 
-        <nav class="navbar navbar-light bg-light">
-            <a class="navbar-brand" href="/">
-                <img src="../../img/favicon.ico" width="16" height="16" alt="">Library&trade;
-            </a>
-        </nav>
-
         <div class="container">
             <div class="jumbotron">
-                <h1 class="display-3">Welcome to the online Library</h1>
+                <h2 class="display-4">Welcome to the online Library</h2>
                 <p class="lead">All your books at your fingertips:</p>
                 <hr class="my-4">
                 <div id="service_buttons">

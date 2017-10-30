@@ -81,12 +81,12 @@ public class BaseDAO<T extends Base> implements DAOable<T>
         }
     }
 
-    public T getById( int id, Class objClass )
+    public T getById( int id, Class<T> objClass )
     {
-        return ( T ) getEntityManager().find( objClass, id );
+        return getEntityManager().find( objClass, id );
     }
 
-    public void delete( T obj, Class objClass )
+    public void delete( T obj, Class<T> objClass )
     {
         EntityManager entityManager = getEntityManager();
         try
