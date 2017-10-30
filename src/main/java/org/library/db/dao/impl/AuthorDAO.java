@@ -15,13 +15,46 @@ public class AuthorDAO extends BaseDAO<Author> implements DAOable<Author> {
     }
 
     /**
-     * Gets book by author
+     * Gets author by surname
      *
-     * @param author book author author
-     * @return author
+     * @param surname book's author surname
+     * @return surname
      */
-    public Optional<List<Author>> getAuthorBySurname(String author) throws PersistenceException
+    public Optional<List<Author>> getAuthorBySurname(String surname) throws PersistenceException
     {
-        return getResults(Author.GET_AUTHOR, new String[]{"author"}, new String[]{author});
+        return getResults(Author.GET_BY_SURNAME, new String[]{"surname"}, new String[]{surname});
+    }
+
+    /**
+     * Gets author by name
+     *
+     * @param name book's author name
+     * @return name
+     */
+    public Optional<List<Author>> getAuthorByName(String name) throws PersistenceException
+    {
+        return getResults(Author.GET_BY_NAME, new String[]{"name"}, new String[]{name});
+    }
+
+    /**
+     * Gets author by patronymic
+     *
+     * @param patronymic book's author patronymic
+     * @return patronymic
+     */
+    public Optional<List<Author>> getAuthorByPatronymic(String patronymic) throws PersistenceException
+    {
+        return getResults(Author.GET_BY_PATRONYMIC, new String[]{"patronymic"}, new String[]{patronymic});
+    }
+
+    /**
+     * Gets author by year
+     *
+     * @param year book's author year
+     * @return year
+     */
+    public Optional<List<Author>> getAuthorByYear(int year) throws PersistenceException
+    {
+        return getResults(Author.GET_BY_YEAR, new String[]{"year"}, new Integer[]{year});
     }
 }
