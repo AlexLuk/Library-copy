@@ -6,10 +6,12 @@ import java.sql.Date;
 @Entity
 @Table(name = "reader")
 @NamedQueries({
-        @NamedQuery(name = "Reader.getByEmail",
+        @NamedQuery(name = Reader.GET_BY_EMAIL,
         query = "SELECT r from Reader r where r.email = :email" )
 })
 public class Reader extends Base {
+    public static final String GET_BY_EMAIL = "Reader.getByEmail";
+
     @Basic
     @Column(name = "email")
     private String email;

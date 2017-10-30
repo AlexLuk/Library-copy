@@ -21,6 +21,6 @@ public class AuthorBookDAO extends BaseDAO<AuthorBook> implements DAOable<Author
      */
     public Optional<AuthorBook> getByAuthorId(int authorID) throws PersistenceException
     {
-        return getSingleResult("AuthorBook.getByAuthorId", new String[]{"authorID"}, new Integer[]{authorID});
+        return getSingleResult(AuthorBook.GET_AUTHOR_ID, new String[]{"authorID"}, new Integer[]{authorID});
     }
 }

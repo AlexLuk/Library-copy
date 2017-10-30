@@ -21,6 +21,6 @@ public class ReaderDAO extends BaseDAO<Reader> implements DAOable<Reader> {
      * @return reader
      */
     public Optional<Reader> getByEmail(String email) throws PersistenceException {
-        return getSingleResult("Reader.getByEmail", new String[]{"email"}, new String[]{email});
+        return getSingleResult(Reader.GET_BY_EMAIL, new String[]{"email"}, new String[]{email});
     }
 }

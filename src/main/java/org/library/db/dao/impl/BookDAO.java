@@ -22,7 +22,7 @@ public class BookDAO extends BaseDAO<Book> implements DAOable<Book> {
      */
     public Optional<List<Book>> getByTitle(String title) throws PersistenceException
     {
-        return getResults("Book.getByTitle", new String[]{"title"}, new String[]{title});
+        return getResults(Book.GET_BY_TITLE, new String[]{"title"}, new String[]{title});
     }
 
     /**
@@ -33,7 +33,7 @@ public class BookDAO extends BaseDAO<Book> implements DAOable<Book> {
      */
     public Optional<List<Book>> getByGenre(int genreId) throws PersistenceException
     {
-        return getResults("Book.getByGenre", new String[]{"genreId"}, new Integer[]{genreId});
+        return getResults(Book.GET_BY_GENRE, new String[]{"genreId"}, new Integer[]{genreId});
     }
 
     /**
@@ -44,7 +44,6 @@ public class BookDAO extends BaseDAO<Book> implements DAOable<Book> {
      */
     public Optional<List<Book>> getByAuthorId(int authorId) throws PersistenceException
     {
-        return getResults("Book.getByAuthor", new String[]{"authorId"}, new Integer[]{authorId});
+        return getResults(Book.GET_BY_AUTHOR, new String[]{"authorId"}, new Integer[]{authorId});
     }
-
 }
