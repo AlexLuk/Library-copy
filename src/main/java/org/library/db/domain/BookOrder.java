@@ -1,4 +1,4 @@
-package org.library.db.models;
+package org.library.db.domain;
 
 import javax.persistence.*;
 

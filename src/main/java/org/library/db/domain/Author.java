@@ -1,21 +1,10 @@
-package org.library.db.models;
+package org.library.db.domain;
 
 import javax.persistence.*;
 
 @Entity
-@NamedQueries
-({
-    @NamedQuery( name = Author.GET_AUTHOR,
-            query = "SELECT a from Author a where a.surname like concat('%',:author,'%') " +
-                    "or a.name like concat('%',:author,'%')" +
-                    "or a.patronymic like concat('%',:author,'%')" +
-                    "or a.yearOfBirth = :author" )
-
-})
 @Table(name = "author")
 public class Author extends Base {
-    public static final String GET_AUTHOR = "Author.getAuthor";
-
     @Basic
     @Column(name = "name")
     private String name;

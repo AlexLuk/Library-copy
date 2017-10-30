@@ -20,12 +20,6 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>6.0.3</version>
         </dependency>
-<!-- Hibernate -->
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>5.2.7.Final</version>
-        </dependency>
 <!-- logging -->
         <dependency>
             <groupId>ch.qos.logback</groupId>
@@ -55,6 +49,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <version>1.5.8.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
             <version>1.5.8.RELEASE</version>
         </dependency>
 <!-- Tomcat Embed -->
@@ -94,7 +93,7 @@
                 <artifactId>flyway-maven-plugin</artifactId>
                 <version>4.2.0</version>
                 <configuration>
-                    <url>jdbc:mysql://localhost:3306/library?useSSL=false&amp;useUnicode=true&amp;serverTimezone=UTC</url>
+                    <url>jdbc:mysql://localhost:3306/library?serverTimezone=Europe/Moscow&amp;useSSL=false</url>
                 </configuration>
             </plugin>
         </plugins>

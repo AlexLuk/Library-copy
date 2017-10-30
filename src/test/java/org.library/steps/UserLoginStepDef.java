@@ -7,8 +7,6 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import org.library.db.dao.DAOFactory;
-import org.library.db.dao.impl.ReaderDAO;
 
 import java.util.Optional;
 
@@ -17,16 +15,15 @@ public class UserLoginStepDef {
     private String userLogin;
     private String userPassword;
     private String userPasswordFromDatabase;
-    private DAOFactory daoFactory;
 
 
     /**
      * Establish connection to database before each
      */
-    @Before
-    public void establishDatabaseConnection() {
+    //@Before
+    /*public void establishDatabaseConnection() {
         daoFactory = DAOFactory.getInstance();
-    }
+    }*/
 
     @When("^User enter login \"([^\"]*)\" and password \"([^\"]*)\"$")
     public void userEnterLoginAndPassword(String login, String password) throws Throwable {
@@ -50,24 +47,24 @@ public class UserLoginStepDef {
 
     @And("^Execute query to database$")
     public void executeQueryToDatabase() throws Throwable {
-        if (daoFactory.isConnected()) {
+        /*if (daoFactory.isConnected()) {
             Optional<ReaderDAO> dao = daoFactory.getModel(ReaderDAO.class);
             dao.ifPresent(daoObj -> {
                 daoObj.getByEmail("Madonna@mail.ru").ifPresent(obj -> {
                     userPasswordFromDatabase = obj.getPassword();
                 });
             });
-        }
+        }*/
     }
 
     /**
      * Closing database connection after each run of scenario
      */
-    @After
-    public void closeDatabaseConnection() {
+    //@After
+    /*public void closeDatabaseConnection() {
         daoFactory.closeConn();
     }
-
+    */
 
     /**
      * Method provide user password as it is stored in database

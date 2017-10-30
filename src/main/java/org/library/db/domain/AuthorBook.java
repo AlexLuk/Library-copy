@@ -1,19 +1,10 @@
-package org.library.db.models;
+package org.library.db.domain;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "author_book")
-
-@NamedQueries
-({
-    @NamedQuery( name = AuthorBook.GET_AUTHOR_ID,
-            query = "SELECT a from AuthorBook a where a.author = :authorID" )
-})
-
 public class AuthorBook extends Base {
-    public static final String GET_AUTHOR_ID = "Author.getAuthorId";
-
     @ManyToOne
     @JoinColumn(name = "author_id" )
     private Author author;

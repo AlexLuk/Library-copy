@@ -1,9 +1,10 @@
-package org.library.db.models;
+package org.library.db.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @MappedSuperclass
-public class Base
+public class Base implements Serializable
 {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY )
