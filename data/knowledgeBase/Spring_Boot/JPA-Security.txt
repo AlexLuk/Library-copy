@@ -1,0 +1,14 @@
+JPA:
+    уроки:
+    https://mydevgeek.com/spring-boot-rest-web-service-part-1-spring-data-mysql/
+    https://spring.io/guides/tutorials/bookmarks/
+
+    API:
+    https://docs.spring.io/spring-data/jpa/docs/current/api/org/springframework/data/jpa/repository/JpaRepository.html
+
+Security:
+    класс для отображения формы входа
+    DefaultLoginPageGeneratingFilter
+
+    создание своего отображения для формы
+    https://docs.spring.io/spring-security/site/docs/current/guides/html5/form-javaconfig.html
