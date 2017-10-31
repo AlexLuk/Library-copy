@@ -26,7 +26,7 @@
                         </button>
                         <form method="post">
                             <div class="form-group">
-                                <label for="email_register">Login (your email)</label>
+                                <label for="email_register">Email</label>
                                 <input type="email" class="form-control" name="email_register" id="email_register"
                                        value=""><br/>
                                 <label for="passwd_register">Password:</label>
