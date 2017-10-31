@@ -31,4 +31,9 @@ public class LibraryController {
     public String adminLogin() {
         return "После входа - кабинет админа";
     }
+
+    @GetMapping("/registration")
+    public String userRegistration() {
+        return "registrationFrom";
+    }
 }
