@@ -17,8 +17,6 @@ public class LibraryController {
 
     @RequestMapping("/")
     public String home() {
-        Reader res = readerRepository.findOne(1);
-        System.out.println(res.getName());
         return "index";
     }
 

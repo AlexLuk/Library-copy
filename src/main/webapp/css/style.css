@@ -15,6 +15,16 @@ body
     font-family: 'Palatino Linotype' !important;
 }
 
+link
+{
+    color: #007bff;
+}
+
+button, link
+{
+    cursor: pointer;
+}
+
 #service_buttons, div.tab-content
 {
     padding-top: 60px !important;
@@ -29,7 +39,6 @@ body
 #service_buttons a:hover
 {
     text-decoration: none;
-    cursor:pointer;
 }
 
 #login_form
@@ -37,6 +46,12 @@ body
     width: 50%;
     margin-left: auto;
     margin-right: auto;
+}
+
+#register_link
+{
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 .bg-danger, .bg-success
