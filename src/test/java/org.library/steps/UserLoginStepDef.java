@@ -1,6 +1,7 @@
 package org.library.steps;
 
 import cucumber.api.PendingException;
+import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -41,65 +42,53 @@ public class UserLoginStepDef {
     }
 
 
-    @And("^user press \"([^\"]*)\" button$")
-    public void userPressButton(String buttonText) throws Throwable {
-        String buttonXpath = "//*[@id=\"check_passwd\"]";
-//        WebElement button = selen.getElemXpath(buttonXpath);
-        WebElement button =selen.getElemXpath("/html/body/div/div/div/a[1]");
-
-        if (button != null && button.getText().equals(buttonText)) {
-            System.err.println("Click button " + button.getText());
-            button.click();
-        } else {
-            System.err.println("No enter button");
-        }
+    @And("^user press Reader button$")
+    public void userPressButton() throws Throwable {
+        String readerButtonXpath = "//a[@id='reader_enter']";
+        selen.getElemXpath(readerButtonXpath).click();
     }
 
     @When("^User set login to \"([^\"]*)\"$")
     public void userSetLoginTo(String login) throws Throwable {
-       // String loginXpath = "//*[@id=\"email\"]";
-        String loginXpath = "//input";
+        String loginXpath = "//input[@name='username']";
         selen.wait(100, loginXpath);
         WebElement loginInput = selen.getElemXpath(loginXpath);
-        if (loginInput != null) {
-            System.err.println("Login found " + login);
-            selen.setElemText(loginInput, login);
-        } else {
-            System.err.println("No loginInput");
-        }
+        selen.setElemText(loginInput, login);
     }
 
     @And("^User set password \"([^\"]*)\"$")
     public void userSetPassword(String password) throws Throwable {
-        WebElement passwordInput = selen.getElemXpath("//*[@id=\"passwd\"]");
-        if (passwordInput != null) {
-            System.err.println("Password found " + password);
-            selen.setElemText(passwordInput, password);
-        } else {
-            System.err.println("No passwordInput");
-        }
+        String passwordXpath = "//input[@name='password']";
+        WebElement passwordInput = selen.getElemXpath(passwordXpath);
+        selen.setElemText(passwordInput, password);
     }
 
-    @And("^Press \"([^\"]*)\" button$")
-    public void loginPress(String buttonText) throws Throwable {
-        WebElement button = selen.getElemXpath("//*[@id=\"check_passwd\"]");
-        if (button != null) {
-            button.click();
-        } else {
-            System.err.println("No " + buttonText);
-        }
+    @And("^Press Log in button$")
+    public void loginPress() throws Throwable {
+        String loginButtonXpath = "//input[@name='submit']";
+        selen.getElemXpath(loginButtonXpath).click();
     }
 
     @Then("^User goes to librarian home page$")
     public void userGoesToLibrarianHomePage() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+        if(!selen.getUrl().contains("admin"))
+            throw new PendingException();
     }
 
     @Then("^User goes to reader home page$")
     public void userGoesToReaderHomePage() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+        if(!selen.getUrl().contains("reader"))
+            throw new PendingException();
     }
 
+    @And("^user press Librarian button$")
+    public void userPressLibrarianButton() throws Throwable {
+            String adminButtonXpath = "//a[@id='admin_enter']";
+        selen.getElemXpath(adminButtonXpath).click();
+    }
+
+    @After
+    public void afterScenario(){
+        selen.stop();
+    }
 }

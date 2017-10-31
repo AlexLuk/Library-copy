@@ -43,6 +43,11 @@ public class SelenControl
         _driver.get( url );
     }
 
+    public String getUrl() throws Exception
+    {
+        return _driver.getTitle();
+    }
+
     /**
      * Gets the page element with the specified css path
      *
