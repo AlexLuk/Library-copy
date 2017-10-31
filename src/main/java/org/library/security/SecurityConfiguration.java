@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.library.services.LibraryUserDetailsService;
+import org.springframework.web.servlet.ModelAndView;
 
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableWebSecurity
@@ -36,10 +37,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authenticated().anyRequest().permitAll()
                 .and()
                 .formLogin()
-                .loginPage("/loginform")   //указать страницу авторизации
+                .loginPage("/login")
+                .loginProcessingUrl("/lib-login")
+                //.defaultSuccessUrl("/readerAcc")
                 .permitAll()
                 .and()
                 .logout()
-                .permitAll();;
+                .logoutSuccessUrl("/loginForm")
+                .permitAll();
     }
 }
