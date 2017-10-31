@@ -1,0 +1,6 @@
+локализация:
+    http://www.baeldung.com/spring-boot-internationalization
+
+property-файлы в Java:
+    http://devcolibri.com/3408
+
