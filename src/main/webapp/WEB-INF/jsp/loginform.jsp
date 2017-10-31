@@ -1,7 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="templates/header.jsp" %>
 
-<div class="login_form">
+<div id="login_form">
+    <h4>Please provide your credentials:</h4>
+    <hr class="my-4">
     <form method="post" action="service" id="login" name="login">
         <div class="form-group">
             <label for="email">Email:</label>

@@ -18,7 +18,11 @@ public class LibraryErrorController implements ErrorController {
         System.out.println(response.getStatus());
         if (response.getStatus() == 404) {
             return "/errorPages/error404";
-        } else return "/errorPages/error500";
+        }
+        else if (response.getStatus() == 403) {
+            return "/errorPages/error403";
+        }
+        else return "/errorPages/error500";
     }
 
     @Override
