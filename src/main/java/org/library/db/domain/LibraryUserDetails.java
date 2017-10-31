@@ -11,6 +11,7 @@ import java.util.List;
 public class LibraryUserDetails extends Reader implements UserDetails {
 
     public LibraryUserDetails(final Reader reader) {
+        super(reader);
     }
 
     @Override
