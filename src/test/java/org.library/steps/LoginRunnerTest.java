@@ -16,8 +16,11 @@ import cucumber.api.junit.Cucumber;
         //features - path to folder with .feature files
         features = "src/test/resources/org.library/features",
 
-        tags = "@database"
-//        tags = "~@ignore"
+        tags = {
+                "@interface",
+//                "@database",
+                "~@ignore"
+        }
         //glue - name of package with StepDef (in case it is not the same with runner)
         //,glue = "org.library.steps"
 )
