@@ -3,8 +3,14 @@ JPA:
     https://mydevgeek.com/spring-boot-rest-web-service-part-1-spring-data-mysql/
     https://spring.io/guides/tutorials/bookmarks/
 
-    API:
+    подключение SQL-баз:
+    https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-sql.html
+
+    API - JPA Repository:
     https://docs.spring.io/spring-data/jpa/docs/current/api/org/springframework/data/jpa/repository/JpaRepository.html
+
+    Spring Beans:
+    https://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-spring-beans-and-dependency-injection.html
 
 Security:
     класс для отображения формы входа

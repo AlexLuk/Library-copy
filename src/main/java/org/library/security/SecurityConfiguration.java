@@ -43,4 +43,3 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .permitAll();;
     }
 }
-
