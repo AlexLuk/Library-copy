@@ -5,6 +5,7 @@ import org.library.db.repo.ReaderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Map;
 
@@ -17,18 +18,19 @@ public class LibraryController {
 
     @RequestMapping("/")
     public String home() {
-        Reader res = readerRepository.findOne(1);
-        System.out.println(res.getName());
+//        Reader res = readerRepository.findOne(1);
+//        System.out.println(res.getName());
         return "index";
     }
 
     @GetMapping("/account")
     public String userLogin() {
-        return "loginform";
+        return "После входа - лк читателя";
     }
 
     @GetMapping("/admin")
     public String adminLogin() {
         return "После входа - кабинет админа";
     }
+
 }
