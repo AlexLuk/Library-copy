@@ -1,4 +1,4 @@
-package org.library.services;
+package org.library.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.ErrorAttributes;

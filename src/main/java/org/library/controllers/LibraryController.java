@@ -1,4 +1,4 @@
-package org.library.services;
+package org.library.controllers;
 
 import org.library.db.domain.Reader;
 import org.library.db.repo.ReaderRepository;
@@ -28,10 +28,5 @@ public class LibraryController {
     @GetMapping("/admin")
     public String adminLogin() {
         return "После входа - кабинет админа";
-    }
-
-    @GetMapping("/account/register")
-    public String userRegistration() {
-        return "registrationForm";
     }
 }
