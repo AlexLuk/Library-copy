@@ -11,7 +11,7 @@
             <label for="passwd">Password:</label>
             <input type="password" class="form-control" name="passwd" id="passwd" value=""><br/>
             <button type="submit" class="btn btn-primary" id="check_passwd" name="check_passwd">Log in</button>
-            <button type="submit" class="btn btn-primary" id="register" name="register">Register</button>
+            <a class="btn btn-primary" id="register"role="button" href="/account/register">Register</a>
         </div>
     </form>
     <br/>

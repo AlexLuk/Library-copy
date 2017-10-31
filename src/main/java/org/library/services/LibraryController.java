@@ -24,7 +24,7 @@ public class LibraryController {
 
     @GetMapping("/account")
     public String userLogin() {
-        return "loginform";
+        return "loginForm";
     }
 
     @GetMapping("/admin")
@@ -32,8 +32,8 @@ public class LibraryController {
         return "После входа - кабинет админа";
     }
 
-    @GetMapping("/registration")
+    @GetMapping("/account/register")
     public String userRegistration() {
-        return "registrationFrom";
+        return "registrationForm";
     }
 }
