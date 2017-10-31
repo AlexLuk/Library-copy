@@ -36,10 +36,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authenticated().anyRequest().permitAll()
                 .and()
                 .formLogin()
-                // .loginPage("/loginpage")   //указать страницу авторизации
+                //.loginPage("/index.jsp")   //указать страницу авторизации
                 .permitAll()
                 .and()
                 .logout()
                 .permitAll();;
     }
 }
+
