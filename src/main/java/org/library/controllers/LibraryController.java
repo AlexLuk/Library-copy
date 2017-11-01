@@ -45,7 +45,7 @@ public class LibraryController {
             model.addAttribute("error", "Your username or password is invalid.");
 
         if (logout != null)
-            model.addAttribute("message", "You have been successfully logged out.");
+            model.addAttribute("msg", "You have been successfully logged out.");
         return "login";
     }
 
