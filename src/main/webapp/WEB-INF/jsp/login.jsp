@@ -19,6 +19,12 @@
         <p class="lead">All your books at your fingertips:</p>
         <hr class="my-4">
         <div id="login_form">
+            <c:if test="${not empty error}">
+                <div class="error alert alert-danger" role="alert">${error}</div>
+            </c:if>
+            <c:if test="${not empty msg}">
+                <div class="msg alert alert-success" role="alert">${msg}</div>
+            </c:if>
             <form method="post" action="/checkAuth" id="login" name="login">
                 <div class="form-group">
                     <label for="email_enter">Email:</label>
@@ -31,9 +37,10 @@
             <div class="float-left">
                 If you don't have an account yet
                 please <a id="register_link" class="font-weight-light" role="button" data-toggle="modal"
-                         data-target="#registerWindow">Register</a>
+                          data-target="#registerWindow">Register</a>
             </div>
-            <div class="modal fade" id="registerWindow" tabindex="-1" role="dialog" aria-labelledby="registerWindowLabel">
+            <div class="modal fade" id="registerWindow" tabindex="-1" role="dialog"
+                 aria-labelledby="registerWindowLabel">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-body">
@@ -46,15 +53,19 @@
                                     <input type="email" class="form-control" name="email_register" id="email_register"
                                            value=""><br/>
                                     <label for="passwd_register">Password:</label>
-                                    <input type="password" class="form-control" name="passwd_register" id="passwd_register"
+                                    <input type="password" class="form-control" name="passwd_register"
+                                           id="passwd_register"
                                            value=""><br/>
                                     <label for="name">Name:</label>
                                     <input type="text" class="form-control" name="name" id="name" value=""><br/>
                                     <label for="surname">Surname:</label>
                                     <input type="text" class="form-control" name="surname" id="surname" value=""><br/>
                                     <label for="patronymic">Patronymic name:</label>
-                                    <input type="text" class="form-control" name="patronymic" id="patronymic" value=""><br/>
-                                    <button type="submit" class="btn btn-primary" id="register" name="register">Register</button>
+                                    <input type="text" class="form-control" name="patronymic" id="patronymic"
+                                           value=""><br/>
+                                    <button type="submit" class="btn btn-primary" id="register" name="register">
+                                        Register
+                                    </button>
                                 </div>
                             </form>
                         </div>

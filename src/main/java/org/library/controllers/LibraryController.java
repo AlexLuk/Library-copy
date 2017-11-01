@@ -16,7 +16,8 @@ public class LibraryController {
     @Autowired
     ReaderRepository readerRepository;
 
-    public LibraryController() {}
+    public LibraryController() {
+    }
 
 /*  @RequestMapping(value = {"/login"}, method = RequestMethod.POST)
     public String login(Model model, HttpServletResponse response, String error, String logout) {
@@ -29,27 +30,27 @@ public class LibraryController {
         return "loginForm";
     }
 */
-    @RequestMapping(value = {"/login"})
-    public String login(HttpSession session, Map<String, Object> model) {
-        DefaultSavedRequest savedRequest = (DefaultSavedRequest)
-                session.getAttribute("SPRING_SECURITY_SAVED_REQUEST");
-        //System.out.println(savedRequest);
-        model.put("req_url", savedRequest);
+//    @RequestMapping(value = {"/login "})
+//    public String login(HttpSession session, Map<String, Object> model) {
+//        DefaultSavedRequest savedRequest = (DefaultSavedRequest)
+//                session.getAttribute("SPRING_SECURITY_SAVED_REQUEST");
+//        //System.out.println(savedRequest);
+//        model.put("req_url", savedRequest);
+//        return "login";
+//    }
+
+    @RequestMapping(value = {"/login", "/", "/home"}, method = RequestMethod.GET)
+    public String welcome(Model model, HttpServletResponse response, String error, String logout) {
+        if (error != null)
+            model.addAttribute("error", "Your username or password is invalid.");
+
+        if (logout != null)
+            model.addAttribute("msg", "You have been successfully logged out.");
         return "login";
     }
 
-    @RequestMapping(value = {"/", "/home"}, method = RequestMethod.GET)
-    public String welcome() {
-        return "login";
-    }
-
-    @RequestMapping(value = {"/reader"})
+    @RequestMapping(value = {"/account"})
     public String readerAcc(Model model, HttpServletResponse response) {
-        return "reader";
-    }
-
-    @RequestMapping(value = {"/admin"})
-    public String reader(Model model) {
-        return "admin";
+        return "account";
     }
 }

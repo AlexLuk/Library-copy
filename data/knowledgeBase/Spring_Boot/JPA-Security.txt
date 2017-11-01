@@ -18,6 +18,7 @@ Security:
 
     создание своего отображения для формы
     https://docs.spring.io/spring-security/site/docs/current/guides/html5/form-javaconfig.html
+    https://www.mkyong.com/spring-security/spring-security-form-login-example/
 
     tutorial по security:
     http://devcolibri.com/3810
