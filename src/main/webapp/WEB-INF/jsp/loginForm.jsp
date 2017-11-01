@@ -4,7 +4,7 @@
 <div id="login_form">
     <h4>Please provide your credentials:</h4>
     <hr class="my-4">
-    <form method="post" action="service" id="login" name="login">
+    <form method="post" action="/login" id="login" name="login">
         <div class="form-group">
             <label for="email_enter">Email:</label>
             <input type="email" class="form-control" name="email_enter" id="email_enter" value=""><br/>

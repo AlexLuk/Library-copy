@@ -16,13 +16,18 @@ public class LibraryController {
 
     public LibraryController() {}
 
-    @RequestMapping(value = {"/login"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/login"}, method = RequestMethod.POST)
     public String login(Model model, String error, String logout) {
 //        if (error != null)
 //            model.addAttribute("error", "Your username and password is invalid.");
 //
 //        if (logout != null)
 //            model.addAttribute("message", "You have been logged out successfully.");
+        return "loginForm";
+    }
+
+    @RequestMapping(value = {"/login"}, method = RequestMethod.GET)
+    public String login() {
         return "loginForm";
     }
 
