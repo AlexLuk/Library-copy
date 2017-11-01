@@ -8,25 +8,25 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-            <flyway.user>be4c06dde099c6</flyway.user>
-            <flyway.password>58672378</flyway.password>
-            <flyway.schemas>library</flyway.schemas>
+        <flyway.user>be4c06dde099c6</flyway.user>
+        <flyway.password>58672378</flyway.password>
+        <flyway.schemas>library</flyway.schemas>
     </properties>
 
     <dependencies>
-<!-- MySQL -->
+        <!-- MySQL -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>6.0.3</version>
         </dependency>
-<!-- logging -->
+        <!-- logging -->
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>1.2.1</version>
         </dependency>
-<!-- bdd cucumber testing -->
+        <!-- bdd cucumber testing -->
         <dependency>
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-java</artifactId>
@@ -45,7 +45,7 @@
             <artifactId>selenium-java</artifactId>
             <version>3.5.3</version>
         </dependency>
-<!-- Spring dependencies -->
+        <!-- Spring dependencies -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -66,24 +66,28 @@
             <artifactId>spring-security-taglibs</artifactId>
             <version>4.2.3.RELEASE</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
         <!--<dependency>-->
-            <!--<groupId>org.springframework.security</groupId>-->
-            <!--<artifactId>spring-security-samples-javaconfig-messages</artifactId>-->
-            <!--<version>4.2.3.RELEASE</version>-->
+        <!--<groupId>org.springframework.security</groupId>-->
+        <!--<artifactId>spring-security-samples-javaconfig-messages</artifactId>-->
+        <!--<version>4.2.3.RELEASE</version>-->
         <!--</dependency>-->
-<!-- Tomcat Embed -->
+        <!-- Tomcat Embed -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-tomcat</artifactId>
             <version>1.5.8.RELEASE</version>
         </dependency>
-<!-- JSTL -->
+        <!-- JSTL -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
-<!-- To compile JSP files -->
+        <!-- To compile JSP files -->
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-jasper</artifactId>

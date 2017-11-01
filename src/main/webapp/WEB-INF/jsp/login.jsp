@@ -47,25 +47,24 @@
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            <form method="post">
+                            <form action="#" th:action="@{/}" th:object="${reader}" method="post">
                                 <div class="form-group">
-                                    <label for="email_register">Email</label>
-                                    <input type="email" class="form-control" name="email_register" id="email_register"
-                                           value=""><br/>
+                                    <label for="email_register">Email:</label>
+                                    <input type="email" th:field="*{email}" class="form-control" name="email"
+                                           id="email_register" value=""><br/>
                                     <label for="passwd_register">Password:</label>
-                                    <input type="password" class="form-control" name="passwd_register"
-                                           id="passwd_register"
-                                           value=""><br/>
-                                    <label for="name">Name:</label>
-                                    <input type="text" class="form-control" name="name" id="name" value=""><br/>
+                                    <input type="password" th:field="*{password}" class="form-control" name="password"
+                                           id="passwd_register" value=""><br/>
+                                     <label for="name">Name:</label>
+                                    <input type="text" th:field="*{name}" class="form-control" name="name"
+                                           id="name" value=""><br/>
                                     <label for="surname">Surname:</label>
-                                    <input type="text" class="form-control" name="surname" id="surname" value=""><br/>
+                                    <input type="text" th:field="*{surname}" class="form-control" name="surname"
+                                           id="surname" value=""><br/>
                                     <label for="patronymic">Patronymic name:</label>
-                                    <input type="text" class="form-control" name="patronymic" id="patronymic"
-                                           value=""><br/>
-                                    <button type="submit" class="btn btn-primary" id="register" name="register">
-                                        Register
-                                    </button>
+                                    <input type="text" th:field="*{patronymic}" class="form-control" name="patronymic"
+                                           id="patronymic" value=""><br/>
+                                    <input type="submit" class="btn btn-primary" id="register" name="register" value="Register"/>
                                 </div>
                             </form>
                         </div>
