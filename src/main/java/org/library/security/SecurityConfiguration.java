@@ -34,20 +34,20 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .disable();
 
         http.authorizeRequests()
-                    .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
-                    .antMatchers("/reader/**")
-                    .authenticated().anyRequest().permitAll()
-                    .and();
+                .antMatchers("/account/**")
+                .authenticated().anyRequest().permitAll()
+                .and();
         http.formLogin()
-                    .loginPage("/login")
-                    .loginProcessingUrl("/checkAuth")
-                    .failureUrl("/login?error")
-                    .usernameParameter("email_enter")
-                    .passwordParameter("passwd_enter")
-                    .permitAll()
-                    .and();
+                .loginPage("/login")
+                .loginProcessingUrl("/checkAuth")
+                .failureUrl("/login?error")
+                .usernameParameter("email_enter")
+                .passwordParameter("passwd_enter")
+                .successForwardUrl("/account")
+                .permitAll()
+                .and();
         http.logout()
-                    .logoutSuccessUrl("/")
-                    .permitAll();
+                .logoutSuccessUrl("/login?message")
+                .permitAll();
     }
 }
