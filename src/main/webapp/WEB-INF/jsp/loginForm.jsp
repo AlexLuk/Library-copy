@@ -4,7 +4,7 @@
 <div id="login_form">
     <h4>Please provide your credentials:</h4>
     <hr class="my-4">
-    <form method="post" action="/login" id="login" name="login">
+    <form method="post" action="/checkAuth" id="login" name="login">
         <div class="form-group">
             <label for="email_enter">Email:</label>
             <input type="email" class="form-control" name="email_enter" id="email_enter" value=""><br/>
@@ -13,7 +13,7 @@
             <button type="submit" class="btn btn-primary" id="check_passwd" name="check_passwd">Log in</button>
         </div>
     </form>
-    <sec:authorize access="hasRole('ROLE_ADMIN')">
+    <sec:authorize url="/reader">
         <div class="float-left">
             If you don't have an account yet
             please <a id="register_link" class="font-weight-light" role="button" data-toggle="modal"

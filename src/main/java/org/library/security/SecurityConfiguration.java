@@ -30,21 +30,23 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable();
-        http
-                .authorizeRequests()
+        http.csrf()
+                .disable();
+
+        http.authorizeRequests()
                     .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
                     .antMatchers("/reader/**")
                     .authenticated().anyRequest().permitAll()
-                    .and()
-                .formLogin()
-                    //.loginPage("/login")
-                    //.successForwardUrl("/reader")
-                    //.failureForwardUrl("/reader")
-                    //.loginProcessingUrl("/lib-login")
+                    .and();
+        http.formLogin()
+                    .loginPage("/login")
+                    .loginProcessingUrl("/checkAuth")
+                    .failureUrl("/login?error")
+                    .usernameParameter("email_enter")
+                    .passwordParameter("passwd_enter")
                     .permitAll()
-                    .and()
-                .logout()
+                    .and();
+        http.logout()
                     .logoutSuccessUrl("/")
                     .permitAll();
     }

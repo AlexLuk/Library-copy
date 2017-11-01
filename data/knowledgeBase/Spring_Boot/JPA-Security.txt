@@ -18,3 +18,10 @@ Security:
 
     создание своего отображения для формы
     https://docs.spring.io/spring-security/site/docs/current/guides/html5/form-javaconfig.html
+
+    tutorial по security:
+    http://devcolibri.com/3810
+
+    security taglib:
+    https://docs.spring.io/spring-security/site/docs/3.0.x/reference/taglibs.html
+

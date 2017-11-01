@@ -26,12 +26,12 @@ public class LibraryController {
 //            model.addAttribute("message", "You have been logged out successfully.");
         return "loginForm";
     }
-
+*/
     @RequestMapping(value = {"/login"})
     public String login() {
         return "loginForm";
     }
-*/
+
     @RequestMapping(value = {"/", "/home"}, method = RequestMethod.GET)
     public String welcome() {
         return "index";
