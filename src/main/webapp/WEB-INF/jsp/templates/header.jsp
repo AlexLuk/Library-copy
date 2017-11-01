@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -24,8 +25,15 @@
             <a class="navbar-brand" href="/">
                 <img src="../../img/favicon.ico" width="16" height="16" alt="Home page">Library&trade;
             </a>
-            <div class="float-right">
-                <a class="btn-secondary btn-sm" role="button" href="/logout">Log out</a>
+                <sec:authorize access="isAuthenticated()">
+                <div class="float-right">
+                    <div class="float-left">
+                        <p>Вы зашли как: <sec:authentication property="principal.username" />&nbsp;&nbsp;</p>
+                    </div>
+                    <div class="float-right">
+                        <a class="btn-secondary btn-sm" role="button" href="/logout">Log out</a>
+                    </div>
+                </sec:authorize>
             </div>
         </nav>
 

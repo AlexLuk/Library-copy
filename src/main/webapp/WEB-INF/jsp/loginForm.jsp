@@ -13,11 +13,13 @@
             <button type="submit" class="btn btn-primary" id="check_passwd" name="check_passwd">Log in</button>
         </div>
     </form>
-    <div class="float-left">
-        If you don't have an account yet
-        please <a id="register_link" class="font-weight-light" role="button" data-toggle="modal"
-                  data-target="#registerWindow">Register</a>
-    </div>
+    <sec:authorize access="hasRole('ROLE_ADMIN')">
+        <div class="float-left">
+            If you don't have an account yet
+            please <a id="register_link" class="font-weight-light" role="button" data-toggle="modal"
+                      data-target="#registerWindow">Register</a>
+        </div>
+    </sec:authorize>
     <div class="modal fade" id="registerWindow" tabindex="-1" role="dialog" aria-labelledby="registerWindowLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">

@@ -16,7 +16,7 @@ public class LibraryController {
 
     public LibraryController() {}
 
-    @RequestMapping(value = {"/login"}, method = RequestMethod.POST)
+/*    @RequestMapping(value = {"/login"}, method = RequestMethod.POST)
     public String login(Model model, HttpServletResponse response, String error, String logout) {
         System.out.println(response.getStatus());
 //        if (error != null)
@@ -27,22 +27,22 @@ public class LibraryController {
         return "loginForm";
     }
 
-    @RequestMapping(value = {"/login"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/login"})
     public String login() {
         return "loginForm";
     }
-
+*/
     @RequestMapping(value = {"/", "/home"}, method = RequestMethod.GET)
     public String welcome() {
         return "index";
     }
 
-    @RequestMapping(value = {"/reader"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/reader"})
     public String readerAcc(Model model, HttpServletResponse response) {
         return "reader";
     }
 
-    @RequestMapping(value = {"/admin"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/admin"})
     public String reader(Model model) {
         return "admin";
     }
