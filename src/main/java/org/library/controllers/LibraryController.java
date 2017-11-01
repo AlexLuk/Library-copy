@@ -17,7 +17,8 @@ public class LibraryController {
     public LibraryController() {}
 
     @RequestMapping(value = {"/login"}, method = RequestMethod.POST)
-    public String login(Model model, String error, String logout) {
+    public String login(Model model, HttpServletResponse response, String error, String logout) {
+        System.out.println(response.getStatus());
 //        if (error != null)
 //            model.addAttribute("error", "Your username and password is invalid.");
 //
@@ -36,12 +37,12 @@ public class LibraryController {
         return "index";
     }
 
-    @RequestMapping(value = {"/readerAcc"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/reader"}, method = RequestMethod.GET)
     public String readerAcc(Model model, HttpServletResponse response) {
         return "reader";
     }
 
-    @RequestMapping(value = {"/adminAcc"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/admin"}, method = RequestMethod.GET)
     public String reader(Model model) {
         return "admin";
     }

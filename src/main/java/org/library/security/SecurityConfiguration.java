@@ -31,19 +31,22 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
-        http.authorizeRequests()
-                .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
-                .antMatchers("/account/**")
-                .authenticated().anyRequest().permitAll()
-                .and()
+        http
+                .authorizeRequests()
+                    .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
+                    .antMatchers("/reader/**")
+                    .authenticated().anyRequest().permitAll()
+                    .and()
                 .formLogin()
-                .loginPage("/login")
-                .loginProcessingUrl("/lib-login")
-                //.defaultSuccessUrl("/readerAcc")
-                .permitAll()
-                .and()
+                    .loginPage("/login")
+                    .successForwardUrl("/reader")
+                    //.failureForwardUrl("/reader")
+                    //.loginProcessingUrl("/lib-login")
+                    //.defaultSuccessUrl("/readerAcc")
+                    .permitAll()
+                    .and()
                 .logout()
-                .logoutSuccessUrl("/loginForm")
-                .permitAll();
+                    .logoutSuccessUrl("/")
+                    .permitAll();
     }
 }
