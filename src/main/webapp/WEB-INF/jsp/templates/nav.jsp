@@ -10,6 +10,6 @@
         <div class="float-right">
             <a class="btn-secondary btn-sm" role="button" href="/logout">Log out</a>
         </div>
-        </sec:authorize>
     </div>
+    </sec:authorize>
 </nav>
