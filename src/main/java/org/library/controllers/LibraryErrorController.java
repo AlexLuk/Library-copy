@@ -1,5 +1,7 @@
 package org.library.controllers;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.ErrorAttributes;
 import org.springframework.boot.autoconfigure.web.ErrorController;
@@ -10,12 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 
 @Controller
 public class LibraryErrorController implements ErrorController {
+    private final static Logger logger = LoggerFactory.getLogger(LibraryErrorController.class);
 
     private static final String PATH = "/error";
 
     @RequestMapping(value = PATH)
     public String error(HttpServletResponse response) {
-        System.out.println(response.getStatus());
+        logger.warn(response.getStatus() + "");
         if (response.getStatus() == 404) {
             return "/errorPages/error404";
         }

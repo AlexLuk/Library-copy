@@ -1,6 +1,8 @@
 package org.library.controllers;
 
 import org.library.db.repo.ReaderRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.savedrequest.DefaultSavedRequest;
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,8 @@ import java.util.Map;
 
 @Controller
 public class LibraryController {
+    private final static Logger logger = LoggerFactory.getLogger(LibraryController.class);
+
     @Autowired
     ReaderRepository readerRepository;
 
@@ -21,7 +25,7 @@ public class LibraryController {
 
 /*  @RequestMapping(value = {"/login"}, method = RequestMethod.POST)
     public String login(Model model, HttpServletResponse response, String error, String logout) {
-        System.out.println(response.getStatus());
+        logger.warn(response.getStatus() + "");
 //        if (error != null)
 //            model.addAttribute("error", "Your username and password is invalid.");
 //
@@ -34,7 +38,7 @@ public class LibraryController {
 //    public String login(HttpSession session, Map<String, Object> model) {
 //        DefaultSavedRequest savedRequest = (DefaultSavedRequest)
 //                session.getAttribute("SPRING_SECURITY_SAVED_REQUEST");
-//        //System.out.println(savedRequest);
+//        logger.warn(savedRequest);
 //        model.put("req_url", savedRequest);
 //        return "login";
 //    }
