@@ -19,5 +19,6 @@
         <%@ include file="admin.jsp" %>
     </sec:authorize>
 
+<%@ include file="templates/footer.jsp" %>
 </body>
 </html>
