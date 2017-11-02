@@ -1,6 +1,6 @@
 <nav class="navbar navbar-light bg-light">
     <a class="navbar-brand" href="/">
-        <img src="../../img/favicon.ico" width="16" height="16" alt="Home page">Library&trade;
+        <img src="../../img/favicon.ico" width="16" height="16" alt="Home page">Library Online&trade;
     </a>
     <sec:authorize access="isAuthenticated()">
     <div class="float-right">

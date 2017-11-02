@@ -6,7 +6,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Library</title>
+    <title>Library Online - access</title>
     <%@ include file="templates/meta.jsp" %>
 </head>
 
@@ -16,7 +16,7 @@
 <div class="container">
     <div class="jumbotron">
         <sec:authorize access="!isAuthenticated()">
-            <h4 class="display-4">Welcome to the online Library</h4>
+            <h4 class="display-4">Welcome to Library Online&trade;</h4>
             <p class="lead">All your books at your fingertips:</p>
             <hr class="my-4">
             <div id="login_form">
