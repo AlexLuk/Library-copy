@@ -2,9 +2,6 @@
 
     <div class="container">
         <div class="jumbotron">
-                Admin
-            <%@ include file="templates/footer.jsp" %>
+            Admin
         </div>
     </div>
-
-
