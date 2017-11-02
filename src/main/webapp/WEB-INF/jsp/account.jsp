@@ -11,14 +11,13 @@
 </head>
 
 <body>
-<%@ include file="templates/nav.jsp" %>
+    <%@ include file="templates/nav.jsp" %>
+        <%@ include file="reader.jsp" %>
 
-    <%@ include file="reader.jsp" %>
+        <sec:authorize access="hasRole('ROLE_ADMIN')">
+            <%@ include file="admin.jsp" %>
+        </sec:authorize>
 
-    <sec:authorize access="hasRole('ROLE_ADMIN')">
-        <%@ include file="admin.jsp" %>
-    </sec:authorize>
-
-<%@ include file="templates/footer.jsp" %>
+    <%@ include file="templates/footer.jsp" %>
 </body>
 </html>
