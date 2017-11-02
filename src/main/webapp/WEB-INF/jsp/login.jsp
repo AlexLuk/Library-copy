@@ -47,7 +47,7 @@
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            <form action="#" th:action="@{/}" th:object="${reader}" method="post">
+                            <form action="#" th:action="@{/checks}" th:object="${reader}" method="post">
                                 <div class="form-group">
                                     <label for="email_register">Email:</label>
                                     <input type="email" th:field="*{email}" class="form-control" name="email"
