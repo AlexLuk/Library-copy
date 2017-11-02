@@ -18,7 +18,7 @@ public class Author extends Base {
     private String patronymic;
 
     @Basic
-    @Column(name = "yearOfBirth")
+    @Column(name = "year_of_birth")
     private int yearOfBirth;
 
     public Author(){}
@@ -49,6 +49,16 @@ public class Author extends Base {
     }
     public void setPatronymic(String patronymic) {
         this.patronymic = patronymic;
+    }
+
+    public String getFullName() {
+        StringBuilder name = new StringBuilder();
+        name.append(getName()).append(" ");
+        if (!getPatronymic().equals("")) {
+            name.append(getPatronymic()).append(" ");
+        }
+        name.append(getSurname()).append(" ");
+        return name.toString();
     }
 
     public int getYearOfBirth() {

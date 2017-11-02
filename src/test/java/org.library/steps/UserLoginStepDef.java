@@ -17,7 +17,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @EnableJpaRepositories(basePackageClasses = ReaderRepository.class)
 public class UserLoginStepDef {
-
     private final static Logger logger = LoggerFactory.getLogger(SelenControl.class);
     private SelenControl selen = null;
 

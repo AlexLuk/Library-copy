@@ -1,6 +1,8 @@
 package org.library.security;
 
 import org.library.db.repo.ReaderRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -18,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 @EnableJpaRepositories(basePackageClasses = ReaderRepository.class)
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+    private final static Logger logger = LoggerFactory.getLogger(SecurityConfiguration.class);
 
     @Autowired
     private LibraryUserDetailsService userDetailsService;

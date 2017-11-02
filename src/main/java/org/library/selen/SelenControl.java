@@ -62,7 +62,7 @@ public class SelenControl
     public WebElement getElemTag(String htmlTag) throws Exception{
 
         WebElement webElement= _driver.findElement( By.tagName( htmlTag));
-        System.out.println(webElement);
+        logger.warn(webElement.toString());
         return webElement;
     }
 

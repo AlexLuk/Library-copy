@@ -7,18 +7,6 @@ import java.sql.Date;
 @Table(name = "reader")
 public class Reader extends Base {
 
-    public Reader(Reader reader) {
-        this.email = reader.getEmail();
-        this.fines = reader.getFines();
-        this.isAdmin = reader.getIsAdmin();
-        this.name = reader.getName();
-        this.password = reader.getPassword();
-        this.patronymic = reader.getPatronymic();
-        this.registrationDate = reader.getRegistrationDate();
-        this.surname = reader.getSurname();
-        this.id = reader.getId();
-    }
-
     @Basic
     @Column(name = "email")
     private String email;
@@ -56,6 +44,18 @@ public class Reader extends Base {
     public Reader(String email, String password) {
         this.email = email;
         this.password = password;
+    }
+
+    public Reader(Reader reader) {
+        this.id = reader.getId();
+        this.email = reader.getEmail();
+        this.password = reader.getPassword();
+        this.name = reader.getName();
+        this.surname = reader.getSurname();
+        this.patronymic = reader.getPatronymic();
+        this.registrationDate = reader.getRegistrationDate();
+        this.fines = reader.getFines();
+        this.isAdmin = reader.getIsAdmin();
     }
 
     public String getEmail() {
