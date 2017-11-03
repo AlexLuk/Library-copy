@@ -49,7 +49,7 @@ public class UserLoginStepDef {
 
     @When("^User set login to \"([^\"]*)\"$")
     public void userSetLoginTo(String login) throws Throwable {
-        String loginXpath = "//input[@name='username']";
+        String loginXpath = "//input[@name='email_enter']";
         selen.wait(100, loginXpath);
         WebElement loginInput = selen.getElemXpath(loginXpath);
         selen.setElemText(loginInput, login);
@@ -57,14 +57,14 @@ public class UserLoginStepDef {
 
     @And("^User set password \"([^\"]*)\"$")
     public void userSetPassword(String password) throws Throwable {
-        String passwordXpath = "//input[@name='password']";
+        String passwordXpath = "//input[@name='passwd_enter']";
         WebElement passwordInput = selen.getElemXpath(passwordXpath);
         selen.setElemText(passwordInput, password);
     }
 
     @And("^Press Log in button$")
     public void loginPress() throws Throwable {
-        String loginButtonXpath = "//input[@name='submit']";
+        String loginButtonXpath = "//button[@name='check_passwd']";
         selen.getElemXpath(loginButtonXpath).click();
     }
 
