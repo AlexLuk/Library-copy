@@ -1,5 +1,4 @@
-﻿@font-face 
-{
+﻿@font-face {
 	font-family: 'Glyphicons Halflings';
 	src: url('fonts/glyphicons-halflings-regular.eot');
 	src: url('fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
@@ -8,75 +7,74 @@
         url('fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
 }
 
-body
-{
+body {
 	margin: 0;
 	padding: 0;
     font-family: 'Palatino Linotype' !important;
 }
 
-link
-{
+link {
     color: #007bff;
 }
 
-button, link
-{
+button, link {
     cursor: pointer;
 }
 
-#service_buttons, div.tab-content
-{
+#service_buttons, div.tab-content {
     padding-top: 60px !important;
 }
 
-#service_buttons button.role
-{
+#service_buttons button.role {
     padding-bottom: 20px;
     margin-bottom: 20px;
 }
 
-#service_buttons a:hover
-{
+#service_buttons a:hover {
     text-decoration: none;
 }
 
-#login_form
-{
+#login_form {
     width: 50%;
     margin-left: auto;
     margin-right: auto;
 }
 
-#register_link
-{
+#filter_form {
+    transform: scale(0.7, 0.7);
+    /*Firefox*/
+    -moz-transform: scale(0.7, 0.7);
+    /*Microsoft Internet Explorer*/
+    -ms-transform: scale(0.7, 0.7);
+    /*Chrome, Safari*/
+    -webkit-transform: scale(0.7, 0.7);
+    /*Opera*/
+    -o-transform: scale(0.7, 0.7);
+}
+
+#register_link {
     text-decoration: underline;
     cursor: pointer;
 }
 
-.bg-danger, .bg-success
-{
+.bg-danger, .bg-success {
     padding: 10px;
     display: none;
 }
 
-table
-{
+table {
     width: 50% !important;
 }
 
-#timetables_result, .content_result
-{
+#timetables_result, .content_result {
     display: none;
 }
 
-.content_result input
-{
+.content_result input {
     border: 0px;
     background: none;
 }
 
-.delimeter
-{
+.delimeter {
     padding-left: 30px;
 }

@@ -20,6 +20,7 @@
         </nav>
         <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active" id="nav-find" role="tabpanel" aria-labelledby="nav-find-tab">
+                <%@ include file="components/filter.jsp" %>
                 <table class="table table-striped">
                     <thead>
                     <tr>
