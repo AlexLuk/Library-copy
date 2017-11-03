@@ -16,6 +16,12 @@ public class LibraryErrorController implements ErrorController {
 
     private static final String PATH = "/error";
 
+    /**
+     * Processes http error statuses
+     *
+     * @param response - HttpServlet response
+     * @return - jsp view name
+     */
     @RequestMapping(value = PATH)
     public String error(HttpServletResponse response) {
         logger.warn(response.getStatus() + "");

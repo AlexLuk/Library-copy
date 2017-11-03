@@ -27,11 +27,22 @@ public class BookService {
     @Autowired
     GenreRepository genreRepository;
 
-
+    /**
+     * Gets all books from DB
+     *
+     * @return - list of books
+     */
     public List<Book> getAllBooks() {
         return bookRepository.findAll();
     }
 
+
+    /**
+     * Gets all book's authors from DB
+     *
+     * @param bookId - book id
+     * @return - list of authors
+     */
     public List<Author> getAllAuthors(int bookId) {
         List<Author> authors = new ArrayList<>();
         List<AuthorBook> authorBook = authorBookRepository.findAllByBookId(bookId);
@@ -42,6 +53,12 @@ public class BookService {
         return authors;
     }
 
+    /**
+     * Gets genre by its id
+     *
+     * @param genreId - genre id
+     * @return - genre name
+     */
     public String getGenre(int genreId) {
         return genreRepository.findOne(genreId).getName();
     }

@@ -44,6 +44,8 @@ public class LibraryRegistrationControllerTest {
         assertThat(libraryRegistrationController.isPasswordComplicate("ABCabc@@@", "login@mail.ru"), is(false));
         // valid
         assertThat(libraryRegistrationController.isPasswordComplicate("1qQ31qQ3a@", "login@mail.ru"), is(true));
+
+        assertThat(libraryRegistrationController.isPasswordComplicate("@1qQ31qQ3a@", "login@mail.ru"), is(true));
     }
 
     @Test
