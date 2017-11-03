@@ -11,7 +11,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
 public class LibraryRegistrationControllerTest {
-    LibraryRegistrationController libraryRegistrationController;
+    private LibraryRegistrationController libraryRegistrationController;
 
     @Before
     public void setTests() {
