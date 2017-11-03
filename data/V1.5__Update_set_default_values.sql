@@ -1,1 +1,0 @@
-ALTER TABLE `reader` ALTER COLUMN `fines` SET DEFAULT 0;
