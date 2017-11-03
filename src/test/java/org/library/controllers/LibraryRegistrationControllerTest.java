@@ -51,8 +51,10 @@ public class LibraryRegistrationControllerTest {
         assertThat(libraryRegistrationController.isPasswordComplicate("1qQ31qQ3a@login", "login@mail.ru"), is(false));
         assertThat(libraryRegistrationController.isPasswordComplicate("1qQ31loginqQ3a@", "login@mail.ru"), is(false));
         assertThat(libraryRegistrationController.isPasswordComplicate("login1qQ31qQ3a@", "login@mail.ru"), is(false));
-        assertThat(libraryRegistrationController.isPasswordComplicate("1qQ31qQ3a@logiN", "login@mail.ru"), is(true));
-        assertThat(libraryRegistrationController.isPasswordComplicate("1qQ31logiNqQ3a@", "login@mail.ru"), is(true));
-        assertThat(libraryRegistrationController.isPasswordComplicate("logiN1qQ31qQ3a@", "login@mail.ru"), is(true));
+        assertThat(libraryRegistrationController.isPasswordComplicate("LOGIN1qQ31qQ3a@", "login@mail.ru"), is(false));
+        assertThat(libraryRegistrationController.isPasswordComplicate("Login1qQ31qQ3a@", "login@mail.ru"), is(false));
+        assertThat(libraryRegistrationController.isPasswordComplicate("1qQ31qQ3a@logiN", "login@mail.ru"), is(false));
+        assertThat(libraryRegistrationController.isPasswordComplicate("1qQ31logiNqQ3a@", "login@mail.ru"), is(false));
+        assertThat(libraryRegistrationController.isPasswordComplicate("login1qQ31qQ3a@", "login@mail.ru"), is(false));
     }
 }
