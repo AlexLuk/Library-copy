@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS `author`
   `name` varchar(255) NOT NULL,
   `surname` varchar(255) NOT NULL,
   `patronymic` varchar(255) NOT NULL DEFAULT '',
-  `yearOfBirth` int(4) NOT NULL,
+  `year_of_birth` int(4) NOT NULL,
 
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -68,8 +68,8 @@ CREATE TABLE IF NOT EXISTS `reader`
   `surname` varchar(255) NOT NULL,
   `patronymic` varchar(255) NOT NULL DEFAULT '',
   `passport` varchar(255) NOT NULL,
-  `registration_date` date NOT NULL,
-  `fines` double NOT NULL,
+  `registration_date` date NOT NULL DEFAULT 0,
+  `fines` double NOT NULL DEFAULT 0.0,
   `is_admin` boolean NOT NULL,
 
   PRIMARY KEY (`id`)
