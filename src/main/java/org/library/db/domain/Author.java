@@ -51,6 +51,11 @@ public class Author extends Base {
         this.patronymic = patronymic;
     }
 
+    /**
+     * Constructs full author name
+     *
+     * @return - full author name
+     */
     public String getFullName() {
         StringBuilder name = new StringBuilder();
         name.append(getName()).append(" ");

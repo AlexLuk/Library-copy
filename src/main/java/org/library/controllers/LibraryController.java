@@ -18,6 +18,14 @@ public class LibraryController {
     public LibraryController() {
     }
 
+    /**
+     * Processes requests to login, home and root pages
+     *
+     * @param model - data model
+     * @param error - error attribute in the url
+     * @param logout - logout attribute in the url
+     * @return - jsp view name
+     */
     @RequestMapping(value = {"/login", "/", "/home"}, method = RequestMethod.GET)
     public String welcome(Model model, String error, String logout) {
         if (error != null)
@@ -28,6 +36,12 @@ public class LibraryController {
         return "login";
     }
 
+    /**
+     * Processes requests to account page
+     *
+     * @param model - data model
+     * @return - jsp view name
+     */
     @RequestMapping(value = {"/account"})
     public String showAccount(Model model) {
         model.addAttribute("book_service", bookService);
