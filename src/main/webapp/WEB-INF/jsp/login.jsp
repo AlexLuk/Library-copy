@@ -17,8 +17,8 @@
     <div class="container">
         <div class="jumbotron">
             <sec:authorize access="!isAuthenticated()">
-                <h4 class="display-4"><spring:message code="greeting" /></h4>
-                <p class="lead">All your books at your fingertips:</p>
+                <h4 class="display-4"><spring:message code="greeting"/></h4>
+                <p class="lead"><spring:message code="fingertips"/>:</p>
                 <hr class="my-4">
                 <div id="login_form">
                     <c:if test="${not empty error}">
@@ -33,13 +33,12 @@
                             <input type="email" class="form-control" name="email_enter" id="email_enter" value=""><br/>
                             <label for="passwd_enter"><spring:message code="password" />:</label>
                             <input type="password" class="form-control" name="passwd_enter" id="passwd_enter" value=""><br/>
-                            <button type="submit" class="btn btn-primary" id="check_passwd" name="check_passwd">Log in</button>
+                            <button type="submit" class="btn btn-primary" id="check_passwd" name="check_passwd"><spring:message code="login" /></button>
                         </div>
                     </form>
                     <div class="float-left">
-                        If you don't have an account yet
-                        please <a id="register_link" class="font-weight-light" role="button" data-toggle="modal"
-                                  data-target="#registerWindow">Register</a>
+                        <spring:message code="havntAcc" /> <a id="register_link" class="font-weight-light" role="button" data-toggle="modal"
+                                  data-target="#registerWindow"><spring:message code="register" /></a>
                     </div>
                     <div class="modal fade" id="registerWindow" tabindex="-1" role="dialog"
                          aria-labelledby="registerWindowLabel">

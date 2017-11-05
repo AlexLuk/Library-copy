@@ -14,9 +14,9 @@
 
         <nav class="nav nav-tabs" id="readerTab" role="tablist">
             <a class="nav-item nav-link active" id="nav-find-tab" data-toggle="tab" href="#nav-find" role="tab"
-               aria-controls="nav-find" aria-selected="true">Find/Order books</a>
+               aria-controls="nav-find" aria-selected="true"><spring:message code="findOrderBooks" /></a>
             <a class="nav-item nav-link" id="nav-return-tab" data-toggle="tab" href="#nav-return" role="tab"
-               aria-controls="nav-return" aria-selected="false">Return books</a>
+               aria-controls="nav-return" aria-selected="false"><spring:message code="returnBooks" /></a>
         </nav>
         <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active" id="nav-find" role="tabpanel" aria-labelledby="nav-find-tab">
@@ -24,10 +24,10 @@
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th>Title</th>
-                        <th>Authors</th>
-                        <th>Year</th>
-                        <th>Genre</th>
+                        <th><spring:message code="title" /></th>
+                        <th><spring:message code="bookAuthors" /></th>
+                        <th><spring:message code="year" /></th>
+                        <th><spring:message code="genre" /></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -50,7 +50,7 @@
             </div>
 
             <div class="tab-pane fade" id="nav-return" role="tabpanel" aria-labelledby="nav-return-tab">
-                Return books...
+                <spring:message code="returnBooks" />...
             </div>
         </div>
     </div>
