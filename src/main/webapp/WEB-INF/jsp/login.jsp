@@ -27,7 +27,7 @@
                     <c:if test="${not empty msg}">
                         <div class="msg alert alert-success" role="alert">${msg}</div>
                     </c:if>
-                    <form method="post" action="/checkAuth" id="login" name="login">
+                    <form method="post" action="/login" id="login" name="login">
                         <div class="form-group">
                             <label for="email_enter"><spring:message code="email" />:</label>
                             <input type="email" class="form-control" name="email_enter" id="email_enter" value=""><br/>
