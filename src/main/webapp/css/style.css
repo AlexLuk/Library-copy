@@ -45,14 +45,10 @@ button, link {
     margin-top: -2%;
 
     transform: scale(0.7, 0.7);
-    /*Firefox*/
-    -moz-transform: scale(0.7, 0.7);
-    /*Microsoft Internet Explorer*/
-    -ms-transform: scale(0.7, 0.7);
-    /*Chrome, Safari*/
-    -webkit-transform: scale(0.7, 0.7);
-    /*Opera*/
-    -o-transform: scale(0.7, 0.7);
+    -moz-transform: scale(0.7, 0.7); /*Firefox*/
+    -ms-transform: scale(0.7, 0.7); /*Microsoft Internet Explorer*/
+    -webkit-transform: scale(0.7, 0.7); /*Chrome, Safari*/
+    -o-transform: scale(0.7, 0.7); /*Opera*/
 }
 
 #register_link {
@@ -69,15 +65,17 @@ table {
     width: 50% !important;
 }
 
-#timetables_result, .content_result {
-    display: none;
-}
-
-.content_result input {
-    border: 0px;
-    background: none;
-}
-
 .delimeter {
     padding-left: 30px;
+}
+
+.language {
+    text-transform: uppercase;
+    border-radius: 20px 0 20px 20px;
+    border: 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,.7);
+    background-color: #e9ecef;
+    color: #007bff;
+    margin-left: 20px;
+    padding: 2px 15px 7px;
 }

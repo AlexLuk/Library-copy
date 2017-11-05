@@ -1,3 +1,4 @@
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
@@ -16,7 +17,7 @@
     <div class="container">
         <div class="jumbotron">
             <sec:authorize access="!isAuthenticated()">
-                <h4 class="display-4">Welcome to Library Online&trade;</h4>
+                <h4 class="display-4"><spring:message code="greeting" /></h4>
                 <p class="lead">All your books at your fingertips:</p>
                 <hr class="my-4">
                 <div id="login_form">
@@ -28,9 +29,9 @@
                     </c:if>
                     <form method="post" action="/checkAuth" id="login" name="login">
                         <div class="form-group">
-                            <label for="email_enter">Email:</label>
+                            <label for="email_enter"><spring:message code="email" />:</label>
                             <input type="email" class="form-control" name="email_enter" id="email_enter" value=""><br/>
-                            <label for="passwd_enter">Password:</label>
+                            <label for="passwd_enter"><spring:message code="password" />:</label>
                             <input type="password" class="form-control" name="passwd_enter" id="passwd_enter" value=""><br/>
                             <button type="submit" class="btn btn-primary" id="check_passwd" name="check_passwd">Log in</button>
                         </div>

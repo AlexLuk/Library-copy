@@ -39,7 +39,7 @@
             <version>1.2.5</version>
             <scope>test</scope>
         </dependency>
-        <!-- Selenium -->
+<!-- Selenium -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
