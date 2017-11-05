@@ -41,6 +41,9 @@ button, link {
 }
 
 #filter_form {
+    margin-left: -16%;
+    margin-top: -2%;
+
     transform: scale(0.7, 0.7);
     /*Firefox*/
     -moz-transform: scale(0.7, 0.7);
