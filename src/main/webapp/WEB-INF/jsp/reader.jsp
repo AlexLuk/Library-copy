@@ -25,7 +25,7 @@
                     <thead>
                     <tr>
                         <th><spring:message code="title" /></th>
-                        <th><spring:message code="bookAuthors" /></th>
+                        <th><spring:message code="authors" /></th>
                         <th><spring:message code="year" /></th>
                         <th><spring:message code="genre" /></th>
                     </tr>
