@@ -12,7 +12,7 @@
     <%@ include file="../templates/nav.jsp" %>
     <div class="container">
         <div class="jumbotron">
-            <div class="alert alert-danger" role="alert">Access is denied. Please go to your Reader account.</div>
+            <div class="alert alert-danger" role="alert"><spring:message code="error403" /></div>
         </div>
     </div>
     <%@ include file="../templates/footer.jsp" %>

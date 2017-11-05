@@ -2,6 +2,6 @@
 
     <div class="container">
         <div class="jumbotron">
-            Admin
+            <spring:message code="admin" />
         </div>
     </div>

@@ -12,7 +12,7 @@
     <%@ include file="../templates/nav.jsp" %>
     <div class="container">
         <div class="jumbotron">
-            <div class="alert alert-danger" role="alert">Internal Server Error - try again later!</div>
+            <div class="alert alert-danger" role="alert"><spring:message code="error500" /></div>
         </div>
     </div>
     <%@ include file="../templates/footer.jsp" %>

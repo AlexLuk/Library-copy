@@ -12,7 +12,7 @@
 <%@ include file="../templates/nav.jsp" %>
 <div class="container">
     <div class="jumbotron">
-        <a class="navbar-brand" href="/"><< back to Home page</a>
+        <a class="navbar-brand" href="/"><< <spring:message code="toHomePage" /></a>
         <br/>
         <%@include file="error404.jsp"%>
     </div>

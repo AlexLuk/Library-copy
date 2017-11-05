@@ -50,22 +50,22 @@
                                     </button>
                                     <form method="post">
                                         <div class="form-group">
-                                            <label for="email_register">Email</label>
+                                            <label for="email_register"><spring:message code="email" />:</label>
                                             <input type="email" class="form-control" name="email_register" id="email_register"
                                                    value=""><br/>
-                                            <label for="passwd_register">Password:</label>
+                                            <label for="passwd_register"><spring:message code="password" />:</label>
                                             <input type="password" class="form-control" name="passwd_register"
                                                    id="passwd_register"
                                                    value=""><br/>
-                                            <label for="name">Name:</label>
+                                            <label for="name"><spring:message code="name" />:</label>
                                             <input type="text" class="form-control" name="name" id="name" value=""><br/>
-                                            <label for="surname">Surname:</label>
+                                            <label for="surname"><spring:message code="surname" />:</label>
                                             <input type="text" class="form-control" name="surname" id="surname" value=""><br/>
-                                            <label for="patronymic">Patronymic name:</label>
+                                            <label for="patronymic"><spring:message code="patronymic" />:</label>
                                             <input type="text" class="form-control" name="patronymic" id="patronymic"
                                                    value=""><br/>
                                             <button type="submit" class="btn btn-primary" id="register" name="register">
-                                                Register
+                                                <spring:message code="toRegister" />
                                             </button>
                                         </div>
                                     </form>
