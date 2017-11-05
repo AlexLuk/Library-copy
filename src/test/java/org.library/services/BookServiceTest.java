@@ -1,10 +1,9 @@
-package org.library.unit;
+package org.library.services;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.library.db.domain.Author;
 import org.library.db.repo.AuthorRepository;
-import org.library.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
