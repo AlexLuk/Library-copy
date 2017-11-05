@@ -66,6 +66,12 @@
             <artifactId>spring-security-taglibs</artifactId>
             <version>4.2.3.RELEASE</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <version>1.5.8.RELEASE</version>
+            <scope>test</scope>
+        </dependency>
 <!-- Tomcat Embed -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
