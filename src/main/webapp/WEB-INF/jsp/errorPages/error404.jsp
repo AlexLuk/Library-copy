@@ -10,9 +10,11 @@
 
 <body>
     <%@ include file="../templates/nav.jsp" %>
-
+    <div class="container">
+        <div class="jumbotron">
             <div class="alert alert-danger" role="alert">Page Was Not Found - try again!</div>
-
+        </div>
+    </div>
     <%@ include file="../templates/footer.jsp" %>
 </body>
 </html>

@@ -9,12 +9,14 @@
 </head>
 
 <body>
-    <%@ include file="../templates/nav.jsp" %>
-    <div class="container">
-        <div class="jumbotron">
-            <div class="alert alert-danger" role="alert">Access is denied. Please go to your Reader account.</div>
-        </div>
+<%@ include file="../templates/nav.jsp" %>
+<div class="container">
+    <div class="jumbotron">
+        <a class="navbar-brand" href="/"><< back to Home page</a>
+        <br/>
+        <%@include file="error404.jsp"%>
     </div>
-    <%@ include file="../templates/footer.jsp" %>
+</div>
+<%@ include file="../templates/footer.jsp" %>
 </body>
 </html>
