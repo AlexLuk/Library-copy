@@ -57,46 +57,10 @@ $(document).ready(function () {
 
     /************************************************* general settings *************************************************/
 
-    // stop submit requests
-    // $('form, .table-striped').submit(function (e) {
-    //     e.preventDefault();
-    // });
-
-    // $('button').click(function () {
-    //     hideMsgs();
-    // });
-
-    // // hide error message when switching between tabs
-    // $('.navbar-nav a, #navbar').click(function () {
-    //     hideMsgs();
-    // });
-
-    // $.ajaxSetup(
-    //     {
-    //         url: "service",
-    //         type: "POST"
-    //     });
-
-    /************************************************* client forms *****************************************************/
-    //
-    // // authorize client
-    // $('#check_passwd, #register').click(function () {
-    //     var form_data = getFormArray($(this), statusField);
-    //     if (form_data != '') {
-    //         $.ajax(
-    //             {
-    //                 data: form_data,
-    //                 success: function (resp) {
-    //                     if (resp == "false")
-    //                         show_alert("Incorrect password!", statusField, false);
-    //                     else
-    //                         location.href = "service";
-    //                 }
-    //             });
-    //     }
-    //     else
-    //         return false;
-    // });
+    // hide error message when switching between tabs
+    $('.navbar-nav a, #navbar').click(function () {
+        hideMsgs();
+    });
 
     /********************************************* registration form **************************************************/
 
@@ -126,25 +90,25 @@ $(document).ready(function () {
             },
             email_register: {
                 required: "Please provide an email",
-                email:"Please enter a valid email address"
+                email: "Please enter a valid email address"
             }
         }
     });
 
     $.validator.addMethod("pwdcheck",
-        function(value, element) {
+        function (value, element) {
             return /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!?.,/@#$%^&+=])(?=\S+$).{8,}$/.test(value);
         });
 
     $('#register').click(function () {
-        if(checkPassword()){
+        if (checkPassword()) {
             provideRegistration();
         }
     });
 
-    $('#email_register').on('focusout',function(){
-        show_alert("focus out!");
-        if(('#email_register').valid()) {
+    $('#email_register').blur(function () {
+        // if (('#email_register').valid()) {
+        //     alert("valid");
             var userEmail = $.trim($('#email_register').val());
             if (userEmail != '') {
                 $.ajax(
@@ -162,22 +126,19 @@ $(document).ready(function () {
             }
             else
                 return false;
-        }
-});
+        // }
+    });
 
-    function checkPassword(){
+    function checkPassword() {
         var userEmail = $.trim($('#email_register').val());
         var userPas = $.trim($('#passwd_register').val());
         if (form_data != '') {
             $.ajax(
                 {
                     url: "/checks/password",
-                    data: {password:userPas, email:userEmail},
+                    data: {password: userPas, email: userEmail},
                     success: function (resp) {
-                        if (resp == "false")
-                            show_alert("Password contains part of email!", statusField, false);
-                        else
-                            return true;
+                        return resp == "true";
                     }
                 });
         }
@@ -185,23 +146,20 @@ $(document).ready(function () {
             return false;
     }
 
-    function provideRegistration(){
+    function provideRegistration() {
         var form_data = getFormArray($(this), statusField);
-            if (form_data != '') {
-                $.ajax(
-                    {
-                        url: "/",
-                        data: form_data,
-                        success: function (resp) {
-                            if (resp == "false")
-                                show_alert("Registration not succeed!", statusField, false);
-                            else
-                                return true;
-                        }
-                    });
-            }
-            else
-                return false;
+        if (form_data != '') {
+            $.ajax(
+                {
+                    url: "/",
+                    data: form_data,
+                    success: function (resp) {
+                        return resp == "true";
+                    }
+                });
         }
+        else
+            return false;
+    }
 });
 
