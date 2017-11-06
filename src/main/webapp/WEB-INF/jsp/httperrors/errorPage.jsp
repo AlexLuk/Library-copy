@@ -14,7 +14,10 @@
     <div class="jumbotron">
         <a class="navbar-brand" href="/"><< <spring:message code="toHomePage" /></a>
         <br/>
-        <%@include file="error404.jsp"%>
+        <br/>
+        <c:if test="${not empty errorCode}">
+            <spring:message code="${errorCode}" />
+        </c:if>
     </div>
 </div>
 <%@ include file="../templates/footer.jsp" %>

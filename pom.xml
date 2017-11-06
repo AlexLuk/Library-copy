@@ -1,5 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
     <groupId>EPAM-tasks</groupId>
     <artifactId>Library</artifactId>
@@ -8,9 +9,10 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-            <flyway.user>be4c06dde099c6</flyway.user>
-            <flyway.password>58672378</flyway.password>
-            <flyway.schemas>library</flyway.schemas>
+
+        <flyway.user>be4c06dde099c6</flyway.user>
+        <flyway.password>58672378</flyway.password>
+        <flyway.schemas>library</flyway.schemas>
     </properties>
 
     <dependencies>

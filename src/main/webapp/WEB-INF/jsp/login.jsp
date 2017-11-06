@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
@@ -7,7 +6,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Library Online - access</title>
+    <title>Library Online - Log in</title>
     <%@ include file="templates/meta.jsp" %>
 </head>
 

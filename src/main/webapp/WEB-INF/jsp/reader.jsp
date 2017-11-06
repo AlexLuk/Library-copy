@@ -42,7 +42,9 @@
                             <%}%>
                         </td>
                         <td><%= book.getYear() %></td>
-                        <td><%= bookService.getGenre(book.getGenre().getId()) %></td>
+                        <td>
+                            <spring:message code="<%= bookService.getGenre(book.getGenre().getId()) %>" />
+                        </td>
                     </tr>
                     <%}%>
                     </tbody>

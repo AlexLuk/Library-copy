@@ -73,5 +73,3 @@ public class LibraryRegistrationController {
         return "";
     }
 }
-
-
