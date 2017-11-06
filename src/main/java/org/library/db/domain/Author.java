@@ -23,7 +23,7 @@ public class Author extends Base {
 
     public Author(){}
 
-    public Author(String name, String surname, String patronymic, int yearOfBirth) {
+    public Author(String name, String patronymic, String surname, int yearOfBirth) {
         this.name = name;
         this.surname = surname;
         this.patronymic = patronymic;
