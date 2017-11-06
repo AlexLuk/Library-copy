@@ -108,24 +108,19 @@ $(document).ready(function () {
 
     $('#email_register').blur(function () {
         // if (('#email_register').valid()) {
-        //     alert("valid");
-            var userEmail = $.trim($('#email_register').val());
-            if (userEmail != '') {
-                $.ajax(
-                    {
-                        url: "/checks/email",
-                        data: userEmail,
-                        success: function (resp) {
-                            // if (resp == "false")
-                            //     show_alert("User with this email is on site already!", statusField, false);
-                            // else
-                            //     return true;
-                            return resp == "true";
-                        }
-                    });
-            }
-            else
-                return false;
+        var userEmail = $.trim($('#email_register').val());
+        if (userEmail != '') {
+            $.ajax(
+                {
+                    url: "/checks/email",
+                    data: userEmail,
+                    success: function (resp) {
+                        return resp == "true";
+                    }
+                });
+        }
+        else
+            return false;
         // }
     });
 
@@ -162,4 +157,45 @@ $(document).ready(function () {
             return false;
     }
 });
+
+/************************* book filters *****************************************/
+$('#book_title').blur(function () {
+    filterRequest();
+});
+$('#book_author').blur(function () {
+    filterRequest();
+});
+
+$('#book_year').blur(function () {
+    filterRequest();
+});
+
+$('#book_genre').blur(function () {
+    filterRequest();
+});
+
+function filterRequest() {
+    var titleFilter = $.trim($('#book_title').val());
+    var authorFilter = $.trim($('#book_author').val());
+    var yearFilter = $.trim($('#book_year').val());
+    var genreFilter = $('#book_genre').val();
+    if (!(titleFilter && authorFilter && yearFilter && genreFilter)) {
+        $.ajax(
+            {
+                url: "/filters",
+                data: {title: titleFilter, author: authorFilter, year: yearFilter, genre: genreFilter},
+                success: function (resp) {
+                    $('#nav-find').remove();
+                    $.each(resp, function (index, item) {
+                        $('.tab-content').append(
+                            '<tr><td>item.bookTitle</td>' +
+                            '<td>item.authorTitle<br/></td>' +
+                            '<td>item.bookYear</td>' +
+                            '<td>item.bookGenre</td></tr>');
+                    });
+                }
+            });
+    }
+}
+
 
