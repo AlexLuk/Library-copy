@@ -66,12 +66,10 @@ public class LibraryRegistrationController {
      * @return - string for RequestMapping
      */
     //    @RequestMapping(value = {"/registration"}, method = RequestMethod.POST)
-    @RequestMapping(value = {""}, method = RequestMethod.POST)
+    @RequestMapping(value = {"/"}, method = RequestMethod.POST)
     public String registerUser(@ModelAttribute Reader reader) {
         reader.setEmail(reader.getEmail().toLowerCase());
         readerRepository.save(reader);
         return "";
     }
 }
-
-
