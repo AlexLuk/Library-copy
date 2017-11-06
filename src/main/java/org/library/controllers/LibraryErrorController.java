@@ -2,10 +2,9 @@ package org.library.controllers;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.web.ErrorAttributes;
 import org.springframework.boot.autoconfigure.web.ErrorController;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
@@ -14,7 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 public class LibraryErrorController implements ErrorController {
     private final static Logger logger = LoggerFactory.getLogger(LibraryErrorController.class);
 
-    private static final String PATH = "/error";
+    private static final String URL = "/error";
+    private static final String JSP_PATH = "/httperrors/errorPage";
+
+    private static final String error403 = "error403";
+    private static final String error404 = "error404";
+    private static final String error500 = "error500";
 
     /**
      * Processes http error statuses
@@ -22,20 +26,25 @@ public class LibraryErrorController implements ErrorController {
      * @param response - HttpServlet response
      * @return - jsp view name
      */
-    @RequestMapping(value = PATH)
-    public String error(HttpServletResponse response) {
+    @RequestMapping(value = URL)
+    public String error(Model model, HttpServletResponse response) {
         logger.warn(response.getStatus() + "");
         if (response.getStatus() == 404) {
-            return "/errorPages/error404";
+            model.addAttribute("errorCode", error404);
+            return JSP_PATH;
         }
         else if (response.getStatus() == 403) {
-            return "/errorPages/error403";
+            model.addAttribute("errorCode", error403);
+            return JSP_PATH;
         }
-        else return "/errorPages/error500";
+        else {
+            model.addAttribute("errorCode", error500);
+            return JSP_PATH;
+        }
     }
 
     @Override
     public String getErrorPath() {
-        return PATH;
+        return URL;
     }
 }
