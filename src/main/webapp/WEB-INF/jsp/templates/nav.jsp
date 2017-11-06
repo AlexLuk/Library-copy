@@ -1,10 +1,10 @@
 <nav class="navbar navbar-light bg-light">
     <a class="navbar-brand" href="/">
-        <img src="../../img/favicon.ico" width="16" height="16" alt="Home page">Library Online&trade;
+        <img src="${pageContext.request.contextPath}/img/favicon.ico" width="16" height="16" alt="Home page">Library Online&trade;
     </a>
     <div class="float-right">
-        <a class="language" href="<%=request.getContextPath()%>?lang=en">en</a>
-        <a class="language" href="<%=request.getContextPath()%>?lang=ru">ru</a>
+        <a class="language" href="${pageContext.request.contextPath}?lang=en">en</a>
+        <a class="language" href="${pageContext.request.contextPath}?lang=ru">ru</a>
     </div>
 
     <sec:authorize access="isAuthenticated()">
