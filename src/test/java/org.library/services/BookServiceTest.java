@@ -12,13 +12,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-@AutoConfigureTestDatabase(replace=AutoConfigureTestDatabase.Replace.NONE)
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class BookServiceTest {
     @Autowired
     BookService bookService;
@@ -34,5 +33,6 @@ public class BookServiceTest {
         authors.add(authorRepository.findOne(108));
 
         assertThat(bookService.getAllAuthors(8), is(authors));
+        bookService.getAllBooks().forEach(book -> System.err.println(book.getTitle()));
     }
 }

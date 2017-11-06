@@ -74,8 +74,13 @@ public class FilteringService {
         List<Author> authors = getAuthorsByName(authorName);
         List<AuthorBook> authorBooks = new LinkedList<>();
         authors.forEach(author -> authorBooks.addAll(authorBookRepository.findAllByAuthorId(author.getId())));
-        inputBookList.removeIf(book -> !authorBooks.contains(book));
-        return inputBookList;
+        List<Book> resultBooks = new LinkedList<>();
+        authorBooks.forEach(authorBook -> {
+            if (inputBookList.contains(authorBook.getBook())) {
+                resultBooks.add(authorBook.getBook());
+            }
+        });
+        return resultBooks;
     }
 
     /**
@@ -108,8 +113,11 @@ public class FilteringService {
     public List<Book> filterBooksByGenre(String genre, List<Book> inputBookList) {
         if (genre.length() == 0) return inputBookList;
         List<Genre> genres = getGenresByName(genre);
-        inputBookList.removeIf(book -> !genres.contains(book.getGenre()));
-        return inputBookList;
+        List<Book> resultBooks = new LinkedList<>();
+        inputBookList.forEach(book -> {
+            if (genres.contains(book.getGenre())) resultBooks.add(book);
+        });
+        return resultBooks;
     }
 
     /**
@@ -121,7 +129,7 @@ public class FilteringService {
     public List<Author> getAuthorsByName(String name) {
         List<Author> authors = authorRepository.findAll();
         final String authorMatcher = REGEXP_MULTI_SYMBOLS + name.toLowerCase() + REGEXP_MULTI_SYMBOLS;
-        authors.removeIf(author -> !author.getFullName().toLowerCase().matches(name));
+        authors.removeIf(author -> !author.getFullName().toLowerCase().matches(authorMatcher));
         return authors;
     }
 
