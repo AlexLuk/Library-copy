@@ -58,18 +58,18 @@ $(document).ready(function () {
     /************************************************* general settings *************************************************/
 
     // stop submit requests
-    $('form, .table-striped').submit(function (e) {
-        e.preventDefault();
-    });
+    // $('form, .table-striped').submit(function (e) {
+    //     e.preventDefault();
+    // });
 
     // $('button').click(function () {
     //     hideMsgs();
     // });
 
-    // hide error message when switching between tabs
-    $('.navbar-nav a, #navbar').click(function () {
-        hideMsgs();
-    });
+    // // hide error message when switching between tabs
+    // $('.navbar-nav a, #navbar').click(function () {
+    //     hideMsgs();
+    // });
 
     // $.ajaxSetup(
     //     {
@@ -107,7 +107,8 @@ $(document).ready(function () {
             name: "required",
             email_register: {
                 required: true,
-                email: true
+                email: true,
+                isEmailUnique: true
             },
             passwd_register: {
                 required: true,
@@ -127,7 +128,7 @@ $(document).ready(function () {
             email_register: {
                 required: "Please provide an email",
                 email:"Please enter a valid email address",
-                emailcheck: "User with this email is on site already!"
+                isEmailUnique: "User with this email is on site already!"
             }
         }
     });
@@ -137,7 +138,7 @@ $(document).ready(function () {
             return /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!?.,/@#$%^&+=])(?=\S+$).{8,}$/.test(value);
         });
 
-    $.validator.addMethod("emailcheck",
+    $.validator.addMethod("isEmailUnique",
         function(value, element) {
             var userEmail = $.trim($('#email_register').val());
             if (userEmail != '') {
@@ -146,10 +147,11 @@ $(document).ready(function () {
                         url: "/checks/email",
                         data: userEmail,
                         success: function (resp) {
-                            if (resp == "false")
-                                show_alert("User with this email is on site already!", statusField, false);
-                            else
-                                return true;
+                            // if (resp == "false")
+                            //     show_alert("User with this email is on site already!", statusField, false);
+                            // else
+                            //     return true;
+                            return resp=="true";
                         }
                     });
             }
@@ -192,7 +194,7 @@ $(document).ready(function () {
                         data: form_data,
                         success: function (resp) {
                             if (resp == "false")
-                                show_alert("регистрация не удалась!", statusField, false);
+                                show_alert("Registration not succeed!", statusField, false);
                             else
                                 return true;
                         }

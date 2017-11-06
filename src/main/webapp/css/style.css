@@ -61,6 +61,10 @@ button, link {
     display: none;
 }
 
+.error{
+    color: red;
+}
+
 table {
     width: 50% !important;
 }
