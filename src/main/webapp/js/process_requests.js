@@ -107,8 +107,7 @@ $(document).ready(function () {
             name: "required",
             email_register: {
                 required: true,
-                email: true,
-                isEmailUnique: true
+                email: true
             },
             passwd_register: {
                 required: true,
@@ -121,14 +120,13 @@ $(document).ready(function () {
             surname: "Please enter your surname",
             passwd_register: {
                 required: "Please provide a password",
-                pwdcheck: "Password must consist from A-Z, a-z, 0-9 -, _",
+                pwdcheck: "Password must consist from A-Z, a-z, 0-9 and !?.,/@#$%^&+=",
                 minlength: "Your password must be at least 8 characters long"
 
             },
             email_register: {
                 required: "Please provide an email",
-                email:"Please enter a valid email address",
-                isEmailUnique: "User with this email is on site already!"
+                email:"Please enter a valid email address"
             }
         }
     });
@@ -138,8 +136,15 @@ $(document).ready(function () {
             return /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!?.,/@#$%^&+=])(?=\S+$).{8,}$/.test(value);
         });
 
-    $.validator.addMethod("isEmailUnique",
-        function(value, element) {
+    $('#register').click(function () {
+        if(checkPassword()){
+            provideRegistration();
+        }
+    });
+
+    $('#email_register').on('focusout',function(){
+        show_alert("focus out!");
+        if(('#email_register').valid()) {
             var userEmail = $.trim($('#email_register').val());
             if (userEmail != '') {
                 $.ajax(
@@ -151,19 +156,14 @@ $(document).ready(function () {
                             //     show_alert("User with this email is on site already!", statusField, false);
                             // else
                             //     return true;
-                            return resp=="true";
+                            return resp == "true";
                         }
                     });
             }
             else
                 return false;
-        });
-
-    $('#register').click(function () {
-        if(checkPassword()){
-            provideRegistration();
         }
-    });
+});
 
     function checkPassword(){
         var userEmail = $.trim($('#email_register').val());
