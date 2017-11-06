@@ -63,4 +63,13 @@ public class BookService {
     public String getGenre(int genreId) {
         return genreRepository.findOne(genreId).getName();
     }
+
+    /**
+     * Gets all genres
+     *
+     * @return - list of genres
+     */
+    public List<Genre> getAllGenres() {
+        return genreRepository.findAll();
+    }
 }

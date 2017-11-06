@@ -1,3 +1,6 @@
+<%@ page import="org.library.db.domain.Genre" %>
+<% List<Genre> genres = bookService.getAllGenres(); %>
+
 <form id="filter_form">
     <div class="form-group">
         <div class="row">
@@ -18,7 +21,11 @@
             <div class="delimeter"></div>
             <div class="col-xs-5">
                 <label for="book_genre"><spring:message code="genre" />:</label>
-                <input type="text" class="form-control" name="book_genre" id="book_genre">
+                <select class="form-control" name="book_genre" id="book_genre">
+                    <%for (Genre genre : genres) {%>
+                        <option><spring:message code="<%= genre.getName() %>" /></option>
+                    <%}%>
+                </select>
             </div>
         </div>
     </div>

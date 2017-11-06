@@ -62,7 +62,7 @@ button, link {
 }
 
 .error{
-    color: red;
+    color: #ff0000;
 }
 
 table {
@@ -85,7 +85,7 @@ table {
 }
 
 .required:after{
-    color: red;
+    color: #ff0000;
     content: "*";
     position: absolute;
     margin-left: 5px;
