@@ -49,10 +49,11 @@
                                     </button>
                                     <form name = "registerForm" id = "registerForm" action="/login" method="post">
                                         <div class="form-group">
-                                            <label for="email_register"><spring:message code="email" />:</label>
+                                            <label for="email_register" class="required"><spring:message code="email"
+                                            />:</label>
                                             <input class="form-control" name="email_register" id="email_register"
                                                    value=""><br/>
-                                            <label for="passwd_register"><spring:message code="password" />:</label>
+                                            <label for="passwd_register" class="required"><spring:message code="password" />:</label>
                                             <input type="password" class="form-control" name="passwd_register"
                                                    id="passwd_register"
                                                    value=""><br/>
@@ -60,8 +61,9 @@
                                                 Your password must be at least 8 characters long, contain latin letters, numbers, special characters, and must not contain spaces or emoji.
                                             </small>
                                             <label for="name"><spring:message code="name" />:</label>
+                                            <label for="name" class="required"><spring:message code="name" />:</label>
                                             <input type="text" class="form-control" name="name" id="name" value=""><br/>
-                                            <label for="surname"><spring:message code="surname" />:</label>
+                                            <label for="surname" class="required"><spring:message code="surname" />:</label>
                                             <input type="text" class="form-control" name="surname" id="surname" value=""><br/>
                                             <label for="patronymic"><spring:message code="patronymic" />:</label>
                                             <input type="text" class="form-control" name="patronymic" id="patronymic"

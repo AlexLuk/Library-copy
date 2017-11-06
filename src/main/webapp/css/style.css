@@ -83,3 +83,10 @@ table {
     margin-left: 20px;
     padding: 2px 15px 7px;
 }
+
+.required:after{
+    color: red;
+    content: "*";
+    position: absolute;
+    margin-left: 5px;
+}
