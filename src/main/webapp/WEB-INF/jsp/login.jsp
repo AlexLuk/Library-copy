@@ -47,10 +47,10 @@
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
-                                    <form method="post">
+                                    <form name = "registerForm" id = "registerForm" action="/login" method="post">
                                         <div class="form-group">
                                             <label for="email_register"><spring:message code="email" />:</label>
-                                            <input type="email" class="form-control" name="email_register" id="email_register"
+                                            <input class="form-control" name="email_register" id="email_register"
                                                    value=""><br/>
                                             <label for="passwd_register"><spring:message code="password" />:</label>
                                             <input type="password" class="form-control" name="passwd_register"

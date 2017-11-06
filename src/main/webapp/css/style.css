@@ -61,8 +61,8 @@ button, link {
     display: none;
 }
 
-.error {
-    color: #ff0000;
+.error{
+    color: red;
 }
 
 table {
