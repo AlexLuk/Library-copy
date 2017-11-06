@@ -14,7 +14,6 @@ public class LibraryFilterController {
 
     @RequestMapping(value = {"/filters"}, method = RequestMethod.POST)
     public List<Book> filterBooks(String title, String author, String year, String genre) {
-        System.out.println("filterbooks");
         return new FilteringService().getBooksByComplexCondition(title, author, year, genre);
     }
 
