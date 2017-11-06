@@ -22,10 +22,10 @@
                 <hr class="my-4">
                 <div id="login_form">
                     <c:if test="${not empty error}">
-                        <div class="error alert alert-danger" role="alert">${error}</div>
+                        <div class="error alert alert-danger" role="alert"><spring:message code="errInv" /></div>
                     </c:if>
                     <c:if test="${not empty msg}">
-                        <div class="msg alert alert-success" role="alert">${msg}</div>
+                        <div class="msg alert alert-success" role="alert"><spring:message code="succLogout" /></div>
                     </c:if>
                     <form method="post" action="/login" id="login" name="login">
                         <div class="form-group">
