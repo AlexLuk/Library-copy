@@ -60,7 +60,6 @@
                                             <small id="passwordHelpBlock" class="form-text text-muted">
                                                 Your password must be at least 8 characters long, contain latin letters, numbers, special characters, and must not contain spaces or emoji.
                                             </small>
-                                            <label for="name"><spring:message code="name" />:</label>
                                             <label for="name" class="required"><spring:message code="name" />:</label>
                                             <input type="text" class="form-control" name="name" id="name" value=""><br/>
                                             <label for="surname" class="required"><spring:message code="surname" />:</label>
