@@ -12,12 +12,24 @@
 
 <body>
     <%@ include file="templates/nav.jsp" %>
-        <%@ include file="reader.jsp" %>
-
-        <sec:authorize access="hasRole('ROLE_ADMIN')">
-            <%@ include file="admin.jsp" %>
-        </sec:authorize>
-
+    <div class="container">
+        <div class="jumbotron">
+            <nav class="nav nav-tabs" id="readerTab" role="tablist">
+                <sec:authorize access="hasRole('ROLE_READER')">
+                    <%@ include file="funcs/reader/tabs.jsp" %>
+                </sec:authorize>
+                <sec:authorize access="hasRole('ROLE_ADMIN')">
+                    <%@ include file="funcs/admin/tabs.jsp" %>
+                </sec:authorize>
+            </nav>
+            <sec:authorize access="hasRole('ROLE_READER')">
+                <%@ include file="funcs/reader/reader.jsp" %>
+            </sec:authorize>
+            <sec:authorize access="hasRole('ROLE_ADMIN')">
+                <%@ include file="funcs/admin/admin.jsp" %>
+            </sec:authorize>
+            </div>
+    </div>
     <%@ include file="templates/footer.jsp" %>
 </body>
 </html>

@@ -17,9 +17,10 @@ public class LibraryUserDetails extends Reader implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<SimpleGrantedAuthority> list = new ArrayList<>();
-        list.add(new SimpleGrantedAuthority("ROLE_READER"));
         if (getIsAdmin())
             list.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        else
+            list.add(new SimpleGrantedAuthority("ROLE_READER"));
         return list;
     }
 
