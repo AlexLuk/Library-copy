@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+
 <a class="nav-item nav-link active" id="nav-find-tab" data-toggle="tab" href="#nav-find" role="tab"
    aria-controls="nav-find" aria-selected="true"><spring:message code="findOrderBooks" /></a>
 

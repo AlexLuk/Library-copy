@@ -22,6 +22,7 @@
             <div class="col-xs-5">
                 <label for="book_genre"><spring:message code="genre" />:</label>
                 <select class="form-control" name="book_genre" id="book_genre">
+                    <option></option>
                     <%for (Genre genre : genres) {%>
                         <option><spring:message code="<%= genre.getName() %>" /></option>
                     <%}%>

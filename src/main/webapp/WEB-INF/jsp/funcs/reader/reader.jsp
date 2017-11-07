@@ -3,4 +3,5 @@
 <div class="tab-content" id="nav-tabContent">
     <%@ include file="find.jsp" %>
     <%@ include file="orders.jsp" %>
+    <%@ include file="profile.jsp" %>
 </div>
