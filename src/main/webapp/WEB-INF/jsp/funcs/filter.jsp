@@ -28,6 +28,12 @@
                     <%}%>
                 </select>
             </div>
+            <div class="delimeter"></div>
+            <div class="col-xs-5">
+                <button type="submit" class="btn btn-primary" id="filer_button" name="filer_button">
+                    <spring:message code="toFilter" />
+                </button>
+            </div>
         </div>
     </div>
 </form>

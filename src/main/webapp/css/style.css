@@ -71,6 +71,10 @@ button, link {
     -o-transform: scale(0.7, 0.7); /*Opera*/
 }
 
+#filer_button {
+    margin-top: 31px;
+}
+
 /*************************************************** components *******************************/
 
 .language {
