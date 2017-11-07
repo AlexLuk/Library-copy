@@ -6,7 +6,7 @@ import java.sql.Date;
 @Entity
 @Table(name = "reader")
 public class Reader extends Base {
-
+// todo name first name lastname
     @Basic
     @Column(name = "email")
     private String email;

@@ -31,16 +31,10 @@ public class LibraryErrorController implements ErrorController {
         logger.warn(response.getStatus() + "");
         if (response.getStatus() == 404) {
             model.addAttribute("errorCode", error404);
-            return JSP_PATH;
-        }
-        else if (response.getStatus() == 403) {
-            model.addAttribute("errorCode", error403);
-            return JSP_PATH;
-        }
-        else {
+        } else {
             model.addAttribute("errorCode", error500);
-            return JSP_PATH;
         }
+        return JSP_PATH;
     }
 
     @Override

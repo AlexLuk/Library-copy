@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class LibraryRegistrationController {
-    private final static Logger logger = LoggerFactory.getLogger(LibraryErrorController.class);
+    private final static Logger logger = LoggerFactory.getLogger(LibraryRegistrationController.class);
 
 
     public static final String passwordREGEXP = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!?.,/@#$%^&+=])(?=\\S+$).{8,}$";
@@ -28,11 +28,7 @@ public class LibraryRegistrationController {
      */
     @RequestMapping(value = {"/checks/email"}, method = RequestMethod.POST, produces = "application/json")
     public @ResponseBody Boolean isEmailUnique(String email) {
-        logger.warn(email + " " + readerRepository.findByEmail(email.toLowerCase()).isPresent());
         return !readerRepository.findByEmail(email.toLowerCase()).isPresent();
-    }
-
-    public LibraryRegistrationController() {
     }
 
     /**
@@ -53,7 +49,7 @@ public class LibraryRegistrationController {
      * @return true if password valid for our
      */
     @RequestMapping(value = {"/checks/password"}, method = RequestMethod.POST, produces = "application/json")
-    public @ResponseBody Boolean isPasswordComplicate(String password, String email) {
+    public @ResponseBody Boolean isPasswordComplicate(String password, String email) { //todo name
         if (email.length() == 0) return false;
         String userLogin;
         if (email.contains("@")) {
@@ -75,7 +71,7 @@ public class LibraryRegistrationController {
     public @ResponseBody Boolean registerUser(@ModelAttribute Reader reader) {
         if (isEmailUnique(reader.getEmail()) && isPasswordComplicate(reader.getPassword(),reader.getEmail())){
             reader.setEmail(reader.getEmail().toLowerCase());
-            readerRepository.save(reader);
+            readerRepository.save(reader);//todo md5
             return true;
         }else {
             return false;

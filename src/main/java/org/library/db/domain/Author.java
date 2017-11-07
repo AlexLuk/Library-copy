@@ -21,7 +21,8 @@ public class Author extends Base {
     @Column(name = "year_of_birth")
     private int yearOfBirth;
 
-    public Author(){}
+    public Author() {
+    }
 
     public Author(String name, String patronymic, String surname, int yearOfBirth) {
         this.name = name;
@@ -33,6 +34,7 @@ public class Author extends Base {
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -40,6 +42,7 @@ public class Author extends Base {
     public String getSurname() {
         return surname;
     }
+
     public void setSurname(String surname) {
         this.surname = surname;
     }
@@ -47,6 +50,7 @@ public class Author extends Base {
     public String getPatronymic() {
         return patronymic;
     }
+
     public void setPatronymic(String patronymic) {
         this.patronymic = patronymic;
     }
@@ -59,7 +63,7 @@ public class Author extends Base {
     public String getFullName() {
         StringBuilder name = new StringBuilder();
         name.append(getName()).append(" ");
-        if (!getPatronymic().equals("")) {
+        if (getPatronymic() != null && !getPatronymic().equals("")) {
             name.append(getPatronymic()).append(" ");
         }
         name.append(getSurname()).append(" ");
@@ -69,6 +73,7 @@ public class Author extends Base {
     public int getYearOfBirth() {
         return yearOfBirth;
     }
+
     public void setYearOfBirth(int yearOfBirth) {
         this.yearOfBirth = yearOfBirth;
     }

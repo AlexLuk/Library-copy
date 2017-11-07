@@ -39,7 +39,8 @@ public class FilteringService {
      * @param genre  - part of books genre name
      * @return - filtered list of books
      */
-    public List<Book> getBooksByComplexCondition(String title, String author, String year, String genre) {
+    public List<Book> getBooksByComplexCondition(String title, String author, String year, String genre) { //todo
+
         List<Book> resultBookList = bookService.getAllBooks();
         resultBookList = filterBooksByTitle(title, resultBookList);
         resultBookList = filterBooksByAuthor(author, resultBookList);

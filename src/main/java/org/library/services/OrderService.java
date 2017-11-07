@@ -22,11 +22,11 @@ public class OrderService {
     @Autowired
     DeliveryRepository deliveryRepository;
 
-    public List<BookOrder> getAllOrdersByReaderByStatus(Reader reader, boolean isOnHands) {
+    public List<BookOrder> getByReaderByStatus(Reader reader, boolean isOnHands) {
         return bookOrderRepository.findByReaderIdAndOnHands(reader.getId(), isOnHands);
     }
 
-    public List<BookOrder> getAllOrdersByReader(Reader reader) {
+    public List<BookOrder> getByReader(Reader reader) {
         return bookOrderRepository.findByReaderId(reader.getId());
     }
 
