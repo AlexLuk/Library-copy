@@ -41,10 +41,10 @@ public class FilteringService {
      */
     public List<Book> getBooksByComplexCondition(String title, String author, String year, String genre) {
         List<Book> resultBookList = bookService.getAllBooks();
-        filterBooksByTitle(title, resultBookList);
-        filterBooksByAuthor(author, resultBookList);
-        filterBooksByYear(year, resultBookList);
-        filterBooksByGenre(genre, resultBookList);
+        resultBookList = filterBooksByTitle(title, resultBookList);
+        resultBookList = filterBooksByAuthor(author, resultBookList);
+        resultBookList = filterBooksByYear(year, resultBookList);
+        resultBookList = filterBooksByGenre(genre, resultBookList);
         return resultBookList;
     }
 

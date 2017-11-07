@@ -27,9 +27,9 @@ import static org.junit.Assert.*;
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class FilteringServiceTest {
-
     @Autowired
     BookRepository bookRepository;
+
     @Autowired
     AuthorRepository authorRepository;
     @Autowired
@@ -40,13 +40,12 @@ public class FilteringServiceTest {
     BookService bookService;
     @Autowired
     FilteringService filteringService;
-
     List<Book> testBooks;
+
     List<Book> resultBooks;
     List<Author> testAuthors;
     List<AuthorBook> testAuthorBooks;
     List<Genre> testGenres;
-
     @Before
     public void prepareForTests() throws Exception {
         prepareTestData();
@@ -196,5 +195,23 @@ public class FilteringServiceTest {
         assertThat(filteringService.getGenresByName(""),
                 hasItems(testGenres.get(0), testGenres.get(1), testGenres.get(2)));
         assertThat(filteringService.getGenresByName("xxxxxx"), empty());
+    }
+
+    @Test
+    public void getBooksByComplexCondition() throws Exception {
+        saveTestData();
+        prepareBooksResults();
+        assertThat(filteringService.getBooksByComplexCondition("ok bo","","",""),
+                containsInAnyOrder(testBooks.get(0),testBooks.get(1)));
+        assertThat(filteringService.getBooksByComplexCondition("okbo","BBB BBB","2178","bbb "),
+                containsInAnyOrder(testBooks.get(2)));
+        assertThat(filteringService.getBooksByComplexCondition("","CCC BBB","",""),
+                containsInAnyOrder(testBooks.get(2)));
+        assertThat(filteringService.getBooksByComplexCondition("","","2178",""),
+                containsInAnyOrder(testBooks.get(2)));
+        assertThat(filteringService.getBooksByComplexCondition("","","2189",""),
+                containsInAnyOrder(testBooks.get(0),testBooks.get(1)));
+        assertThat(filteringService.getBooksByComplexCondition("ok ob","","",""),
+                empty());
     }
 }
