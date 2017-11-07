@@ -114,68 +114,69 @@ $(document).ready(function () {
         });
 
     $('#register').click(function () {
-        if (checkPassword()) {
-            if(provideRegistration()){
-        //        location.href = "account";
+        var check = checkPassword();
+        if (check) {
+            var form_data = $(this).closest('form').serializeArray();
+            if (provideRegistration(form_data)) {
+                location.href = "account";
             }
         }
     });
 
     $('#email_register').blur(function () {
-        if ($('#formRegister').validate().currentForm($('#email_register'))) {
-            alert('email valid');
         var userEmail = $.trim($('#email_register').val());
-        alert(userEmail);
-        if (userEmail !== '') {
-            alert(userEmail);
+        if (isEmail(userEmail)) {
             $.ajax(
                 {
                     url: "/checks/email",
                     data: {email: userEmail},
                     success: function (resp) {
-                        //alert(resp);
-                        return true;
+                        if (!resp) alert("Email is already in the database. Choose another email, please");
                     }
                 });
         }
-        else
-            return false;
-         }
     });
+
+    function isEmail(email) {
+        var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        return regex.test(email);
+    }
 
     function checkPassword() {
         var userEmail = $.trim($('#email_register').val());
         var userPas = $.trim($('#passwd_register').val());
+        var result = false;
         if (userEmail !== '' && userPas !== '') {
-            // alert("ajax checkPassword");
             $.ajax(
                 {
                     url: "/checks/password",
                     data: {password: userPas, email: userEmail},
+                    async: false,
                     success: function (resp) {
-                         //alert(resp);
-                        return resp;
+                        if (!resp) alert("Password contains part of the email. Choose another password, please");
+                        result = resp;
                     }
                 });
+            return result;
         }
         else
             return false;
     }
 
-    function provideRegistration() {
-        var form_data = getFormArray($(this), statusField);
-        alert(form_data);
+    function provideRegistration(form_data) {
+        var result = false;
+        console.log("form_data "+form_data);
         if (form_data !== '') {
-            alert("if");
             $.ajax(
                 {
                     url: "/register",
                     data: {reader: form_data},
                     success: function (resp) {
-                        alert(resp);
-                        return resp;
+                        if(resp) alert("Thank you for registration!");
+                         result = resp;
                     }
                 });
+            return result;
         }
         else
             return false;
