@@ -58,7 +58,7 @@ $(document).ready(function () {
     /************************************************* general settings *************************************************/
 
     // stop submit requests
-    $( 'form, .table-striped' ).submit( function( e )
+    $( '#registerForm' ).submit( function( e )
     {
         e.preventDefault();
     });
@@ -200,7 +200,6 @@ function filterRequest() {
         $.ajax(
             {
                 url: "/filters",
-                type: "POST",
                 data: {title: titleFilter, author: authorFilter, year: yearFilter, genre: genreFilter},
                 success: function (resp) {
                     $('#nav-find').remove();
