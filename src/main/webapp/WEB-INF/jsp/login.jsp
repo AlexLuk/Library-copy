@@ -54,12 +54,12 @@
                                             <input class="form-control" name="email_register" id="email_register"
                                                    value=""><br/>
                                             <label for="passwd_register" class="required"><spring:message code="password" />:</label>
-                                            <input type="password" class="form-control" name="passwd_register"
-                                                   id="passwd_register"
-                                                   value=""><br/>
                                             <small id="passwordHelpBlock" class="form-text text-muted">
                                                 Your password must be at least 8 characters long, contain latin letters, numbers, special characters, and must not contain spaces or emoji.
                                             </small>
+                                            <input type="password" class="form-control" name="passwd_register"
+                                                   id="passwd_register"
+                                                   value=""><br/>
                                             <label for="name" class="required"><spring:message code="name" />:</label>
                                             <input type="text" class="form-control" name="name" id="name" value=""><br/>
                                             <label for="surname" class="required"><spring:message code="surname" />:</label>

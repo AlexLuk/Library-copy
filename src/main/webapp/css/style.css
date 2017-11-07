@@ -17,27 +17,47 @@ link {
     color: #007bff;
 }
 
+table {
+    width: 50% !important;
+}
+
 button, link {
     cursor: pointer;
 }
 
-#service_buttons, div.tab-content {
-    padding-top: 60px !important;
+/* error messages */
+.bg-danger, .bg-success {
+    padding: 10px;
+    display: none;
 }
 
-#service_buttons button.role {
-    padding-bottom: 20px;
-    margin-bottom: 20px;
+.error{
+    color: #FF0D56;
 }
 
-#service_buttons a:hover {
-    text-decoration: none;
-}
+/*************************************************** forms *******************************/
 
 #login_form {
     width: 50%;
     margin-left: auto;
     margin-right: auto;
+}
+
+#register_link {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#passwordHelpBlock {
+    margin-top: -8px;
+    margin-bottom: 8px;
+}
+
+.required:after{
+    color: #FF0D56;
+    content: "*";
+    position: absolute;
+    margin-left: 5px;
 }
 
 #filter_form {
@@ -51,27 +71,7 @@ button, link {
     -o-transform: scale(0.7, 0.7); /*Opera*/
 }
 
-#register_link {
-    text-decoration: underline;
-    cursor: pointer;
-}
-
-.bg-danger, .bg-success {
-    padding: 10px;
-    display: none;
-}
-
-.error{
-    color: #ff0000;
-}
-
-table {
-    width: 50% !important;
-}
-
-.delimeter {
-    padding-left: 30px;
-}
+/*************************************************** components *******************************/
 
 .language {
     text-transform: uppercase;
@@ -84,9 +84,6 @@ table {
     padding: 2px 15px 7px;
 }
 
-.required:after{
-    color: #ff0000;
-    content: "*";
-    position: absolute;
-    margin-left: 5px;
+.delimeter {
+    padding-left: 30px;
 }
