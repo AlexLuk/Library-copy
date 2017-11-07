@@ -115,43 +115,46 @@ $(document).ready(function () {
 
     $('#register').click(function () {
         if (checkPassword()) {
-            provideRegistration();
+            if(provideRegistration()){
+        //        location.href = "account";
+            }
         }
     });
 
     $('#email_register').blur(function () {
-        // if (('#email_register').valid()) {
+        if ($('#formRegister').validate().element('#email_register')) {
+            alert('email valid');
         var userEmail = $.trim($('#email_register').val());
         alert(userEmail);
-        if (userEmail != '') {
+        if (userEmail !== '') {
             alert(userEmail);
             $.ajax(
                 {
                     url: "/checks/email",
                     data: {email: userEmail},
                     success: function (resp) {
-                        alert(resp);
-                        return resp == "true";
+                        //alert(resp);
+                        return true;
                     }
                 });
         }
         else
             return false;
-        // }
+         }
     });
 
     function checkPassword() {
         var userEmail = $.trim($('#email_register').val());
         var userPas = $.trim($('#passwd_register').val());
-        if (userEmail != '' && userPas != '') {
-            alert("ajax checkPassword");
+        if (userEmail !== '' && userPas !== '') {
+            // alert("ajax checkPassword");
             $.ajax(
                 {
                     url: "/checks/password",
                     data: {password: userPas, email: userEmail},
                     success: function (resp) {
-                        alert(resp);
-                        return resp == "true";
+                         //alert(resp);
+                        return resp;
                     }
                 });
         }
@@ -162,7 +165,7 @@ $(document).ready(function () {
     function provideRegistration() {
         var form_data = getFormArray($(this), statusField);
         alert(form_data);
-        if (form_data != '') {
+        if (form_data !== '') {
             alert("if");
             $.ajax(
                 {
@@ -170,7 +173,7 @@ $(document).ready(function () {
                     data: {reader: form_data},
                     success: function (resp) {
                         alert(resp);
-                        return resp == "true";
+                        return resp;
                     }
                 });
         }
