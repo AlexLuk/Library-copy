@@ -57,10 +57,27 @@ $(document).ready(function () {
 
     /************************************************* general settings *************************************************/
 
-    // hide error message when switching between tabs
-    $('.navbar-nav a, #navbar').click(function () {
+    // stop submit requests
+    $( 'form, .table-striped' ).submit( function( e )
+    {
+        e.preventDefault();
+    });
+
+    $( 'button' ).click( function()
+    {
         hideMsgs();
     });
+
+    // hide error message when switching between tabs
+    $( '.navbar-nav a, #navbar' ).click( function()
+    {
+        hideMsgs();
+    });
+
+    $.ajaxSetup(
+        {
+            type: "POST"
+        });
 
     /********************************************* registration form **************************************************/
 
@@ -183,6 +200,7 @@ function filterRequest() {
         $.ajax(
             {
                 url: "/filters",
+                type: "POST",
                 data: {title: titleFilter, author: authorFilter, year: yearFilter, genre: genreFilter},
                 success: function (resp) {
                     $('#nav-find').remove();
