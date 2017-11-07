@@ -11,11 +11,11 @@ import java.util.List;
 
 @Controller
 public class LibraryFilterController {
-    @Autowired
-    FilteringService filteringService;
+    @Autowired FilteringService filteringService;
 
     @RequestMapping(value = {"/filters"}, method = RequestMethod.POST)
     public List<Book> filterBooks(String title, String author, String year, String genre) {
-        return  filteringService.getBooksByComplexCondition(title, author, year, genre);
+//todo year int проверка на клиенте
+       return filteringService.getBooksByComplexCondition(title, author, year, genre);
     }
 }

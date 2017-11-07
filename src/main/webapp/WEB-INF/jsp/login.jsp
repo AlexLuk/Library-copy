@@ -60,17 +60,17 @@
                                             <input type="password" class="form-control" name="passwd_register"
                                                    id="passwd_register"
                                                    value=""><br/>
-                                            <label for="name" class="required"><spring:message code="name" />:</label>
-                                            <input type="text" class="form-control" name="name" id="name" value=""><br/>
-                                            <label for="surname" class="required"><spring:message code="surname" />:</label>
-                                            <input type="text" class="form-control" name="surname" id="surname" value=""><br/>
+                                            <label for="firstName" class="required"><spring:message code="firstName" />:</label>
+                                            <input type="text" class="form-control" name="firstName" id="firstName" value=""><br/>
+                                            <label for="lastName" class="required"><spring:message code="lastName" />:</label>
+                                            <input type="text" class="form-control" name="lastName" id="lastName" value=""><br/>
                                             <label for="patronymic"><spring:message code="patronymic" />:</label>
                                             <input type="text" class="form-control" name="patronymic" id="patronymic"
                                                    value=""><br/>
-                                            <input type="hidden" id="error_name" value="<spring:message
-                                            code="errorName" />">
-                                            <input type="hidden" id="error_surname" value="<spring:message
-                                            code="errorSurname" />">
+                                            <input type="hidden" id="error_firstname" value="<spring:message
+                                            code="errorFirstname" />">
+                                            <input type="hidden" id="error_lastname" value="<spring:message
+                                            code="errorLastname" />">
                                             <input type="hidden" id="error_password" value="<spring:message
                                             code="errorPassword" />">
                                             <input type="hidden" id="error_pwd_check" value="<spring:message

@@ -16,7 +16,6 @@ public class LibraryErrorController implements ErrorController {
     private static final String URL = "/error";
     private static final String JSP_PATH = "/httperrors/errorPage";
 
-    private static final String error403 = "error403";
     private static final String error404 = "error404";
     private static final String error500 = "error500";
 
@@ -31,16 +30,10 @@ public class LibraryErrorController implements ErrorController {
         logger.warn(response.getStatus() + "");
         if (response.getStatus() == 404) {
             model.addAttribute("errorCode", error404);
-            return JSP_PATH;
-        }
-        else if (response.getStatus() == 403) {
-            model.addAttribute("errorCode", error403);
-            return JSP_PATH;
-        }
-        else {
+        } else {
             model.addAttribute("errorCode", error500);
-            return JSP_PATH;
         }
+        return JSP_PATH;
     }
 
     @Override

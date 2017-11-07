@@ -15,8 +15,8 @@ CREATE TABLE IF NOT EXISTS `genre`
 CREATE TABLE IF NOT EXISTS `author`
 (
   `id` int AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `surname` varchar(255) NOT NULL,
+  `first_name` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL,
   `patronymic` varchar(255) NOT NULL DEFAULT '',
   `year_of_birth` int(4) NOT NULL,
 
@@ -64,8 +64,8 @@ CREATE TABLE IF NOT EXISTS `reader`
   `id` int AUTO_INCREMENT,
   `login` varchar(255) NOT NULL,
   `password` CHAR(32) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `surname` varchar(255) NOT NULL,
+  `first_name` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL,
   `patronymic` varchar(255) NOT NULL DEFAULT '',
   `passport` varchar(255) NOT NULL,
   `registration_date` date NOT NULL DEFAULT 0,
