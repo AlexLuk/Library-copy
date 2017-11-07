@@ -58,19 +58,16 @@ $(document).ready(function () {
     /************************************************* general settings *************************************************/
 
     // stop submit requests
-    $( '#registerForm' ).submit( function( e )
-    {
+    $('#registerForm').submit(function (e) {
         e.preventDefault();
     });
 
-    $( 'button' ).click( function()
-    {
+    $('button').click(function () {
         hideMsgs();
     });
 
     // hide error message when switching between tabs
-    $( '.navbar-nav a, #navbar' ).click( function()
-    {
+    $('.navbar-nav a, #navbar').click(function () {
         hideMsgs();
     });
 
@@ -81,8 +78,7 @@ $(document).ready(function () {
 
     /********************************************* registration form **************************************************/
 
-    var form = $('#registerForm');
-    form.validate({
+    $('#registerForm').validate({
         rules: {
             surname: "required",
             name: "required",
@@ -132,8 +128,7 @@ $(document).ready(function () {
             $.ajax(
                 {
                     url: "/checks/email",
-                    data: userEmail,
-                    type: "POST",
+                    data: {email: userEmail},
                     success: function (resp) {
                         alert(resp);
                         return resp == "true";
@@ -148,7 +143,7 @@ $(document).ready(function () {
     function checkPassword() {
         var userEmail = $.trim($('#email_register').val());
         var userPas = $.trim($('#passwd_register').val());
-        if (userEmail != '' && userPas!='') {
+        if (userEmail != '' && userPas != '') {
             alert("ajax checkPassword");
             $.ajax(
                 {
@@ -172,7 +167,7 @@ $(document).ready(function () {
             $.ajax(
                 {
                     url: "/register",
-                    data: form_data,
+                    data: {reader: form_data},
                     success: function (resp) {
                         alert(resp);
                         return resp == "true";
