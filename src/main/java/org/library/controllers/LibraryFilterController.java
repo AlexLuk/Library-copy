@@ -18,5 +18,4 @@ public class LibraryFilterController {
 //todo year int проверка на клиенте
        return filteringService.getBooksByComplexCondition(title, author, year, genre);
     }
-
 }

@@ -16,7 +16,6 @@ public class LibraryErrorController implements ErrorController {
     private static final String URL = "/error";
     private static final String JSP_PATH = "/httperrors/errorPage";
 
-    private static final String error403 = "error403";
     private static final String error404 = "error404";
     private static final String error500 = "error500";
 

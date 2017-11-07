@@ -6,12 +6,12 @@ import javax.persistence.*;
 @Table(name = "author")
 public class Author extends Base {
     @Basic
-    @Column(name = "name")
-    private String name;
+    @Column(name = "first_name")
+    private String firstName;
 
     @Basic
-    @Column(name = "surname")
-    private String surname;
+    @Column(name = "last_name")
+    private String lastName;
 
     @Basic
     @Column(name = "patronymic")
@@ -24,33 +24,30 @@ public class Author extends Base {
     public Author() {
     }
 
-    public Author(String name, String patronymic, String surname, int yearOfBirth) {
-        this.name = name;
-        this.surname = surname;
+    public Author(String firstName, String patronymic, String lastName, int yearOfBirth) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.patronymic = patronymic;
         this.yearOfBirth = yearOfBirth;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
+    }
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getLastName() {
+        return lastName;
     }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getPatronymic() {
         return patronymic;
     }
-
     public void setPatronymic(String patronymic) {
         this.patronymic = patronymic;
     }
@@ -62,18 +59,17 @@ public class Author extends Base {
      */
     public String getFullName() {
         StringBuilder name = new StringBuilder();
-        name.append(getName()).append(" ");
+        name.append(getFirstName()).append(" ");
         if (getPatronymic() != null && !getPatronymic().equals("")) {
             name.append(getPatronymic()).append(" ");
         }
-        name.append(getSurname()).append(" ");
+        name.append(getLastName()).append(" ");
         return name.toString();
     }
 
     public int getYearOfBirth() {
         return yearOfBirth;
     }
-
     public void setYearOfBirth(int yearOfBirth) {
         this.yearOfBirth = yearOfBirth;
     }

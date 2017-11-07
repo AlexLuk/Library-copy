@@ -80,8 +80,8 @@ $(document).ready(function () {
 
     $('#registerForm').validate({
         rules: {
-            surname: "required",
-            name: "required",
+            firstName: "required",
+            lastName: "required",
             email_register: {
                 required: true,
                 email: true
@@ -93,8 +93,8 @@ $(document).ready(function () {
             }
         },
         messages: {
-            name: $('#error_name').val(),
-            surname: $('#error_surname').val(),
+            firstName: $('#error_firstname').val(),
+            lastName: $('#error_lastname').val(),
             passwd_register: {
                 required: $('#error_password').val(),
                 pwdcheck: $('#error_pwd_check').val(),
@@ -122,7 +122,7 @@ $(document).ready(function () {
     });
 
     $('#email_register').blur(function () {
-        if ($('#formRegister').validate().element('#email_register')) {
+        if ($('#formRegister').validate().currentForm($('#email_register'))) {
             alert('email valid');
         var userEmail = $.trim($('#email_register').val());
         alert(userEmail);
