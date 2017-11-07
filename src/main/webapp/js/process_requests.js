@@ -116,30 +116,31 @@ $(document).ready(function () {
     $('#register').click(function () {
         if (checkPassword()) {
             if(provideRegistration()){
-                location.href = "account";
+        //        location.href = "account";
             }
         }
     });
 
     $('#email_register').blur(function () {
-        // if (('#email_register').valid()) {
+        if (('#email_register').valid()) {
+            alert('email valid');
         var userEmail = $.trim($('#email_register').val());
         alert(userEmail);
-        if (userEmail != '') {
+        if (userEmail !== '') {
             alert(userEmail);
             $.ajax(
                 {
                     url: "/checks/email",
                     data: {email: userEmail},
                     success: function (resp) {
-                        alert(resp);
-                        return resp == "true";
+                        //alert(resp);
+                        return true;
                     }
                 });
         }
         else
             return false;
-        // }
+         }
     });
 
     function checkPassword() {
