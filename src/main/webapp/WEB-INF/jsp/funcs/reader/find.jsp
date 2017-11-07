@@ -18,6 +18,7 @@
             <th><spring:message code="author" /></th>
             <th><spring:message code="year" /></th>
             <th><spring:message code="genre" /></th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -34,6 +35,12 @@
             <td><%= book.getYear() %></td>
             <td>
                 <spring:message code="<%= bookService.getGenre(book.getGenre().getId()) %>" />
+            </td>
+            <td>
+                <input type="hidden" id="order_id" name="order_id" value="<%= book.getId()%>" />
+                <button type="submit" class="btn btn-primary" id="order" name="order">
+                    <spring:message code="toOrder" />
+                </button>
             </td>
         </tr>
         <%}%>
