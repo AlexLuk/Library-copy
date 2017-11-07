@@ -126,12 +126,16 @@ $(document).ready(function () {
     $('#email_register').blur(function () {
         // if (('#email_register').valid()) {
         var userEmail = $.trim($('#email_register').val());
+        alert(userEmail);
         if (userEmail != '') {
+            alert(userEmail);
             $.ajax(
                 {
                     url: "/checks/email",
                     data: userEmail,
+                    type: "POST",
                     success: function (resp) {
+                        alert(resp);
                         return resp == "true";
                     }
                 });
@@ -144,12 +148,14 @@ $(document).ready(function () {
     function checkPassword() {
         var userEmail = $.trim($('#email_register').val());
         var userPas = $.trim($('#passwd_register').val());
-        if (form_data != '') {
+        if (userEmail != '' && userPas!='') {
+            alert("ajax checkPassword");
             $.ajax(
                 {
                     url: "/checks/password",
                     data: {password: userPas, email: userEmail},
                     success: function (resp) {
+                        alert(resp);
                         return resp == "true";
                     }
                 });
@@ -160,12 +166,15 @@ $(document).ready(function () {
 
     function provideRegistration() {
         var form_data = getFormArray($(this), statusField);
+        alert(form_data);
         if (form_data != '') {
+            alert("if");
             $.ajax(
                 {
-                    url: "/",
+                    url: "/register",
                     data: form_data,
                     success: function (resp) {
+                        alert(resp);
                         return resp == "true";
                     }
                 });
