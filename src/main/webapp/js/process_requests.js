@@ -80,17 +80,17 @@ $(document).ready(function () {
             }
         },
         messages: {
-            name: "Please enter your name",
-            surname: "Please enter your surname",
+            name: $('#error_name').val(),
+            surname: $('#error_surname').val(),
             passwd_register: {
-                required: "Please provide a password",
-                pwdcheck: "Password must consist from A-Z, a-z, 0-9 and !?.,/@#$%^&+=",
-                minlength: "Your password must be at least 8 characters long"
+                required: $('#error_password').val(),
+                pwdcheck: $('#error_pwd_check').val(),
+                minlength: $('#error_pwd_minlen').val()
 
             },
             email_register: {
-                required: "Please provide an email",
-                email: "Please enter a valid email address"
+                required: $('#error_email_req').val(),
+                email: $('#error_email').val()
             }
         }
     });
@@ -197,5 +197,3 @@ function filterRequest() {
             });
     }
 }
-
-

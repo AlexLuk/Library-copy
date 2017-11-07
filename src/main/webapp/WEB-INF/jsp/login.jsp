@@ -47,7 +47,7 @@
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
-                                    <form name = "registerForm" id = "registerForm" action="/login" method="post">
+                                    <form name="registerForm" id="registerForm" action="/login" method="post">
                                         <div class="form-group">
                                             <label for="email_register" class="required"><spring:message code="email"
                                             />:</label>
@@ -55,7 +55,7 @@
                                                    value=""><br/>
                                             <label for="passwd_register" class="required"><spring:message code="password" />:</label>
                                             <small id="passwordHelpBlock" class="form-text text-muted">
-                                                Your password must be at least 8 characters long, contain latin letters, numbers, special characters, and must not contain spaces or emoji.
+                                                <spring:message code="passwdHelperText"/>
                                             </small>
                                             <input type="password" class="form-control" name="passwd_register"
                                                    id="passwd_register"
@@ -67,6 +67,20 @@
                                             <label for="patronymic"><spring:message code="patronymic" />:</label>
                                             <input type="text" class="form-control" name="patronymic" id="patronymic"
                                                    value=""><br/>
+                                            <input type="hidden" id="error_name" value="<spring:message
+                                            code="errorName" />">
+                                            <input type="hidden" id="error_surname" value="<spring:message
+                                            code="errorSurname" />">
+                                            <input type="hidden" id="error_password" value="<spring:message
+                                            code="errorPassword" />">
+                                            <input type="hidden" id="error_pwd_check" value="<spring:message
+                                            code="errorPwdcheck" />">
+                                            <input type="hidden" id="error_pwd_minlen" value="<spring:message
+                                            code="errorPwdMinLen" />">
+                                            <input type="hidden" id="error_email_req" value="<spring:message
+                                            code="errorEmailReq" />">
+                                            <input type="hidden" id="error_email" value="<spring:message
+                                            code="errorEmail" />">
                                             <button type="submit" class="btn btn-primary" id="register" name="register">
                                                 <spring:message code="toRegister" />
                                             </button>
