@@ -122,7 +122,7 @@ $(document).ready(function () {
     });
 
     $('#email_register').blur(function () {
-        if (('#email_register').valid()) {
+        if ($('#formRegister').validate().element('#email_register')) {
             alert('email valid');
         var userEmail = $.trim($('#email_register').val());
         alert(userEmail);
