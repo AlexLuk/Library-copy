@@ -17,6 +17,12 @@ public class BookOrder extends Base {
     @Column(name = "on_hands")
     private boolean onHands;
 
+    public BookOrder(Reader reader, Book book, boolean onHands) {
+        this.reader = reader;
+        this.book = book;
+        this.onHands = onHands;
+    }
+
     public Reader getReader() {
         return reader;
     }

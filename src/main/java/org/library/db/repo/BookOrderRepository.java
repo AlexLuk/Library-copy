@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface BookOrderRepository extends JpaRepository<BookOrder, Integer> {
     List<BookOrder> findByReaderIdAndOnHands(int readerId, boolean status);
+    List<BookOrder> findByReaderId(int readerId);
 }
