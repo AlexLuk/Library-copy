@@ -44,9 +44,15 @@ public class Reader extends Base {
 
     public Reader() {}
 
-    public Reader(String email, String password) {
+    public Reader(String email, String password, String firstName, String lastName, String patronymic, Date registrationDate, Double fines, boolean isAdmin) {
         this.email = email;
         this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.patronymic = patronymic;
+        this.registrationDate = registrationDate;
+        this.fines = fines;
+        this.isAdmin = isAdmin;
     }
 
     public Reader(Reader reader) {

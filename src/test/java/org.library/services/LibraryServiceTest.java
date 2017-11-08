@@ -80,19 +80,19 @@ public class LibraryServiceTest extends LibraryTest {
     public void getBooksByComplexCondition() throws Exception {
         saveTestData();
         //by year, genre
-        assertThat(libraryService.getBooksByComplexCondition("","",2189,"aaa"),containsInAnyOrder(testBooks.get(0),testBooks.get(1)));
+        assertThat(libraryService.getBooksByComplexCondition("", "", 2189, "aaa"), containsInAnyOrder(testBooks.get(0), testBooks.get(1)));
         //by genre
-        assertThat(libraryService.getBooksByComplexCondition("","",null,"bbb"),containsInAnyOrder(testBooks.get(2)));
+        assertThat(libraryService.getBooksByComplexCondition("", "", null, "bbb"), containsInAnyOrder(testBooks.get(2)));
         //by title
-        assertThat(libraryService.getBooksByComplexCondition("bookbook","",null,""),containsInAnyOrder(testBooks.get(2)));
-        assertThat(libraryService.getBooksByComplexCondition("book","",null,""),is(testBooks));
+        assertThat(libraryService.getBooksByComplexCondition("bookbook", "", null, ""), containsInAnyOrder(testBooks.get(2)));
+        assertThat(libraryService.getBooksByComplexCondition("book", "", null, ""), is(testBooks));
         //by author
-        assertThat(libraryService.getBooksByComplexCondition("","BB",null,""),containsInAnyOrder(testBooks.get(2)));
-        assertThat(libraryService.getBooksByComplexCondition("","AAA",null,""),empty());
-        assertThat(libraryService.getBooksByComplexCondition("","",2189,"aaa"),containsInAnyOrder(testBooks.get(0),testBooks.get(1)));
-        assertThat(libraryService.getBooksByComplexCondition("aaaaaa","",null,""),empty());
-        assertThat(libraryService.getBooksByComplexCondition("","aaaaaaa",null,""),empty());
-        assertThat(libraryService.getBooksByComplexCondition("","",null,"aaaaaaa"),empty());
+        assertThat(libraryService.getBooksByComplexCondition("", "BB", null, ""), containsInAnyOrder(testBooks.get(2)));
+        assertThat(libraryService.getBooksByComplexCondition("", "AAA", null, ""), empty());
+        assertThat(libraryService.getBooksByComplexCondition("", "", 2189, "aaa"), containsInAnyOrder(testBooks.get(0), testBooks.get(1)));
+        assertThat(libraryService.getBooksByComplexCondition("aaaaaa", "", null, ""), empty());
+        assertThat(libraryService.getBooksByComplexCondition("", "aaaaaaa", null, ""), empty());
+        assertThat(libraryService.getBooksByComplexCondition("", "", null, "aaaaaaa"), empty());
 
     }
 
@@ -102,8 +102,6 @@ public class LibraryServiceTest extends LibraryTest {
         authors.add(authorRepository.findOne(106));
         authors.add(authorRepository.findOne(107));
         authors.add(authorRepository.findOne(108));
-
         assertThat(libraryService.getAllAuthors(8), is(authors));
-        libraryService.getAllBooks().forEach(book -> System.err.println(book.getTitle()));
     }
 }
