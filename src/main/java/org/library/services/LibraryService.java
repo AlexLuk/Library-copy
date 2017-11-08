@@ -92,7 +92,7 @@ public class LibraryService {
 
     class BookJson {
         String title;
-        List<String> authors;
+        List<String> authors = new LinkedList<>();
         int year;
         int book_id;
 
