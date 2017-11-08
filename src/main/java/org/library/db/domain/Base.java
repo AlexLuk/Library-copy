@@ -2,6 +2,9 @@ package org.library.db.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 
 @MappedSuperclass
 public class Base implements Serializable
@@ -29,5 +32,14 @@ public class Base implements Serializable
         }
         name.append(lastName).append(" ");
         return name.toString();
+    }
+
+    /**
+     * Converts date to LocalDate object
+     *
+     * @return - converted date
+     */
+    public LocalDate convertLocalDate(Date date) {
+        return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
     }
 }

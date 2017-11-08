@@ -1,8 +1,6 @@
 <%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 
-<% Reader curUser = (Reader) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); %>
-
 <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
     <form name="profileForm" id="profileForm" class="doNotProcess">
         <div class="form-group">
