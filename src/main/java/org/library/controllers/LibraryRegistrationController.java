@@ -1,5 +1,6 @@
 package org.library.controllers;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.library.db.domain.Reader;
 import org.library.db.repo.ReaderRepository;
 import org.slf4j.Logger;
@@ -71,7 +72,8 @@ public class LibraryRegistrationController {
     public @ResponseBody Boolean registerUser(@ModelAttribute Reader reader) {
         if (isEmailUnique(reader.getEmail()) && isPasswordComplicate(reader.getPassword(),reader.getEmail())){
             reader.setEmail(reader.getEmail().toLowerCase());
-            readerRepository.save(reader);//todo md5
+            reader.setPassword(DigestUtils.md5Hex(reader.getPassword()));
+            readerRepository.save(reader);
             return true;
         }else {
             return false;
