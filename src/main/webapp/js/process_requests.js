@@ -186,7 +186,7 @@ $(document).ready(function () {
 });
 
 /************************* book filters *****************************************/
-$('#filter_form').click(function () {
+$('#filer_button').click(function () {
     filterRequest();
 });
 
