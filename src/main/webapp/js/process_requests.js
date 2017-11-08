@@ -200,16 +200,29 @@ function filterRequest() {
             {
                 url: "/filters",
                 data: {title: titleFilter, author: authorFilter, year: yearFilter, genre: genreFilter},
+                dataType: "json",
                 success: function (resp) {
-                    alert(resp);
-                    // $('#nav-find').remove();
-                    // $.each(resp, function (index, item) {
-                    //     $('.tab-content').append(
-                    //         '<tr><td>item.bookTitle</td>' +
-                    //         '<td>item.authorTitle<br/></td>' +
-                    //         '<td>item.bookYear</td>' +
-                    //         '<td>item.bookGenre</td></tr>');
-                    // });
+
+
+                    $('#table_body').remove();
+
+                    console.log("resp  " + JSON.stringify(resp));
+                    $.each(resp, function (key, data) {
+                        console.log(key)
+                        $.each(data, function (index, data) {
+                            console.log(index, data)
+                        })
+                    });
+
+                    $.each(resp, function (key, data) {
+                        $.each(data, function (index, item) {
+                            $('.tab-content').append(
+                                '<tr><td>'+item.title+'</td>' +
+                                '<td>'+item.id+'</td>' +
+                                '<td>'+item.year+'</td>' +
+                                '<td>'+item.genre.name+'</td></tr>');
+                        });
+                    });
                 }
             });
     }
