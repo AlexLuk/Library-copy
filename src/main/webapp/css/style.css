@@ -18,7 +18,7 @@ link {
 }
 
 table {
-    width: 50% !important;
+    width: 90% !important;
 }
 
 button, link {
@@ -33,6 +33,14 @@ button, link {
 
 .error{
     color: #FF0D56;
+}
+
+.scaled {
+    transform: scale(0.7, 0.7);
+    -moz-transform: scale(0.7, 0.7); /*Firefox*/
+    -ms-transform: scale(0.7, 0.7); /*Microsoft Internet Explorer*/
+    -webkit-transform: scale(0.7, 0.7); /*Chrome, Safari*/
+    -o-transform: scale(0.7, 0.7); /*Opera*/
 }
 
 /*************************************************** forms *******************************/
@@ -63,12 +71,14 @@ button, link {
 #filter_form {
     margin-left: -16%;
     margin-top: 2%;
+}
 
-    transform: scale(0.7, 0.7);
-    -moz-transform: scale(0.7, 0.7); /*Firefox*/
-    -ms-transform: scale(0.7, 0.7); /*Microsoft Internet Explorer*/
-    -webkit-transform: scale(0.7, 0.7); /*Chrome, Safari*/
-    -o-transform: scale(0.7, 0.7); /*Opera*/
+#filer_button {
+    margin-top: 31px;
+}
+
+#profileForm {
+    width: 90%;
 }
 
 /*************************************************** components *******************************/
@@ -86,4 +96,17 @@ button, link {
 
 .delimeter {
     padding-left: 30px;
+}
+
+#manageBooks {
+    margin-right: 60px;
+    margin-top: 92px;
+}
+
+#chooseBookForm label[for=is_rare] {
+    margin-top: 35px;
+}
+
+#is_rare {
+    margin-top: -25px;
 }

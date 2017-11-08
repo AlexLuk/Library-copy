@@ -15,4 +15,19 @@ public class Base implements Serializable
     {
         this.id = id;
     }
+
+    /**
+     * Constructs full name
+     *
+     * @return - full name
+     */
+    public String getFullName(String firstName, String lastName, String patronimic) {
+        StringBuilder name = new StringBuilder();
+        name.append(firstName).append(" ");
+        if (patronimic != null && !patronimic.equals("")) {
+            name.append(patronimic).append(" ");
+        }
+        name.append(lastName).append(" ");
+        return name.toString();
+    }
 }

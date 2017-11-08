@@ -1,6 +1,6 @@
 package org.library.controllers;
 
-import org.library.services.BookService;
+import org.library.services.LibraryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ public class LibraryController {
     private final static Logger logger = LoggerFactory.getLogger(LibraryController.class);
 
     @Autowired
-    BookService bookService;
+    LibraryService libraryService;
 
     public LibraryController() {
     }
@@ -44,7 +44,7 @@ public class LibraryController {
      */
     @RequestMapping(value = {"/account"})
     public String showAccount(Model model) {
-        model.addAttribute("book_service", bookService);
+        model.addAttribute("lib_service", libraryService);
         return "account";
     }
 }

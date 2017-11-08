@@ -1,15 +1,20 @@
 package org.library.controllers;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.library.db.domain.Reader;
 import org.library.db.repo.ReaderRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.*;
 
 @Controller
 public class LibraryRegistrationController {
@@ -21,13 +26,16 @@ public class LibraryRegistrationController {
     @Autowired
     ReaderRepository readerRepository;
 
-    /**Check email for presence in database
+    /**
+     * Check email for presence in database
      *
      * @param email - email from user input
      * @return true if there is no such mail in database
      */
     @RequestMapping(value = {"/checks/email"}, method = RequestMethod.POST, produces = "application/json")
-    public @ResponseBody Boolean isEmailUnique(String email) {
+    public @ResponseBody
+    Boolean isEmailUnique(String email) {
+        logger.warn(email);
         return !readerRepository.findByEmail(email.toLowerCase()).isPresent();
     }
 
@@ -49,7 +57,8 @@ public class LibraryRegistrationController {
      * @return true if password valid for our
      */
     @RequestMapping(value = {"/checks/password"}, method = RequestMethod.POST, produces = "application/json")
-    public @ResponseBody Boolean isPasswordComplicate(String password, String email) { //todo name
+    public @ResponseBody
+    Boolean isPasswordComplicate(String password, String email) { //todo name
         if (email.length() == 0) return false;
         String userLogin;
         if (email.contains("@")) {
@@ -68,13 +77,25 @@ public class LibraryRegistrationController {
      */
     //    @RequestMapping(value = {"/registration"}, method = RequestMethod.POST)
     @RequestMapping(value = {"/register"}, method = RequestMethod.POST, produces = "application/json")
-    public @ResponseBody Boolean registerUser(@ModelAttribute Reader reader) {
-        if (isEmailUnique(reader.getEmail()) && isPasswordComplicate(reader.getPassword(),reader.getEmail())){
+    public @ResponseBody
+    Boolean registerUser(@ModelAttribute Reader reader, HttpServletRequest request) {
+        Map s = request.getParameterMap();
+        Iterator it = s.entrySet().iterator();
+        while(it.hasNext())
+            System.out.println(it.next());
+        System.out.println(reader);
+
+/*
+        logger.warn(reader.toString());
+        if (isEmailUnique(reader.getEmail()) && isPasswordComplicate(reader.getPassword(), reader.getEmail())) {
             reader.setEmail(reader.getEmail().toLowerCase());
-            readerRepository.save(reader);//todo md5
+            reader.setPassword(DigestUtils.md5Hex(reader.getPassword()));
+            readerRepository.save(reader);
             return true;
-        }else {
+        } else {
             return false;
         }
+        */
+        return false;
     }
 }

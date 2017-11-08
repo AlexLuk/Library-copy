@@ -1,7 +1,9 @@
 package org.library.db.domain;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 
 @Entity
 @Table(name = "reader")
@@ -26,8 +28,8 @@ public class Reader extends Base {
     @Column(name = "patronymic")
     private String patronymic;
 
-    @Basic
-    @Column(name = "registration_date")
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="registration_date")
     private Date registrationDate;
 
     @Basic
@@ -92,11 +94,18 @@ public class Reader extends Base {
         this.patronymic = patronymic;
     }
 
+    public String getFullName() {
+        return getFullName(getFirstName(), getLastName(), getPatronymic());
+    }
+
     public Date getRegistrationDate() {
         return registrationDate;
     }
     public void setRegistrationDate(Date registrationDate) {
         this.registrationDate = registrationDate;
+    }
+    public LocalDate convertLocalDate() {
+        return registrationDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
     }
 
     public Double getFines() {

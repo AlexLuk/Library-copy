@@ -52,19 +52,8 @@ public class Author extends Base {
         this.patronymic = patronymic;
     }
 
-    /**
-     * Constructs full author name
-     *
-     * @return - full author name
-     */
     public String getFullName() {
-        StringBuilder name = new StringBuilder();
-        name.append(getFirstName()).append(" ");
-        if (getPatronymic() != null && !getPatronymic().equals("")) {
-            name.append(getPatronymic()).append(" ");
-        }
-        name.append(getLastName()).append(" ");
-        return name.toString();
+        return getFullName(getFirstName(), getLastName(), getPatronymic());
     }
 
     public int getYearOfBirth() {

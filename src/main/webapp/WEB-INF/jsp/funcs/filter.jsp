@@ -1,7 +1,7 @@
 <%@ page import="org.library.db.domain.Genre" %>
-<% List<Genre> genres = bookService.getAllGenres(); %>
+<% List<Genre> genres = libraryService.getAllGenres(); %>
 
-<form id="filter_form">
+<form id="filter_form" class="scaled doNotProcess">
     <div class="form-group">
         <div class="row">
             <div class="col-xs-5">
@@ -27,6 +27,12 @@
                         <option><spring:message code="<%= genre.getName() %>" /></option>
                     <%}%>
                 </select>
+            </div>
+            <div class="delimeter"></div>
+            <div class="col-xs-5">
+                <button type="submit" class="btn btn-primary" id="filer_button" name="filer_button">
+                    <spring:message code="toFilter" />
+                </button>
             </div>
         </div>
     </div>

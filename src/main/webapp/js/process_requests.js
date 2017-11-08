@@ -58,7 +58,7 @@ $(document).ready(function () {
     /************************************************* general settings *************************************************/
 
     // stop submit requests
-    $('#registerForm').submit(function (e) {
+    $('.doNotProcess').submit(function (e) {
         e.preventDefault();
     });
 
@@ -72,9 +72,9 @@ $(document).ready(function () {
     });
 
     $.ajaxSetup(
-        {
-            type: "POST"
-        });
+    {
+        type: "POST"
+    });
 
     /********************************************* registration form **************************************************/
 
@@ -82,11 +82,11 @@ $(document).ready(function () {
         rules: {
             firstName: "required",
             lastName: "required",
-            email_register: {
+            email: {
                 required: true,
                 email: true
             },
-            passwd_register: {
+            password: {
                 required: true,
                 pwdcheck: true,
                 minlength: 8
@@ -95,13 +95,13 @@ $(document).ready(function () {
         messages: {
             firstName: $('#error_firstname').val(),
             lastName: $('#error_lastname').val(),
-            passwd_register: {
+            password: {
                 required: $('#error_password').val(),
                 pwdcheck: $('#error_pwd_check').val(),
                 minlength: $('#error_pwd_minlen').val()
 
             },
-            email_register: {
+            email: {
                 required: $('#error_email_req').val(),
                 email: $('#error_email').val()
             }
@@ -114,68 +114,71 @@ $(document).ready(function () {
         });
 
     $('#register').click(function () {
-        if (checkPassword()) {
-            if(provideRegistration()){
-        //        location.href = "account";
+        var check = checkPassword();
+        if (check) {
+            if (provideRegistration()) {
+                location.href = "account";
             }
         }
     });
 
-    $('#email_register').blur(function () {
-        if ($('#formRegister').validate().currentForm($('#email_register'))) {
-            alert('email valid');
-        var userEmail = $.trim($('#email_register').val());
-        alert(userEmail);
-        if (userEmail !== '') {
-            alert(userEmail);
+    $('#email').blur(function () {
+        var userEmail = $.trim($('#email').val());
+        console.log(userEmail);
+        if (isEmail(userEmail)) {
             $.ajax(
                 {
                     url: "/checks/email",
                     data: {email: userEmail},
                     success: function (resp) {
-                        //alert(resp);
-                        return true;
+                        if (!resp) alert("Email is already in the database. Choose another email, please");
                     }
                 });
         }
-        else
-            return false;
-         }
     });
 
+    function isEmail(email) {
+        var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        return regex.test(email);
+    }
+
     function checkPassword() {
-        var userEmail = $.trim($('#email_register').val());
-        var userPas = $.trim($('#passwd_register').val());
+        var userEmail = $.trim($('#email').val());
+        var userPas = $.trim($('#password').val());
+        var result = false;
         if (userEmail !== '' && userPas !== '') {
-            // alert("ajax checkPassword");
             $.ajax(
                 {
                     url: "/checks/password",
                     data: {password: userPas, email: userEmail},
+                    async: false,
                     success: function (resp) {
-                         //alert(resp);
-                        return resp;
+                        if (!resp) alert("Password contains part of the email. Choose another password, please");
+                        result = resp;
                     }
                 });
+            return result;
         }
         else
             return false;
     }
 
     function provideRegistration() {
-        var form_data = getFormArray($(this), statusField);
-        alert(form_data);
+        var result = false;
+        var form_data = $('#registerForm').serialize();
+        console.log(form_data);
         if (form_data !== '') {
-            alert("if");
             $.ajax(
                 {
+                    
                     url: "/register",
-                    data: {reader: form_data},
+                    data: JSON.stringify({reader: form_data}),
                     success: function (resp) {
-                        alert(resp);
-                        return resp;
+                        if (resp) alert("Thank you for registration!");
+                        result = resp;
                     }
                 });
+            return result;
         }
         else
             return false;
@@ -183,18 +186,7 @@ $(document).ready(function () {
 });
 
 /************************* book filters *****************************************/
-$('#book_title').blur(function () {
-    filterRequest();
-});
-$('#book_author').blur(function () {
-    filterRequest();
-});
-
-$('#book_year').blur(function () {
-    filterRequest();
-});
-
-$('#book_genre').blur(function () {
+$('#filter_form').click(function () {
     filterRequest();
 });
 
@@ -203,20 +195,21 @@ function filterRequest() {
     var authorFilter = $.trim($('#book_author').val());
     var yearFilter = $.trim($('#book_year').val());
     var genreFilter = $('#book_genre').val();
-    if (!(titleFilter && authorFilter && yearFilter && genreFilter)) {
+    if (titleFilter !== '' || authorFilter !== '' || yearFilter !== '' || genreFilter !== '') {
         $.ajax(
             {
                 url: "/filters",
                 data: {title: titleFilter, author: authorFilter, year: yearFilter, genre: genreFilter},
                 success: function (resp) {
-                    $('#nav-find').remove();
-                    $.each(resp, function (index, item) {
-                        $('.tab-content').append(
-                            '<tr><td>item.bookTitle</td>' +
-                            '<td>item.authorTitle<br/></td>' +
-                            '<td>item.bookYear</td>' +
-                            '<td>item.bookGenre</td></tr>');
-                    });
+                    alert(resp);
+                    // $('#nav-find').remove();
+                    // $.each(resp, function (index, item) {
+                    //     $('.tab-content').append(
+                    //         '<tr><td>item.bookTitle</td>' +
+                    //         '<td>item.authorTitle<br/></td>' +
+                    //         '<td>item.bookYear</td>' +
+                    //         '<td>item.bookGenre</td></tr>');
+                    // });
                 }
             });
     }

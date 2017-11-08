@@ -37,7 +37,7 @@ public class FilteringServiceTest {
     @Autowired
     GenreRepository genreRepository;
     @Autowired
-    BookService bookService;
+    LibraryService libraryService;
     @Autowired
     FilteringService filteringService;
     List<Book> testBooks;
