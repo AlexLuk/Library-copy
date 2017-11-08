@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface DeliveryRepository extends JpaRepository<Delivery, Integer> {
     List<Delivery> findByReaderId(int readerId);
+
+    List<Delivery> findByReaderIdAndBookItemIdIn(Integer readerId, List<Integer> bookItemIds);
 }
