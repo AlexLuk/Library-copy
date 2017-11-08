@@ -1,5 +1,7 @@
 package org.library.db.domain;
 
+import org.library.misc.Utils;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -95,7 +97,7 @@ public class Reader extends Base {
     }
 
     public String getFullName() {
-        return getFullName(getFirstName(), getLastName(), getPatronymic());
+        return Utils.getFullName(getFirstName(), getLastName(), getPatronymic());
     }
 
     public Date getRegistrationDate() {
@@ -105,7 +107,7 @@ public class Reader extends Base {
         this.registrationDate = registrationDate;
     }
     public LocalDate convertLocalDate() {
-        return convertLocalDate(registrationDate);
+        return Utils.convertLocalDate(registrationDate);
     }
 
     public Double getFines() {

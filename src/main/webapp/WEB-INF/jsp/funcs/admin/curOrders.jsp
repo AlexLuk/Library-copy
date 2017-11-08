@@ -24,8 +24,13 @@
                 </td>
                 <td>
                     <input type="hidden" id="order_id" name="order_id" value="<%= order.getId()%>" />
-                    <button type="submit" class="btn btn-primary" id="giveOrder" name="giveOrder">
-                        <spring:message code="toServe" />
+                    <button type="submit" class="btn btn-primary" id="giveOrderHands" name="giveOrderHands">
+                        <spring:message code="toServeOnHands" />
+                    </button>
+                </td>
+                <td>
+                    <button type="submit" class="btn btn-primary" id="giveOrderLib" name="giveOrderLib">
+                        <spring:message code="toServeInLib" />
                     </button>
                 </td>
             </tr>

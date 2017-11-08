@@ -1,5 +1,7 @@
 package org.library.db.domain;
 
+import org.library.misc.Utils;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.time.LocalDate;
@@ -48,6 +50,6 @@ public class Delivery extends Base {
         this.time = time;
     }
     public LocalDate convertLocalDate() {
-        return convertLocalDate(time);
+        return Utils.convertLocalDate(time);
     }
 }
