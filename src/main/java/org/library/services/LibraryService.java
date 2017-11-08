@@ -94,12 +94,14 @@ public class LibraryService {
         String title;
         List<String> authors = new LinkedList<>();
         int year;
+        String genre;
         int book_id;
 
         public BookJson(Book book) {
             title = book.getTitle();
             year = book.getYear();
             book_id = book.getId();
+            genre = book.getGenre().getName();
             getAllAuthors(book.getId()).forEach(author -> authors.add(author.getFullName()));
         }
     }
