@@ -1,7 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<% List<Book> books = libraryService.getAllBooks(); %>
-
 <div class="tab-pane fade" id="nav-add-book" role="tabpanel" aria-labelledby="nav-add-book-tab">
     <form id="chooseBookForm" class="doNotProcess">
         <div class="form-group">
@@ -40,20 +38,31 @@
                     <input type="text" class="form-control" name="year"
                            id="year" value=""><br/>
 
-                    <label for="is_rare"><b><spring:message code="rare"/>:</b></label>
-                    <input type="text" class="form-control" name="is_rare"
-                           id="is_rare" value=""><br/>
+                    <b><spring:message code="rare"/>:</b>
+                    <input type="checkbox" class="form-control" name="is_rare"
+                           id="is_rare" checked value=""><br/>
                 </div>
             </div>
             <div class="row">
                 <div class="col-xs-5">
-                    <form id="manageAuthors" class="doNotProcess">
+                    <label for="choose_book_authors"><spring:message code="addAuthors" />:</label>
+                    <select class="form-control" name="choose_book_authors" id="choose_book_authors">
+                    </select>
+                </div>
+                <div class="delimeter"></div>
+                <div class="col-xs-5 scaled">
+                    <button type="submit" class="btn btn-primary" id="deleteAuthor" name="deleteAuthor">
+                        <spring:message code="toDelete" />
+                    </button>
+                </div>
+                <div class="col-xs-5">
+                    <form id="setAuthors" class="doNotProcess">
                         <div class="form-group">
-                            <label for="choose_book_authors"><spring:message code="addAuthors" />:</label>
-                            <select class="form-control" name="choose_book_authors" id="choose_book_authors">
-                            </select>
-                            <button type="submit" class="btn btn-primary" id="deleteAuthor" name="deleteAuthor">
-                                <spring:message code="toDelete" />
+                            <%@ include file="chooseAuthors.jsp" %>
+                        </div>
+                        <div class="col-xs-5 scaled">
+                            <button type="submit" class="btn btn-primary" id="setAuthor" name="setAuthor">
+                                <spring:message code="toAdd" />
                             </button>
                         </div>
                     </form>

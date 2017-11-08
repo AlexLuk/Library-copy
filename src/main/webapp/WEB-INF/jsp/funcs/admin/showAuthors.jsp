@@ -1,21 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<% List<Author> authors = libraryService.getAllAuthors(); %>
-
 <div class="tab-pane fade" id="nav-add-author" role="tabpanel" aria-labelledby="nav-add-author-tab">
+    <%@ include file="chooseAuthors.jsp" %>
+    <br/>
     <form id="chooseAuthorForm" class="doNotProcess">
         <div class="form-group">
-            <div class="row">
-                <div class="col-xs-5 scaled">
-                    <label for="choose_authors"><spring:message code="addAuthors" />:</label>
-                    <select class="form-control" name="choose_authors" id="choose_authors">
-                        <%for (Author author : authors) {%>
-                        <option><%= author.getFullName() %></option>
-                        <%}%>
-                    </select>
-                </div>
-            </div>
-            <br/>
             <div class="row">
                 <div class="col-xs-5">
                     <label for="first_name"><b><spring:message code="firstName"/>:</b></label>
