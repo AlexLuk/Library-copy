@@ -2,10 +2,13 @@ package org.library.services;
 
 import org.library.db.domain.*;
 import org.library.db.repo.*;
+import org.library.misc.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -31,6 +34,9 @@ public class LibraryService {
 
     @Autowired
     DeliveryRepository deliveryRepo;
+
+    @Autowired
+    ItemStatusRepository itemStatusRepository;
 
     public List<Book> getByTitleContainingAndYearAndGenreInAndIdIn(String title, Integer year,
                                                                    List<Genre> genres, List<Integer> ids) {
@@ -164,5 +170,20 @@ public class LibraryService {
      */
     public List<Delivery> getAllDeliveryItemsByReader(int id) {
         return deliveryRepo.findByReaderId(id);
+    }
+
+
+    /**
+     * Gets all dates
+     *
+     * @return - list of delivery dates
+     */
+    public List<LocalDate> getAllDates(List<Delivery> list) {
+        List<LocalDate> res = new ArrayList<>();
+
+        for(Delivery delivery : list) {
+            res.add(Utils.convertLocalDate(delivery.getTime()));
+        }
+        return res;
     }
 }
