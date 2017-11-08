@@ -4,7 +4,6 @@
 <% Reader curUser = (Reader) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); %>
 
 <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-    <br/>
     <form name="profileForm" id="profileForm">
         <div class="form-group">
             <div class="row">
@@ -38,7 +37,7 @@
                 <div class="col-xs-5">
                     <div id="registr_date"><strong><spring:message
                             code="registrationDate"/>:</strong>&nbsp;<%= curUser.convertLocalDate()%></div><br/>
-                    <div id="fines"><strong><spring:message code="fines"/>:</strong>&nbsp;<%= curUser.getFines()%>&#x20bd;</div><br/><br/>
+                    <div id="fines"><strong><spring:message code="fines"/>:</strong>&nbsp;<%= curUser.getFines()%>&nbsp;&#x20bd;</div><br/><br/>
                 </div>
             </div>
             <div class="row">

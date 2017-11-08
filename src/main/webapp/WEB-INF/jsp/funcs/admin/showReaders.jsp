@@ -8,7 +8,7 @@
     List<Reader> readers = libraryService.getAllReaders();
 %>
 
-<div class="tab-pane fade show active" id="nav-readers" role="tabpanel" aria-labelledby="nav-readers-tab">
+<div class="tab-pane fade show" id="nav-readers" role="tabpanel" aria-labelledby="nav-readers-tab">
     <table class="table table-striped">
         <thead>
         <tr>
@@ -23,7 +23,7 @@
         <tr>
             <td><%= reader.getFullName() %></td>
             <td><%= reader.convertLocalDate().toString() %></td>
-            <td><%= reader.getFines() %></td>
+            <td><%= reader.getFines() %>&nbsp;&#x20bd;</td>
         </tr>
         <%}%>
         </tbody>
