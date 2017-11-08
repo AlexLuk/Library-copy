@@ -23,7 +23,7 @@
                 <select class="form-control" name="book_genre" id="book_genre">
                     <option></option>
                     <%for (Genre genre : genres) {%>
-                        <option><spring:message code="<%= genre.getName() %>" /></option>
+                        <option  id = "<%= genre.getName() %>"><spring:message code="<%= genre.getName() %>" /></option>
                     <%}%>
                 </select>
             </div>
