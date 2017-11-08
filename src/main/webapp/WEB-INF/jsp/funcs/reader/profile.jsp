@@ -4,7 +4,7 @@
 <% Reader curUser = (Reader) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); %>
 
 <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-    <form name="profileForm" id="profileForm">
+    <form name="profileForm" id="profileForm" class="doNotProcess">
         <div class="form-group">
             <div class="row">
                 <div class="col-xs-5">

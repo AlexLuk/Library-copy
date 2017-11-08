@@ -35,6 +35,14 @@ button, link {
     color: #FF0D56;
 }
 
+.scaled {
+    transform: scale(0.7, 0.7);
+    -moz-transform: scale(0.7, 0.7); /*Firefox*/
+    -ms-transform: scale(0.7, 0.7); /*Microsoft Internet Explorer*/
+    -webkit-transform: scale(0.7, 0.7); /*Chrome, Safari*/
+    -o-transform: scale(0.7, 0.7); /*Opera*/
+}
+
 /*************************************************** forms *******************************/
 
 #login_form {
@@ -63,12 +71,6 @@ button, link {
 #filter_form {
     margin-left: -16%;
     margin-top: 2%;
-
-    transform: scale(0.7, 0.7);
-    -moz-transform: scale(0.7, 0.7); /*Firefox*/
-    -ms-transform: scale(0.7, 0.7); /*Microsoft Internet Explorer*/
-    -webkit-transform: scale(0.7, 0.7); /*Chrome, Safari*/
-    -o-transform: scale(0.7, 0.7); /*Opera*/
 }
 
 #filer_button {

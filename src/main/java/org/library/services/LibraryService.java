@@ -79,4 +79,13 @@ public class LibraryService {
     public List<Reader> getAllReaders() {
         return readerRepository.findAll();
     }
+
+    /**
+     * Gets all authors
+     *
+     * @return - list of authors
+     */
+    public List<Author> getAllAuthors() {
+        return authorRepository.findAll();
+    }
 }

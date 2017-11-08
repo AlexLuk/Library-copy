@@ -1,7 +1,7 @@
 <%@ page import="org.library.db.domain.Genre" %>
 <% List<Genre> genres = libraryService.getAllGenres(); %>
 
-<form id="filter_form">
+<form id="filter_form" class="scaled doNotProcess">
     <div class="form-group">
         <div class="row">
             <div class="col-xs-5">

@@ -9,7 +9,7 @@
     List<Book> books = libraryService.getAllBooks();
 %>
 
-<div class="tab-pane fade show" id="nav-find" role="tabpanel" aria-labelledby="nav-find-tab">
+<div class="tab-pane fade show active" id="nav-find" role="tabpanel" aria-labelledby="nav-find-tab">
     <%@ include file="../filter.jsp" %>
     <table class="table table-striped">
         <thead>

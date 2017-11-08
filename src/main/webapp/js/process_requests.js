@@ -58,7 +58,7 @@ $(document).ready(function () {
     /************************************************* general settings *************************************************/
 
     // stop submit requests
-    $('#registerForm, #profileForm, #filter_form').submit(function (e) {
+    $('.doNotProcess').submit(function (e) {
         e.preventDefault();
     });
 
