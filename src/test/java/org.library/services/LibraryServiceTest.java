@@ -25,90 +25,9 @@ import static org.hamcrest.Matchers.*;
 @RunWith(SpringRunner.class)
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-public class LibraryServiceTest {
+public class LibraryServiceTest extends LibraryTest {
     @Autowired
     LibraryService libraryService;
-
-    @Autowired
-    AuthorRepository authorRepository;
-
-    @Autowired
-    GenreRepository genreRepository;
-
-    @Autowired
-    BookRepository bookRepository;
-
-    @Autowired
-    AuthorBookRepository authorBookRepository;
-
-    private List<Book> testBooks;
-
-    private List<Author> testAuthors;
-
-    private List<AuthorBook> testAuthorBooks;
-
-    private List<Genre> testGenres;
-
-    private List<Genre> testGenresEmpty;
-    private List<Integer> testBookIdsAll;
-    private List<Integer> testBookIdsEmpty;
-    @Before
-    public void prepareForTests() throws Exception {
-        prepareTestData();
-    }
-
-    private void prepareTestData() {
-        genresSetup();
-        authorsSetup();
-        booksSetup();
-        bookIdsSetup();
-        authorBooksSetup();
-    }
-
-    private void genresSetup() {
-        testGenres = new LinkedList<>();
-        testGenres.add(new Genre("aaa"));
-        testGenres.add(new Genre("aaababb"));
-        testGenres.add(new Genre("bbb bbb"));
-        testGenresEmpty = new LinkedList<>();
-    }
-
-    private void authorsSetup() {
-        testAuthors = new LinkedList<>();
-        testAuthors.add(new Author("AAA", "BBB", "CCC", 1731));
-        testAuthors.add(new Author("AAA", "BBB", "AAA", 1732));
-        testAuthors.add(new Author("CCC", "BBB", "BBB", 1732));
-    }
-
-    private void booksSetup() {
-        testBooks = new ArrayList<>();
-        testBooks.add(new Book("l1", testGenres.get(0), "BOok book1", "RU", 2189, (short) 6, false));
-        testBooks.add(new Book("l1", testGenres.get(1), "book BOok2", "RU", 2189, (short) 6, false));
-        testBooks.add(new Book("l1", testGenres.get(2), "bookbook", "RU", 2178, (short) 6, false));
-        testBookIdsEmpty = new LinkedList<>();
-    }
-
-    private void bookIdsSetup() {
-        saveTestData();
-        testBookIdsAll = new LinkedList<>();
-        testBookIdsAll.add(bookRepository.findByTitleContaining(testBooks.get(0).getTitle()).get(0).getId());
-        testBookIdsAll.add(bookRepository.findByTitleContaining(testBooks.get(1).getTitle()).get(0).getId());
-        testBookIdsAll.add(bookRepository.findByTitleContaining(testBooks.get(2).getTitle()).get(0).getId());
-    }
-
-    private void authorBooksSetup() {
-        testAuthorBooks = new LinkedList<>();
-        testAuthorBooks.add(new AuthorBook(testAuthors.get(0), testBooks.get(0)));
-        testAuthorBooks.add(new AuthorBook(testAuthors.get(0), testBooks.get(1)));
-        testAuthorBooks.add(new AuthorBook(testAuthors.get(2), testBooks.get(2)));
-    }
-
-    private void saveTestData() {
-        genreRepository.save(testGenres);
-        authorRepository.save(testAuthors);
-        bookRepository.save(testBooks);
-        authorBookRepository.save(testAuthorBooks);
-    }
 
     @Test
     public void getByTitleContainingAndYearAndGenreInAndIdIn() throws Exception {
