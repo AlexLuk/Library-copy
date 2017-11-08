@@ -22,7 +22,7 @@
         <%for (Reader reader : readers) {%>
         <tr>
             <td><%= reader.getFullName() %></td>
-            <td><%= reader.getRegistrationDate().toString() %></td>
+            <td><%= reader.convertLocalDate().toString() %></td>
             <td><%= reader.getFines() %></td>
         </tr>
         <%}%>

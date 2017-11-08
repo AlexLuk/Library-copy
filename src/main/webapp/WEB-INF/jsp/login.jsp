@@ -49,16 +49,16 @@
                                     </button>
                                     <form name="registerForm" id="registerForm" action="/login" method="post">
                                         <div class="form-group">
-                                            <label for="email_register" class="required"><spring:message code="email"
+                                            <label for="email" class="required"><spring:message code="email"
                                             />:</label>
-                                            <input class="form-control" name="email_register" id="email_register"
+                                            <input class="form-control" name="email" id="email"
                                                    value=""><br/>
-                                            <label for="passwd_register" class="required"><spring:message code="password" />:</label>
+                                            <label for="password" class="required"><spring:message code="password" />:</label>
                                             <small id="passwordHelpBlock" class="form-text text-muted">
                                                 <spring:message code="passwdHelperText"/>
                                             </small>
-                                            <input type="password" class="form-control" name="passwd_register"
-                                                   id="passwd_register"
+                                            <input type="password" class="form-control" name="password"
+                                                   id="password"
                                                    value=""><br/>
                                             <label for="firstName" class="required"><spring:message code="firstName" />:</label>
                                             <input type="text" class="form-control" name="firstName" id="firstName" value=""><br/>

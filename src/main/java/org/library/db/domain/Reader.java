@@ -1,6 +1,8 @@
 package org.library.db.domain;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 
 @Entity
@@ -101,6 +103,9 @@ public class Reader extends Base {
     }
     public void setRegistrationDate(Date registrationDate) {
         this.registrationDate = registrationDate;
+    }
+    public LocalDate convertLocalDate() {
+        return registrationDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
     }
 
     public Double getFines() {

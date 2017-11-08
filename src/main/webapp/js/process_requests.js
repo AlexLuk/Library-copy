@@ -72,9 +72,9 @@ $(document).ready(function () {
     });
 
     $.ajaxSetup(
-        {
-            type: "POST"
-        });
+    {
+        type: "POST"
+    });
 
     /********************************************* registration form **************************************************/
 
@@ -82,11 +82,11 @@ $(document).ready(function () {
         rules: {
             firstName: "required",
             lastName: "required",
-            email_register: {
+            email: {
                 required: true,
                 email: true
             },
-            passwd_register: {
+            password: {
                 required: true,
                 pwdcheck: true,
                 minlength: 8
@@ -95,13 +95,13 @@ $(document).ready(function () {
         messages: {
             firstName: $('#error_firstname').val(),
             lastName: $('#error_lastname').val(),
-            passwd_register: {
+            password: {
                 required: $('#error_password').val(),
                 pwdcheck: $('#error_pwd_check').val(),
                 minlength: $('#error_pwd_minlen').val()
 
             },
-            email_register: {
+            email: {
                 required: $('#error_email_req').val(),
                 email: $('#error_email').val()
             }
@@ -122,8 +122,9 @@ $(document).ready(function () {
         }
     });
 
-    $('#email_register').blur(function () {
-        var userEmail = $.trim($('#email_register').val());
+    $('#email').blur(function () {
+        var userEmail = $.trim($('#email').val());
+        console.log(userEmail);
         if (isEmail(userEmail)) {
             $.ajax(
                 {
@@ -142,8 +143,8 @@ $(document).ready(function () {
     }
 
     function checkPassword() {
-        var userEmail = $.trim($('#email_register').val());
-        var userPas = $.trim($('#passwd_register').val());
+        var userEmail = $.trim($('#email').val());
+        var userPas = $.trim($('#password').val());
         var result = false;
         if (userEmail !== '' && userPas !== '') {
             $.ajax(
@@ -164,13 +165,14 @@ $(document).ready(function () {
 
     function provideRegistration() {
         var result = false;
-        var form_data = $('#registerForm').serializeArray();
+        var form_data = $('#registerForm').serialize();
         console.log(form_data);
         if (form_data !== '') {
             $.ajax(
                 {
+                    
                     url: "/register",
-                    data: {reader: form_data},
+                    data: JSON.stringify({reader: form_data}),
                     success: function (resp) {
                         if(resp) alert("Thank you for registration!");
                          result = resp;

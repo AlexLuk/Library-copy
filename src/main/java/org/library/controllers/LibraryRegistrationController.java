@@ -7,10 +7,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.*;
 
 @Controller
 public class LibraryRegistrationController {
@@ -31,6 +35,7 @@ public class LibraryRegistrationController {
     @RequestMapping(value = {"/checks/email"}, method = RequestMethod.POST, produces = "application/json")
     public @ResponseBody
     Boolean isEmailUnique(String email) {
+        logger.warn(email);
         return !readerRepository.findByEmail(email.toLowerCase()).isPresent();
     }
 
@@ -73,7 +78,15 @@ public class LibraryRegistrationController {
     //    @RequestMapping(value = {"/registration"}, method = RequestMethod.POST)
     @RequestMapping(value = {"/register"}, method = RequestMethod.POST, produces = "application/json")
     public @ResponseBody
-    Boolean registerUser(@ModelAttribute Reader reader) {
+    Boolean registerUser(@ModelAttribute Reader reader, HttpServletRequest request) {
+        Map s = request.getParameterMap();
+        Iterator it = s.entrySet().iterator();
+        while(it.hasNext())
+            System.out.println(it.next());
+        System.out.println(reader);
+
+/*
+        logger.warn(reader.toString());
         if (isEmailUnique(reader.getEmail()) && isPasswordComplicate(reader.getPassword(), reader.getEmail())) {
             reader.setEmail(reader.getEmail().toLowerCase());
             reader.setPassword(DigestUtils.md5Hex(reader.getPassword()));
@@ -82,5 +95,7 @@ public class LibraryRegistrationController {
         } else {
             return false;
         }
+        */
+        return false;
     }
 }
