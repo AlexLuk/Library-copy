@@ -26,8 +26,25 @@
                     <input type="text" class="form-control" name="patronymic" id="patronymic" value=""><br/>
                 </div>
             </div>
-            <div id="registr_date"><spring:message code="registrationDate"/>:</div><br/><br/>
-            <div id="fines"><spring:message code="fines"/>: </div><br/><br/>
+            <div class="row">
+                <div class="col-xs-5">
+                    <div id="registr_date"><spring:message code="registrationDate"/>:</div><br/><br/>
+                    <div id="fines"><spring:message code="fines"/>: </div><br/><br/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-5">
+                    <button type="submit" class="btn btn-primary" id="saveProfile" name="saveProfile">
+                        <spring:message code="toSaveProfile" />
+                    </button>
+                </div>
+                <div class="delimeter"></div>
+                <div class="col-xs-5">
+                    <button type="submit" class="btn btn-primary" id="deleteProfile" name="deleteProfile">
+                        <spring:message code="toDeleteProfile" />
+                    </button>
+                </div>
+            </div>
         </div>
     </form>
 </div>
