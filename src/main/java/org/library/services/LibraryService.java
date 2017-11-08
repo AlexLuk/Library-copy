@@ -12,45 +12,51 @@ import java.util.List;
 @Service
 public class LibraryService {
     @Autowired
-    BookRepository bookRepository;
+    BookRepository bookRepo;
 
     @Autowired
-    AuthorRepository authorRepository;
+    AuthorRepository authorRepo;
 
     @Autowired
-    AuthorBookRepository authorBookRepository;
+    AuthorBookRepository authorBookRepo;
 
     @Autowired
-    GenreRepository genreRepository;
+    GenreRepository genreRepo;
 
     @Autowired
-    ReaderRepository readerRepository;
+    ReaderRepository readerRepo;
+
+    @Autowired
+    BookOrderRepository bookOrderRepo;
+
+    @Autowired
+    DeliveryRepository deliveryRepo;
 
     public List<Book> getByTitleContainingAndYearAndGenreInAndIdIn(String title, Integer year,
                                                                    List<Genre> genres, List<Integer> ids) {
         if (year == null) {
             return getByTitleContainingAndGenreInAndIdIn(title, genres, ids);
         }
-        return bookRepository.findByTitleContainingAndYearAndGenreInAndIdIn(title, year, genres, ids);
+        return bookRepo.findByTitleContainingAndYearAndGenreInAndIdIn(title, year, genres, ids);
     }
 
     public List<Book> getByTitleContainingAndGenreInAndIdIn(String title, List<Genre> genres, List<Integer> ids) {
-        return bookRepository.findByTitleContainingAndGenreInAndIdIn(title, genres, ids);
+        return bookRepo.findByTitleContainingAndGenreInAndIdIn(title, genres, ids);
     }
 
     public List<Genre> getGenresByName(String genreName) {
-        return genreRepository.findByNameContaining(genreName);
+        return genreRepo.findByNameContaining(genreName);
     }
 
     public List<Integer> getAuthorIdsByLastName(String authorName) {
         LinkedList<Integer> resultAuthorIds = new LinkedList<>();
-        authorRepository.findByLastNameContaining(authorName).forEach(author -> resultAuthorIds.add(author.getId()));
+        authorRepo.findByLastNameContaining(authorName).forEach(author -> resultAuthorIds.add(author.getId()));
         return resultAuthorIds;
     }
 
     public List<Integer> getBooksIdsByAuthorName(String authorName) {
         LinkedList<Integer> resultBookIds = new LinkedList<>();
-        authorBookRepository.findAllByAuthorIdIn(getAuthorIdsByLastName(authorName)).forEach(authorBook -> resultBookIds.add(authorBook.getBook().getId()));
+        authorBookRepo.findAllByAuthorIdIn(getAuthorIdsByLastName(authorName)).forEach(authorBook -> resultBookIds.add(authorBook.getBook().getId()));
         return resultBookIds;
     }
 
@@ -60,14 +66,13 @@ public class LibraryService {
         return getByTitleContainingAndYearAndGenreInAndIdIn(title, year, genres, bookIds);
     }
 
-
     /**
      * Gets all books from DB
      *
      * @return - list of books
      */
     public List<Book> getAllBooks() {
-        return bookRepository.findAll();
+        return bookRepo.findAll();
     }
 
     /**
@@ -78,10 +83,10 @@ public class LibraryService {
      */
     public List<Author> getAllAuthors(int bookId) {
         List<Author> authors = new ArrayList<>();
-        List<AuthorBook> authorBook = authorBookRepository.findAllByBookId(bookId);
+        List<AuthorBook> authorBook = authorBookRepo.findAllByBookId(bookId);
 
         authorBook.forEach(obj ->
-                authors.add(authorRepository.findOne(obj.getAuthor().getId()))
+                authors.add(authorRepo.findOne(obj.getAuthor().getId()))
         );
         return authors;
     }
@@ -93,7 +98,7 @@ public class LibraryService {
      * @return - genre name
      */
     public String getGenre(int genreId) {
-        return genreRepository.findOne(genreId).getName();
+        return genreRepo.findOne(genreId).getName();
     }
 
     /**
@@ -102,7 +107,7 @@ public class LibraryService {
      * @return - list of genres
      */
     public List<Genre> getAllGenres() {
-        return genreRepository.findAll();
+        return genreRepo.findAll();
     }
 
     /**
@@ -111,7 +116,7 @@ public class LibraryService {
      * @return - list of readers
      */
     public List<Reader> getAllReaders() {
-        return readerRepository.findAll();
+        return readerRepo.findAll();
     }
 
     /**
@@ -120,6 +125,44 @@ public class LibraryService {
      * @return - list of authors
      */
     public List<Author> getAllAuthors() {
-        return authorRepository.findAll();
+        return authorRepo.findAll();
+    }
+
+    /**
+     * Gets all orders
+     *
+     * @return - list of orders
+     */
+    public List<BookOrder> getAllOrders() {
+        return bookOrderRepo.findAll();
+    }
+
+    /**
+     * Gets all orders by reader id
+     *
+     * @param id - user id
+     * @return - list of orders
+     */
+    public List<BookOrder> getAllOrdersByReader(int id) {
+        return bookOrderRepo.findByReaderId(id);
+    }
+
+    /**
+     * Gets all delivered items
+     *
+     * @return - list of items
+     */
+    public List<Delivery> getAllDeliveryItems() {
+        return deliveryRepo.findAll();
+    }
+
+    /**
+     * Gets all delivered items by reader id
+     *
+     * @param id - user id
+     * @return - list of delivered items
+     */
+    public List<Delivery> getAllDeliveryItemsByReader(int id) {
+        return deliveryRepo.findByReaderId(id);
     }
 }

@@ -105,7 +105,7 @@ public class Reader extends Base {
         this.registrationDate = registrationDate;
     }
     public LocalDate convertLocalDate() {
-        return registrationDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        return convertLocalDate(registrationDate);
     }
 
     public Double getFines() {

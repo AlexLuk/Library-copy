@@ -4,11 +4,6 @@
 <%@ page import="org.library.services.LibraryService" %>
 <%@ page import="org.library.db.domain.Author" %>
 
-<%
-    LibraryService libraryService = (LibraryService) request.getAttribute("lib_service");
-    List<Book> books = libraryService.getAllBooks();
-%>
-
 <div class="tab-pane fade show active" id="nav-find" role="tabpanel" aria-labelledby="nav-find-tab">
     <%@ include file="../filter.jsp" %>
     <table class="table table-striped">
@@ -37,7 +32,7 @@
                 <spring:message code="<%= libraryService.getGenre(book.getGenre().getId()) %>" />
             </td>
             <td>
-                <input type="hidden" id="order_id" name="order_id" value="<%= book.getId()%>" />
+                <input type="hidden" id="book_id" name="book_id" value="<%= book.getId()%>" />
                 <button type="submit" class="btn btn-primary" id="order" name="order">
                     <spring:message code="toOrder" />
                 </button>

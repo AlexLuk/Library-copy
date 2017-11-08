@@ -2,6 +2,8 @@ package org.library.db.domain;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.util.Date;
 
 
 @Entity
@@ -15,9 +17,9 @@ public class Delivery extends Base {
     @JoinColumn(name = "book_item_id")
     private BookItem bookItem;
 
-    @Basic
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "time")
-    private Timestamp time;
+    private Date time;
 
     public Delivery() {}
 
@@ -39,10 +41,13 @@ public class Delivery extends Base {
         this.bookItem = bookItem;
     }
 
-    public Timestamp getTime() {
+    public Date getTime() {
         return time;
     }
-    public void setTime(Timestamp time) {
+    public void setTime(Date time) {
         this.time = time;
+    }
+    public LocalDate convertLocalDate() {
+        return convertLocalDate(time);
     }
 }
