@@ -1,7 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <div class="tab-pane fade" id="nav-add-author" role="tabpanel" aria-labelledby="nav-add-author-tab">
-    <%@ include file="chooseAuthors.jsp" %>
+    <div class="scaled">
+        <%@ include file="chooseAuthors.jsp" %>
+    </div>
     <br/>
     <form id="chooseAuthorForm" class="doNotProcess">
         <div class="form-group">

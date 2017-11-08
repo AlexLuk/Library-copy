@@ -1,6 +1,41 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <div class="tab-pane fade" id="nav-add-book" role="tabpanel" aria-labelledby="nav-add-book-tab">
+    <div class="float-right" id="manageBooks">
+        <div class="row">
+            <div class="col-xs-5">
+                <form id="deleteAuthors" class="doNotProcess">
+                    <div class="col-xs-5">
+                        <label for="choose_book_authors"><spring:message code="addAuthors" />:</label>
+                        <select class="form-control" name="choose_book_authors" id="choose_book_authors">
+                        </select>
+                    </div>
+                    <div class="delimeter"></div>
+                    <div class="col-xs-5 scaled">
+                        <button type="submit" class="btn btn-primary" id="deleteAuthor" name="deleteAuthor">
+                            <spring:message code="toDelete" />
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="delimeter"></div>
+            <div class="delimeter"></div>
+            <div class="delimeter"></div>
+            <div class="col-xs-5">
+                <form id="setAuthors" class="doNotProcess">
+                    <div class="col-xs-5">
+                        <%@ include file="chooseAuthors.jsp" %>
+                    </div>
+                    <div class="delimeter"></div>
+                    <div class="col-xs-5 scaled">
+                        <button type="submit" class="btn btn-primary" id="setAuthor" name="setAuthor">
+                            <spring:message code="toAdd" />
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <form id="chooseBookForm" class="doNotProcess">
         <div class="form-group">
             <div class="row">
@@ -38,37 +73,11 @@
                     <input type="text" class="form-control" name="year"
                            id="year" value=""><br/>
 
-                    <b><spring:message code="rare"/>:</b>
+                    <label for="is_rare"><b><spring:message code="rare"/>:</b></label>
                     <input type="checkbox" class="form-control" name="is_rare"
                            id="is_rare" checked value=""><br/>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-xs-5">
-                    <label for="choose_book_authors"><spring:message code="addAuthors" />:</label>
-                    <select class="form-control" name="choose_book_authors" id="choose_book_authors">
-                    </select>
-                </div>
-                <div class="delimeter"></div>
-                <div class="col-xs-5 scaled">
-                    <button type="submit" class="btn btn-primary" id="deleteAuthor" name="deleteAuthor">
-                        <spring:message code="toDelete" />
-                    </button>
-                </div>
-                <div class="col-xs-5">
-                    <form id="setAuthors" class="doNotProcess">
-                        <div class="form-group">
-                            <%@ include file="chooseAuthors.jsp" %>
-                        </div>
-                        <div class="col-xs-5 scaled">
-                            <button type="submit" class="btn btn-primary" id="setAuthor" name="setAuthor">
-                                <spring:message code="toAdd" />
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <br/>
             <div class="row">
                 <div class="col-xs-5">
                     <button type="submit" class="btn btn-primary" id="save" name="save">
