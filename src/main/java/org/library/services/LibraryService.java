@@ -1,11 +1,15 @@
 package org.library.services;
 
+import com.google.gson.Gson;
 import org.library.db.domain.*;
 import org.library.db.repo.*;
+import org.library.misc.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -32,6 +36,9 @@ public class LibraryService {
     @Autowired
     DeliveryRepository deliveryRepo;
 
+    @Autowired
+    ItemStatusRepository itemStatusRepository;
+
     public List<Book> getByTitleContainingAndYearAndGenreInAndIdIn(String title, Integer year,
                                                                    List<Genre> genres, List<Integer> ids) {
         if (year == null) {
@@ -43,6 +50,7 @@ public class LibraryService {
     public List<Book> getByTitleContainingAndGenreInAndIdIn(String title, List<Genre> genres, List<Integer> ids) {
         return bookRepo.findByTitleContainingAndGenreInAndIdIn(title, genres, ids);
     }
+
 
     public List<Genre> getGenresByName(String genreName) {
         return genreRepo.findByNameContaining(genreName);
@@ -73,6 +81,27 @@ public class LibraryService {
      */
     public List<Book> getAllBooks() {
         return bookRepo.findAll();
+    }
+
+    public String jsonBooks(List<Book> books) {
+        List<BookJson> bookJsons = new LinkedList<>();
+        books.forEach(book -> bookJsons.add(new BookJson(book)));
+        Gson gson = new Gson();
+        return gson.toJson(bookJsons);
+    }
+
+    class BookJson {
+        String title;
+        List<String> authors = new LinkedList<>();
+        int year;
+        int book_id;
+
+        public BookJson(Book book) {
+            title = book.getTitle();
+            year = book.getYear();
+            book_id = book.getId();
+            getAllAuthors(book.getId()).forEach(author -> authors.add(author.getFullName()));
+        }
     }
 
     /**
@@ -164,5 +193,20 @@ public class LibraryService {
      */
     public List<Delivery> getAllDeliveryItemsByReader(int id) {
         return deliveryRepo.findByReaderId(id);
+    }
+
+
+    /**
+     * Gets all dates
+     *
+     * @return - list of delivery dates
+     */
+    public List<LocalDate> getAllDates(List<Delivery> list) {
+        List<LocalDate> res = new ArrayList<>();
+
+        for (Delivery delivery : list) {
+            res.add(Utils.convertLocalDate(delivery.getTime()));
+        }
+        return res;
     }
 }

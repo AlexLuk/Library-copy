@@ -3,6 +3,7 @@
 <%
     LibraryService libraryService = (LibraryService) request.getAttribute("lib_service");
     List<Book> books = libraryService.getAllBooks();
+    List<Genre> genres = libraryService.getAllGenres();
 
     Reader curUser = (Reader) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     List<BookOrder> orders = libraryService.getAllOrdersByReader(curUser.getId());

@@ -9,25 +9,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
 @Controller
 public class LibraryFilterController {
     private final static Logger logger = LoggerFactory.getLogger(LibraryFilterController.class);
+
     @Autowired
     LibraryService libraryService;
 
-    @RequestMapping(value = {"/filters"}, method = RequestMethod.POST)
-    public List<Book> filterBooks(String title, String author, String year, String genre) {
-        //todo year int check on client
+    @RequestMapping(value = {"/filters"}, method = RequestMethod.POST, produces = "application/json")
+    public @ResponseBody
+    String filterBooks(String title, String author, String year, String genre) {
         //todo year = null if year = "" on client
         try {
             Integer intYear = Integer.parseInt(year);
-            return libraryService.getBooksByComplexCondition(title, author, intYear, genre);
+            return libraryService.jsonBooks(libraryService.getBooksByComplexCondition(title, author, intYear, genre));
         } catch (NumberFormatException e) {
-            e.printStackTrace();
+            logger.warn(e.getMessage());
         }
-        return libraryService.getBooksByComplexCondition(title, author, null, genre);
+        return libraryService.jsonBooks(libraryService.getBooksByComplexCondition(title, author, null, genre));
     }
 }

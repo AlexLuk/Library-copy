@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <div class="tab-pane fade" id="nav-delivered-books" role="tabpanel" aria-labelledby="nav-delivered-books-tab">
+    <%@ include file="filterOrders.jsp" %>
     <table class="table table-striped">
         <thead>
         <tr>
@@ -16,6 +17,7 @@
         <tr>
             <td><%= delivery.getReader().getFullName() %></td>
             <td><%= delivery.getBookItem().getBook().getTitle() %></td>
+            <td><%= delivery.convertLocalDate() %></td>
             <td>
                 <% if(delivery.getBookItem().getStatus().getName().equals("on_hands")) { %>
                 <spring:message code="statusForHome" />
@@ -23,7 +25,6 @@
                 <spring:message code="statusInLib" />
                 <%}%>
             </td>
-            <td><%= delivery.convertLocalDate() %></td>
         </tr>
         <%}%>
         </tbody>

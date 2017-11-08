@@ -16,7 +16,7 @@
             <th></th>
         </tr>
         </thead>
-        <tbody>
+        <tbody id = "table_body">
         <%for (Book book : books) {
             List<Author> authors = libraryService.getAllAuthors(book.getId());
         %>
@@ -33,8 +33,13 @@
             </td>
             <td>
                 <input type="hidden" id="book_id" name="book_id" value="<%= book.getId()%>" />
-                <button type="submit" class="btn btn-primary" id="order" name="order">
-                    <spring:message code="toOrder" />
+                    <button type="submit" class="btn btn-primary" id="orderHands" name="orderHands">
+                    <spring:message code="toOrderOnHands" />
+                </button>
+            </td>
+            <td>
+                <button type="submit" class="btn btn-primary" id="orderLib" name="orderLib">
+                    <spring:message code="toOrderInLib" />
                 </button>
             </td>
         </tr>

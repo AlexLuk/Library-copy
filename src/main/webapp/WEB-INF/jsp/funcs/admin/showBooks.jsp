@@ -1,96 +1,122 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <div class="tab-pane fade" id="nav-add-book" role="tabpanel" aria-labelledby="nav-add-book-tab">
-    <div class="float-right" id="manageBooks">
-        <div class="row">
-            <div class="col-xs-5">
-                <form id="deleteAuthors" class="doNotProcess">
-                    <div class="col-xs-5">
-                        <label for="choose_book_authors"><spring:message code="addAuthors" />:</label>
-                        <select class="form-control" name="choose_book_authors" id="choose_book_authors">
-                        </select>
-                    </div>
-                    <div class="delimeter"></div>
-                    <div class="col-xs-5 scaled">
-                        <button type="submit" class="btn btn-primary" id="deleteAuthor" name="deleteAuthor">
-                            <spring:message code="toDelete" />
-                        </button>
+    <div class="row">
+        <div class="col-md-4">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th><spring:message code="title" /></th>
+                </tr>
+                </thead>
+                <tbody>
+                <%for (Book book : books) {%>
+                <tr>
+                    <td><%= book.getTitle() %></td>
+                    <td>
+                        <form method="post" class="doNotProcess">
+                            <input type="hidden" id="book_id" name="book_id" value="<%= book.getId()%>" />
+                            <button type="submit" class="btn btn-primary" id="edit" name="edit">
+                                <spring:message code="toEdit" />
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                <%}%>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-1"></div>
+        <br/><br/>
+        <div class="col-md-7">
+            <div class="editForm">
+                <form id="chooseBookForm" class="doNotProcess" method="post">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-xs-5">
+                                <label for="title"><b><spring:message code="title"/>:</b></label>
+                                <input type="text" class="form-control" name="title"
+                                       id="title" value=""><br/>
+
+                                <label for="amount"><b><spring:message code="amount"/>:</b></label>
+                                <input type="text" class="form-control" name="amount"
+                                       id="amount" value=""><br/>
+
+                                <label for="shelf_id"><b><spring:message code="shelfId"/>:</b></label>
+                                <input type="text" class="form-control" name="shelf_id"
+                                       id="shelf_id" value=""><br/>
+                            </div>
+                            <div class="delimeter"></div>
+                            <div class="col-xs-5">
+                                <label for="language"><b><spring:message code="language"/>:</b></label>
+                                <input type="text" class="form-control" name="language"
+                                       id="language" value=""><br/>
+
+                                <label for="year"><b><spring:message code="year"/>:</b></label>
+                                <input type="text" class="form-control" name="year"
+                                       id="year" value=""><br/>
+
+                                <label for="is_rare"><b><spring:message code="rare"/>:</b></label>
+                                <input type="checkbox" class="form-control" name="is_rare"
+                                       id="is_rare" checked value=""><br/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-5">
+                                <button type="submit" class="btn btn-primary" id="save" name="save">
+                                    <spring:message code="toSave" />
+                                </button>
+                            </div>
+                            <div class="delimeter"></div>
+                            <div class="col-xs-5">
+                                <button type="submit" class="btn btn-primary" id="delete" name="delete">
+                                    <spring:message code="toDelete" />
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </form>
-            </div>
-            <div class="delimeter"></div>
-            <div class="delimeter"></div>
-            <div class="delimeter"></div>
-            <div class="col-xs-5">
-                <form id="setAuthors" class="doNotProcess">
-                    <div class="col-xs-5">
-                        <%@ include file="chooseAuthors.jsp" %>
-                    </div>
-                    <div class="delimeter"></div>
-                    <div class="col-xs-5 scaled">
-                        <button type="submit" class="btn btn-primary" id="setAuthor" name="setAuthor">
-                            <spring:message code="toAdd" />
-                        </button>
+                <br/><br/>
+                <form id="deleteAuthors" class="doNotProcess" method="post">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="choose_book_authors"><spring:message code="addAuthors" />:</label>
+                            <select class="form-control" name="choose_book_authors" id="choose_book_authors">
+                            </select>
+                        </div>
+                        <div class="delimeter"></div>
+                        <div class="col-md-8 scaled">
+                            <button type="submit" class="btn btn-primary" id="deleteAuthor" name="deleteAuthor">
+                                <spring:message code="toDelete" />
+                            </button>
+                        </div>
                     </div>
                 </form>
+                <br/>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th><spring:message code="addAuthor" /></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <%for (Author author : authors) {%>
+                    <tr>
+                        <td><%= author.getFullName() %></td>
+                        <td>
+                            <form method="post" class="doNotProcess">
+                                <input type="hidden" id="author_id" name="author_id" value="<%=
+                                author.getId()%>" />
+                                <button type="submit" class="btn btn-primary" id="add" name="add">
+                                    <spring:message code="toAdd" />
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    <%}%>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
-    <form id="chooseBookForm" class="doNotProcess">
-        <div class="form-group">
-            <div class="row">
-                <div class="col-xs-5 scaled">
-                    <label for="choose_books"><spring:message code="addBooks" />:</label>
-                    <select class="form-control" name="choose_books" id="choose_books">
-                        <%for (Book book : books) {%>
-                        <option><%= book.getTitle()%></option>
-                        <%}%>
-                    </select>
-                </div>
-            </div>
-            <br/>
-            <div class="row">
-                <div class="col-xs-5">
-                    <label for="title"><b><spring:message code="title"/>:</b></label>
-                    <input type="text" class="form-control" name="title"
-                           id="title" value=""><br/>
-
-                    <label for="amount"><b><spring:message code="amount"/>:</b></label>
-                    <input type="text" class="form-control" name="amount"
-                           id="amount" value=""><br/>
-
-                    <label for="shelf_id"><b><spring:message code="shelfId"/>:</b></label>
-                    <input type="text" class="form-control" name="shelf_id"
-                           id="shelf_id" value=""><br/>
-                </div>
-                <div class="delimeter"></div>
-                <div class="col-xs-5">
-                    <label for="language"><b><spring:message code="language"/>:</b></label>
-                    <input type="text" class="form-control" name="language"
-                           id="language" value=""><br/>
-
-                    <label for="year"><b><spring:message code="year"/>:</b></label>
-                    <input type="text" class="form-control" name="year"
-                           id="year" value=""><br/>
-
-                    <label for="is_rare"><b><spring:message code="rare"/>:</b></label>
-                    <input type="checkbox" class="form-control" name="is_rare"
-                           id="is_rare" checked value=""><br/>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-5">
-                    <button type="submit" class="btn btn-primary" id="save" name="save">
-                        <spring:message code="toSave" />
-                    </button>
-                </div>
-                <div class="delimeter"></div>
-                <div class="col-xs-5">
-                    <button type="submit" class="btn btn-primary" id="delete" name="delete">
-                        <spring:message code="toDelete" />
-                    </button>
-                </div>
-            </div>
-        </div>
-    </form>
 </div>

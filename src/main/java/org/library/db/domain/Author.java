@@ -1,5 +1,7 @@
 package org.library.db.domain;
 
+import org.library.misc.Utils;
+
 import javax.persistence.*;
 
 @Entity
@@ -53,7 +55,7 @@ public class Author extends Base {
     }
 
     public String getFullName() {
-        return getFullName(getFirstName(), getLastName(), getPatronymic());
+        return Utils.getFullName(getFirstName(), getLastName(), getPatronymic());
     }
 
     public int getYearOfBirth() {

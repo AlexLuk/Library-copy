@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.sql.Timestamp;
 
 @Controller
 public class LibraryRegistrationController {
@@ -71,29 +72,37 @@ public class LibraryRegistrationController {
      * Saves reader from user registration form to database
      *
      * @param reader - reader object filled with user input
+     * @param request
      * @return - string for RequestMapping
      */
-    //    @RequestMapping(value = {"/registration"}, method = RequestMethod.POST)
     @RequestMapping(value = {"/register"}, method = RequestMethod.POST, produces = "application/json")
     public @ResponseBody
     Boolean registerUser(@ModelAttribute Reader reader, HttpServletRequest request) {
-        if (isEmailUnique(reader.getEmail()) && isPasswordComplicate(reader.getPassword(), reader.getEmail())) {
-            reader.setEmail(reader.getEmail().toLowerCase());
-            String password = reader.getPassword();
+        String password = reader.getPassword();
+        String email = reader.getEmail();
+
+        if (isEmailUnique(email) && isPasswordComplicate(password, email)) {
+            reader.setEmail(email.toLowerCase());
             reader.setPassword(DigestUtils.md5Hex(password));
             reader.setFines(0.0);
-            readerRepository.save(reader);
-            try {
-                request.getSession();
-                request.login(reader.getEmail(), password);
-            } catch (Exception se) {
-                logger.warn("Authorization error " + se);
-                return false;
-            }
+            reader.setRegistrationDate(new Timestamp(System.currentTimeMillis()));
 
-            return true;
+            readerRepository.save(reader);
+
+            return loginInSystem(request, password, email);
         } else {
             return false;
         }
+    }
+
+    private boolean loginInSystem(HttpServletRequest request, String password, String email) {
+        try {
+            request.getSession();
+            request.login(email, password);
+        } catch (Exception se) {
+            logger.warn("Authorization error " + se);
+            return false;
+        }
+        return true;
     }
 }
