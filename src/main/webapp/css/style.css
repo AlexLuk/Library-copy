@@ -81,6 +81,13 @@ button, link {
     width: 90%;
 }
 
+
+#chooseAuthorForm {
+    position: fixed;
+    margin-top: 40px;
+    right: 15%;
+}
+
 /*************************************************** components *******************************/
 
 .language {

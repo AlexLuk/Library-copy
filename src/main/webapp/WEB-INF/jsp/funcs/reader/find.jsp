@@ -33,7 +33,7 @@
             </td>
             <td>
                 <input type="hidden" id="book_id" name="book_id" value="<%= book.getId()%>" />
-                <button type="submit" class="btn btn-primary" id="orderHands" name="orderHands">
+                    <button type="submit" class="btn btn-primary" id="orderHands" name="orderHands">
                     <spring:message code="toOrderOnHands" />
                 </button>
             </td>

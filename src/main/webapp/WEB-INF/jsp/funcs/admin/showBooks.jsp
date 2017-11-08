@@ -40,12 +40,28 @@
         <div class="form-group">
             <div class="row">
                 <div class="col-xs-5 scaled">
-                    <label for="choose_books"><spring:message code="addBooks" />:</label>
-                    <select class="form-control" name="choose_books" id="choose_books">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th><spring:message code="title" /></th>
+                        </tr>
+                        </thead>
+                        <tbody>
                         <%for (Book book : books) {%>
-                        <option><%= book.getTitle()%></option>
+                        <tr>
+                            <td><%= book.getTitle() %></td>
+                            <td>
+                                <form method="post" class="doNotProcess">
+                                    <input type="hidden" id="book_id" name="book_id" value="<%= book.getId()%>" />
+                                    <button type="submit" class="btn btn-primary" id="edit" name="edit">
+                                        <spring:message code="toEdit" />
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
                         <%}%>
-                    </select>
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <br/>
