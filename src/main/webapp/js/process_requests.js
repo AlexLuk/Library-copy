@@ -114,17 +114,17 @@ $(document).ready(function () {
         });
 
     $('#register').click(function () {
-        var check = checkPassword();
-        if (check) {
-            if (provideRegistration()) {
-                location.href = "account";
+        if($('#registerForm').valid()) {
+            if (checkPassword()) {
+                if (provideRegistration()) {
+                    location.href = "account";
+                }
             }
         }
     });
 
     $('#email').blur(function () {
         var userEmail = $.trim($('#email').val());
-        console.log(userEmail);
         if (isEmail(userEmail)) {
             $.ajax(
                 {
@@ -166,15 +166,15 @@ $(document).ready(function () {
     function provideRegistration() {
         var result = false;
         var form_data = $('#registerForm').serialize();
-        console.log(form_data);
         if (form_data !== '') {
             $.ajax(
                 {
                     
                     url: "/register",
-                    data: JSON.stringify({reader: form_data}),
+                    data: form_data,
+                    async: false,
                     success: function (resp) {
-                        if (resp) alert("Thank you for registration!");
+                        if (resp) alert("Thank you for registration! You were successfully authorized");
                         result = resp;
                     }
                 });

@@ -7,14 +7,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.*;
 
 @Controller
 public class LibraryRegistrationController {
@@ -25,6 +23,7 @@ public class LibraryRegistrationController {
 
     @Autowired
     ReaderRepository readerRepository;
+
 
     /**
      * Check email for presence in database
@@ -49,7 +48,6 @@ public class LibraryRegistrationController {
      * (?=\S+$)          # no whitespace allowed in the entire string
      * .{8,}             # anything, at least eight places though
      * $                 # end-of-string
-     *
      * login should not be in password in any case
      *
      * @param password password from user input
@@ -79,23 +77,23 @@ public class LibraryRegistrationController {
     @RequestMapping(value = {"/register"}, method = RequestMethod.POST, produces = "application/json")
     public @ResponseBody
     Boolean registerUser(@ModelAttribute Reader reader, HttpServletRequest request) {
-        Map s = request.getParameterMap();
-        Iterator it = s.entrySet().iterator();
-        while(it.hasNext())
-            System.out.println(it.next());
-        System.out.println(reader);
-
-/*
-        logger.warn(reader.toString());
         if (isEmailUnique(reader.getEmail()) && isPasswordComplicate(reader.getPassword(), reader.getEmail())) {
             reader.setEmail(reader.getEmail().toLowerCase());
-            reader.setPassword(DigestUtils.md5Hex(reader.getPassword()));
+            String password = reader.getPassword();
+            reader.setPassword(DigestUtils.md5Hex(password));
+            reader.setFines(0.0);
             readerRepository.save(reader);
+            try {
+                request.getSession();
+                request.login(reader.getEmail(), password);
+            } catch (Exception se) {
+                logger.warn("Authorization error " + se);
+                return false;
+            }
+
             return true;
         } else {
             return false;
         }
-        */
-        return false;
     }
 }
