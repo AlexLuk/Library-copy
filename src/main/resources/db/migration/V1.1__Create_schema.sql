@@ -68,7 +68,7 @@ CREATE TABLE IF NOT EXISTS `reader`
   `last_name` varchar(255) NOT NULL,
   `patronymic` varchar(255) NOT NULL DEFAULT '',
   `passport` varchar(255) NOT NULL,
-  `registration_date` date NOT NULL DEFAULT 0,
+  `registration_date` timestamp NOT NULL,
   `fines` double NOT NULL DEFAULT 0.0,
   `is_admin` boolean NOT NULL,
 

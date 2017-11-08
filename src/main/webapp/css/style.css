@@ -75,6 +75,10 @@ button, link {
     margin-top: 31px;
 }
 
+#profileForm {
+    width: 90%;
+}
+
 /*************************************************** components *******************************/
 
 .language {

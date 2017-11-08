@@ -1,11 +1,11 @@
 UPDATE `reader` set email = 'admin@mail.ru' WHERE first_name = 'admin';
 UPDATE `reader` set email = 'madonna@mail.ru' WHERE first_name = 'Madonna';
-UPDATE `reader` set email = 'kellie@gmail.com' WHERE first_name = 'Suarez';
+UPDATE `reader` set email = 'kellie@gmail.com' WHERE last_name = 'Suarez';
 UPDATE `reader` set email = 'kevin@yandex.ru' WHERE first_name = 'Kevin';
 UPDATE `reader` set email = 'alana@hotbox.com' WHERE first_name = 'Alana';
 UPDATE `reader` set email = 'lillian@gmail.com' WHERE first_name = 'Lillian';
 UPDATE `reader` set email = 'sopoline@gmail.com' WHERE first_name = 'Sopoline';
 UPDATE `reader` set email = 'helen@mail.ru' WHERE first_name = 'Helen';
 UPDATE `reader` set email = 'xanthus@hotbox.ru' WHERE first_name = 'Xanthus';
-UPDATE `reader` set email = 'kellie@yandex.ru' WHERE first_name = 'Carney';
+UPDATE `reader` set email = 'kellie@yandex.ru' WHERE last_name = 'Carney';
 UPDATE `reader` set email = 'montoya@mail.ru' WHERE first_name = 'Tanner';

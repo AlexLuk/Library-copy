@@ -1,7 +1,7 @@
 package org.library.db.domain;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 
 @Entity
 @Table(name = "reader")
@@ -26,8 +26,8 @@ public class Reader extends Base {
     @Column(name = "patronymic")
     private String patronymic;
 
-    @Basic
-    @Column(name = "registration_date")
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="registration_date")
     private Date registrationDate;
 
     @Basic
@@ -90,6 +90,10 @@ public class Reader extends Base {
     }
     public void setPatronymic(String patronymic) {
         this.patronymic = patronymic;
+    }
+
+    public String getFullName() {
+        return getFullName(getFirstName(), getLastName(), getPatronymic());
     }
 
     public Date getRegistrationDate() {

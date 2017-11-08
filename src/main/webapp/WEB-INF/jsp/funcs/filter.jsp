@@ -1,5 +1,5 @@
 <%@ page import="org.library.db.domain.Genre" %>
-<% List<Genre> genres = bookService.getAllGenres(); %>
+<% List<Genre> genres = libraryService.getAllGenres(); %>
 
 <form id="filter_form">
     <div class="form-group">
