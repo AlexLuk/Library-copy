@@ -116,8 +116,7 @@ $(document).ready(function () {
     $('#register').click(function () {
         var check = checkPassword();
         if (check) {
-            var form_data = $(this).closest('form').serializeArray();
-            if (provideRegistration(form_data)) {
+            if (provideRegistration()) {
                 location.href = "account";
             }
         }
@@ -163,9 +162,10 @@ $(document).ready(function () {
             return false;
     }
 
-    function provideRegistration(form_data) {
+    function provideRegistration() {
         var result = false;
-        console.log("form_data "+form_data);
+        var form_data = $('#registerForm').serializeArray();
+        console.log(form_data);
         if (form_data !== '') {
             $.ajax(
                 {
