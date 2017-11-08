@@ -23,8 +23,7 @@ public class Delivery extends Base {
     @Column(name = "time")
     private Date time;
 
-    public Delivery() {
-    }
+    public Delivery() {}
 
     public Delivery(Timestamp time) {
         this.time = time;
@@ -33,12 +32,12 @@ public class Delivery extends Base {
     public Delivery(Reader reader, BookItem bookItem) {
         this.reader = reader;
         this.bookItem = bookItem;
+        this.time = new Timestamp(System.currentTimeMillis());
     }
 
     public Reader getReader() {
         return reader;
     }
-
     public void setReader(Reader reader) {
         this.reader = reader;
     }
@@ -46,7 +45,6 @@ public class Delivery extends Base {
     public BookItem getBookItem() {
         return bookItem;
     }
-
     public void setBookItem(BookItem bookItem) {
         this.bookItem = bookItem;
     }
@@ -54,11 +52,9 @@ public class Delivery extends Base {
     public Date getTime() {
         return time;
     }
-
     public void setTime(Date time) {
         this.time = time;
     }
-
     public LocalDate convertLocalDate() {
         return Utils.convertLocalDate(time);
     }
