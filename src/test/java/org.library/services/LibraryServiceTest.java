@@ -18,9 +18,9 @@ import static org.junit.Assert.assertThat;
 @RunWith(SpringRunner.class)
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-public class BookServiceTest {
+public class LibraryServiceTest {
     @Autowired
-    BookService bookService;
+    LibraryService libraryService;
 
     @Autowired
     AuthorRepository authorRepository;
@@ -32,7 +32,7 @@ public class BookServiceTest {
         authors.add(authorRepository.findOne(107));
         authors.add(authorRepository.findOne(108));
 
-        assertThat(bookService.getAllAuthors(8), is(authors));
-        bookService.getAllBooks().forEach(book -> System.err.println(book.getTitle()));
+        assertThat(libraryService.getAllAuthors(8), is(authors));
+        libraryService.getAllBooks().forEach(book -> System.err.println(book.getTitle()));
     }
 }

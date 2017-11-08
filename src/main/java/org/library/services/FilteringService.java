@@ -25,7 +25,7 @@ public class FilteringService {
     GenreRepository genreRepository;
 
     @Autowired
-    BookService bookService;
+    LibraryService libraryService;
 
     @Autowired
     AuthorBookRepository authorBookRepository;
@@ -41,7 +41,7 @@ public class FilteringService {
      */
     public List<Book> getBooksByComplexCondition(String title, String author, String year, String genre) { //todo
 
-        List<Book> resultBookList = bookService.getAllBooks();
+        List<Book> resultBookList = libraryService.getAllBooks();
         resultBookList = filterBooksByTitle(title, resultBookList);
         resultBookList = filterBooksByAuthor(author, resultBookList);
         resultBookList = filterBooksByYear(year, resultBookList);

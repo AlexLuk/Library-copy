@@ -1,13 +1,7 @@
 package org.library.services;
 
-import org.library.db.domain.Author;
-import org.library.db.domain.AuthorBook;
-import org.library.db.domain.Book;
-import org.library.db.domain.Genre;
-import org.library.db.repo.AuthorBookRepository;
-import org.library.db.repo.AuthorRepository;
-import org.library.db.repo.BookRepository;
-import org.library.db.repo.GenreRepository;
+import org.library.db.domain.*;
+import org.library.db.repo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +10,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 @Service
-public class BookService {
+public class LibraryService {
     @Autowired
     BookRepository bookRepository;
 
@@ -28,6 +22,10 @@ public class BookService {
 
     @Autowired
     GenreRepository genreRepository;
+
+    @Autowired
+    ReaderRepository readerRepository;
+
 
     /**
      * Gets all books from DB
@@ -71,5 +69,14 @@ public class BookService {
      */
     public List<Genre> getAllGenres() {
         return genreRepository.findAll();
+    }
+
+    /**
+     * Gets all readers
+     *
+     * @return - list of readers
+     */
+    public List<Reader> getAllReaders() {
+        return readerRepository.findAll();
     }
 }
