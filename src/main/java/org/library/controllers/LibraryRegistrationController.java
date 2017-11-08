@@ -22,13 +22,15 @@ public class LibraryRegistrationController {
     @Autowired
     ReaderRepository readerRepository;
 
-    /**Check email for presence in database
+    /**
+     * Check email for presence in database
      *
      * @param email - email from user input
      * @return true if there is no such mail in database
      */
     @RequestMapping(value = {"/checks/email"}, method = RequestMethod.POST, produces = "application/json")
-    public @ResponseBody Boolean isEmailUnique(String email) {
+    public @ResponseBody
+    Boolean isEmailUnique(String email) {
         return !readerRepository.findByEmail(email.toLowerCase()).isPresent();
     }
 
@@ -50,7 +52,8 @@ public class LibraryRegistrationController {
      * @return true if password valid for our
      */
     @RequestMapping(value = {"/checks/password"}, method = RequestMethod.POST, produces = "application/json")
-    public @ResponseBody Boolean isPasswordComplicate(String password, String email) { //todo name
+    public @ResponseBody
+    Boolean isPasswordComplicate(String password, String email) { //todo name
         if (email.length() == 0) return false;
         String userLogin;
         if (email.contains("@")) {
@@ -69,13 +72,14 @@ public class LibraryRegistrationController {
      */
     //    @RequestMapping(value = {"/registration"}, method = RequestMethod.POST)
     @RequestMapping(value = {"/register"}, method = RequestMethod.POST, produces = "application/json")
-    public @ResponseBody Boolean registerUser(@ModelAttribute Reader reader) {
-        if (isEmailUnique(reader.getEmail()) && isPasswordComplicate(reader.getPassword(),reader.getEmail())){
+    public @ResponseBody
+    Boolean registerUser(@ModelAttribute Reader reader) {
+        if (isEmailUnique(reader.getEmail()) && isPasswordComplicate(reader.getPassword(), reader.getEmail())) {
             reader.setEmail(reader.getEmail().toLowerCase());
             reader.setPassword(DigestUtils.md5Hex(reader.getPassword()));
             readerRepository.save(reader);
             return true;
-        }else {
+        } else {
             return false;
         }
     }
