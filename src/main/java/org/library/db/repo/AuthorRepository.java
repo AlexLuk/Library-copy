@@ -10,4 +10,5 @@ public interface AuthorRepository extends JpaRepository<Author, Integer> {
     List<Author> findByFirstName(String name);
     List<Author> findByPatronymic(String patronymic);
     List<Author> findByYearOfBirth(Integer yearOfBirth);
+    List<Author> findByLastNameContaining(String lastname);
 }

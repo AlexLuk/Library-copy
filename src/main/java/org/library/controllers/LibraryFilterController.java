@@ -2,6 +2,9 @@ package org.library.controllers;
 
 import org.library.db.domain.Book;
 import org.library.services.FilteringService;
+import org.library.services.LibraryService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,11 +14,20 @@ import java.util.List;
 
 @Controller
 public class LibraryFilterController {
-    @Autowired FilteringService filteringService;
+    private final static Logger logger = LoggerFactory.getLogger(LibraryFilterController.class);
+    @Autowired
+    LibraryService libraryService;
 
     @RequestMapping(value = {"/filters"}, method = RequestMethod.POST)
     public List<Book> filterBooks(String title, String author, String year, String genre) {
-//todo year int проверка на клиенте
-       return filteringService.getBooksByComplexCondition(title, author, year, genre);
+        //todo year int check on client
+        //todo year = null if year = "" on client
+        try {
+            Integer intYear = Integer.parseInt(year);
+            return libraryService.getBooksByComplexCondition(title, author, intYear, genre);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+        return libraryService.getBooksByComplexCondition(title, author, null, genre);
     }
 }
