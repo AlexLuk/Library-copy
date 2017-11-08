@@ -16,7 +16,7 @@
             <th></th>
         </tr>
         </thead>
-        <tbody>
+        <tbody id = "table_body">
         <%for (Book book : books) {
             List<Author> authors = libraryService.getAllAuthors(book.getId());
         %>
