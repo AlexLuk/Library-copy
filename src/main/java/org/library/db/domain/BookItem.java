@@ -10,14 +10,20 @@ public class BookItem extends Base {
     private int itemId;
 
     @ManyToOne
-    @JoinColumn(name = "book_id" )
+    @JoinColumn(name = "book_id")
     private Book book;
 
     @ManyToOne
     @JoinColumn(name = "status_id")
     private ItemStatus status;
 
-    public BookItem() {}
+    public BookItem() {
+    }
+
+    public BookItem(Book book, ItemStatus itemStatus) {
+        this.book = book;
+        this.status = itemStatus;
+    }
 
     public BookItem(int itemId) {
         this.itemId = itemId;
@@ -26,6 +32,7 @@ public class BookItem extends Base {
     public int getItemId() {
         return itemId;
     }
+
     public void setItemId(int itemId) {
         this.itemId = itemId;
     }
@@ -33,6 +40,7 @@ public class BookItem extends Base {
     public Book getBook() {
         return book;
     }
+
     public void setBook(Book book) {
         this.book = book;
     }
@@ -40,6 +48,7 @@ public class BookItem extends Base {
     public ItemStatus getStatus() {
         return status;
     }
+
     public void setStatus(ItemStatus status) {
         this.status = status;
     }
