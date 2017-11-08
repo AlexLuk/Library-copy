@@ -9,4 +9,5 @@ import java.util.Optional;
 public interface AuthorBookRepository extends JpaRepository<AuthorBook, Integer> {
     List<AuthorBook> findAllByAuthorId(int authorID);
     List<AuthorBook> findAllByBookId(int bookID);
+    List<AuthorBook> findAllByAuthorIdIn(List<Integer> authorIDs);
 }

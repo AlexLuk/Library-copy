@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 @Service
@@ -30,6 +31,40 @@ public class LibraryService {
 
     @Autowired
     DeliveryRepository deliveryRepo;
+
+    public List<Book> getByTitleContainingAndYearAndGenreInAndIdIn(String title, Integer year,
+                                                                   List<Genre> genres, List<Integer> ids) {
+        if (year == null) {
+            return getByTitleContainingAndGenreInAndIdIn(title, genres, ids);
+        }
+        return bookRepo.findByTitleContainingAndYearAndGenreInAndIdIn(title, year, genres, ids);
+    }
+
+    public List<Book> getByTitleContainingAndGenreInAndIdIn(String title, List<Genre> genres, List<Integer> ids) {
+        return bookRepo.findByTitleContainingAndGenreInAndIdIn(title, genres, ids);
+    }
+
+    public List<Genre> getGenresByName(String genreName) {
+        return genreRepo.findByNameContaining(genreName);
+    }
+
+    public List<Integer> getAuthorIdsByLastName(String authorName) {
+        LinkedList<Integer> resultAuthorIds = new LinkedList<>();
+        authorRepo.findByLastNameContaining(authorName).forEach(author -> resultAuthorIds.add(author.getId()));
+        return resultAuthorIds;
+    }
+
+    public List<Integer> getBooksIdsByAuthorName(String authorName) {
+        LinkedList<Integer> resultBookIds = new LinkedList<>();
+        authorBookRepo.findAllByAuthorIdIn(getAuthorIdsByLastName(authorName)).forEach(authorBook -> resultBookIds.add(authorBook.getBook().getId()));
+        return resultBookIds;
+    }
+
+    public List<Book> getBooksByComplexCondition(String title, String author, Integer year, String genre) {
+        List<Genre> genres = getGenresByName(genre);
+        List<Integer> bookIds = getBooksIdsByAuthorName(author);
+        return getByTitleContainingAndYearAndGenreInAndIdIn(title, year, genres, bookIds);
+    }
 
     /**
      * Gets all books from DB
