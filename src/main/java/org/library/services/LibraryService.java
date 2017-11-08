@@ -1,5 +1,6 @@
 package org.library.services;
 
+import com.google.gson.Gson;
 import org.library.db.domain.*;
 import org.library.db.repo.*;
 import org.library.misc.Utils;
@@ -50,6 +51,7 @@ public class LibraryService {
         return bookRepo.findByTitleContainingAndGenreInAndIdIn(title, genres, ids);
     }
 
+
     public List<Genre> getGenresByName(String genreName) {
         return genreRepo.findByNameContaining(genreName);
     }
@@ -79,6 +81,27 @@ public class LibraryService {
      */
     public List<Book> getAllBooks() {
         return bookRepo.findAll();
+    }
+
+    public String jsonBooks(List<Book> books) {
+        List<BookJson> bookJsons = new LinkedList<>();
+        books.forEach(book -> bookJsons.add(new BookJson(book)));
+        Gson gson = new Gson();
+        return gson.toJson(bookJsons);
+    }
+
+    class BookJson {
+        String title;
+        List<String> authors;
+        int year;
+        int book_id;
+
+        public BookJson(Book book) {
+            title = book.getTitle();
+            year = book.getYear();
+            book_id = book.getId();
+            getAllAuthors(book.getId()).forEach(author -> authors.add(author.getFullName()));
+        }
     }
 
     /**
@@ -181,7 +204,7 @@ public class LibraryService {
     public List<LocalDate> getAllDates(List<Delivery> list) {
         List<LocalDate> res = new ArrayList<>();
 
-        for(Delivery delivery : list) {
+        for (Delivery delivery : list) {
             res.add(Utils.convertLocalDate(delivery.getTime()));
         }
         return res;

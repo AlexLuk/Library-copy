@@ -19,15 +19,15 @@ public class LibraryFilterController {
     LibraryService libraryService;
 
     @RequestMapping(value = {"/filters"}, method = RequestMethod.POST)
-    public List<Book> filterBooks(String title, String author, String year, String genre) {
+    public String filterBooks(String title, String author, String year, String genre) {
         //todo year int check on client
         //todo year = null if year = "" on client
         try {
             Integer intYear = Integer.parseInt(year);
-            return libraryService.getBooksByComplexCondition(title, author, intYear, genre);
+            return libraryService.jsonBooks(libraryService.getBooksByComplexCondition(title, author, intYear, genre));
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }
-        return libraryService.getBooksByComplexCondition(title, author, null, genre);
+        return libraryService.jsonBooks(libraryService.getBooksByComplexCondition(title, author, null, genre));
     }
 }
