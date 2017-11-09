@@ -21,8 +21,10 @@ public class LibraryFilterController {
     LibraryService libraryService;
 
     @RequestMapping(value = {"/filters"}, method = RequestMethod.POST, produces = "application/json")
-    public @ResponseBody
+    public
+    @ResponseBody
     String filterBooks(String title, String author, String year, String genre) {
+        System.err.println(title + " " + author + " " + year + " " + genre);
         //todo year = null if year = "" on client
         try {
             Integer intYear = Integer.parseInt(year);

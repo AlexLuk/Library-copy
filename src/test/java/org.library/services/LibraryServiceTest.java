@@ -63,8 +63,8 @@ public class LibraryServiceTest extends LibraryTest {
     @Test
     public void getAuthorIdsByLastName() throws Exception {
         saveTestData();
-        assertThat(libraryService.getAuthorIdsByLastName("CC"), containsInAnyOrder(testAuthors.get(0).getId()));
-        assertThat(libraryService.getAuthorIdsByLastName("AAA"), containsInAnyOrder(testAuthors.get(1).getId()));
+        assertThat(libraryService.getAuthorIdsByLastName("Cc"), containsInAnyOrder(testAuthors.get(0).getId()));
+        assertThat(libraryService.getAuthorIdsByLastName("AaA"), containsInAnyOrder(testAuthors.get(1).getId()));
         assertThat(libraryService.getAuthorIdsByLastName(""), hasItems(testAuthors.get(0).getId(), testAuthors.get(1).getId(), testAuthors.get(2).getId()));
         assertThat(libraryService.getAuthorIdsByLastName("zzzzzzz"), empty());
     }

@@ -57,7 +57,7 @@ public class LibraryService {
 
     public List<Integer> getAuthorIdsByLastName(String authorName) {
         LinkedList<Integer> resultAuthorIds = new LinkedList<>();
-        authorRepo.findByLastNameContaining(authorName).forEach(author -> resultAuthorIds.add(author.getId()));
+        authorRepo.findByLastNameContainingIgnoreCase(authorName).forEach(author -> resultAuthorIds.add(author.getId()));
         return resultAuthorIds;
     }
 
