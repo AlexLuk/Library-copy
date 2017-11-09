@@ -102,33 +102,22 @@ public class LibraryService {
      */
     public boolean deleteAccount() {
         Reader reader = (Reader) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return deleteReader(reader);
+        return deleteReaderById(reader.getId());
     }
 
     /**
-     * Delete reader from database
+     * Delete reader from database by readerId
      *
-     * @param reader - reader to delete
+     * @param readerId - id of reader to delete
      * @return true if delete successful
      */
-    public boolean deleteReader(Reader reader) {
+    public boolean deleteReaderById(int readerId) {
         try {
-            readerRepo.delete(reader.getId());
-            return true;
+            readerRepo.delete(readerId);
+            return readerRepo.findOne(readerId) == null;
         } catch (Exception e) {
             logger.error(e.getMessage());
         }
-        return false;
-    }
-
-    /**
-     * Delete reader by id
-     *
-     * @param readerId - reader id
-     * @return -  true if delete was successful
-     */
-    public boolean deleteReaderById(int readerId) {
-        deleteReader(readerRepo.findOne(readerId));
         return false;
     }
 
