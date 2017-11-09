@@ -273,7 +273,9 @@ function processOrder(id, onHands) {
                 if (resp) {
                     show_alert($('#succ_order_created').html(), statusField, true);
                 }
-                else if (!resp) alert("Order fail!");
+                else if (!resp) {
+                    show_alert($('#error_order_create').html(), statusField, false);
+                }
             }
         });
 }

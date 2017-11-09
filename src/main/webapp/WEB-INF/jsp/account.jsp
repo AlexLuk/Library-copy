@@ -31,5 +31,14 @@
             </div>
     </div>
     <%@ include file="templates/footer.jsp" %>
+
+    <div class="hidden">
+        <div id="succ_account_deleted"><spring:message code="succAccountDeleted" /></div>
+        <div id="error_delete_account"><spring:message code="errDeleteAccount" /></div>
+
+        <div id="succ_order_created"><spring:message code="succOrderCreated" /></div>
+        <div id="error_order_create"><spring:message code="errOrderCreate" /></div>
+    </div>
+
 </body>
 </html>
