@@ -39,7 +39,7 @@ public class LibraryService {
     @Autowired
     ItemStatusRepository itemStatusRepository;
 
-    List<Book> getByTitleContainingAndYearAndGenreInAndIdIn(String title, Integer year,
+    public List<Book> getByTitleContainingAndYearAndGenreInAndIdIn(String title, Integer year,
                                                             List<Genre> genres, List<Integer> ids) {
         if (year == null) {
             return getByTitleContainingAndGenreInAndIdIn(title, genres, ids);
@@ -47,22 +47,22 @@ public class LibraryService {
         return bookRepo.findByTitleContainingIgnoreCaseAndYearAndGenreInAndIdIn(title, year, genres, ids);
     }
 
-    List<Book> getByTitleContainingAndGenreInAndIdIn(String title, List<Genre> genres, List<Integer> ids) {
+    public List<Book> getByTitleContainingAndGenreInAndIdIn(String title, List<Genre> genres, List<Integer> ids) {
         return bookRepo.findByTitleContainingIgnoreCaseAndGenreInAndIdIn(title, genres, ids);
     }
 
 
-    List<Genre> getGenresByName(String genreName) {
+    public List<Genre> getGenresByName(String genreName) {
         return genreRepo.findByNameContaining(genreName);
     }
 
-    List<Integer> getAuthorIdsByLastName(String authorName) {
+    public List<Integer> getAuthorIdsByLastName(String authorName) {
         LinkedList<Integer> resultAuthorIds = new LinkedList<>();
         authorRepo.findByLastNameContainingIgnoreCase(authorName).forEach(author -> resultAuthorIds.add(author.getId()));
         return resultAuthorIds;
     }
 
-    List<Integer> getBooksIdsByAuthorName(String authorName) {
+    public List<Integer> getBooksIdsByAuthorName(String authorName) {
         LinkedList<Integer> resultBookIds = new LinkedList<>();
         authorBookRepo.findAllByAuthorIdIn(getAuthorIdsByLastName(authorName)).forEach(authorBook -> resultBookIds.add(authorBook.getBook().getId()));
         return resultBookIds;
@@ -90,8 +90,23 @@ public class LibraryService {
         return gson.toJson(bookJsons);
     }
 
+    /**
+     * Delete current user from database
+     *
+     * @return true if delete successful
+     */
     public boolean deleteAccount() {
         Reader reader = (Reader) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return deleteReader(reader);
+    }
+
+    /**
+     * Delete reader from database
+     *
+     * @param reader - reader to delete
+     * @return true if delete successful
+     */
+    boolean deleteReader(Reader reader) {
         readerRepo.delete(reader);
         return readerRepo.findOne(reader.getId()) == null;
     }
@@ -118,7 +133,7 @@ public class LibraryService {
      * @param bookId - book id
      * @return - list of authors
      */
-    List<Author> getAllAuthors(int bookId) {
+    public List<Author> getAllAuthors(int bookId) {
         List<Author> authors = new ArrayList<>();
         List<AuthorBook> authorBook = authorBookRepo.findAllByBookId(bookId);
 
