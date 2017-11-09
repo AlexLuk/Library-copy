@@ -58,6 +58,7 @@ public class LibraryController {
     @RequestMapping(value = {"/deleteAccount"}, method = RequestMethod.POST, produces = "application/json")
     public
     @ResponseBody
+    //todo test work with interface
     boolean deleteAccount() {
         return libraryService.deleteAccount();
     }

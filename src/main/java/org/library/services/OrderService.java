@@ -1,5 +1,7 @@
 package org.library.services;
 
+import com.google.gson.Gson;
+import org.library.controllers.LibraryOrderController;
 import org.library.db.domain.*;
 import org.library.db.repo.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,6 +81,31 @@ public class OrderService {
             return true;
         } else {
             return false;
+        }
+    }
+
+    public String jsonBookOrder(List<BookOrder> bookOrders) {
+        List<BookOrderJson> bookOrdersJsons = new LinkedList<>();
+        bookOrders.forEach(bookOrder -> bookOrdersJsons.add(new BookOrderJson(bookOrder)));
+        Gson gson = new Gson();
+        return gson.toJson(bookOrders);
+    }
+
+    private class BookOrderJson {
+        String userFullName;
+        String title;
+        String shelfId;
+        int readerId;
+        int bookId;
+        boolean isOnHands;
+
+        public BookOrderJson(BookOrder bookOrder) {
+            userFullName = bookOrder.getReader().getFullName();
+            title = bookOrder.getBook().getTitle();
+            shelfId = bookOrder.getBook().getShelfId();
+            readerId = bookOrder.getReader().getId();
+            bookId = bookOrder.getBook().getId();
+            isOnHands = bookOrder.getOnHands();
         }
     }
 
