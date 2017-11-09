@@ -42,7 +42,7 @@
                     <td>
                         <form method="post" class="doNotProcess">
                             <button type="submit" class="btn btn-primary orderLib"
-                                    id="orderLib__<%= book.getId()%>" name="orderLib_<%= book.getId()%>">
+                                    id="orderLib_<%= book.getId()%>" name="orderLib_<%= book.getId()%>">
                                 <spring:message code="toOrderInLib" />
                             </button>
                         </form>
