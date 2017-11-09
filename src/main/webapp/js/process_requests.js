@@ -286,10 +286,12 @@ $('.deleteAccount').click(function () {
             //data:
             async: false,
             success: function (resp) {
-                if(!resp) alert("Delete profile failed!");
+                if(!resp) {
+                    show_alert($('#error_delete_account').html(), statusField, false);
+                }
                 //else location.href = "login?logout"
                 if (!resp) {
-                    show_alert($('#succ_order_created').html(), statusField, false);
+                    show_alert($('#error_delete_account').html(), statusField, false);
                 }
                 else location.href = "login?logout"
             }
