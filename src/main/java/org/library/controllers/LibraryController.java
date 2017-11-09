@@ -60,5 +60,16 @@ public class LibraryController {
         return libraryService.deleteAccount();
     }
 
+    /**
+     * Process call for account reader deleting
+     *
+     * @return true if account is deleted successfully
+     */
+    @RequestMapping(value = {"/deleteReader"}, method = RequestMethod.POST, produces = "application/json")
+    public
+    @ResponseBody
+    boolean deleteReader(int readerId) {
+        return libraryService.deleteReaderById(readerId);
+    }
 }
 

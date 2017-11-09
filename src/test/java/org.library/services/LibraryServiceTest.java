@@ -26,6 +26,14 @@ import static org.hamcrest.Matchers.*;
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class LibraryServiceTest extends LibraryTest {
+    @Test
+    public void deleteReader() throws Exception {
+        saveTestData();
+        assertThat(readerRepository.getOne(testReaders.get(0).getId()),is(readerRepository.getOne(testReaders.get(0).getId())));
+        libraryService.deleteReader(testReaders.get(0));
+        assertThat(readerRepository.findOne(testReaders.get(0).getId()),nullValue());
+    }
+
     @Autowired
     LibraryService libraryService;
 
@@ -38,7 +46,6 @@ public class LibraryServiceTest extends LibraryTest {
         assertThat(libraryService.getByTitleContainingAndYearAndGenreInAndIdIn("book", null, testGenres, testBookIdsAll), hasItems(testBooks.get(0), testBooks.get(1), testBooks.get(2)));
         assertThat(libraryService.getByTitleContainingAndYearAndGenreInAndIdIn("ok Bo", null, testGenres, testBookIdsAll), containsInAnyOrder(testBooks.get(0),testBooks.get(1)));
         assertThat(libraryService.getByTitleContainingAndYearAndGenreInAndIdIn("bookbook", 2178, testGenres, testBookIdsAll), contains(testBooks.get(2)));
-
     }
 
     @Test
@@ -106,4 +113,5 @@ public class LibraryServiceTest extends LibraryTest {
         authors.add(authorRepository.findOne(108));
         assertThat(libraryService.getAllAuthors(8), is(authors));
     }
+
 }
