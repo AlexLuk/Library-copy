@@ -93,17 +93,17 @@ $(document).ready(function () {
             }
         },
         messages: {
-            firstName: $('#error_firstname').val(),
-            lastName: $('#error_lastname').val(),
+            firstName: $('#error_firstname').html(),
+            lastName: $('#error_lastname').html(),
             password: {
-                required: $('#error_password').val(),
-                pwdcheck: $('#error_pwd_check').val(),
-                minlength: $('#error_pwd_minlen').val()
+                required: $('#error_password').html(),
+                pwdcheck: $('#error_pwd_check').html(),
+                minlength: $('#error_pwd_minlen').html()
 
             },
             email: {
-                required: $('#error_email_req').val(),
-                email: $('#error_email').val()
+                required: $('#error_email_req').html(),
+                email: $('#error_email').html()
             }
         }
     });
@@ -131,7 +131,7 @@ $(document).ready(function () {
                     url: "/checks/email",
                     data: {email: userEmail},
                     success: function (resp) {
-                        if (!resp) alert("Email is already in the database. Choose another email, please");
+                        if (!resp) alert($('#error_email_not_unique'));
                     }
                 });
         }
@@ -148,7 +148,7 @@ $(document).ready(function () {
                     data: form_data,
                     async: false,
                     success: function (resp) {
-                        if (resp) alert("Thank you for registration! You were successfully authorized");
+                        if (resp) alert($('#succRegister'));
                         result = resp;
                     }
                 });
@@ -170,7 +170,7 @@ $(document).ready(function () {
                     data: {password: userPas, email: userEmail},
                     async: false,
                     success: function (resp) {
-                        if (!resp) alert("Password contains part of the email. Choose another password, please");
+                        if (!resp) alert($('#errorContainsParts'));
                         result = resp;
                     }
                 });
@@ -237,12 +237,19 @@ function addId(obj, attrName, id) {
     obj.attr(attrName, (obj.attr(attrName) + '_' + id));
 }
 
+function getId(attrName) {
+    var parts = attrName.split("_");
 
+    if(parts.length > 1){
+        return parts[1];
+    }
+    return "";
+}
 
 /********************************************* delivery **********************************************/
 
 $(".orderHands").click(function () {
-    console.log(parseInt($(this).attr("name"), 10));
+    console.log(getId($(this).attr("name")));
 });
 
 $(".orderLib").click(function () {
