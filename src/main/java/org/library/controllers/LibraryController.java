@@ -21,8 +21,8 @@ public class LibraryController {
     /**
      * Processes requests to login, home and root pages
      *
-     * @param model - data model
-     * @param error - error attribute in the url
+     * @param model  - data model
+     * @param error  - error attribute in the url
      * @param logout - logout attribute in the url
      * @return - jsp view name
      */
@@ -47,4 +47,18 @@ public class LibraryController {
         model.addAttribute("lib_service", libraryService);
         return "account";
     }
+
+    /**
+     * Process call for account deleting
+     *
+     * @return true if account is deleted successfully
+     */
+    @RequestMapping(value = {"/deleteAccount"}, method = RequestMethod.POST, produces = "application/json")
+    public
+    @ResponseBody
+    boolean deleteAccount() {
+        return libraryService.deleteAccount();
+    }
+
 }
+

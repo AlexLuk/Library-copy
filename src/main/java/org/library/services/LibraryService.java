@@ -5,6 +5,7 @@ import org.library.db.domain.*;
 import org.library.db.repo.*;
 import org.library.misc.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -38,30 +39,30 @@ public class LibraryService {
     @Autowired
     ItemStatusRepository itemStatusRepository;
 
-    public List<Book> getByTitleContainingAndYearAndGenreInAndIdIn(String title, Integer year,
-                                                                   List<Genre> genres, List<Integer> ids) {
+    List<Book> getByTitleContainingAndYearAndGenreInAndIdIn(String title, Integer year,
+                                                            List<Genre> genres, List<Integer> ids) {
         if (year == null) {
             return getByTitleContainingAndGenreInAndIdIn(title, genres, ids);
         }
         return bookRepo.findByTitleContainingIgnoreCaseAndYearAndGenreInAndIdIn(title, year, genres, ids);
     }
 
-    public List<Book> getByTitleContainingAndGenreInAndIdIn(String title, List<Genre> genres, List<Integer> ids) {
+    List<Book> getByTitleContainingAndGenreInAndIdIn(String title, List<Genre> genres, List<Integer> ids) {
         return bookRepo.findByTitleContainingIgnoreCaseAndGenreInAndIdIn(title, genres, ids);
     }
 
 
-    public List<Genre> getGenresByName(String genreName) {
+    List<Genre> getGenresByName(String genreName) {
         return genreRepo.findByNameContaining(genreName);
     }
 
-    public List<Integer> getAuthorIdsByLastName(String authorName) {
+    List<Integer> getAuthorIdsByLastName(String authorName) {
         LinkedList<Integer> resultAuthorIds = new LinkedList<>();
         authorRepo.findByLastNameContainingIgnoreCase(authorName).forEach(author -> resultAuthorIds.add(author.getId()));
         return resultAuthorIds;
     }
 
-    public List<Integer> getBooksIdsByAuthorName(String authorName) {
+    List<Integer> getBooksIdsByAuthorName(String authorName) {
         LinkedList<Integer> resultBookIds = new LinkedList<>();
         authorBookRepo.findAllByAuthorIdIn(getAuthorIdsByLastName(authorName)).forEach(authorBook -> resultBookIds.add(authorBook.getBook().getId()));
         return resultBookIds;
@@ -89,14 +90,20 @@ public class LibraryService {
         return gson.toJson(bookJsons);
     }
 
-    class BookJson {
+    public boolean deleteAccount() {
+        Reader reader = (Reader) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        readerRepo.delete(reader);
+        return readerRepo.findOne(reader.getId()) == null;
+    }
+
+    private class BookJson {
         String title;
         List<String> authors = new LinkedList<>();
         int year;
         String genre;
         int book_id;
 
-        public BookJson(Book book) {
+        BookJson(Book book) {
             title = book.getTitle();
             year = book.getYear();
             book_id = book.getId();
@@ -111,7 +118,7 @@ public class LibraryService {
      * @param bookId - book id
      * @return - list of authors
      */
-    public List<Author> getAllAuthors(int bookId) {
+    List<Author> getAllAuthors(int bookId) {
         List<Author> authors = new ArrayList<>();
         List<AuthorBook> authorBook = authorBookRepo.findAllByBookId(bookId);
 
