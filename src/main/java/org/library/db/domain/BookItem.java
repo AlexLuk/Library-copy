@@ -20,7 +20,8 @@ public class BookItem extends Base {
     public BookItem() {
     }
 
-    public BookItem(Book book, ItemStatus itemStatus) {
+    public BookItem(int itemId, Book book, ItemStatus itemStatus) {
+        this.itemId = itemId;
         this.book = book;
         this.status = itemStatus;
     }

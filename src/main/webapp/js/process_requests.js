@@ -186,7 +186,7 @@ $(document).ready(function () {
 });
 
 /************************* book filters *****************************************/
-$('#filter_form').click(function () {
+$('#filer_button').click(function () {
     filterRequest();
 });
 
@@ -194,7 +194,7 @@ function filterRequest() {
     var titleFilter = $.trim($('#book_title').val());
     var authorFilter = $.trim($('#book_author').val());
     var yearFilter = $.trim($('#book_year').val());
-    var genreFilter = $('#book_genre').val();
+    var genreFilter = $("#book_genre option").filter(":selected").attr('id');
     if (titleFilter !== '' || authorFilter !== '' || yearFilter !== '' || genreFilter !== '') {
         $.ajax(
             {
