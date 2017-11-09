@@ -114,6 +114,7 @@ $(document).ready(function () {
         });
 
     $('#register').click(function () {
+        hideMsgs();
         if ($('#registerForm').valid()) {
             if (checkPassword()) {
                 if (provideRegistration()) {
@@ -133,6 +134,9 @@ $(document).ready(function () {
                     success: function (resp) {
                         if (!resp) {
                             show_alert($('#error_email_not_unique').html(), statusField, false);
+                        }
+                        else {
+                            hideMsgs();
                         }
                     }
                 });
