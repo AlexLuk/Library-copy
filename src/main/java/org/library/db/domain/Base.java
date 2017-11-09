@@ -11,10 +11,10 @@ public class Base implements Serializable
 {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY )
-    protected int id;
+    protected Integer id;
 
-    public int getId() { return id;}
-    public void setId( int id )
+    public Integer getId() { return id;}
+    public void setId( Integer id )
     {
         this.id = id;
     }
