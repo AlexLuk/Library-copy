@@ -18,7 +18,7 @@ $(document).ready(function () {
         var res = false;
         $.each(data, function (i, field) {
             //alert( field.name + ' ' + field.value + ' ' + field.type );
-            if (field.value == '' && field.type != 'submit') {
+            if (field.value === '' && field.type !== 'submit') {
                 show_alert("Please fill in all the fields!", msgField, false);
                 res = true;
                 return false;
@@ -36,7 +36,7 @@ $(document).ready(function () {
     }
 
     function showResponse(resp, msgField) {
-        if (resp == "false")
+        if (resp === "false")
             show_alert("Unsuccessful attempt. Please try once again.", msgField, false);
         else
             show_alert(resp, msgField, true);
@@ -131,7 +131,9 @@ $(document).ready(function () {
                     url: "/checks/email",
                     data: {email: userEmail},
                     success: function (resp) {
-                        if (!resp) alert($('#error_email_not_unique').html());
+                        if (!resp) {
+                            show_alert($('#error_email_not_unique').html(), statusField, false);
+                        }
                     }
                 });
         }
@@ -148,7 +150,9 @@ $(document).ready(function () {
                     data: form_data,
                     async: false,
                     success: function (resp) {
-                        if (resp) alert($('#succRegister').html());
+                        if (resp) {
+                            show_alert($('#succ_register').html(), statusField, true);
+                        }
                         result = resp;
                     }
                 });
@@ -170,7 +174,9 @@ $(document).ready(function () {
                     data: {password: userPas, email: userEmail},
                     async: false,
                     success: function (resp) {
-                        if (!resp) alert($('#errorContainsParts').html());
+                        if (!resp) {
+                            show_alert($('#error_contains_parts').html(), statusField, false);
+                        }
                         result = resp;
                     }
                 });
