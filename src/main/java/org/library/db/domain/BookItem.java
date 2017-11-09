@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class BookItem extends Base {
     @Basic
     @Column(name = "item_id")
-    private int itemId;
+    private Integer itemId;
 
     @ManyToOne
     @JoinColumn(name = "book_id")
@@ -26,11 +26,11 @@ public class BookItem extends Base {
         this.status = itemStatus;
     }
 
-    public BookItem(int itemId) {
+    public BookItem(Integer itemId) {
         this.itemId = itemId;
     }
 
-    public int getItemId() {
+    public Integer getItemId() {
         return itemId;
     }
 

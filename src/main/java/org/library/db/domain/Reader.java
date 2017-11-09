@@ -40,7 +40,7 @@ public class Reader extends Base {
 
     @Basic
     @Column(name = "is_admin")
-    private boolean isAdmin;
+    private Boolean isAdmin;
 
     public Reader() {}
 
@@ -123,10 +123,10 @@ public class Reader extends Base {
         this.fines = fines;
     }
 
-    public boolean getIsAdmin() {
+    public Boolean getIsAdmin() {
         return isAdmin;
     }
-    public void setIsAdmin(boolean isAdmin) {
+    public void setIsAdmin(Boolean isAdmin) {
         this.isAdmin = isAdmin;
     }
 }

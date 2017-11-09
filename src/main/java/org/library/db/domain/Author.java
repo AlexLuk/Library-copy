@@ -21,7 +21,7 @@ public class Author extends Base {
 
     @Basic
     @Column(name = "year_of_birth")
-    private int yearOfBirth;
+    private Integer yearOfBirth;
 
     public Author() {
     }
@@ -58,10 +58,10 @@ public class Author extends Base {
         return Utils.getFullName(getFirstName(), getLastName(), getPatronymic());
     }
 
-    public int getYearOfBirth() {
+    public Integer getYearOfBirth() {
         return yearOfBirth;
     }
-    public void setYearOfBirth(int yearOfBirth) {
+    public void setYearOfBirth(Integer yearOfBirth) {
         this.yearOfBirth = yearOfBirth;
     }
 }

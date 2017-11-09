@@ -23,20 +23,20 @@ public class Book extends Base {
 
     @Basic
     @Column(name = "year")
-    private int year;
+    private Integer year;
 
     @Basic
     @Column(name = "amount")
-    private short amount;
+    private Short amount;
 
     @Basic
     @Column(name = "is_rare")
-    private boolean isRare;
+    private Boolean isRare;
 
     public Book() {}
 
     public Book(String shelfId, Genre genre, String title,
-                String language, int year, short amount, boolean isRare) {
+                String language, Integer year, Short amount, Boolean isRare) {
         this.shelfId = shelfId;
         this.genre = genre;
         this.title = title;
@@ -74,24 +74,24 @@ public class Book extends Base {
         this.language = language;
     }
 
-    public int getYear() {
+    public Integer getYear() {
         return year;
     }
-    public void setYear(int year) {
+    public void setYear(Integer year) {
         this.year = year;
     }
 
-    public short getAmount() {
+    public Short getAmount() {
         return amount;
     }
-    public void setAmount(short amount) {
+    public void setAmount(Short amount) {
         this.amount = amount;
     }
 
-    public boolean getIsRare() {
+    public Boolean getIsRare() {
         return isRare;
     }
-    public void setIsRare(boolean isRare) {
+    public void setIsRare(Boolean isRare) {
         this.isRare = isRare;
     }
 }

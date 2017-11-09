@@ -15,7 +15,7 @@ public class BookOrder extends Base {
 
     @Basic
     @Column(name = "on_hands")
-    private boolean onHands;
+    private Boolean onHands;
 
     public BookOrder() {}
 
@@ -39,10 +39,10 @@ public class BookOrder extends Base {
         this.book = book;
     }
 
-    public boolean getOnHands() {
+    public Boolean getOnHands() {
         return onHands;
     }
-    public void setOnHands(boolean onHands) {
+    public void setOnHands(Boolean onHands) {
         this.onHands = onHands;
     }
 }
