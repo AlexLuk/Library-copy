@@ -23,9 +23,9 @@
             <td><%= reader.convertLocalDate().toString() %></td>
             <td><%= reader.getFines() %>&nbsp;&#x20bd;</td>
             <td>
-                <button type="submit" class="btn btn-primary deleteAccount"
-                        id="deleteAccount_<%= reader.getId()%>" name="deleteAccount_<%= reader.getId()%>">
-                    <spring:message code="toDeleteAccount" />
+                <button type="submit" class="btn btn-primary deleteReader"
+                        id="deleteReader_<%= reader.getId()%>" name="deleteReader_<%= reader.getId()%>">
+                    <spring:message code="toDeleteReader" />
                 </button>
             </td>
         </tr>

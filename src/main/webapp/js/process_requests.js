@@ -281,11 +281,13 @@ function processOrder(id, onHands) {
 }
 
 /******************************************** profile editing *****************************************/
-$('.deleteAccount').click(function () {
+$('.deleteReader').click(function () {
+    var id = getId($(this).attr("name"));
+    console.log(id);
     $.ajax(
         {
-            url: "/deleteAccount",
-            //data:
+            url: "/deleteReader",
+            data: {readerId:id},
             async: false,
             success: function (resp) {
                 if(!resp) {
