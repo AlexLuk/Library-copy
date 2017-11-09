@@ -289,11 +289,9 @@ $('.deleteAccount').click(function () {
                 if(!resp) {
                     show_alert($('#error_delete_account').html(), statusField, false);
                 }
-                //else location.href = "login?logout"
-                if (!resp) {
-                    show_alert($('#error_delete_account').html(), statusField, false);
+                else {
+                    show_alert($('#succ_account_deleted').html(), statusField, true);
                 }
-                else location.href = "login?logout"
             }
         });
 });

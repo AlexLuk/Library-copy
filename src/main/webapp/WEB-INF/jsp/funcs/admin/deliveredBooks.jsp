@@ -1,6 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <div class="tab-pane fade" id="nav-delivered-books" role="tabpanel" aria-labelledby="nav-delivered-books-tab">
+    <div id="status_message" class="bg-danger"></div>
+    <br/>
     <%@ include file="filterOrders.jsp" %>
     <table class="table table-striped">
         <thead>
