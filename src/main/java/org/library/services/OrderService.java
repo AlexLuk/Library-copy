@@ -23,6 +23,9 @@ public class OrderService {
     @Autowired
     ReaderRepository readerRepository;
 
+    @Autowired
+    BookRepository bookRepository;
+
     public List<BookOrder> getByReaderByStatus(Reader reader, boolean isOnHands) {
         return bookOrderRepository.findByReaderIdAndOnHands(reader.getId(), isOnHands);
     }
@@ -45,15 +48,18 @@ public class OrderService {
         return bookItemRepository.findByBookId(book.getId());
     }
 
-    public boolean addOrder(Reader reader, Book book, boolean isOnHands) {
+    public boolean addOrder(Reader reader, int bookId, boolean isOnHands) {
+        Book book = bookRepository.findOne(bookId);
         List<BookOrder> readerExactBook = getByReaderAndBook(reader, book);
         List<BookItem> bookItems = findByBookId(book);
         List<Delivery> readerDeliveries = getByReaderIdAndBookItemIdIn(reader, bookItems);
         if (readerExactBook.size() == 0 && readerDeliveries.size() == 0) {
             BookOrder bookOrder = new BookOrder(reader, book, isOnHands);
             bookOrderRepository.save(bookOrder);
+            return true;
+        } else {
+            return false;
         }
-        return true;
     }
 
 }
