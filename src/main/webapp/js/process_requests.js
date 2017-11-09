@@ -197,39 +197,54 @@ function filterRequest() {
     var yearFilter = $.trim($('#book_year').val());
     var genreFilter = $("#book_genre option").filter(":selected").attr('id');
     $.ajax(
-        {
-            url: "/filters",
-            data: {title: titleFilter, author: authorFilter, year: yearFilter, genre: genreFilter},
-            dataType: "json",
-            success: function (resp) {
-                var contentBody = $('.content_res_book');
-                contentBody.empty();
+    {
+        url: "/filters",
+        data: {title: titleFilter, author: authorFilter, year: yearFilter, genre: genreFilter},
+        dataType: "json",
+        success: function (resp) {
+            var contentBody = $('.content_res_book');
+            contentBody.empty();
 
-                $.each(resp, function (key, data) {
-                    var onHands = $('#orderOnHandsForm').clone();
-                    var inLib = $('#orderInLibForm').clone();
+            $.each(resp, function (key, data) {
+                var onHands = $('#orderOnHandsForm').clone();
+                var inLib = $('#orderInLibForm').clone();
 
-                    var htmlContent = '';
-                    htmlContent +=
-                        '<tr><td>' + data.title + '</td>' +
-                        '<td>' + data.authors[0] + '</td>' +
-                        '<td>' + data.year + '</td>' +
-                        '<td>' + data.genre + '</td>';
+                var htmlContent = '';
+                htmlContent +=
+                    '<tr><td>' + data.title + '</td>' +
+                    '<td>' + data.authors[0] + '</td>' +
+                    '<td>' + data.year + '</td>' +
+                    '<td>' + data.genre + '</td>';
 
-                    var button = onHands.find('button');
-                    button.attr('name', (button.attr('name') + '_' + data.book_id));
-                    button.attr('id', (button.attr('id') + '_' + data.book_id));
+                var button = onHands.find('button');
+                addId(button, 'name', data.book_id);
+                addId(button, 'id', data.book_id);
 
-                    button = inLib.find('button');
-                    button.attr('name', (button.attr('name') + '_' + data.book_id));
-                    button.attr('id', (button.attr('id') + '_' + data.book_id));
+                button = inLib.find('button');
+                addId(button, 'name', data.book_id);
+                addId(button, 'id', data.book_id);
 
+                htmlContent += '<td>' + onHands.html() + '</td>';
+                htmlContent += '<td>' + inLib.html() + '</td></tr>';
 
-                    htmlContent += '<td>' + onHands.html() + '</td>';
-                    htmlContent += '<td>' + inLib.html() + '</td></tr>';
-
-                    contentBody.append($(htmlContent));
-                });
-            }
-        });
+                contentBody.append($(htmlContent));
+            });
+        }
+    });
 }
+
+function addId(obj, attrName, id) {
+    obj.attr(attrName, (obj.attr(attrName) + '_' + id));
+}
+
+
+
+/********************************************* delivery **********************************************/
+
+$(".orderHands").click(function () {
+    console.log(parseInt($(this).attr("name"), 10));
+});
+
+$(".orderLib").click(function () {
+    console.log(parseInt($(this).attr("name"), 10));
+});

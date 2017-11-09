@@ -15,8 +15,8 @@
                     <td><%= book.getTitle() %></td>
                     <td>
                         <form method="post" class="doNotProcess">
-                            <input type="hidden" id="book_id" name="book_id" value="<%= book.getId()%>" />
-                            <button type="submit" class="btn btn-primary" id="edit" name="edit">
+                            <button type="submit" class="btn btn-primary"
+                                    id="edit_<%= book.getId()%>" name="edit_<%= book.getId()%>">
                                 <spring:message code="toEdit" />
                             </button>
                         </form>
@@ -105,9 +105,8 @@
                         <td><%= author.getFullName() %></td>
                         <td>
                             <form method="post" class="doNotProcess">
-                                <input type="hidden" id="author_id" name="author_id" value="<%=
-                                author.getId()%>" />
-                                <button type="submit" class="btn btn-primary" id="add" name="add">
+                                <button type="submit" class="btn btn-primary"
+                                        id="add_<%= author.getId()%>" name="add_<%= author.getId()%>">
                                     <spring:message code="toAdd" />
                                 </button>
                             </form>

@@ -23,7 +23,8 @@
                 <%}%>
             </td>
             <td>
-                <button type="submit" class="btn btn-primary" id="delete" name="delete">
+                <button type="submit" class="btn btn-primary"
+                        id="delete_<%= order.getId()%>" name="delete_<%= order.getId()%>">
                     <spring:message code="toDelete" />
                 </button>
             </td>

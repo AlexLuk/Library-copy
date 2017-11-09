@@ -17,8 +17,8 @@
                             <td><%= author.getFullName() %></td>
                             <td>
                                 <form method="post" class="doNotProcess">
-                                    <input type="hidden" id="author_id" name="author_id" value="<%= author.getId()%>" />
-                                    <button type="submit" class="btn btn-primary" id="edit" name="edit">
+                                    <button type="submit" class="btn btn-primary"
+                                            id="edit_<%= author.getId()%>" name="edit_<%= author.getId()%>">
                                         <spring:message code="toEdit" />
                                     </button>
                                 </form>

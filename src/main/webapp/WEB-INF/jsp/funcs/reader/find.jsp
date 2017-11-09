@@ -10,7 +10,7 @@
         <thead>
         <tr>
             <th><spring:message code="title" /></th>
-            <th><spring:message code="author" /></th>
+            <th><spring:message code="authorLastName" /></th>
             <th><spring:message code="year" /></th>
             <th><spring:message code="genre" /></th>
             <th></th>
@@ -56,14 +56,14 @@
 <div class="hidden">
     <div id="orderOnHandsForm">
         <form method="post" class="doNotProcess">
-            <button type="submit" class="btn btn-primary" id="orderHands" name="orderHands">
+            <button type="submit" class="btn btn-primary orderHands" id="orderHands" name="orderHands">
                 <spring:message code="toOrderOnHands" />
             </button>
         </form>
     </div>
     <div id="orderInLibForm">
         <form method="post" class="doNotProcess">
-            <button type="submit" class="btn btn-primary" id="orderLib" name="orderLib">
+            <button type="submit" class="btn btn-primary orderLib" id="orderLib" name="orderLib">
                 <spring:message code="toOrderInLib" />
             </button>
         </form>
