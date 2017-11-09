@@ -203,11 +203,12 @@ function filterRequest() {
             dataType: "json",
             success: function (resp) {
                 var contentBody = $('.content_res_book');
-                var onHands = $('#orderOnHandsForm').clone();
-                var inLib = $('#orderInLibForm').clone();
-
                 contentBody.empty();
+
                 $.each(resp, function (key, data) {
+                    var onHands = $('#orderOnHandsForm').clone();
+                    var inLib = $('#orderInLibForm').clone();
+
                     var htmlContent = '';
                     htmlContent +=
                         '<tr><td>' + data.title + '</td>' +
@@ -215,8 +216,14 @@ function filterRequest() {
                         '<td>' + data.year + '</td>' +
                         '<td>' + data.genre + '</td>';
 
-                    onHands.find('input').attr('value', data.book_id);
-                    inLib.find('input').attr('value', data.book_id);
+                    var button = onHands.find('button');
+                    button.attr('name', (button.attr('name') + '_' + data.book_id));
+                    button.attr('id', (button.attr('id') + '_' + data.book_id));
+
+                    button = inLib.find('button');
+                    button.attr('name', (button.attr('name') + '_' + data.book_id));
+                    button.attr('id', (button.attr('id') + '_' + data.book_id));
+
 
                     htmlContent += '<td>' + onHands.html() + '</td>';
                     htmlContent += '<td>' + inLib.html() + '</td></tr>';

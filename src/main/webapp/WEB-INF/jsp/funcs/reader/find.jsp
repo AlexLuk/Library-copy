@@ -17,6 +17,38 @@
         </tr>
         </thead>
         <tbody class="content_res_book">
+            <%for (Book book : books) {
+                List<Author> authors = libraryService.getAllAuthors(book.getId());
+            %>
+                <tr>
+                    <td><%= book.getTitle() %></td>
+                    <td>
+                        <%for (Author author : authors) {%>
+                        <%= author.getFullName() %><br/>
+                        <%}%>
+                    </td>
+                    <td><%= book.getYear() %></td>
+                    <td>
+                        <spring:message code="<%= libraryService.getGenre(book.getGenre().getId()) %>" />
+                    </td>
+                    <td>
+                        <form method="post" class="doNotProcess">
+                            <button type="submit" class="btn btn-primary orderHands"
+                                    id="orderHands_<%= book.getId()%>" name="orderHands_<%= book.getId()%>">
+                                <spring:message code="toOrderOnHands" />
+                            </button>
+                        </form>
+                    </td>
+                    <td>
+                        <form method="post" class="doNotProcess">
+                            <button type="submit" class="btn btn-primary orderLib"
+                                    id="orderLib__<%= book.getId()%>" name="orderLib__<%= book.getId()%>">
+                                <spring:message code="toOrderInLib" />
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            <%}%>
         </tbody>
     </table>
 </div>
@@ -24,7 +56,6 @@
 <div class="hidden">
     <div id="orderOnHandsForm">
         <form method="post" class="doNotProcess">
-            <input type="hidden" id="order_hands_book_id" name="order_hands_book_id" value="asfas" />
             <button type="submit" class="btn btn-primary" id="orderHands" name="orderHands">
                 <spring:message code="toOrderOnHands" />
             </button>
@@ -32,7 +63,6 @@
     </div>
     <div id="orderInLibForm">
         <form method="post" class="doNotProcess">
-            <input type="hidden" id="order_lib_book_id" name="order_lib_book_id" value="" />
             <button type="submit" class="btn btn-primary" id="orderLib" name="orderLib">
                 <spring:message code="toOrderInLib" />
             </button>
