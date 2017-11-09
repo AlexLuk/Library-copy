@@ -4,6 +4,8 @@ import com.google.gson.Gson;
 import org.library.db.domain.*;
 import org.library.db.repo.*;
 import org.library.misc.Utils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,9 @@ import java.util.List;
 
 @Service
 public class LibraryService {
+
+    private final static Logger logger = LoggerFactory.getLogger(LibraryService.class);
+
     @Autowired
     BookRepository bookRepo;
 
@@ -40,7 +45,7 @@ public class LibraryService {
     ItemStatusRepository itemStatusRepository;
 
     public List<Book> getByTitleContainingAndYearAndGenreInAndIdIn(String title, Integer year,
-                                                            List<Genre> genres, List<Integer> ids) {
+                                                                   List<Genre> genres, List<Integer> ids) {
         if (year == null) {
             return getByTitleContainingAndGenreInAndIdIn(title, genres, ids);
         }
@@ -106,9 +111,25 @@ public class LibraryService {
      * @param reader - reader to delete
      * @return true if delete successful
      */
-    boolean deleteReader(Reader reader) {
-        readerRepo.delete(reader);
-        return readerRepo.findOne(reader.getId()) == null;
+    public boolean deleteReader(Reader reader) {
+        try {
+            readerRepo.delete(reader.getId());
+            return true;
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+        }
+        return false;
+    }
+
+    /**
+     * Delete reader by id
+     *
+     * @param readerId - reader id
+     * @return -  true if delete was successful
+     */
+    public boolean deleteReaderById(int readerId) {
+        deleteReader(readerRepo.findOne(readerId));
+        return false;
     }
 
     private class BookJson {
