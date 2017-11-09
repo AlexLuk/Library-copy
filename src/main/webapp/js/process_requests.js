@@ -131,7 +131,7 @@ $(document).ready(function () {
                     url: "/checks/email",
                     data: {email: userEmail},
                     success: function (resp) {
-                        if (!resp) alert($('#error_email_not_unique'));
+                        if (!resp) alert($('#error_email_not_unique').html());
                     }
                 });
         }
@@ -148,7 +148,7 @@ $(document).ready(function () {
                     data: form_data,
                     async: false,
                     success: function (resp) {
-                        if (resp) alert($('#succRegister'));
+                        if (resp) alert($('#succRegister').html());
                         result = resp;
                     }
                 });
@@ -170,7 +170,7 @@ $(document).ready(function () {
                     data: {password: userPas, email: userEmail},
                     async: false,
                     success: function (resp) {
-                        if (!resp) alert($('#errorContainsParts'));
+                        if (!resp) alert($('#errorContainsParts').html());
                         result = resp;
                     }
                 });
