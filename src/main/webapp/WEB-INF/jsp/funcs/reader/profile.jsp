@@ -44,12 +44,6 @@
                         <spring:message code="toSaveProfile" />
                     </button>
                 </div>
-                <div class="delimeter"></div>
-                <div class="col-xs-5">
-                    <button type="submit" class="btn btn-primary" id="deleteProfile" name="deleteProfile">
-                        <spring:message code="toDeleteProfile" />
-                    </button>
-                </div>
             </div>
         </div>
     </form>

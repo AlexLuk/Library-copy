@@ -162,7 +162,6 @@ $(document).ready(function () {
             return false;
     }
 
-
     function checkPassword() {
         var userEmail = $.trim($('#email').val());
         var userPas = $.trim($('#password').val());
@@ -263,14 +262,18 @@ $(".orderLib").click(function () {
 });
 /******************************************** profile editing *****************************************/
 $('#deleteProfile').click(function () {
-    $.ajax(
+    //location.href = "login?logout";
+    //alert(JSON.stringify($(".navbar a[role='button']")));
+    //$("#logoutBut").click();
+    /*$.ajax(
         {
             url: "/deleteAccount",
             //data:
             async: false,
             success: function (resp) {
                 if(!resp) alert("Delete profile failed!");
-                else location.href = "login?logout"
+                //else location.href = "login?logout"
             }
         });
+        */
 });

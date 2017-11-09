@@ -13,7 +13,8 @@
                 <p><sec:authentication property="principal.username" />&nbsp;&nbsp;</p>
             </div>
             <div class="float-right">
-                <a class="btn-secondary btn-sm" role="button" href="/logout"><spring:message code="logout" /></a>
+                <a class="btn-secondary btn-sm" role="button" id="logoutBut"
+                   href="/logout"><spring:message code="logout" /></a>
             </div>
         </div>
     </sec:authorize>
