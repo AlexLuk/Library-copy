@@ -23,7 +23,7 @@
 
 <div class="hidden">
     <div id="orderOnHandsForm">
-        <form method="post">
+        <form method="post" class="doNotProcess">
             <input type="hidden" id="order_hands_book_id" name="order_hands_book_id" value="asfas" />
             <button type="submit" class="btn btn-primary" id="orderHands" name="orderHands">
                 <spring:message code="toOrderOnHands" />
@@ -31,7 +31,7 @@
         </form>
     </div>
     <div id="orderInLibForm">
-        <form method="post">
+        <form method="post" class="doNotProcess">
             <input type="hidden" id="order_lib_book_id" name="order_lib_book_id" value="" />
             <button type="submit" class="btn btn-primary" id="orderLib" name="orderLib">
                 <spring:message code="toOrderInLib" />
