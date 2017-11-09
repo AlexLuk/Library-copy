@@ -1,16 +1,8 @@
 package org.library.services;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.library.db.domain.Author;
-import org.library.db.domain.AuthorBook;
-import org.library.db.domain.Book;
-import org.library.db.domain.Genre;
-import org.library.db.repo.AuthorBookRepository;
-import org.library.db.repo.AuthorRepository;
-import org.library.db.repo.BookRepository;
-import org.library.db.repo.GenreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -26,16 +18,16 @@ import static org.hamcrest.Matchers.*;
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class LibraryServiceTest extends LibraryTest {
+    @Autowired
+    LibraryService libraryService;
+
     @Test
     public void deleteReader() throws Exception {
         saveTestData();
         assertThat(readerRepository.getOne(testReaders.get(0).getId()),is(readerRepository.getOne(testReaders.get(0).getId())));
-        libraryService.deleteReader(testReaders.get(0));
+        libraryService.deleteReaderById(testReaders.get(0).getId());
         assertThat(readerRepository.findOne(testReaders.get(0).getId()),nullValue());
     }
-
-    @Autowired
-    LibraryService libraryService;
 
     @Test
     public void getByTitleContainingAndYearAndGenreInAndIdIn() throws Exception {
