@@ -10,7 +10,7 @@ public class Book extends Base {
     private String shelfId;
 
     @ManyToOne
-    @JoinColumn(name = "genre_id" )
+    @JoinColumn(name = "genre_id")
     private Genre genre;
 
     @Basic
@@ -33,7 +33,8 @@ public class Book extends Base {
     @Column(name = "is_rare")
     private Boolean isRare;
 
-    public Book() {}
+    public Book() {
+    }
 
     public Book(String shelfId, Genre genre, String title,
                 String language, Integer year, Short amount, Boolean isRare) {
@@ -49,6 +50,7 @@ public class Book extends Base {
     public String getShelfId() {
         return shelfId;
     }
+
     public void setShelfId(String shelfId) {
         this.shelfId = shelfId;
     }
@@ -56,6 +58,7 @@ public class Book extends Base {
     public Genre getGenre() {
         return genre;
     }
+
     public void setGenre(Genre genre) {
         this.genre = genre;
     }
@@ -63,6 +66,7 @@ public class Book extends Base {
     public String getTitle() {
         return title;
     }
+
     public void setTitle(String title) {
         this.title = title;
     }
@@ -70,6 +74,7 @@ public class Book extends Base {
     public String getLanguage() {
         return language;
     }
+
     public void setLanguage(String language) {
         this.language = language;
     }
@@ -77,6 +82,7 @@ public class Book extends Base {
     public Integer getYear() {
         return year;
     }
+
     public void setYear(Integer year) {
         this.year = year;
     }
@@ -84,6 +90,7 @@ public class Book extends Base {
     public Short getAmount() {
         return amount;
     }
+
     public void setAmount(Short amount) {
         this.amount = amount;
     }
@@ -91,6 +98,7 @@ public class Book extends Base {
     public Boolean getIsRare() {
         return isRare;
     }
+
     public void setIsRare(Boolean isRare) {
         this.isRare = isRare;
     }

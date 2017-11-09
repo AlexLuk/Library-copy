@@ -48,7 +48,7 @@ public class OrderService {
     /**
      * Search for deliveries for specific reader and for list of specific book items
      *
-     * @param reader - reader for search
+     * @param reader    - reader for search
      * @param bookItems - items
      * @return - list of deliveries
      */

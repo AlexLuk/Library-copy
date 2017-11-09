@@ -1,19 +1,23 @@
 package org.library.db.domain;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "author_book")
 public class AuthorBook extends Base {
     @ManyToOne
-    @JoinColumn(name = "author_id" )
+    @JoinColumn(name = "author_id")
     private Author author;
 
     @ManyToOne
-    @JoinColumn(name = "book_id" )
+    @JoinColumn(name = "book_id")
     private Book book;
 
-    public AuthorBook() {}
+    public AuthorBook() {
+    }
 
     public AuthorBook(Author author, Book book) {
         this.author = author;
@@ -23,6 +27,7 @@ public class AuthorBook extends Base {
     public Author getAuthor() {
         return author;
     }
+
     public void setAuthor(Author author) {
         this.author = author;
     }
@@ -30,6 +35,7 @@ public class AuthorBook extends Base {
     public Book getBook() {
         return book;
     }
+
     public void setBook(Book book) {
         this.book = book;
     }

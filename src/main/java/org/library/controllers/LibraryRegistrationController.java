@@ -71,7 +71,7 @@ public class LibraryRegistrationController {
     /**
      * Saves reader from user registration form to database
      *
-     * @param reader - reader object filled with user input
+     * @param reader  - reader object filled with user input
      * @param request
      * @return - string for RequestMapping
      */
@@ -85,6 +85,7 @@ public class LibraryRegistrationController {
             reader.setEmail(email.toLowerCase());
             reader.setPassword(DigestUtils.md5Hex(password));
             reader.setFines(0.0);
+            reader.setIsAdmin(false);
             reader.setRegistrationDate(new Timestamp(System.currentTimeMillis()));
 
             readerRepository.save(reader);

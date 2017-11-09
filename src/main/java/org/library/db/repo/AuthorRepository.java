@@ -7,8 +7,12 @@ import java.util.List;
 
 public interface AuthorRepository extends JpaRepository<Author, Integer> {
     List<Author> findByLastName(String lastname);
+
     List<Author> findByFirstName(String name);
+
     List<Author> findByPatronymic(String patronymic);
+
     List<Author> findByYearOfBirth(Integer yearOfBirth);
+
     List<Author> findByLastNameContainingIgnoreCase(String lastname);
 }
