@@ -5,7 +5,7 @@
 <%@ page import="org.library.db.domain.Author" %>
 
 <div class="tab-pane fade show active" id="nav-find" role="tabpanel" aria-labelledby="nav-find-tab">
-    <%@ include file="../filter.jsp" %>
+    <%@ include file="filter.jsp" %>
     <table class="table table-striped">
         <thead>
         <tr>
@@ -16,34 +16,26 @@
             <th></th>
         </tr>
         </thead>
-        <tbody id = "table_body">
-        <%for (Book book : books) {
-            List<Author> authors = libraryService.getAllAuthors(book.getId());
-        %>
-        <tr>
-            <td><%= book.getTitle() %></td>
-            <td>
-                <%for (Author author : authors) {%>
-                <%= author.getFullName() %><br/>
-                <%}%>
-            </td>
-            <td><%= book.getYear() %></td>
-            <td>
-                <spring:message code="<%= libraryService.getGenre(book.getGenre().getId()) %>" />
-            </td>
-            <td>
-                <input type="hidden" id="book_id" name="book_id" value="<%= book.getId()%>" />
-                    <button type="submit" class="btn btn-primary" id="orderHands" name="orderHands">
-                    <spring:message code="toOrderOnHands" />
-                </button>
-            </td>
-            <td>
-                <button type="submit" class="btn btn-primary" id="orderLib" name="orderLib">
-                    <spring:message code="toOrderInLib" />
-                </button>
-            </td>
-        </tr>
-        <%}%>
+        <tbody class="content_res_book">
         </tbody>
     </table>
+</div>
+
+<div class="hidden">
+    <div id="orderOnHandsForm">
+        <form method="post">
+            <input type="hidden" id="order_hands_book_id" name="order_hands_book_id" value="asfas" />
+            <button type="submit" class="btn btn-primary" id="orderHands" name="orderHands">
+                <spring:message code="toOrderOnHands" />
+            </button>
+        </form>
+    </div>
+    <div id="orderInLibForm">
+        <form method="post">
+            <input type="hidden" id="order_lib_book_id" name="order_lib_book_id" value="" />
+            <button type="submit" class="btn btn-primary" id="orderLib" name="orderLib">
+                <spring:message code="toOrderInLib" />
+            </button>
+        </form>
+    </div>
 </div>

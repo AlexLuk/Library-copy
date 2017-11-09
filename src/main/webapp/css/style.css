@@ -92,6 +92,10 @@ button, link {
     margin-top: 17px;
 }
 
+.hidden {
+    visibility: hidden;
+}
+
 /*************************************************** components *******************************/
 
 .language {

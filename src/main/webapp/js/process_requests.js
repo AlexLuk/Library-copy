@@ -203,25 +203,26 @@ function filterRequest() {
                 dataType: "json",
                 success: function (resp) {
 
+                    var contentBody = $('.content_res_book');
+                    var onHands = $('#orderOnHandsForm').clone();
+                    var inLib = $('#orderInLibForm').clone();
 
-                    $('#table_body').remove();
-
-                    console.log("resp  " + JSON.stringify(resp));
+                    contentBody.empty();
                     $.each(resp, function (key, data) {
-                        console.log(key)
-                        $.each(data, function (index, data) {
-                            console.log(index, data)
-                        })
-                    });
+                        var htmlContent = '';
+                        htmlContent +=
+                            '<tr><td>' + data.title+'</td>' +
+                            '<td>' + data.authors[0] + '</td>' +
+                            '<td>' + data.year + '</td>' +
+                            '<td></td>';
 
-                    $.each(resp, function (key, data) {
-                        $.each(data, function (index, item) {
-                            $('.tab-content').append(
-                                '<tr><td>'+item.title+'</td>' +
-                                '<td>'+item.id+'</td>' +
-                                '<td>'+item.year+'</td>' +
-                                '<td>'+item.genre.name+'</td></tr>');
-                        });
+                        onHands.find('input').attr('value', data.book_id);
+                        inLib.find('input').attr('value', data.book_id);
+
+                        htmlContent += '<td>' + onHands.html() + '</td>';
+                        htmlContent += '<td>' + inLib.html() + '</td></tr>';
+
+                        contentBody.append($( htmlContent ));
                     });
                 }
             });
