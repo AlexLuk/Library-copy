@@ -72,9 +72,9 @@ $(document).ready(function () {
     });
 
     $.ajaxSetup(
-    {
-        type: "POST"
-    });
+        {
+            type: "POST"
+        });
 
     /********************************************* registration form **************************************************/
 
@@ -114,7 +114,7 @@ $(document).ready(function () {
         });
 
     $('#register').click(function () {
-        if($('#registerForm').valid()) {
+        if ($('#registerForm').valid()) {
             if (checkPassword()) {
                 if (provideRegistration()) {
                     location.href = "account";
@@ -137,10 +137,27 @@ $(document).ready(function () {
         }
     });
 
-    function isEmail(email) {
-        var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-        return regex.test(email);
+    function provideRegistration() {
+        var result = false;
+        var form_data = $('#registerForm').serialize();
+        if (form_data !== '') {
+            $.ajax(
+                {
+
+                    url: "/register",
+                    data: form_data,
+                    async: false,
+                    success: function (resp) {
+                        if (resp) alert("Thank you for registration! You were successfully authorized");
+                        result = resp;
+                    }
+                });
+            return result;
+        }
+        else
+            return false;
     }
+
 
     function checkPassword() {
         var userEmail = $.trim($('#email').val());
@@ -162,28 +179,12 @@ $(document).ready(function () {
         else
             return false;
     }
-
-    function provideRegistration() {
-        var result = false;
-        var form_data = $('#registerForm').serialize();
-        if (form_data !== '') {
-            $.ajax(
-                {
-                    
-                    url: "/register",
-                    data: form_data,
-                    async: false,
-                    success: function (resp) {
-                        if (resp) alert("Thank you for registration! You were successfully authorized");
-                        result = resp;
-                    }
-                });
-            return result;
-        }
-        else
-            return false;
-    }
 });
+
+function isEmail(email) {
+    var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    return regex.test(email);
+}
 
 /************************* book filters *****************************************/
 $('#filer_button').click(function () {
@@ -195,36 +196,33 @@ function filterRequest() {
     var authorFilter = $.trim($('#book_author').val());
     var yearFilter = $.trim($('#book_year').val());
     var genreFilter = $("#book_genre option").filter(":selected").attr('id');
-    if (titleFilter !== '' || authorFilter !== '' || yearFilter !== '' || genreFilter !== '') {
-        $.ajax(
-            {
-                url: "/filters",
-                data: {title: titleFilter, author: authorFilter, year: yearFilter, genre: genreFilter},
-                dataType: "json",
-                success: function (resp) {
+    $.ajax(
+        {
+            url: "/filters",
+            data: {title: titleFilter, author: authorFilter, year: yearFilter, genre: genreFilter},
+            dataType: "json",
+            success: function (resp) {
+                var contentBody = $('.content_res_book');
+                var onHands = $('#orderOnHandsForm').clone();
+                var inLib = $('#orderInLibForm').clone();
 
-                    var contentBody = $('.content_res_book');
-                    var onHands = $('#orderOnHandsForm').clone();
-                    var inLib = $('#orderInLibForm').clone();
+                contentBody.empty();
+                $.each(resp, function (key, data) {
+                    var htmlContent = '';
+                    htmlContent +=
+                        '<tr><td>' + data.title + '</td>' +
+                        '<td>' + data.authors[0] + '</td>' +
+                        '<td>' + data.year + '</td>' +
+                        '<td>' + data.genre + '</td>';
 
-                    contentBody.empty();
-                    $.each(resp, function (key, data) {
-                        var htmlContent = '';
-                        htmlContent +=
-                            '<tr><td>' + data.title+'</td>' +
-                            '<td>' + data.authors[0] + '</td>' +
-                            '<td>' + data.year + '</td>' +
-                            '<td></td>';
+                    onHands.find('input').attr('value', data.book_id);
+                    inLib.find('input').attr('value', data.book_id);
 
-                        onHands.find('input').attr('value', data.book_id);
-                        inLib.find('input').attr('value', data.book_id);
+                    htmlContent += '<td>' + onHands.html() + '</td>';
+                    htmlContent += '<td>' + inLib.html() + '</td></tr>';
 
-                        htmlContent += '<td>' + onHands.html() + '</td>';
-                        htmlContent += '<td>' + inLib.html() + '</td></tr>';
-
-                        contentBody.append($( htmlContent ));
-                    });
-                }
-            });
-    }
+                    contentBody.append($(htmlContent));
+                });
+            }
+        });
 }
