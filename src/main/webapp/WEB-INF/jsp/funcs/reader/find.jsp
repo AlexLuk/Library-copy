@@ -5,6 +5,8 @@
 <%@ page import="org.library.db.domain.Author" %>
 
 <div class="tab-pane fade show active" id="nav-find" role="tabpanel" aria-labelledby="nav-find-tab">
+    <div id="status_message" class="bg-danger"></div>
+    <br/>
     <%@ include file="filter.jsp" %>
     <table class="table table-striped">
         <thead>

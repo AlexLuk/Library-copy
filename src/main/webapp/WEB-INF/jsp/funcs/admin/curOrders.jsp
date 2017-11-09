@@ -1,6 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <div class="tab-pane fade show active" id="nav-show-orders" role="tabpanel" aria-labelledby="nav-show-orders-tab">
+    <div id="status_message" class="bg-danger"></div>
+    <br/>
     <table class="table table-striped">
         <thead>
         <tr>

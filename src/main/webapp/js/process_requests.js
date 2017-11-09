@@ -270,28 +270,28 @@ function processOrder(id, onHands) {
             url: "/addOrder",
             data: {bookId: id, toHand: onHands},
             success: function (resp) {
-                if (resp) alert("Order was successfully created!");
+                if (resp) {
+                    show_alert($('#succ_order_created').html(), statusField, true);
+                }
                 else if (!resp) alert("Order fail!");
             }
         });
 }
 
 /******************************************** profile editing *****************************************/
-$('#deleteProfile').click(function () {
-    //location.href = "login?logout";
-    //alert(JSON.stringify($(".navbar a[role='button']")));
-    //$("#logoutBut").click();
-    /*$.ajax(
+$('.deleteAccount').click(function () {
+    $.ajax(
         {
             url: "/deleteAccount",
             //data:
             async: false,
             success: function (resp) {
-                if(!resp) alert("Delete profile failed!");
-                //else location.href = "login?logout"
-                if (!resp) alert("Delete profile failed!");
-                else location.href = "login?logout"
+                if(!resp) {
+                    show_alert($('#error_delete_account').html(), statusField, false);
+                }
+                else {
+                    show_alert($('#succ_account_deleted').html(), statusField, true);
+                }
             }
         });
-        */
 });

@@ -1,6 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <div class="tab-pane fade" id="nav-add-author" role="tabpanel" aria-labelledby="nav-add-author-tab">
+    <div id="status_message" class="bg-danger"></div>
+    <br/>
     <div class="row">
         <div class="col-md-4">
             <div class="row">
