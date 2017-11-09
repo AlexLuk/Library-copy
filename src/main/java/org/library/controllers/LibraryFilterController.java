@@ -24,7 +24,6 @@ public class LibraryFilterController {
     public
     @ResponseBody
     String filterBooks(String title, String author, String year, String genre) {
-        System.err.println(title + " " + author + " " + year + " " + genre);
         //todo year = null if year = "" on client
         try {
             Integer intYear = Integer.parseInt(year);
