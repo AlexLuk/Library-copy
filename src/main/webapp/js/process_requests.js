@@ -203,40 +203,40 @@ function filterRequest() {
     var yearFilter = $.trim($('#book_year').val());
     var genreFilter = $("#book_genre option").filter(":selected").attr('id');
     $.ajax(
-    {
-        url: "/filters",
-        data: {title: titleFilter, author: authorFilter, year: yearFilter, genre: genreFilter},
-        dataType: "json",
-        success: function (resp) {
-            var contentBody = $('.content_res_book');
-            contentBody.empty();
+        {
+            url: "/filters",
+            data: {title: titleFilter, author: authorFilter, year: yearFilter, genre: genreFilter},
+            dataType: "json",
+            success: function (resp) {
+                var contentBody = $('.content_res_book');
+                contentBody.empty();
 
-            $.each(resp, function (key, data) {
-                var onHands = $('#orderOnHandsForm').clone();
-                var inLib = $('#orderInLibForm').clone();
+                $.each(resp, function (key, data) {
+                    var onHands = $('#orderOnHandsForm').clone();
+                    var inLib = $('#orderInLibForm').clone();
 
-                var htmlContent = '';
-                htmlContent +=
-                    '<tr><td>' + data.title + '</td>' +
-                    '<td>' + data.authors[0] + '</td>' +
-                    '<td>' + data.year + '</td>' +
-                    '<td>' + data.genre + '</td>';
+                    var htmlContent = '';
+                    htmlContent +=
+                        '<tr><td>' + data.title + '</td>' +
+                        '<td>' + data.authors[0] + '</td>' +
+                        '<td>' + data.year + '</td>' +
+                        '<td>' + data.genre + '</td>';
 
-                var button = onHands.find('button');
-                addId(button, 'name', data.book_id);
-                addId(button, 'id', data.book_id);
+                    var button = onHands.find('button');
+                    addId(button, 'name', data.book_id);
+                    addId(button, 'id', data.book_id);
 
-                button = inLib.find('button');
-                addId(button, 'name', data.book_id);
-                addId(button, 'id', data.book_id);
+                    button = inLib.find('button');
+                    addId(button, 'name', data.book_id);
+                    addId(button, 'id', data.book_id);
 
-                htmlContent += '<td>' + onHands.html() + '</td>';
-                htmlContent += '<td>' + inLib.html() + '</td></tr>';
+                    htmlContent += '<td>' + onHands.html() + '</td>';
+                    htmlContent += '<td>' + inLib.html() + '</td></tr>';
 
-                contentBody.append($(htmlContent));
-            });
-        }
-    });
+                    contentBody.append($(htmlContent));
+                });
+            }
+        });
 }
 
 function addId(obj, attrName, id) {
@@ -246,7 +246,7 @@ function addId(obj, attrName, id) {
 function getId(attrName) {
     var parts = attrName.split("_");
 
-    if(parts.length > 1){
+    if (parts.length > 1) {
         return parts[1];
     }
     return "";
@@ -255,21 +255,35 @@ function getId(attrName) {
 /********************************************* delivery **********************************************/
 
 $(".orderHands").click(function () {
-    console.log(parseInt($(this).attr("name"), 10));
+    var id = getId($(this).attr("name"));
+    processOrder(id, true);
 });
 
 $(".orderLib").click(function () {
-    console.log(parseInt($(this).attr("name"), 10));
+    var id = getId($(this).attr("name"));
+    processOrder(id, false);
 });
+
+function processOrder(id, onHands) {
+    $.ajax(
+        {
+            url: "/addOrder",
+            data: {bookId: id, toHand: onHands},
+            success: function (resp) {
+                if (resp) alert("Order was successfully created!");
+                else if (!resp) alert("Order fail!");
+            }
+        });
+}
+
 /******************************************** profile editing *****************************************/
 $('#deleteProfile').click(function () {
     $.ajax(
         {
             url: "/deleteAccount",
-            //data:
             async: false,
             success: function (resp) {
-                if(!resp) alert("Delete profile failed!");
+                if (!resp) alert("Delete profile failed!");
                 else location.href = "login?logout"
             }
         });
