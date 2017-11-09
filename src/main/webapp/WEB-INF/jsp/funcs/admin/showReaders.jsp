@@ -5,6 +5,8 @@
 <% List<Reader> readers = libraryService.getAllReaders(); %>
 
 <div class="tab-pane fade show" id="nav-readers" role="tabpanel" aria-labelledby="nav-readers-tab">
+    <div id="status_message" class="bg-danger"></div>
+    <br/>
     <table class="table table-striped">
         <thead>
         <tr>
@@ -21,9 +23,9 @@
             <td><%= reader.convertLocalDate().toString() %></td>
             <td><%= reader.getFines() %>&nbsp;&#x20bd;</td>
             <td>
-                <button type="submit" class="btn btn-primary"
-                        id="deleteProfile_<%= reader.getId()%>" name="deleteProfile_<%= reader.getId()%>">
-                    <spring:message code="toDeleteProfile" />
+                <button type="submit" class="btn btn-primary deleteAccount"
+                        id="deleteAccount_<%= reader.getId()%>" name="deleteAccount_<%= reader.getId()%>">
+                    <spring:message code="toDeleteAccount" />
                 </button>
             </td>
         </tr>

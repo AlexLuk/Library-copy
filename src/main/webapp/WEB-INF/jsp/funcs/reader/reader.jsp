@@ -16,3 +16,8 @@
     <%@ include file="wishlist.jsp" %>
     <%@ include file="profile.jsp" %>
 </div>
+
+<div class="hidden">
+    <div id="succ_order_created"><spring:message code="succOrderCreated" /></div>
+    <div id="error_delete_account"><spring:message code="errDeleteAccount" /></div>
+</div>
