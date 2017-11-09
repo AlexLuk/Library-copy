@@ -5,6 +5,7 @@ import org.library.db.domain.*;
 import org.library.db.repo.*;
 import org.library.misc.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -39,7 +40,7 @@ public class LibraryService {
     ItemStatusRepository itemStatusRepository;
 
     public List<Book> getByTitleContainingAndYearAndGenreInAndIdIn(String title, Integer year,
-                                                                   List<Genre> genres, List<Integer> ids) {
+                                                            List<Genre> genres, List<Integer> ids) {
         if (year == null) {
             return getByTitleContainingAndGenreInAndIdIn(title, genres, ids);
         }
@@ -89,14 +90,35 @@ public class LibraryService {
         return gson.toJson(bookJsons);
     }
 
-    class BookJson {
+    /**
+     * Delete current user from database
+     *
+     * @return true if delete successful
+     */
+    public boolean deleteAccount() {
+        Reader reader = (Reader) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return deleteReader(reader);
+    }
+
+    /**
+     * Delete reader from database
+     *
+     * @param reader - reader to delete
+     * @return true if delete successful
+     */
+    boolean deleteReader(Reader reader) {
+        readerRepo.delete(reader);
+        return readerRepo.findOne(reader.getId()) == null;
+    }
+
+    private class BookJson {
         String title;
         List<String> authors = new LinkedList<>();
         int year;
         String genre;
         int book_id;
 
-        public BookJson(Book book) {
+        BookJson(Book book) {
             title = book.getTitle();
             year = book.getYear();
             book_id = book.getId();

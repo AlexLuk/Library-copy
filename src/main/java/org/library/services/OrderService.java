@@ -23,6 +23,9 @@ public class OrderService {
     @Autowired
     ReaderRepository readerRepository;
 
+    @Autowired
+    BookRepository bookRepository;
+
     public List<BookOrder> getByReaderByStatus(Reader reader, boolean isOnHands) {
         return bookOrderRepository.findByReaderIdAndOnHands(reader.getId(), isOnHands);
     }
@@ -31,29 +34,52 @@ public class OrderService {
         return bookOrderRepository.findByReaderId(reader.getId());
     }
 
-    public List<BookOrder> getByReaderAndBook(Reader reader, Book book) {
+    /**
+     * Search for list of orders for specific book and for specific reader
+     *
+     * @param reader - reader for search
+     * @param book   - book for search
+     * @return - list of book orders
+     */
+    List<BookOrder> getByReaderAndBook(Reader reader, Book book) {
         return bookOrderRepository.findByReaderIdAndBookId(reader.getId(), book.getId());
     }
 
-    public List<Delivery> getByReaderIdAndBookItemIdIn(Reader reader, List<BookItem> bookItems) {
+    /**
+     * Search for deliveries for specific reader and for list of specific book items
+     *
+     * @param reader - reader for search
+     * @param bookItems - items
+     * @return - list of deliveries
+     */
+    List<Delivery> getByReaderIdAndBookItemIdIn(Reader reader, List<BookItem> bookItems) {
         List<Integer> bookItemIds = new LinkedList<>();
         bookItems.forEach(bookItem -> bookItemIds.add(bookItem.getId()));
         return deliveryRepository.findByReaderIdAndBookItemIdIn(reader.getId(), bookItemIds);
     }
 
-    public List<BookItem> findByBookId(Book book) {
+    /**
+     * Search for list of book items for specific book
+     *
+     * @param book - book for search
+     * @return - list of book items
+     */
+    List<BookItem> getByBookId(Book book) {
         return bookItemRepository.findByBookId(book.getId());
     }
 
-    public boolean addOrder(Reader reader, Book book, boolean isOnHands) {
+    public boolean addOrder(Reader reader, int bookId, boolean isOnHands) {
+        Book book = bookRepository.findOne(bookId);
         List<BookOrder> readerExactBook = getByReaderAndBook(reader, book);
-        List<BookItem> bookItems = findByBookId(book);
+        List<BookItem> bookItems = getByBookId(book);
         List<Delivery> readerDeliveries = getByReaderIdAndBookItemIdIn(reader, bookItems);
         if (readerExactBook.size() == 0 && readerDeliveries.size() == 0) {
             BookOrder bookOrder = new BookOrder(reader, book, isOnHands);
             bookOrderRepository.save(bookOrder);
+            return true;
+        } else {
+            return false;
         }
-        return true;
     }
 
 }

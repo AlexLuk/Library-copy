@@ -249,9 +249,22 @@ function getId(attrName) {
 /********************************************* delivery **********************************************/
 
 $(".orderHands").click(function () {
-    console.log(getId($(this).attr("name")));
+    console.log(parseInt($(this).attr("name"), 10));
 });
 
 $(".orderLib").click(function () {
     console.log(parseInt($(this).attr("name"), 10));
+});
+/******************************************** profile editing *****************************************/
+$('#deleteProfile').click(function () {
+    $.ajax(
+        {
+            url: "/deleteAccount",
+            //data:
+            async: false,
+            success: function (resp) {
+                if(!resp) alert("Delete profile failed!");
+                else location.href = "login?logout"
+            }
+        });
 });
