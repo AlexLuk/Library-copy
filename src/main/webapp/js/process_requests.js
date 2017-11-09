@@ -233,3 +233,15 @@ function filterRequest() {
             }
         });
 }
+
+
+
+/********************************************* delivery **********************************************/
+
+$(".orderHands").click(function () {
+    console.log(parseInt($(this).attr("name"), 10));
+});
+
+$(".orderLib").click(function () {
+    console.log(parseInt($(this).attr("name"), 10));
+});
