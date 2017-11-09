@@ -10,7 +10,7 @@
         <thead>
         <tr>
             <th><spring:message code="title" /></th>
-            <th><spring:message code="author" /></th>
+            <th><spring:message code="authorLastName" /></th>
             <th><spring:message code="year" /></th>
             <th><spring:message code="genre" /></th>
             <th></th>
