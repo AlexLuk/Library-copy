@@ -36,6 +36,7 @@ public class LibraryServiceTest extends LibraryTest {
         assertThat(libraryService.getByTitleContainingAndYearAndGenreInAndIdIn("", 2178, testGenresEmpty, testBookIdsAll), empty());
         assertThat(libraryService.getByTitleContainingAndYearAndGenreInAndIdIn("", 2178, testGenres, testBookIdsEmpty), empty());
         assertThat(libraryService.getByTitleContainingAndYearAndGenreInAndIdIn("book", null, testGenres, testBookIdsAll), hasItems(testBooks.get(0), testBooks.get(1), testBooks.get(2)));
+        assertThat(libraryService.getByTitleContainingAndYearAndGenreInAndIdIn("ok Bo", null, testGenres, testBookIdsAll), containsInAnyOrder(testBooks.get(0),testBooks.get(1)));
         assertThat(libraryService.getByTitleContainingAndYearAndGenreInAndIdIn("bookbook", 2178, testGenres, testBookIdsAll), contains(testBooks.get(2)));
 
     }
@@ -47,6 +48,7 @@ public class LibraryServiceTest extends LibraryTest {
         assertThat(libraryService.getByTitleContainingAndGenreInAndIdIn("", testGenresEmpty, testBookIdsAll), empty());
         assertThat(libraryService.getByTitleContainingAndGenreInAndIdIn("", testGenres, testBookIdsEmpty), empty());
         assertThat(libraryService.getByTitleContainingAndGenreInAndIdIn("book", testGenres, testBookIdsAll), hasItems(testBooks.get(0), testBooks.get(1), testBooks.get(2)));
+        assertThat(libraryService.getByTitleContainingAndGenreInAndIdIn("ok bo", testGenres, testBookIdsAll), containsInAnyOrder(testBooks.get(0),testBooks.get(1)));
         assertThat(libraryService.getByTitleContainingAndGenreInAndIdIn("bookbook", testGenres, testBookIdsAll), contains(testBooks.get(2)));
     }
 

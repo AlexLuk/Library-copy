@@ -11,9 +11,9 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
 
     List<Book> findByTitleContaining(String title);
 
-    List<Book> findByTitleContainingAndYearAndGenreInAndIdIn(String title, Integer year,
-                                                             List<Genre> genres, List<Integer> ids);
+    List<Book> findByTitleContainingIgnoreCaseAndYearAndGenreInAndIdIn(String title, Integer year,
+                                                                       List<Genre> genres, List<Integer> ids);
 
-    List<Book> findByTitleContainingAndGenreInAndIdIn(String title, List<Genre> genres, List<Integer> ids);
+    List<Book> findByTitleContainingIgnoreCaseAndGenreInAndIdIn(String title, List<Genre> genres, List<Integer> ids);
 
 }

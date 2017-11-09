@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -44,11 +43,11 @@ public class LibraryService {
         if (year == null) {
             return getByTitleContainingAndGenreInAndIdIn(title, genres, ids);
         }
-        return bookRepo.findByTitleContainingAndYearAndGenreInAndIdIn(title, year, genres, ids);
+        return bookRepo.findByTitleContainingIgnoreCaseAndYearAndGenreInAndIdIn(title, year, genres, ids);
     }
 
     public List<Book> getByTitleContainingAndGenreInAndIdIn(String title, List<Genre> genres, List<Integer> ids) {
-        return bookRepo.findByTitleContainingAndGenreInAndIdIn(title, genres, ids);
+        return bookRepo.findByTitleContainingIgnoreCaseAndGenreInAndIdIn(title, genres, ids);
     }
 
 
