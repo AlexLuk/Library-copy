@@ -17,6 +17,9 @@ public class BookItem extends Base {
     @JoinColumn(name = "status")
     private ItemStatus status;
 
+    public BookItem() {
+    }
+
     public BookItem(int itemId, Book book, ItemStatus itemStatus) {
         this.id = itemId;
         this.book = book;

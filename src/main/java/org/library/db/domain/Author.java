@@ -1,9 +1,9 @@
 package org.library.db.domain;
 
+import com.google.common.collect.Lists;
 import org.library.misc.Utils;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -27,16 +27,12 @@ public class Author extends Base {
     @Column(name = "year_of_birth")
     private Integer yearOfBirth;
 
-    @ManyToMany(cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE
-    })
-    @JoinTable(name = "author_book",
-            joinColumns = @JoinColumn(name = "author"),
-            inverseJoinColumns = @JoinColumn(name = "book")
-    )
+    @ManyToMany(mappedBy = "authors")
     @OrderBy("title")
     private Set<Book> books = new HashSet<>();
+
+    public Author(){
+    }
 
     public Author(String firstName, String patronymic, String lastName, int yearOfBirth) {
         this.firstName = firstName;
@@ -75,5 +71,17 @@ public class Author extends Base {
     }
     public void setYearOfBirth(Integer yearOfBirth) {
         this.yearOfBirth = yearOfBirth;
+    }
+
+    public List<Book> getBooks() {
+        return Lists.newArrayList(books);
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = new HashSet<>(books);
+    }
+
+    public void addBook(Book book) {
+        books.add(book);
     }
 }

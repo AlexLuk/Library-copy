@@ -1,15 +1,14 @@
 package org.library.services;
 
 import org.library.db.domain.Author;
-import org.library.db.domain.AuthorBook;
 import org.library.db.domain.Book;
 import org.library.db.domain.Genre;
-import org.library.db.repo.AuthorBookRepository;
 import org.library.db.repo.AuthorRepository;
 import org.library.db.repo.GenreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -26,9 +25,6 @@ public class FilteringService {
 
     @Autowired
     LibraryService libraryService;
-
-    @Autowired
-    AuthorBookRepository authorBookRepository;
 
     /**
      * Get list of books based on complex filtering condition
@@ -73,12 +69,14 @@ public class FilteringService {
     public List<Book> filterBooksByAuthor(String authorName, List<Book> inputBookList) {
         if (authorName.length() == 0) return inputBookList;
         List<Author> authors = getAuthorsByName(authorName);
-        List<AuthorBook> authorBooks = new LinkedList<>();
-        authors.forEach(author -> authorBooks.addAll(authorBookRepository.findAllByAuthorId(author.getId())));
-        List<Book> resultBooks = new LinkedList<>();
-        authorBooks.forEach(authorBook -> {
-            if (inputBookList.contains(authorBook.getBook())) {
-                resultBooks.add(authorBook.getBook());
+
+        List<Book> authorBooks = new ArrayList<>();
+        authors.forEach(author -> authorBooks.addAll(author.getBooks()));
+
+        List<Book> resultBooks = new ArrayList<>();
+        authorBooks.forEach(book -> {
+            if (inputBookList.contains(book)) {
+                resultBooks.add(book);
             }
         });
         return resultBooks;

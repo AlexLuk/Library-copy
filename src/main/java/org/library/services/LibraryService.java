@@ -27,9 +27,6 @@ public class LibraryService {
     AuthorRepository authorRepo;
 
     @Autowired
-    AuthorBookRepository authorBookRepo;
-
-    @Autowired
     GenreRepository genreRepo;
 
     @Autowired
@@ -67,9 +64,20 @@ public class LibraryService {
         return resultAuthorIds;
     }
 
+    /**
+     * Gets all books ids by authorName
+     *
+     * @param authorName - author name
+     * @return - list of books ids
+     */
     public List<Integer> getBooksIdsByAuthorName(String authorName) {
-        LinkedList<Integer> resultBookIds = new LinkedList<>();
-        authorBookRepo.findAllByAuthorIdIn(getAuthorIdsByLastName(authorName)).forEach(authorBook -> resultBookIds.add(authorBook.getBook().getId()));
+        List<Integer> resultBookIds = new ArrayList<>();
+
+        List<Author> authors = authorRepo.findByLastNameContainingIgnoreCase(authorName); //TODO - search in full name
+        for(Author author : authors) {
+            List<Book> books = author.getBooks();
+            books.forEach(book -> resultBookIds.add(book.getId()));
+        }
         return resultBookIds;
     }
 
@@ -144,13 +152,8 @@ public class LibraryService {
      * @return - list of authors
      */
     public List<Author> getAllAuthors(int bookId) {
-        List<Author> authors = new ArrayList<>();
-        List<AuthorBook> authorBook = authorBookRepo.findAllByBookId(bookId);
-
-        authorBook.forEach(obj ->
-                authors.add(authorRepo.findOne(obj.getAuthor().getId()))
-        );
-        return authors;
+        Book book = bookRepo.getOne(bookId);
+        return book.getAuthors();
     }
 
     /**

@@ -1,7 +1,8 @@
 package org.library.db.domain;
 
+import com.google.common.collect.Lists;
+
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -37,9 +38,17 @@ public class Book extends Base {
     @Column(name = "is_rare")
     private Boolean isRare;
 
-    @ManyToMany(mappedBy = "books")
+
+    @ManyToMany
+    @JoinTable(name = "author_book",
+            joinColumns = @JoinColumn(name = "book"),
+            inverseJoinColumns = @JoinColumn(name = "author")
+    )
     @OrderBy("last_name")
     private Set<Author> authors = new HashSet<>();
+
+    public Book() {
+    }
 
     public Book(String shelfCode, Genre genre, String title,
                 String language, Integer year, Short amount, Boolean isRare) {
@@ -99,5 +108,17 @@ public class Book extends Base {
     }
     public void setIsRare(Boolean isRare) {
         this.isRare = isRare;
+    }
+
+    public List<Author> getAuthors() {
+        return Lists.newArrayList(authors);
+    }
+
+    public void setAuthors(List<Author> authors) {
+        this.authors = new HashSet<>(authors);
+    }
+
+    public void addAuthor(Author author) {
+        authors.add(author);
     }
 }

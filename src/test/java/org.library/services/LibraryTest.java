@@ -24,7 +24,6 @@ public class LibraryTest {
     protected List<Genre> testGenresEmpty;
     protected List<Integer> testBookIdsAll;
     protected List<Integer> testBookIdsEmpty;
-    protected List<AuthorBook> testAuthorBooks;
     protected List<Reader> testReaders;
     protected List<BookOrder> testBookOrders;
     protected List<BookItem> testBookItems;
@@ -37,8 +36,6 @@ public class LibraryTest {
     GenreRepository genreRepository;
     @Autowired
     BookRepository bookRepository;
-    @Autowired
-    AuthorBookRepository authorBookRepository;
     @Autowired
     ReaderRepository readerRepository;
     @Autowired
@@ -98,10 +95,9 @@ public class LibraryTest {
     }
 
     private void authorBooksSetup() {
-        testAuthorBooks = new LinkedList<>();
-        testAuthorBooks.add(new AuthorBook(testAuthors.get(0), testBooks.get(0)));
-        testAuthorBooks.add(new AuthorBook(testAuthors.get(0), testBooks.get(1)));
-        testAuthorBooks.add(new AuthorBook(testAuthors.get(2), testBooks.get(2)));
+        testAuthors.get(0).addBook(testBooks.get(0));
+        testAuthors.get(0).addBook(testBooks.get(1));
+        testAuthors.get(2).addBook(testBooks.get(2));
     }
 
     private void readesSetup() {
@@ -150,7 +146,6 @@ public class LibraryTest {
         genreRepository.save(testGenres);
         authorRepository.save(testAuthors);
         bookRepository.save(testBooks);
-        authorBookRepository.save(testAuthorBooks);
         readerRepository.save(testReaders);
         bookOrderRepository.save(testBookOrders);
         itemStatusRepository.save(testItemStatuses);

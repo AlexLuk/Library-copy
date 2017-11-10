@@ -27,6 +27,9 @@ public class Delivery extends Base {
         this.time = time;
     }
 
+    public Delivery() {
+    }
+
     public Delivery(Reader reader, BookItem bookItem) {
         this.reader = reader;
         this.bookItem = bookItem;

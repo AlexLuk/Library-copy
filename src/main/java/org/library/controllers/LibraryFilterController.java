@@ -1,7 +1,5 @@
 package org.library.controllers;
 
-import org.library.db.domain.Book;
-import org.library.services.FilteringService;
 import org.library.services.LibraryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,8 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.util.List;
 
 @Controller
 public class LibraryFilterController {
