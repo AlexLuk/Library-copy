@@ -32,13 +32,14 @@ public class DeliveryService {
         int bookId = bookOrder.getBook().getId();
         //TODO create method for get BookItem by id and status
         List<BookItem> bookItems = bookItemRepository.findByBookId(bookId);
-        for (BookItem item: bookItems) {
+        for (BookItem item : bookItems) {
             if (item.getStatus().getName().equals("free")) return item.getId();
         }
         return -1;
     }
 
-    public boolean addDeliveryByBookOrder(BookOrder bookOrder, boolean toHand) {
+    public boolean addDeliveryByBookOrder(Integer bookOrderId, boolean toHand) {
+        BookOrder bookOrder = bookOrderRepository.getOne(bookOrderId);
         int freeBookItem = freeBook(bookOrder);
         if (freeBookItem == -1) {
             return false;

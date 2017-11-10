@@ -20,6 +20,13 @@ public class LibraryOrderController {
     @Autowired
     OrderService orderService;
 
+    /**
+     * Add book to current user orders
+     *
+     * @param bookId - id off book to add
+     * @param toHand - true if book is ordered on hand
+     * @return - return false, if it was not possible to add book to order book
+     */
     @RequestMapping(value = {"/addOrder"}, method = RequestMethod.POST, produces = "application/json")
     public
     @ResponseBody

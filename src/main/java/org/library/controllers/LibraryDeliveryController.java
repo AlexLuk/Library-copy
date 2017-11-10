@@ -1,6 +1,5 @@
 package org.library.controllers;
 
-import org.library.db.domain.BookOrder;
 import org.library.services.DeliveryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,9 +16,15 @@ public class LibraryDeliveryController {
     @Autowired
     DeliveryService deliveryService;
 
-    @RequestMapping(value = {"/addDelivery"}, method = RequestMethod.POST)
-    public boolean addDelivery(BookOrder order, boolean toHand) {
-        deliveryService.addDeliveryByBookOrder(order, toHand);
-        return true;
+    /**
+     * Add book to current user deliveries
+     *
+     * @param orderId - id of order
+     * @param toHand  - type of delivery
+     * @return - false, if it was not possible to add delivery
+     */
+    @RequestMapping(value = {"/addDelivery"}, method = RequestMethod.POST, produces = "application/json")
+    public boolean addDelivery(Integer orderId, boolean toHand) {
+        return deliveryService.addDeliveryByBookOrder(orderId, toHand);
     }
 }
