@@ -9,7 +9,7 @@
             </div>
             <div class="delimeter"></div>
             <div class="col-xs-5">
-                <label for="book_author"><spring:message code="author" />:</label>
+                <label for="book_author"><spring:message code="authorLastName" />:</label>
                 <input type="text" class="form-control" name="book_author" id="book_author">
             </div>
             <div class="delimeter"></div>

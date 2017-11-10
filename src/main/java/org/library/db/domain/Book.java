@@ -38,6 +38,8 @@ public class Book extends Base {
     @Column(name = "is_rare")
     private Boolean isRare;
 
+    public Book() {
+    }
 
     @ManyToMany
     @JoinTable(name = "author_book",
@@ -46,9 +48,6 @@ public class Book extends Base {
     )
     @OrderBy("last_name")
     private Set<Author> authors = new HashSet<>();
-
-    public Book() {
-    }
 
     public Book(String shelfCode, Genre genre, String title,
                 String language, Integer year, Short amount, Boolean isRare) {

@@ -32,8 +32,7 @@ public class DeliveryService {
         int bookId = bookOrder.getBook().getId();
         //TODO create method for get BookItem by id and status
         List<BookItem> bookItems = bookItemRepository.findByBookId(bookId);
-        for (BookItem item:
-             bookItems) {
+        for (BookItem item: bookItems) {
             if (item.getStatus().getName().equals("free")) return item.getId();
         }
         return -1;
@@ -56,9 +55,4 @@ public class DeliveryService {
         deliveryRepository.save(delivery);
         return true;
     }
-
-
-
-
 }
-

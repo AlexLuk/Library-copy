@@ -30,7 +30,7 @@ public class Reader extends Base {
     private String patronymic;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="registration_date")
+    @Column(name = "registration_date")
     private Date registrationDate;
 
     @Basic
@@ -41,8 +41,7 @@ public class Reader extends Base {
     @Column(name = "is_admin")
     private Boolean isAdmin;
 
-    public Reader(){
-    }
+    public Reader() {}
 
     public Reader(String email, String password, String firstName, String lastName, String patronymic, Date registrationDate, Double fines, boolean isAdmin) {
         this.email = email;
@@ -77,6 +76,7 @@ public class Reader extends Base {
     public String getPassword() {
         return password;
     }
+
     public void setPassword(String password) {
         this.password = password;
     }
@@ -84,6 +84,7 @@ public class Reader extends Base {
     public String getFirstName() {
         return firstName;
     }
+
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
@@ -91,6 +92,7 @@ public class Reader extends Base {
     public String getLastName() {
         return lastName;
     }
+
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
@@ -98,6 +100,7 @@ public class Reader extends Base {
     public String getPatronymic() {
         return patronymic;
     }
+
     public void setPatronymic(String patronymic) {
         this.patronymic = patronymic;
     }
@@ -109,9 +112,11 @@ public class Reader extends Base {
     public Date getRegistrationDate() {
         return registrationDate;
     }
+
     public void setRegistrationDate(Date registrationDate) {
         this.registrationDate = registrationDate;
     }
+
     public LocalDate convertLocalDate() {
         return Utils.convertLocalDate(registrationDate);
     }
@@ -119,6 +124,7 @@ public class Reader extends Base {
     public Double getFines() {
         return fines;
     }
+
     public void setFines(Double fines) {
         this.fines = fines;
     }
@@ -126,6 +132,7 @@ public class Reader extends Base {
     public Boolean getIsAdmin() {
         return isAdmin;
     }
+
     public void setIsAdmin(Boolean isAdmin) {
         this.isAdmin = isAdmin;
     }

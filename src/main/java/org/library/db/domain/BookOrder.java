@@ -29,6 +29,7 @@ public class BookOrder extends Base {
     public Reader getReader() {
         return reader;
     }
+
     public void setReader(Reader reader) {
         this.reader = reader;
     }
@@ -36,6 +37,7 @@ public class BookOrder extends Base {
     public Book getBook() {
         return book;
     }
+
     public void setBook(Book book) {
         this.book = book;
     }
@@ -43,6 +45,7 @@ public class BookOrder extends Base {
     public Boolean getOnHands() {
         return onHands;
     }
+
     public void setOnHands(Boolean onHands) {
         this.onHands = onHands;
     }

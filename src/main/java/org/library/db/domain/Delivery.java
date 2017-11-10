@@ -23,11 +23,11 @@ public class Delivery extends Base {
     @Column(name = "time")
     private Date time;
 
-    public Delivery(Timestamp time) {
-        this.time = time;
+    public Delivery() {
     }
 
-    public Delivery() {
+    public Delivery(Timestamp time) {
+        this.time = time;
     }
 
     public Delivery(Reader reader, BookItem bookItem) {

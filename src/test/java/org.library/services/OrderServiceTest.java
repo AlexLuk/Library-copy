@@ -29,7 +29,6 @@ public class OrderServiceTest extends LibraryTest {
     public void getByReaderIdAndBookItemIdIn() throws Exception {
         saveTestData();
         List<BookItem> bookItems = testBookItems.subList(0,1);
-//        assertThat(orderService.getByReaderIdAndBookItemIdIn(testReaders.get(0),bookItems));
     }
 
     @Test

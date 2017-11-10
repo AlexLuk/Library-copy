@@ -275,10 +275,10 @@ function processOrder(id, onHands) {
             data: {bookId: id, toHand: onHands},
             success: function (resp) {
                 if (resp) {
-                    show_alert($('#succ_order_created').html(), statusField, true);
+                    alert($('#succ_order_created').html());
                 }
                 else if (!resp) {
-                    show_alert($('#error_order_create').html(), statusField, false);
+                    alert($('#error_order_create').html());
                 }
             }
         });
@@ -295,10 +295,12 @@ $('.deleteReader').click(function () {
             async: false,
             success: function (resp) {
                 if(!resp) {
-                    show_alert($('#error_delete_account').html(), statusField, false);
+                    // show_alert($('#error_delete_account').html(), statusField, false);
+                    alert($('#error_delete_account').html());
                 }
                 else {
-                    show_alert($('#succ_account_deleted').html(), statusField, true);
+                    // show_alert($('#succ_account_deleted').html(), statusField, true);
+                    alert($('#succ_account_deleted').html());
                 }
             }
         });
