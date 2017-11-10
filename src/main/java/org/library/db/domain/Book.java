@@ -1,16 +1,20 @@
 package org.library.db.domain;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "book")
 public class Book extends Base {
     @Basic
-    @Column(name = "shelf_id")
-    private String shelfId;
+    @Column(name = "shelfCode")
+    private String shelfCode;
 
     @ManyToOne
-    @JoinColumn(name = "genre_id" )
+    @JoinColumn(name = "genre" )
     private Genre genre;
 
     @Basic
@@ -33,11 +37,13 @@ public class Book extends Base {
     @Column(name = "is_rare")
     private Boolean isRare;
 
-    public Book() {}
+    @ManyToMany(mappedBy = "books")
+    @OrderBy("last_name")
+    private Set<Author> authors = new HashSet<>();
 
-    public Book(String shelfId, Genre genre, String title,
+    public Book(String shelfCode, Genre genre, String title,
                 String language, Integer year, Short amount, Boolean isRare) {
-        this.shelfId = shelfId;
+        this.shelfCode = shelfCode;
         this.genre = genre;
         this.title = title;
         this.language = language;
@@ -46,11 +52,11 @@ public class Book extends Base {
         this.isRare = isRare;
     }
 
-    public String getShelfId() {
-        return shelfId;
+    public String getShelfCode() {
+        return shelfCode;
     }
-    public void setShelfId(String shelfId) {
-        this.shelfId = shelfId;
+    public void setShelfCode(String shelfCode) {
+        this.shelfCode = shelfCode;
     }
 
     public Genre getGenre() {

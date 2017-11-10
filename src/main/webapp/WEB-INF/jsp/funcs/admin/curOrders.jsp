@@ -8,7 +8,7 @@
         <tr>
             <th><spring:message code="fullName" /></th>
             <th><spring:message code="title" /></th>
-            <th><spring:message code="shelfId" /></th>
+            <th><spring:message code="shelfCode" /></th>
             <th><spring:message code="wishStatus" /></th>
             <th></th>
         </tr>
@@ -18,7 +18,7 @@
             <tr>
                 <td><%= order.getReader().getFullName() %></td>
                 <td><%= order.getBook().getTitle() %></td>
-                <td><%= order.getBook().getShelfId() %></td>
+                <td><%= order.getBook().getShelfCode() %></td>
                 <td>
                     <% if(order.getOnHands()) { %>
                         <spring:message code="wishStatusForHome" />

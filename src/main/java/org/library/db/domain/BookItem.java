@@ -6,36 +6,29 @@ import javax.persistence.*;
 @Table(name = "book_item")
 public class BookItem extends Base {
     @Basic
-    @Column(name = "item_id")
-    private Integer itemId;
+    @Column(name = "itemCode")
+    private Integer itemCode;
 
     @ManyToOne
-    @JoinColumn(name = "book_id")
+    @JoinColumn(name = "book")
     private Book book;
 
     @ManyToOne
-    @JoinColumn(name = "status_id")
+    @JoinColumn(name = "status")
     private ItemStatus status;
 
-    public BookItem() {
-    }
-
     public BookItem(int itemId, Book book, ItemStatus itemStatus) {
-        this.itemId = itemId;
+        this.id = itemId;
         this.book = book;
         this.status = itemStatus;
     }
 
-    public BookItem(Integer itemId) {
-        this.itemId = itemId;
+    public Integer getItemCode() {
+        return itemCode;
     }
 
-    public Integer getItemId() {
-        return itemId;
-    }
-
-    public void setItemId(int itemId) {
-        this.itemId = itemId;
+    public void setItemCode(int itemCode) {
+        this.itemCode = itemCode;
     }
 
     public Book getBook() {

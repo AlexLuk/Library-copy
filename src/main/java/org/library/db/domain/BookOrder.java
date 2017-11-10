@@ -6,18 +6,16 @@ import javax.persistence.*;
 @Table(name = "book_order")
 public class BookOrder extends Base {
     @ManyToOne
-    @JoinColumn(name = "reader_id")
+    @JoinColumn(name = "reader")
     private Reader reader;
 
     @ManyToOne
-    @JoinColumn(name = "book_id")
+    @JoinColumn(name = "book")
     private Book book;
 
     @Basic
     @Column(name = "on_hands")
     private Boolean onHands;
-
-    public BookOrder() {}
 
     public BookOrder(Reader reader, Book book, boolean onHands) {
         this.reader = reader;

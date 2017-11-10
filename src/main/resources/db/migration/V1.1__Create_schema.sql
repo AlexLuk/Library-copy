@@ -34,8 +34,7 @@ CREATE TABLE IF NOT EXISTS `book`
   `amount` smallint NOT NULL,
   `is_rare` boolean NOT NULL COMMENT 'For old books',
 
-  PRIMARY KEY (`id`),
-  FOREIGN KEY( `genre_id` ) REFERENCES genre( `id` )
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 CREATE TABLE IF NOT EXISTS `item_status`
@@ -53,10 +52,7 @@ CREATE TABLE IF NOT EXISTS `book_item`
   `book_id` int NOT NULL,
   `status_id` int NOT NULL,
 
-  PRIMARY KEY (`id`),
-  UNIQUE (`book_id`, `item_id`),
-  FOREIGN KEY( `book_id` ) REFERENCES book( `id` ),
-  FOREIGN KEY( `status_id` ) REFERENCES item_status( `id` )
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 CREATE TABLE IF NOT EXISTS `reader`
@@ -81,9 +77,7 @@ CREATE TABLE IF NOT EXISTS `author_book`
   `author_id` int NOT NULL,
   `book_id` int NOT NULL,
 
-  PRIMARY KEY (`id`),
-  FOREIGN KEY( `author_id` ) REFERENCES author( `id` ),
-  FOREIGN KEY( `book_id` ) REFERENCES book( `id` )
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 
@@ -94,10 +88,7 @@ CREATE TABLE IF NOT EXISTS `delivery`
   `book_item_id` int NOT NULL,
   `time` timestamp NOT NULL,
 
-  PRIMARY KEY (`id`),
-  FOREIGN KEY( `reader_id` ) REFERENCES reader( `id` ),
-  FOREIGN KEY( `book_item_id` ) REFERENCES book_item( `id` )
-
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 CREATE TABLE IF NOT EXISTS `book_order`
@@ -107,7 +98,5 @@ CREATE TABLE IF NOT EXISTS `book_order`
   `book_id` int NOT NULL,
   `on_hands` boolean NOT NULL,
 
-  PRIMARY KEY (`id`),
-  FOREIGN KEY( `reader_id` ) REFERENCES reader( `id` ),
-  FOREIGN KEY( `book_id` ) REFERENCES book( `id` )
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;

@@ -44,9 +44,9 @@
                                 <input type="text" class="form-control" name="amount"
                                        id="amount" value=""><br/>
 
-                                <label for="shelf_id"><b><spring:message code="shelfId"/>:</b></label>
-                                <input type="text" class="form-control" name="shelf_id"
-                                       id="shelf_id" value=""><br/>
+                                <label for="shelf_code"><b><spring:message code="shelfCode"/>:</b></label>
+                                <input type="text" class="form-control" name="shelf_code"
+                                       id="shelf_code" value=""><br/>
                             </div>
                             <div class="delimeter"></div>
                             <div class="col-xs-5">

@@ -42,8 +42,6 @@ public class Reader extends Base {
     @Column(name = "is_admin")
     private Boolean isAdmin;
 
-    public Reader() {}
-
     public Reader(String email, String password, String firstName, String lastName, String patronymic, Date registrationDate, Double fines, boolean isAdmin) {
         this.email = email;
         this.password = password;

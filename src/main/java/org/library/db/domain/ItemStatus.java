@@ -9,8 +9,6 @@ public class ItemStatus extends Base {
     @Column(name = "name")
     private String name;
 
-    public ItemStatus() {}
-
     public ItemStatus(String name) {
         this.name = name;
     }

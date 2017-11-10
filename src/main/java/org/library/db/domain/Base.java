@@ -18,4 +18,11 @@ public class Base implements Serializable
     {
         this.id = id;
     }
+
+    public Base() {
+    }
+
+    public Base(Integer id) {
+        this.id = id;
+    }
 }

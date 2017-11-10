@@ -12,18 +12,16 @@ import java.util.Date;
 @Table(name = "delivery")
 public class Delivery extends Base {
     @ManyToOne
-    @JoinColumn(name = "reader_id")
+    @JoinColumn(name = "reader")
     private Reader reader;
 
     @ManyToOne
-    @JoinColumn(name = "book_item_id")
+    @JoinColumn(name = "book_item")
     private BookItem bookItem;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "time")
     private Date time;
-
-    public Delivery() {}
 
     public Delivery(Timestamp time) {
         this.time = time;
