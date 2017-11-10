@@ -34,7 +34,7 @@ public class DeliveryService {
         List<BookItem> bookItems = bookItemRepository.findByBookId(bookId);
         for (BookItem item:
              bookItems) {
-            if (item.getStatus().getName().equals("free")) return item.getItemId();
+            if (item.getStatus().getName().equals("free")) return item.getId();
         }
         return -1;
     }
