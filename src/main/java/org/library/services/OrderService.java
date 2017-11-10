@@ -102,7 +102,7 @@ public class OrderService {
         public BookOrderJson(BookOrder bookOrder) {
             userFullName = bookOrder.getReader().getFullName();
             title = bookOrder.getBook().getTitle();
-            shelfId = bookOrder.getBook().getShelfId();
+            shelfId = bookOrder.getBook().getShelfCode();
             readerId = bookOrder.getReader().getId();
             bookId = bookOrder.getBook().getId();
             isOnHands = bookOrder.getOnHands();
