@@ -22,7 +22,6 @@ public class LibraryTest {
     protected List<Author> testAuthors;
     protected List<Genre> testGenres;
     protected List<Genre> testGenresEmpty;
-    protected List<Integer> testBookIdsAll;
     protected List<Integer> testBookIdsEmpty;
     protected List<Reader> testReaders;
     protected List<BookOrder> testBookOrders;
@@ -87,13 +86,6 @@ public class LibraryTest {
         testBookIdsEmpty = new LinkedList<>();
     }
 
-    private void bookIdsSetup() {
-        testBookIdsAll = new LinkedList<>();
-        testBookIdsAll.add(bookRepository.findByTitleContaining(testBooks.get(0).getTitle()).get(0).getId());
-        testBookIdsAll.add(bookRepository.findByTitleContaining(testBooks.get(1).getTitle()).get(0).getId());
-        testBookIdsAll.add(bookRepository.findByTitleContaining(testBooks.get(2).getTitle()).get(0).getId());
-    }
-
     private void authorBooksSetup() {
         testAuthors.get(0).addBook(testBooks.get(0));
         testAuthors.get(0).addBook(testBooks.get(1));
@@ -151,6 +143,5 @@ public class LibraryTest {
         itemStatusRepository.save(testItemStatuses);
         bookItemRepository.save(testBookItems);
         deliveryRepository.save(testDeliveries);
-        bookIdsSetup();
     }
 }

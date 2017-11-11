@@ -19,14 +19,9 @@ public class LibraryFilterController {
     @RequestMapping(value = {"/filters"}, method = RequestMethod.POST, produces = "application/json")
     public
     @ResponseBody
-    String filterBooks(String title, String author, String year, String genre) {
-        //todo year = null if year = "" on client
-        try {
-            Integer intYear = Integer.parseInt(year);
-            return libraryService.jsonBooks(libraryService.getBooksByComplexCondition(title, author, intYear, genre));
-        } catch (NumberFormatException e) {
-            logger.warn(e.getMessage());
-        }
-        return libraryService.jsonBooks(libraryService.getBooksByComplexCondition(title, author, null, genre));
+    String filterBooks(String title, String author, Integer year, Integer genre) {
+        //todo adjust ajax for int year and int genre
+        //todo convert year to int on client
+        return libraryService.jsonBooks(libraryService.getBooksByComplexCondition(title, author, year, genre));
     }
 }
