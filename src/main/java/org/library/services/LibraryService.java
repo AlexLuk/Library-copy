@@ -81,10 +81,8 @@ public class LibraryService {
         return resultBookIds;
     }
 
-    public List<Book> getBooksByComplexCondition(String title, String author, Integer year, String genre) {
-        List<Genre> genres = getGenresByName(genre);
-        List<Integer> bookIds = getBooksIdsByAuthorName(author);
-        return getByTitleContainingAndYearAndGenreInAndIdIn(title, year, genres, bookIds);
+    public List<Book> getBooksByComplexCondition(String title, String author, Integer year, Integer genre) {
+        return bookRepo.finaByComplexQuery(title,year,genre,author);
     }
 
     /**
