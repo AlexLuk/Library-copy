@@ -99,7 +99,6 @@ $(document).ready(function () {
                 required: $('#error_password').html(),
                 pwdcheck: $('#error_pwd_check').html(),
                 minlength: $('#error_pwd_minlen').html()
-
             },
             email: {
                 required: $('#error_email_req').html(),
@@ -163,7 +162,7 @@ $(document).ready(function () {
             return result;
         }
         else
-            return false;
+            return result;
     }
 
 
@@ -219,10 +218,16 @@ function filterRequest() {
                     var onHands = $('#orderOnHandsForm').clone();
                     var inLib = $('#orderInLibForm').clone();
 
+                    var authorList = '';
+                    for (var i = 0; i < data.authors.length; i++) {
+                        authorList += data.authors[i];
+                        if (i > 0) authorList += '</br>';
+                    }
+
                     var htmlContent = '';
                     htmlContent +=
                         '<tr><td>' + data.title + '</td>' +
-                        '<td>' + data.authors[0] + '</td>' +
+                        '<td>' + authorList + '</td>' +
                         '<td>' + data.year + '</td>' +
                         '<td>' + data.genre + '</td>';
 
@@ -249,7 +254,6 @@ function addId(obj, attrName, id) {
 
 function getId(attrName) {
     var parts = attrName.split("_");
-
     if (parts.length > 1) {
         return parts[1];
     }
@@ -291,10 +295,10 @@ $('.deleteReader').click(function () {
     $.ajax(
         {
             url: "/deleteReader",
-            data: {readerId:id},
+            data: {readerId: id},
             async: false,
             success: function (resp) {
-                if(!resp) {
+                if (!resp) {
                     // show_alert($('#error_delete_account').html(), statusField, false);
                     alert($('#error_delete_account').html());
                 }

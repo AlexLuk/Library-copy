@@ -63,7 +63,7 @@ public class Author extends Base {
     }
 
     public String getFullName() {
-        return Utils.getFullName(getFirstName(), getLastName(), getPatronymic());
+        return Utils.getFullName(getLastName(), getFirstName(), getPatronymic());
     }
 
     public Integer getYearOfBirth() {

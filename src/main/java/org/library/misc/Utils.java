@@ -11,13 +11,13 @@ public class Utils {
      *
      * @return - full name
      */
-    public static String getFullName(String firstName, String lastName, String patronimic) {
+    public static String getFullName(String lastName, String firstName, String patronymic) {
         StringBuilder name = new StringBuilder();
-        name.append(firstName).append(" ");
-        if (patronimic != null && !patronimic.equals("")) {
-            name.append(patronimic).append(" ");
-        }
         name.append(lastName).append(" ");
+        name.append(firstName).append(" ");
+        if (patronymic != null && !patronymic.equals("")) {
+            name.append(patronymic).append(" ");
+        }
         return name.toString();
     }
 
