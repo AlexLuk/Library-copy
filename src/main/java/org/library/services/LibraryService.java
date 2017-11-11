@@ -41,48 +41,18 @@ public class LibraryService {
     @Autowired
     ItemStatusRepository itemStatusRepository;
 
-    public List<Book> getByTitleContainingAndYearAndGenreInAndIdIn(String title, Integer year,
-                                                                   List<Genre> genres, List<Integer> ids) {
-        if (year == null) {
-            return getByTitleContainingAndGenreInAndIdIn(title, genres, ids);
-        }
-        return bookRepo.findByTitleContainingIgnoreCaseAndYearAndGenreInAndIdIn(title, year, genres, ids);
-    }
-
-    public List<Book> getByTitleContainingAndGenreInAndIdIn(String title, List<Genre> genres, List<Integer> ids) {
-        return bookRepo.findByTitleContainingIgnoreCaseAndGenreInAndIdIn(title, genres, ids);
-    }
-
-
-    public List<Genre> getGenresByName(String genreName) {
-        return genreRepo.findByNameContaining(genreName);
-    }
-
-    public List<Integer> getAuthorIdsByLastName(String authorName) {
-        LinkedList<Integer> resultAuthorIds = new LinkedList<>();
-        authorRepo.findByLastNameContainingIgnoreCase(authorName).forEach(author -> resultAuthorIds.add(author.getId()));
-        return resultAuthorIds;
-    }
 
     /**
-     * Gets all books ids by authorName
+     * Search for books by list of params
      *
-     * @param authorName - author name
-     * @return - list of books ids
+     * @param title  - part of book title
+     * @param author - part of author last name
+     * @param year   - year of book publishing
+     * @param genre  - genre id of the book
+     * @return
      */
-    public List<Integer> getBooksIdsByAuthorName(String authorName) {
-        List<Integer> resultBookIds = new ArrayList<>();
-
-        List<Author> authors = authorRepo.findByLastNameContainingIgnoreCase(authorName); //TODO - search in full name
-        for(Author author : authors) {
-            List<Book> books = author.getBooks();
-            books.forEach(book -> resultBookIds.add(book.getId()));
-        }
-        return resultBookIds;
-    }
-
     public List<Book> getBooksByComplexCondition(String title, String author, Integer year, Integer genre) {
-        return bookRepo.finaByComplexQuery(title,year,genre,author);
+        return bookRepo.finaByComplexQuery(title, year, genre, author);
     }
 
     /**
@@ -94,6 +64,12 @@ public class LibraryService {
         return bookRepo.findAll();
     }
 
+    /**
+     * Wrap list of books in form of json
+     *
+     * @param books - books to be wrapped
+     * @return - json string
+     */
     public String jsonBooks(List<Book> books) {
         List<BookJson> bookJsons = new LinkedList<>();
         books.forEach(book -> bookJsons.add(new BookJson(book)));
@@ -127,6 +103,9 @@ public class LibraryService {
         return false;
     }
 
+    /**
+     * Wrapper class for book user interface
+     */
     private class BookJson {
         String title;
         List<String> authors = new LinkedList<>();
