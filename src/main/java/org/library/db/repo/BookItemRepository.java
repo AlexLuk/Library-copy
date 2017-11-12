@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface BookItemRepository extends JpaRepository<BookItem, Integer> {
     List<BookItem> findByBookId(Integer bookId);
+    List<BookItem> findByBookIdAndStatusId(Integer bookId, Integer statusId);
 }

@@ -29,13 +29,10 @@ public class DeliveryService {
     ItemStatusRepository itemStatusRepository;
 
     private int freeBook(BookOrder bookOrder) {
-        int bookId = bookOrder.getBook().getId();
-        //TODO create method for get BookItem by id and status
-        List<BookItem> bookItems = bookItemRepository.findByBookId(bookId);
-        for (BookItem item : bookItems) {
-            if (item.getStatus().getName().equals("free")) {
-                return item.getId();
-            }
+
+        BookItem freeItem = bookItemRepository.findByBookIdAndStatusId(bookOrder.getBook().getId(), 1).get(0);
+        if (freeItem != null) {
+            return freeItem.getId();
         }
         return -1;
     }
