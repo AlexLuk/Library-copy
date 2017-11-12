@@ -13,9 +13,9 @@
 %>
 
 <div class="tab-content" id="nav-tabContent">
-    <%@ include file="curOrders.jsp" %>
-    <%@ include file="deliveredBooks.jsp" %>
-    <%@ include file="showReaders.jsp" %>
-    <%@ include file="showBooks.jsp" %>
-    <%@ include file="showAuthors.jsp" %>
+    <%@ include file="orders.jsp" %>
+    <%@ include file="delivered.jsp" %>
+    <%@ include file="readers.jsp" %>
+    <%@ include file="books.jsp" %>
+    <%@ include file="authors.jsp" %>
 </div>

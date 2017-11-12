@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
 <!DOCTYPE html>
-<%@ include file="templates/taglibs.jsp" %>
 
 <html lang="en">
 <head>
@@ -14,19 +15,11 @@
     <%@ include file="templates/nav.jsp" %>
     <div class="container">
         <div class="jumbotron">
-            <nav class="nav nav-tabs" id="readerTab" role="tablist">
-                <sec:authorize access="hasRole('ROLE_READER')">
-                    <%@ include file="funcs/reader/tabs.jsp" %>
-                </sec:authorize>
-                <sec:authorize access="hasRole('ROLE_ADMIN')">
-                    <%@ include file="funcs/admin/tabs.jsp" %>
-                </sec:authorize>
-            </nav>
             <sec:authorize access="hasRole('ROLE_READER')">
-                <%@ include file="funcs/reader/reader.jsp" %>
+                <%@ include file="reader/reader.jsp" %>
             </sec:authorize>
             <sec:authorize access="hasRole('ROLE_ADMIN')">
-                <%@ include file="funcs/admin/admin.jsp" %>
+                <%@ include file="admin/admin.jsp" %>
             </sec:authorize>
             </div>
     </div>
