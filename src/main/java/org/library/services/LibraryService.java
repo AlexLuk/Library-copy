@@ -52,7 +52,7 @@ public class LibraryService {
      * @return
      */
     public List<Book> getBooksByComplexCondition(String title, String author, Integer year, Integer genre) {
-        return bookRepo.finaByComplexQuery(title, year, genre, author);
+        return bookRepo.findByComplexQuery(title, year, genre, author);
     }
 
     /**

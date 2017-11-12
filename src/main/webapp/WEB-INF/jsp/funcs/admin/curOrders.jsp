@@ -8,8 +8,8 @@
         <tr>
             <th><spring:message code="fullName" /></th>
             <th><spring:message code="title" /></th>
-            <th><spring:message code="shelfCode" /></th>
             <th><spring:message code="wishStatus" /></th>
+            <th><spring:message code="shelfCode" /></th>
             <th></th>
         </tr>
         </thead>

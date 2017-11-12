@@ -43,8 +43,8 @@ public class Book extends Base {
 
     @ManyToMany
     @JoinTable(name = "author_book",
-            joinColumns = @JoinColumn(name = "book"),
-            inverseJoinColumns = @JoinColumn(name = "author")
+        joinColumns = @JoinColumn(name = "book"),
+        inverseJoinColumns = @JoinColumn(name = "author")
     )
     @OrderBy("last_name")
     private Set<Author> authors = new HashSet<>();

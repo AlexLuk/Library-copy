@@ -13,6 +13,7 @@
         <tr>
             <th><spring:message code="title" /></th>
             <th><spring:message code="author" /></th>
+            <th><spring:message code="language" /></th>
             <th><spring:message code="year" /></th>
             <th><spring:message code="genre" /></th>
             <th></th>
@@ -29,6 +30,7 @@
                         <%= author.getFullName() %><br/>
                         <%}%>
                     </td>
+                    <td><%= book.getLanguage().toLowerCase() %></td>
                     <td><%= book.getYear() %></td>
                     <td>
                         <spring:message code="<%= libraryService.getGenre(book.getGenre().getId()) %>" />

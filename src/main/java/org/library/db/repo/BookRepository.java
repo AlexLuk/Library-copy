@@ -19,6 +19,6 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
             " and (book.genre.id =:genreId or :genreId is null)" +
             " and bookAuthor in(select author from Author author where lower(author.lastName) like lower(concat('%',:lastName,'%')))" +
             "order by bookAuthor.lastName, book.title")
-    List<Book> finaByComplexQuery(@Param("title") String title, @Param("year") Integer year,
+    List<Book> findByComplexQuery(@Param("title") String title, @Param("year") Integer year,
                                   @Param("genreId") Integer genreId, @Param("lastName") String lastName);
 }

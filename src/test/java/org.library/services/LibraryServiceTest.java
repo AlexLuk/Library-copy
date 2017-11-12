@@ -21,14 +21,14 @@ public class LibraryServiceTest extends LibraryTest {
     @Test
     public void simpleTest() throws Exception {
         saveTestData();
-        assertThat(bookRepository.finaByComplexQuery("zzzzzzzzz", null, null, ""), empty());
-        assertThat(bookRepository.finaByComplexQuery("", 9999, null, ""), empty());
-        assertThat(bookRepository.finaByComplexQuery("", null, null, "zzzzzzz"), empty());
-        assertThat(bookRepository.finaByComplexQuery("", null, null, ""), hasItems(bookRepository.findOne(1)));
-        assertThat(bookRepository.finaByComplexQuery("", null, null, "оН"), hasItems(bookRepository.findOne(1)));
-        assertThat(bookRepository.finaByComplexQuery("оро", null, null, ""), hasItems(bookRepository.findOne(1)));
-        assertThat(bookRepository.finaByComplexQuery("", 1782, null, ""), hasItems(bookRepository.findOne(1)));
-        assertThat(bookRepository.finaByComplexQuery("", null, 1, ""), hasItems(bookRepository.findOne(1)));
+        assertThat(bookRepository.findByComplexQuery("zzzzzzzzz", null, null, ""), empty());
+        assertThat(bookRepository.findByComplexQuery("", 9999, null, ""), empty());
+        assertThat(bookRepository.findByComplexQuery("", null, null, "zzzzzzz"), empty());
+        assertThat(bookRepository.findByComplexQuery("", null, null, ""), hasItems(bookRepository.findOne(1)));
+        assertThat(bookRepository.findByComplexQuery("", null, null, "оН"), hasItems(bookRepository.findOne(1)));
+        assertThat(bookRepository.findByComplexQuery("оро", null, null, ""), hasItems(bookRepository.findOne(1)));
+        assertThat(bookRepository.findByComplexQuery("", 1782, null, ""), hasItems(bookRepository.findOne(1)));
+        assertThat(bookRepository.findByComplexQuery("", null, 1, ""), hasItems(bookRepository.findOne(1)));
     }
 
     @Test

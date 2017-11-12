@@ -30,9 +30,11 @@ public class DeliveryService {
 
     private int freeBook(BookOrder bookOrder) {
 
-        BookItem freeItem = bookItemRepository.findByBookIdAndStatusId(bookOrder.getBook().getId(), 1).get(0);
-        if (freeItem != null) {
-            return freeItem.getId();
+        List<BookItem> freeItems = bookItemRepository.findByBookIdAndStatusId(bookOrder.getBook().getId(), 1);
+        if (freeItems.size() > 0) {
+            if (freeItems.get(0) != null) {
+                return freeItems.get(0).getId();
+            }
         }
         return -1;
     }
