@@ -28,7 +28,7 @@ public class LibraryController {
      * @param logout - logout attribute in the url
      * @return - jsp view name
      */
-    @RequestMapping(value = {"/login", "/", "/home"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/login", "/"}, method = RequestMethod.GET)
     public String welcome(Model model, String error, String logout) {
         if (error != null)
             model.addAttribute("error", "Your username or password is invalid.");

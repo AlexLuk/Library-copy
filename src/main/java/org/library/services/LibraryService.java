@@ -88,19 +88,24 @@ public class LibraryService {
     }
 
     /**
-     * Delete reader from database by readerId
+     * Delete reader from database by readerId if reader is not admin
      *
      * @param readerId - id of reader to delete
      * @return true if delete successful
      */
     public boolean deleteReaderById(int readerId) {
-        try {
-            readerRepo.delete(readerId);
-            return readerRepo.findOne(readerId) == null;
-        } catch (Exception e) {
-            logger.error(e.getMessage());
+        if (readerRepo.getOne(readerId).getIsAdmin()) {
+            return false;
+        } else {
+            try {
+                readerRepo.delete(readerId);
+                return readerRepo.findOne(readerId) == null;
+
+            } catch (Exception e) {
+                logger.error(e.getMessage());
+            }
+            return false;
         }
-        return false;
     }
 
     /**
@@ -139,6 +144,7 @@ public class LibraryService {
      * @param genreId - genre id
      * @return - genre name
      */
+
     public String getGenre(int genreId) {
         return genreRepo.findOne(genreId).getName();
     }
