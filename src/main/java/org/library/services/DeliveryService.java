@@ -28,12 +28,12 @@ public class DeliveryService {
     @Autowired
     ItemStatusRepository itemStatusRepository;
 
-    private int freeBook(BookOrder bookOrder) {
-
-        List<BookItem> freeItems = bookItemRepository.findByBookIdAndStatusId(bookOrder.getBook().getId(), 1);
-        if (freeItems.size() > 0) {
-            if (freeItems.get(0) != null) {
-                return freeItems.get(0).getId();
+      private int freeBook(BookOrder bookOrder) {
+        int bookId = bookOrder.getBook().getId();
+        List<BookItem> bookItems = bookItemRepository.findByBookId(bookId);
+        for (BookItem item : bookItems) {
+            if (item.getStatus().getName().equals("free")) {
+                return item.getId();
             }
         }
         return -1;
