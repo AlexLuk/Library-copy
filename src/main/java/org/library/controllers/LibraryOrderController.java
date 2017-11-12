@@ -25,15 +25,13 @@ public class LibraryOrderController {
      *
      * @param bookId - id off book to add
      * @param toHand - true if book is ordered on hand
-     * @return - return false, if it was not possible to add book to order book
+     * @return - return 0, if it was not possible to add book to order book
      */
     @RequestMapping(value = {"/addOrder"}, method = RequestMethod.POST, produces = "application/json")
     public
     @ResponseBody
-    boolean addOrder(int bookId, boolean toHand) {
+    int addOrder(int bookId, boolean toHand) {
         Reader reader = (Reader) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return orderService.addOrder(reader, bookId, toHand);
     }
-
-
 }

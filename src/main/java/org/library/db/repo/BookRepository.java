@@ -1,8 +1,6 @@
 package org.library.db.repo;
 
-import com.google.gson.Gson;
 import org.library.db.domain.Book;
-import org.library.db.domain.Genre;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
