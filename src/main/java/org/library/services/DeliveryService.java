@@ -28,12 +28,14 @@ public class DeliveryService {
     @Autowired
     ItemStatusRepository itemStatusRepository;
 
-    public int freeBook(BookOrder bookOrder) {
+    private int freeBook(BookOrder bookOrder) {
         int bookId = bookOrder.getBook().getId();
         //TODO create method for get BookItem by id and status
         List<BookItem> bookItems = bookItemRepository.findByBookId(bookId);
         for (BookItem item : bookItems) {
-            if (item.getStatus().getName().equals("free")) return item.getId();
+            if (item.getStatus().getName().equals("free")) {
+                return item.getId();
+            }
         }
         return -1;
     }
@@ -44,14 +46,17 @@ public class DeliveryService {
         if (freeBookItem == -1) {
             return false;
         }
-        //TODO change book item status
-        //TODO delete order from bookOrder
 
-        addDelivery(bookOrder.getReader(), bookItemRepository.getOne(freeBook(bookOrder)));
+        boolean wasAdd = addDelivery(bookOrder.getReader(), bookItemRepository.getOne(freeBook(bookOrder)));
+        if (wasAdd) {
+            bookOrderRepository.delete(bookOrder);
+            bookItemRepository.getOne(freeBookItem)
+                    .setStatus(toHand ? itemStatusRepository.getOne(2) : itemStatusRepository.getOne(3));
+        }
         return true;
     }
 
-    public boolean addDelivery(Reader reader, BookItem bookItem) {
+    private boolean addDelivery(Reader reader, BookItem bookItem) {
         Delivery delivery = new Delivery(reader, bookItem);
         deliveryRepository.save(delivery);
         return true;
