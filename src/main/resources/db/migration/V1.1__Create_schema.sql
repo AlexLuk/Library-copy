@@ -175,7 +175,7 @@ CREATE TABLE `reader` (
   `first_name` varchar(255) COLLATE utf8_bin NOT NULL,
   `last_name` varchar(255) COLLATE utf8_bin NOT NULL,
   `patronymic` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '',
-  `registration_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `registration_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `fines` double NOT NULL DEFAULT '0',
   `is_admin` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)

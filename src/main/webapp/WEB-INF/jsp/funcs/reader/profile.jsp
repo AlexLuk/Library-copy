@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 
 <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+    <div id="status_message" class="bg-danger"></div>
     <form name="profileForm" id="profileForm" class="doNotProcess">
         <div class="form-group">
             <div class="row">
@@ -21,7 +22,7 @@
                            id="lastName" value="<%= curUser.getLastName()%>"><br/>
 
                     <label for="changePassword"><b><spring:message code="changePassword"/>:</b></label>
-                    <input type="text" class="form-control" name="changePassword"
+                    <input type="password" class="form-control" name="changePassword"
                            id="changePassword" value=""><br/>
                 </div>
                 <div class="delimeter"></div>

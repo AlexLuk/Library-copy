@@ -188,124 +188,217 @@ $(document).ready(function () {
         else
             return false;
     }
-});
 
-function isEmail(email) {
-    var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-    return regex.test(email);
-}
 
-/************************* book filters *****************************************/
-$('#filer_button').click(function () {
-    filterRequest();
-});
-
-function filterRequest() {
-    var titleFilter = $.trim($('#book_title').val());
-    var authorFilter = $.trim($('#book_author').val());
-    var yearFilter = $.trim($('#book_year').val());
-    var genreFilter = $("#book_genre option").filter(":selected").attr('id');
-    $.ajax(
-        {
-            url: "/filters",
-            data: {title: titleFilter, author: authorFilter, year: yearFilter, genre: genreFilter},
-            dataType: "json",
-            success: function (resp) {
-                var contentBody = $('.content_res_book');
-                contentBody.empty();
-
-                $.each(resp, function (key, data) {
-                    var onHands = $('#orderOnHandsForm').clone();
-                    var inLib = $('#orderInLibForm').clone();
-
-                    var authorList = '';
-                    for (var i = 0; i < data.authors.length; i++) {
-                        authorList += data.authors[i];
-                        if (i > 0) authorList += '</br>';
-                    }
-
-                    var htmlContent = '';
-                    htmlContent +=
-                        '<tr><td>' + data.title + '</td>' +
-                        '<td>' + authorList + '</td>' +
-                        '<td>' + data.year + '</td>' +
-                        '<td>' + data.genre + '</td>';
-
-                    var button = onHands.find('button');
-                    addId(button, 'name', data.book_id);
-                    addId(button, 'id', data.book_id);
-
-                    button = inLib.find('button');
-                    addId(button, 'name', data.book_id);
-                    addId(button, 'id', data.book_id);
-
-                    htmlContent += '<td>' + onHands.html() + '</td>';
-                    htmlContent += '<td>' + inLib.html() + '</td></tr>';
-
-                    contentBody.append($(htmlContent));
-                });
-            }
-        });
-}
-
-function addId(obj, attrName, id) {
-    obj.attr(attrName, (obj.attr(attrName) + '_' + id));
-}
-
-function getId(attrName) {
-    var parts = attrName.split("_");
-    if (parts.length > 1) {
-        return parts[1];
+    function isEmail(email) {
+        var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        return regex.test(email);
     }
-    return "";
-}
 
-/********************************************* delivery **********************************************/
 
-$(".orderHands").click(function () {
-    var id = getId($(this).attr("name"));
-    processOrder(id, true);
-});
+    /********************************************* profile changing form **************************************************/
 
-$(".orderLib").click(function () {
-    var id = getId($(this).attr("name"));
-    processOrder(id, false);
-});
+    $('#profileForm').validate({
+        rules: {
+            firstName: "required",
+            lastName: "required",
+            changePassword: {
+                required: false,
+                pwdchange: true,
+                minlength: 8
+            }
+        },
+        messages: {
+            firstName: $('#error_firstname').html(),
+            lastName: $('#error_lastname').html(),
+            changePassword: {
+                pwdchange: $('#error_pwd_check').html(),
+                minlength:  $('#error_pwd_minlen').html()
+            }
+        }
+    });
 
-function processOrder(id, onHands) {
-    $.ajax(
-        {
-            url: "/addOrder",
-            data: {bookId: id, toHand: onHands},
-            success: function (resp) {
-                if (resp) {
-                    alert($('#succ_order_created').html());
-                }
-                else if (!resp) {
-                    alert($('#error_order_create').html());
+    $.validator.addMethod("pwdchange",
+        function (value, element) {
+            return value === '' || /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!?.,/@#$%^&+=])(?=\S+$).{8,}$/.test(value);
+        });
+
+    $('#saveProfile').click(function () {
+        console.log("click");
+        hideMsgs();
+        if ($('#profileForm').valid()) {
+            if ($.trim($('#changePassword').val()) === '' || checkChangePassword()) {
+                if (changeProfile()) {
+                    $('#profileForm').hide();
                 }
             }
-        });
-}
+        }
+    });
 
-/******************************************** profile editing *****************************************/
-$('.deleteReader').click(function () {
-    var id = getId($(this).attr("name"));
-    console.log(id);
-    $.ajax(
-        {
-            url: "/deleteReader",
-            data: {readerId: id},
-            async: false,
-            success: function (resp) {
-                if (!resp) {
-                    // show_alert($('#error_delete_account').html(), statusField, false);
-                    alert($('#error_delete_account').html());
+
+    function changeProfile() {
+        var result = false;
+        var form_data = $('#profileForm').serialize();
+        var patronymic = $.trim($('#patronymic').val());
+        if (form_data !== '') {
+            $.ajax(
+                {
+
+                    url: "/change_profile",
+                    data: {
+                        email: $.trim($('#changeEmail').val()),
+                        password: $.trim($('#changePassword').val()),
+                        lastName: $.trim($('#lastName').val()),
+                        firstName: $.trim($('#firstName').val()),
+                        patronymic: patronymic
+                    },
+                    async: false,
+                    success: function (resp) {
+                        if (resp) {
+                            alert("Information was successfully changed");
+                        }
+                        result = resp;
+                    }
+                });
+            return result;
+        }
+        else
+            return result;
+    }
+
+
+    function checkChangePassword() {
+        var userEmail = $.trim($('#changeEmail').val());
+        var userPas = $.trim($('#changePassword').val());
+        var result = false;
+        $.ajax(
+            {
+                url: "/checks/password",
+                data: {password: userPas, email: userEmail},
+                async: false,
+                success: function (resp) {
+                    if (!resp) {
+                        show_alert($('#error_contains_parts').html(), statusField, false);
+                    }
+                    result = resp;
                 }
-                else {
-                    // show_alert($('#succ_account_deleted').html(), statusField, true);
-                    alert($('#succ_account_deleted').html());
+            });
+        return result;
+    }
+
+
+    /************************* book filters *****************************************/
+    $('#filer_button').click(function () {
+        filterRequest();
+    });
+
+    function filterRequest() {
+        var titleFilter = $.trim($('#book_title').val());
+        var authorFilter = $.trim($('#book_author').val());
+        var yearFilter = $.trim($('#book_year').val());
+        var genreFilter = $("#book_genre option").filter(":selected").attr('id');
+        $.ajax(
+            {
+                url: "/filters",
+                data: {title: titleFilter, author: authorFilter, year: yearFilter, genre: genreFilter},
+                dataType: "json",
+                success: function (resp) {
+                    var contentBody = $('.content_res_book');
+                    contentBody.empty();
+
+                    $.each(resp, function (key, data) {
+                        var onHands = $('#orderOnHandsForm').clone();
+                        var inLib = $('#orderInLibForm').clone();
+
+                        var authorList = '';
+                        for (var i = 0; i < data.authors.length; i++) {
+                            authorList += data.authors[i];
+                            if (i > 0) authorList += '</br>';
+                        }
+
+                        var htmlContent = '';
+                        htmlContent +=
+                            '<tr><td>' + data.title + '</td>' +
+                            '<td>' + authorList + '</td>' +
+                            '<td>' + data.year + '</td>' +
+                            '<td>' + data.genre + '</td>';
+
+                        var button = onHands.find('button');
+                        addId(button, 'name', data.book_id);
+                        addId(button, 'id', data.book_id);
+
+                        button = inLib.find('button');
+                        addId(button, 'name', data.book_id);
+                        addId(button, 'id', data.book_id);
+
+                        htmlContent += '<td>' + onHands.html() + '</td>';
+                        htmlContent += '<td>' + inLib.html() + '</td></tr>';
+
+                        contentBody.append($(htmlContent));
+                    });
                 }
-            }
-        });
+            });
+    }
+
+    function addId(obj, attrName, id) {
+        obj.attr(attrName, (obj.attr(attrName) + '_' + id));
+    }
+
+    function getId(attrName) {
+        var parts = attrName.split("_");
+        if (parts.length > 1) {
+            return parts[1];
+        }
+        return "";
+    }
+
+    /********************************************* delivery **********************************************/
+
+    $(".orderHands").click(function () {
+        var id = getId($(this).attr("name"));
+        processOrder(id, true);
+    });
+
+    $(".orderLib").click(function () {
+        var id = getId($(this).attr("name"));
+        processOrder(id, false);
+    });
+
+    function processOrder(id, onHands) {
+        $.ajax(
+            {
+                url: "/addOrder",
+                data: {bookId: id, toHand: onHands},
+                success: function (resp) {
+                    if (resp) {
+                        alert($('#succ_order_created').html());
+                    }
+                    else if (!resp) {
+                        alert($('#error_order_create').html());
+                    }
+                }
+            });
+    }
+
+    /******************************************** profile editing *****************************************/
+    $('.deleteReader').click(function () {
+        var id = getId($(this).attr("name"));
+        console.log(id);
+        $.ajax(
+            {
+                url: "/deleteReader",
+                data: {readerId: id},
+                async: false,
+                success: function (resp) {
+                    if (!resp) {
+                        // show_alert($('#error_delete_account').html(), statusField, false);
+                        alert($('#error_delete_account').html());
+                    }
+                    else {
+                        // show_alert($('#succ_account_deleted').html(), statusField, true);
+                        alert($('#succ_account_deleted').html());
+                    }
+                }
+            });
+    });
 });
