@@ -26,6 +26,7 @@ public class LibraryRegistrationController {
     @Autowired
     ReaderRepository readerRepository;
 
+    //todo move logic to accountService
 
     /**
      * Check email for presence in database
@@ -34,11 +35,14 @@ public class LibraryRegistrationController {
      * @return true if there is no such mail in database
      */
     @RequestMapping(value = {"/checks/email"}, method = RequestMethod.POST, produces = "application/json")
-    public @ResponseBody
+    public
+    @ResponseBody
     Boolean isEmailUnique(String email) {
         logger.warn(email);
         return !readerRepository.findByEmail(email.toLowerCase()).isPresent();
     }
+
+    //todo move logic to accountService
 
     /**
      * Check user input for validity based on REGEXP
@@ -57,7 +61,8 @@ public class LibraryRegistrationController {
      * @return true if password valid for our
      */
     @RequestMapping(value = {"/checks/password"}, method = RequestMethod.POST, produces = "application/json")
-    public @ResponseBody
+    public
+    @ResponseBody
     Boolean isPasswordComplicate(String password, String email) { //todo name
         if (email.length() == 0) return false;
         String userLogin;
@@ -68,6 +73,7 @@ public class LibraryRegistrationController {
         return password.matches(passwordREGEXP) && !password.toLowerCase().matches(".*?" + userLogin + ".*?");
     }
 
+    //todo move logic to accountService
 
     /**
      * Saves reader from user registration form to database
@@ -77,7 +83,8 @@ public class LibraryRegistrationController {
      * @return - string for RequestMapping
      */
     @RequestMapping(value = {"/register"}, method = RequestMethod.POST, produces = "application/json")
-    public @ResponseBody
+    public
+    @ResponseBody
     Boolean registerUser(@ModelAttribute Reader reader, HttpServletRequest request) {
         String password = reader.getPassword();
         String email = reader.getEmail();
@@ -108,6 +115,8 @@ public class LibraryRegistrationController {
         return true;
     }
 
+    //todo move logic to accountService
+
     /**
      * Change reader info in database for the the info from user profile form
      *
@@ -115,7 +124,8 @@ public class LibraryRegistrationController {
      * @return - string for RequestMapping
      */
     @RequestMapping(value = {"/change_profile"}, method = RequestMethod.POST, produces = "application/json")
-    public @ResponseBody
+    public
+    @ResponseBody
     Boolean changeUser(@ModelAttribute Reader reader) {
         Reader curReader = new Reader((Reader) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         String newPassword = reader.getPassword();

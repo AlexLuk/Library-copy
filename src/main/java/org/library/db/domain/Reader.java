@@ -43,6 +43,7 @@ public class Reader extends Base {
 
     public Reader() {}
 
+    //todo use builder
     public Reader(String email, String password, String firstName, String lastName, String patronymic, Date registrationDate, Double fines, boolean isAdmin) {
         this.email = email;
         this.password = password;
@@ -53,7 +54,7 @@ public class Reader extends Base {
         this.fines = fines;
         this.isAdmin = isAdmin;
     }
-
+    //todo implement cloneable, override clone()
     public Reader(Reader reader) {
         this.id = reader.getId();
         this.email = reader.getEmail();

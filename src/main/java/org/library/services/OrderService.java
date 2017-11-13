@@ -33,6 +33,8 @@ public class OrderService {
     @Autowired
     BookRepository bookRepository;
 
+    //todo add order filter
+
     /**
      * Add book to reader orders, perform check for book in reader's orders and deliveries
      *
