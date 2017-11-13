@@ -19,11 +19,10 @@ public class LibraryDeliveryController {
      * Add book to current user deliveries
      *
      * @param orderId - id of order
-     * @param toHand  - type of delivery
      * @return - false, if it was not possible to add delivery
      */
     @RequestMapping(value = {"/addDelivery"}, method = RequestMethod.POST, produces = "application/json")
-    public boolean addDelivery(Integer orderId, boolean toHand) {
-        return deliveryService.addDeliveryByBookOrder(orderId, toHand);
+    public boolean addDelivery(Integer orderId) {
+        return deliveryService.addDeliveryByBookOrder(orderId);
     }
 }
