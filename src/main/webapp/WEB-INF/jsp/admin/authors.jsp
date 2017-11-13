@@ -22,6 +22,12 @@
     <div class="container">
         <div class="jumbotron">
             <div id="status_message" class="bg-danger"></div>
+            <button type="submit" class="btn btn-primary"
+                    id="addNewAuthor" name="addNewAuthor"
+                    data-toggle="modal" data-target="#popupWindow">
+                <spring:message code="toAddNewAuthor" />
+            </button>
+            <hr class="my-4">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-xs-12">
                     <div class="row">
@@ -39,13 +45,11 @@
                                         <td><%= author.getFullName() %></td>
                                         <td><%= author.getYearOfBirth() %></td>
                                         <td>
-                                            <form method="post" class="doNotProcess">
-                                                <button type="submit" class="btn btn-primary"
-                                                        id="edit_<%= author.getId()%>" name="edit_<%= author.getId()%>"
-                                                        data-toggle="modal" data-target="#popupWindow">
-                                                    <spring:message code="toEdit" />
-                                                </button>
-                                            </form>
+                                            <button type="submit" class="btn btn-primary"
+                                                    id="edit_<%= author.getId()%>" name="edit_<%= author.getId()%>"
+                                                    data-toggle="modal" data-target="#popupWindow">
+                                                <spring:message code="toEdit" />
+                                            </button>
                                         </td>
                                     </tr>
                                     <%}%>

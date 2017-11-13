@@ -24,26 +24,45 @@
     <div class="container">
         <div class="jumbotron">
             <div id="status_message" class="bg-danger"></div>
+            <button type="submit" class="btn btn-primary"
+                    id="addNewBook" name="addNewBook"
+                    data-toggle="modal" data-target="#popupWindow">
+                <spring:message code="toAddNewBook" />
+            </button>
+            <hr class="my-4">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-lg-12 col-md-12 col-sx-12">
                     <table class="table table-striped">
                         <thead>
                         <tr>
                             <th><spring:message code="title" /></th>
+                            <th><spring:message code="author" /></th>
+                            <th><spring:message code="year" /></th>
+                            <th><spring:message code="language" /></th>
+                            <th><spring:message code="shelfCode" /></th>
+                            <th><spring:message code="amount" /></th>
                         </tr>
                         </thead>
                         <tbody>
                             <%for (Book book : books) {%>
                                 <tr>
                                     <td><%= book.getTitle() %></td>
+                                    <td width="30%">
+                                        <%  List<Author> curAuthors = book.getAuthors();
+                                            for (Author author : curAuthors) { %>
+                                            <%= author.getFullName() %><br/>
+                                        <%}%>
+                                    </td>
+                                    <td><%= book.getYear() %></td>
+                                    <td><%= book.getLanguage() %></td>
+                                    <td><%= book.getShelfCode() %></td>
+                                    <td><%= book.getAmount() %></td>
                                     <td>
-                                        <form method="post" class="doNotProcess editBut">
-                                            <button type="submit" class="btn btn-primary"
-                                                    id="edit_<%= book.getId()%>" name="edit_<%= book.getId()%>"
-                                                    data-toggle="modal" data-target="#popupWindow">
-                                                <spring:message code="toEdit" />
-                                            </button>
-                                        </form>
+                                        <button type="submit" class="btn btn-primary"
+                                                id="edit_<%= book.getId()%>" name="edit_<%= book.getId()%>"
+                                                data-toggle="modal" data-target="#popupWindow">
+                                            <spring:message code="toEdit" />
+                                        </button>
                                     </td>
                                 </tr>
                             <%}%>
@@ -106,50 +125,38 @@
                                         </div>
                                     </div>
                                 </form>
+                                <hr class="my-4">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-xs-12">
+                                        <form id="deleteAuthors" class="doNotProcess scaled" method="post">
+                                            <label for="choose_book_authors"><spring:message code="deleteCurAuthor"
+                                            />:</label>
+                                            <select class="form-control" name="choose_book_authors" id="choose_book_authors">
+                                            </select>
+                                            <br/>
+                                            <button type="submit" class="btn btn-primary" id="deleteAuthor" name="deleteAuthor">
+                                                <spring:message code="toDelete" />
+                                            </button>
+                                        </form>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-xs-12">
+                                        <form id="addAuthors" class="doNotProcess scaled" method="post">
+                                            <label for="choose_authors"><spring:message code="addAuthor" />:</label>
+                                            <select class="form-control" name="choose_authors" id="choose_authors">
+                                                <%for (Author author : authors) {%>
+                                                <option><%= author.getFullName() %></option>
+                                                <%}%>
+                                            </select>
+                                            <br/>
+                                            <button type="submit" class="btn btn-primary"
+                                                    id="addAuthorBut" name="addAuthorBut">
+                                                <spring:message code="toAdd" />
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-md-7">
-                    <div class="editForm">
-                        <form id="deleteAuthors" class="doNotProcess" method="post">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <label for="choose_book_authors"><spring:message code="addAuthors" />:</label>
-                                    <select class="form-control" name="choose_book_authors" id="choose_book_authors">
-                                    </select>
-                                </div>
-                                <div class="delimeter"></div>
-                                <div class="col-md-8 scaled">
-                                    <button type="submit" class="btn btn-primary" id="deleteAuthor" name="deleteAuthor">
-                                        <spring:message code="toDelete" />
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                        <br/>
-                        <table class="table table-striped">
-                            <thead>
-                            <tr>
-                                <th><spring:message code="addAuthor" /></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                                <%for (Author author : authors) {%>
-                                    <tr>
-                                        <td><%= author.getFullName() %></td>
-                                        <td>
-                                            <form method="post" class="doNotProcess">
-                                                <button type="submit" class="btn btn-primary"
-                                                        id="add_<%= author.getId()%>" name="add_<%= author.getId()%>">
-                                                    <spring:message code="toAdd" />
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                <%}%>
-                            </tbody>
-                        </table>
                     </div>
                 </div>
             </div>
