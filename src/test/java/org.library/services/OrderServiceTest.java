@@ -11,9 +11,14 @@ import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
 
 public class OrderServiceTest extends LibraryTest {
-
     @Autowired
     OrderService orderService;
+
+    @Test
+    public void cancelOrder() throws Exception {
+        assertThat(orderService.cancelOrder(1), is(true));
+        assertThat(orderService.cancelOrder(555), is(false));
+    }
 
     @Test
     public void countByReaderIdAndBookId() {

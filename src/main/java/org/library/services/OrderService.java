@@ -7,6 +7,7 @@ import org.library.db.repo.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
@@ -100,15 +101,17 @@ public class OrderService {
      * Cancel order by bookOrderId
      *
      * @param bookOrderId - book order id
+     * @return true - order successfully deleted
      */
     public boolean cancelOrder(int bookOrderId) {
-        bookOrderRepository.delete(bookOrderId);
-        if (bookOrderRepository.findOne(bookOrderId) == null) {
-            logger.info("delete order by orderId" + bookOrderId);
-            return true;
-        } else {
+        try {
+            bookOrderRepository.delete(bookOrderId);
+        } catch (EmptyResultDataAccessException e) {
+            logger.error(e.getStackTrace().toString());
             return false;
         }
+        logger.info("delete order by orderId" + bookOrderId);
+        return true;
     }
 
 }
