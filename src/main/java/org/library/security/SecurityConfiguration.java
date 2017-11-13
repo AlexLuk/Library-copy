@@ -37,8 +37,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .disable();
 
         http.authorizeRequests()
-                .antMatchers("/account/reader/**").access("hasRole('ROLE_READER')")
-                .antMatchers("/account/admin/**").access("hasRole('ROLE_ADMIN')")
                 .antMatchers("/account/**")
                 .authenticated().anyRequest().permitAll()
                 .and();

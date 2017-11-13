@@ -40,12 +40,24 @@
                         <tr>
                             <td><%= order.getReader().getFullName() %></td>
                             <td><%= order.getBook().getTitle() %></td>
-                            <td>
-                                <% if(order.getOnHands()) { %>
-                                <spring:message code="wishStatusForHome" />
-                                <%} else {%>
-                                <spring:message code="wishStatusInLib" />
-                                <%}%>
+                            <td width="20%">
+                                <select class="form-control" name="order_status" id="order_status">
+                                    <% if(order.getOnHands()) { %>
+                                        <option id="status_home">
+                                            <spring:message code="wishStatusForHome" />
+                                        </option>
+                                        <option id="status_lib">
+                                            <spring:message code="wishStatusInLib" />
+                                        </option>
+                                    <%} else {%>
+                                        <option id="status_lib">
+                                            <spring:message code="wishStatusInLib" />
+                                        </option>
+                                        <option id="status_home">
+                                            <spring:message code="wishStatusForHome" />
+                                        </option>
+                                    <%}%>
+                                </select>
                             </td>
                             <td>
                                 <button type="submit" class="btn btn-primary"
