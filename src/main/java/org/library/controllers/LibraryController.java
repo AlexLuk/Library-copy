@@ -139,21 +139,6 @@ public class LibraryController {
         return ADMIN_PATH + "authors";
     }
 
-    //todo delete
-
-    /**
-     * Process call for account deleting
-     *
-     * @return true if account is deleted successfully
-     */
-    @RequestMapping(value = {"/deleteAccount"}, method = RequestMethod.POST, produces = "application/json")
-    public
-    @ResponseBody
-    //todo test work with interface
-    boolean deleteAccount() {
-        return libraryService.deleteAccount();
-    }
-
     //todo move to accountController
 
     /**
