@@ -17,8 +17,8 @@
                 <input type="text" class="form-control" name="book_title" id="book_title">
             </div>
             <div class="col-lg-2 col-md-2 col-xs-2">
-                <label for="year"><spring:message code="time" />:</label>
-                <input type="text" name="year" id="year"><br/>
+                <label for="year_picker"><spring:message code="time" />:</label>
+                <input type="text" name="year_picker" id="year_picker"><br/>
             </div>
             <div class="delimeter"></div>
             <div class="col-lg-3 col-md-3 col-xs-3">

@@ -289,7 +289,7 @@ $(document).ready(function () {
 
     /************************************** date picking **************************************************/
 
-    $('#year').daterangepicker({
+    $('#year_picker').daterangepicker({
         locale: {
             cancelLabel: $('#datapicker_clear').html(),
             applyLabel: $('#datapicker_apply').html(),
@@ -297,7 +297,10 @@ $(document).ready(function () {
         }
     });
 
-    $('#year').on('cancel.daterangepicker', function(ev, picker) {
+    $('#year_picker').on('cancel.daterangepicker', function(ev, picker) {
         $(this).val('');
     });
+
+    // http://totalprogus.blogspot.ru/2013/12/bootstrap-add-active-class-to-li.html
+    $('a[href="' + this.location.pathname + '"]').parents('li,ul').addClass('active');
 });

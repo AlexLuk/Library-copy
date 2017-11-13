@@ -88,7 +88,7 @@
                                                        id="title" value=""><br/>
 
                                                 <label for="amount"><b><spring:message code="amount"/>:</b></label>
-                                                <input type="text" class="form-control" name="amount"
+                                                <input type="number" class="form-control" name="amount"
                                                        id="amount" value=""><br/>
 
                                                 <label for="shelf_code"><b><spring:message code="shelfCode"/>:</b></label>
@@ -102,7 +102,7 @@
                                                        id="language" value=""><br/>
 
                                                 <label for="year"><b><spring:message code="year"/>:</b></label>
-                                                <input type="text" class="form-control" name="year"
+                                                <input type="number" class="form-control" name="year"
                                                        id="year" value=""><br/>
 
                                                 <label for="is_rare"><b><spring:message code="rare"/>:</b></label>

@@ -86,7 +86,7 @@
                                                        id="last_name" value=""><br/>
 
                                                 <label for="year_of_birth"><b><spring:message code="yearOfBirth"/>:</b></label>
-                                                <input type="text" class="form-control" name="year_of_birth"
+                                                <input type="number" class="form-control" name="year_of_birth"
                                                        id="year_of_birth" value=""><br/>
                                             </div>
                                         </div>

@@ -28,27 +28,24 @@
                             <label for="changeEmail"><b><spring:message code="changeEmail"/>:</b></label>
                             <input type="text" class="form-control" name="changeEmail"
                                    id="changeEmail" value="<%= curUser.getEmail()%>" disabled="disabled"><br/>
-
-                            <label for="firstName"><b><spring:message code="firstName"/>:</b></label>
-                            <input type="text" class="form-control" name="firstName"
-                                   id="firstName" value="<%= curUser.getFirstName()%>"><br/>
-                        </div>
-                        <div class="delimeter"></div>
-                        <div class="col-xs-5">
-                            <label for="changePassword"><b><spring:message code="changePassword"/>:</b></label>
-                            <input type="text" class="form-control" name="changePassword"
-                                   id="changePassword" value=""><br/>
-
                             <label for="lastName"><b><spring:message code="lastName"/>:</b></label>
                             <input type="text" class="form-control" name="lastName"
                                    id="lastName" value="<%= curUser.getLastName()%>"><br/>
                         </div>
                         <div class="delimeter"></div>
                         <div class="col-xs-5">
+                            <!--<label for="changePassword"><b><spring:message code="changePassword"/>:</b></label>
+                            <input type="text" class="form-control" name="changePassword"
+                                   id="changePassword" value=""><br/>-->
+                            <label for="firstName"><b><spring:message code="firstName"/>:</b></label>
+                            <input type="text" class="form-control" name="firstName"
+                                   id="firstName" value="<%= curUser.getFirstName()%>"><br/>
                             <label for="patronymic"><b><spring:message code="patronymic"/>:</b></label>
                             <input type="text" class="form-control" name="patronymic"
                                    id="patronymic" value="<%= curUser.getPatronymic()%>"><br/>
                         </div>
+                        <div class="delimeter"></div>
+                        <div class="col-xs-5"></div>
                     </div>
                     <div class="row">
                         <div class="col-xs-5">

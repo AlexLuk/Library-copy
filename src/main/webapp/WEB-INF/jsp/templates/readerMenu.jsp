@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
-<li class="nav-item active">
+<li class="nav-item">
     <a class="nav-link" href="/account"><spring:message code="findOrderBooks" /></a>
 </li>
 <li class="nav-item">

@@ -113,7 +113,7 @@ button, link {
 }
 
 #year {
-    border: 1px solid rgb(206, 212, 218);
+    border: 1px solid #ced4da;
     padding: 5px 12px 5px 5px;
 }
 
@@ -138,11 +138,6 @@ button, link {
     padding-left: 30px;
 }
 
-#manageBooks {
-    margin-right: 60px;
-    margin-top: 92px;
-}
-
 .header-comps {
     margin-top: 7px;
     margin-bottom: 12px;
@@ -150,4 +145,8 @@ button, link {
 
 .jumbotron {
     padding: 1rem 2rem !important;
+}
+
+.nav-link:hover {
+    color: #85bbf5 !important;
 }

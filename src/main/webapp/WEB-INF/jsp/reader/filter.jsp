@@ -17,7 +17,7 @@
             <div class="delimeter"></div>
             <div class="col-xs-5">
                 <label for="book_year"><spring:message code="year" />:</label>
-                <input type="text" class="form-control" name="book_year" id="book_year">
+                <input type="number" class="form-control" name="book_year" id="book_year">
             </div>
             <div class="delimeter"></div>
             <div class="col-xs-5">
