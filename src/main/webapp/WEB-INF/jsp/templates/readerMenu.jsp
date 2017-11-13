@@ -2,11 +2,6 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
 <li class="nav-item active">
-    <a class="nav-link" href="${pageContext.request.contextPath}/"><spring:message
-            code="Home" />
-        <span class="sr-only">(current)</span></a>
-</li>
-<li class="nav-item">
     <a class="nav-link" href="/reader/find"><spring:message
             code="findOrderBooks" /></a>
 </li>

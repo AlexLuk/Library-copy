@@ -28,21 +28,25 @@
         </div>
         <div class="row">
             <div class="col-lg-12 col-sm-12 col-xs-12">
-                <nav class="navbar navbar-expand-md navbar-light bg-light rounded mb-3">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarCollapse">
-                        <ul class="navbar-nav text-md-center nav-justified w-100">
-                            <sec:authorize access="hasRole('ROLE_READER')">
-                                <%@ include file="readerMenu.jsp" %>
-                            </sec:authorize>
-                            <sec:authorize access="hasRole('ROLE_ADMIN')">
-                                <%@ include file="adminMenu.jsp" %>
-                            </sec:authorize>
-                        </ul>
-                    </div>
-                </nav>
+                <sec:authorize access="isAuthenticated()">
+                    <nav class="navbar navbar-expand-md navbar-light bg-light rounded mb-3">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarCollapse">
+                            <ul class="navbar-nav text-md-center nav-justified w-100">
+                                <sec:authorize access="hasRole('ROLE_READER')">
+                                    <%@ include file="readerMenu.jsp" %>
+                                </sec:authorize>
+                                <sec:authorize access="hasRole('ROLE_ADMIN')">
+                                    <%@ include file="adminMenu.jsp" %>
+                                </sec:authorize>
+                            </ul>
+                        </div>
+                    </nav>
+                </sec:authorize>
             </div>
         </div>
     </header>

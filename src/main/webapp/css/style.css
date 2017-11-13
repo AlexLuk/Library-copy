@@ -124,3 +124,7 @@ button, link {
     margin-top: 7px;
     margin-bottom: 12px;
 }
+
+.jumbotron {
+    padding: 1rem 2rem !important;
+}
