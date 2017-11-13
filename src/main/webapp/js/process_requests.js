@@ -1,61 +1,6 @@
 $(document).ready(function () {
-    var statusField = $('#status_message');
-    var contentField = $('.content_result');
 
-    function getFormArray(elem, msgField) {
-        // serializing all elements of the form
-        var form_data = elem.closest('form').serializeArray();
-
-        // adding button to the array of form fields
-        form_data.push({name: elem.attr('name')});
-
-        if (has_empty_fields(form_data, msgField))
-            return '';
-        return form_data;
-    }
-
-    function has_empty_fields(data, msgField) {
-        var res = false;
-        $.each(data, function (i, field) {
-            //alert( field.name + ' ' + field.value + ' ' + field.type );
-            if (field.value === '' && field.type !== 'submit') {
-                show_alert("Please fill in all the fields!", msgField, false);
-                res = true;
-                return false;
-            }
-        });
-        return res;
-    }
-
-    function show_alert(msg, msgField, isSuccess) {
-        if (isSuccess)
-            msgField.removeClass('bg-danger').addClass('bg-success');
-        else
-            msgField.removeClass('bg-success').addClass('bg-danger');
-        msgField.toggle(true).text(msg);
-    }
-
-    function showResponse(resp, msgField) {
-        if (resp === "false")
-            show_alert("Unsuccessful attempt. Please try once again.", msgField, false);
-        else
-            show_alert(resp, msgField, true);
-    }
-
-    function hideMsgs() {
-        statusField.toggle(false);
-        contentField.toggle(false);
-    }
-
-    function prepareContentField() {
-        contentField.toggle(true);
-
-        var contentBody = contentField.find('tbody');
-        contentBody.empty();
-        return contentBody;
-    }
-
-    /************************************************* general settings *************************************************/
+    /************************************************* general settings *********************************************/
 
     // stop submit requests
     $('.doNotProcess').submit(function (e) {
@@ -76,7 +21,7 @@ $(document).ready(function () {
             type: "POST"
         });
 
-    /********************************************* registration form **************************************************/
+    /********************************************* registration form ************************************************/
 
     $('#registerForm').validate({
         rules: {
@@ -165,7 +110,6 @@ $(document).ready(function () {
             return result;
     }
 
-
     function checkPassword() {
         var userEmail = $.trim($('#email').val());
         var userPas = $.trim($('#password').val());
@@ -189,13 +133,6 @@ $(document).ready(function () {
             return false;
     }
 
-
-    function isEmail(email) {
-        var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-        return regex.test(email);
-    }
-
-
     /********************************************* profile changing form **************************************************/
 
     $('#profileForm').validate({
@@ -213,7 +150,7 @@ $(document).ready(function () {
             lastName: $('#error_lastname').html(),
             changePassword: {
                 pwdchange: $('#error_pwd_check').html(),
-                minlength:  $('#error_pwd_minlen').html()
+                minlength: $('#error_pwd_minlen').html()
             }
         }
     });
@@ -235,37 +172,28 @@ $(document).ready(function () {
         }
     });
 
-
     function changeProfile() {
         var result = false;
-        var form_data = $('#profileForm').serialize();
-        var patronymic = $.trim($('#patronymic').val());
-        if (form_data !== '') {
-            $.ajax(
-                {
-
-                    url: "/change_profile",
-                    data: {
-                        email: $.trim($('#changeEmail').val()),
-                        password: $.trim($('#changePassword').val()),
-                        lastName: $.trim($('#lastName').val()),
-                        firstName: $.trim($('#firstName').val()),
-                        patronymic: patronymic
-                    },
-                    async: false,
-                    success: function (resp) {
-                        if (resp) {
-                            alert("Information was successfully changed");
-                        }
-                        result = resp;
+        $.ajax(
+            {
+                url: "/change_profile",
+                data: {
+                    email: $.trim($('#changeEmail').val()),
+                    password: $.trim($('#changePassword').val()),
+                    lastName: $.trim($('#lastName').val()),
+                    firstName: $.trim($('#firstName').val()),
+                    patronymic: $.trim($('#patronymic').val())
+                },
+                async: false,
+                success: function (resp) {
+                    if (resp) {
+                        alert("Information was successfully changed");
                     }
-                });
-            return result;
-        }
-        else
-            return result;
+                    result = resp;
+                }
+            });
+        return result;
     }
-
 
     function checkChangePassword() {
         var userEmail = $.trim($('#changeEmail').val());
@@ -286,13 +214,15 @@ $(document).ready(function () {
         return result;
     }
 
+    /***************************************** book filters *************************************************/
 
-    /************************* book filters *****************************************/
     $('#filer_button').click(function () {
+        console.log("click");
         filterRequest();
     });
 
     function filterRequest() {
+        console.log("filterRequest");
         var titleFilter = $.trim($('#book_title').val());
         var authorFilter = $.trim($('#book_author').val());
         var yearFilter = $.trim($('#book_year').val());
@@ -302,54 +232,8 @@ $(document).ready(function () {
                 url: "/filters",
                 data: {title: titleFilter, author: authorFilter, year: yearFilter, genre: genreFilter},
                 dataType: "json",
-                success: function (resp) {
-                    var contentBody = $('.content_res_book');
-                    contentBody.empty();
-
-                    $.each(resp, function (key, data) {
-                        var onHands = $('#orderOnHandsForm').clone();
-                        var inLib = $('#orderInLibForm').clone();
-
-                        var authorList = '';
-                        for (var i = 0; i < data.authors.length; i++) {
-                            authorList += data.authors[i];
-                            if (i > 0) authorList += '</br>';
-                        }
-
-                        var htmlContent = '';
-                        htmlContent +=
-                            '<tr><td>' + data.title + '</td>' +
-                            '<td>' + authorList + '</td>' +
-                            '<td>' + data.year + '</td>' +
-                            '<td>' + data.genre + '</td>';
-
-                        var button = onHands.find('button');
-                        addId(button, 'name', data.book_id);
-                        addId(button, 'id', data.book_id);
-
-                        button = inLib.find('button');
-                        addId(button, 'name', data.book_id);
-                        addId(button, 'id', data.book_id);
-
-                        htmlContent += '<td>' + onHands.html() + '</td>';
-                        htmlContent += '<td>' + inLib.html() + '</td></tr>';
-
-                        contentBody.append($(htmlContent));
-                    });
-                }
+                success: function (resp) {filterOutput(resp)}
             });
-    }
-
-    function addId(obj, attrName, id) {
-        obj.attr(attrName, (obj.attr(attrName) + '_' + id));
-    }
-
-    function getId(attrName) {
-        var parts = attrName.split("_");
-        if (parts.length > 1) {
-            return parts[1];
-        }
-        return "";
     }
 
     /********************************************* delivery **********************************************/
