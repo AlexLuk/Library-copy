@@ -161,19 +161,34 @@ $(document).ready(function () {
         });
 
     $('#saveProfile').click(function () {
-        console.log("click");
         hideMsgs();
         if ($('#profileForm').valid()) {
             if ($.trim($('#changePassword').val()) === '' || checkChangePassword()) {
-                if (changeProfile()) {
-                    $('#profileForm').hide();
-                }
+                changeProfile();
             }
         }
     });
 
+    $('#oldPassword').blur(function () {
+        var oldPassword = $.trim($('#oldPassword').val());
+        if (oldPassword !== '') {
+            $.ajax(
+                {
+                    url: "/checks/oldpassword",
+                    data: {oldPassword: oldPassword},
+                    success: function (resp) {
+                        if (!resp) {
+                            show_alert($('#error_old_password').html(), statusField, false);
+                        }
+                        else {
+                            hideMsgs();
+                        }
+                    }
+                });
+        }
+    });
+
     function changeProfile() {
-        var result = false;
         $.ajax(
             {
                 url: "/change_profile",
@@ -182,17 +197,32 @@ $(document).ready(function () {
                     password: $.trim($('#changePassword').val()),
                     lastName: $.trim($('#lastName').val()),
                     firstName: $.trim($('#firstName').val()),
-                    patronymic: $.trim($('#patronymic').val())
+                    patronymic: $.trim($('#patronymic').val()),
+                    oldPassword: $('#oldPassword').val()
                 },
                 async: false,
                 success: function (resp) {
-                    if (resp) {
-                        alert("Information was successfully changed");
+                    switch (resp) {
+                        case 0: {
+                            show_alert($('#profile_succ').html(), statusField, true);
+                            $('#profileForm').hide();
+                            break;
+                        }
+                        case 1: {
+                            show_alert($('#error_old_password').html(), statusField, false);
+                            break;
+                        }
+                        case 2: {
+                            show_alert($('#error_contains_parts').html(), statusField, false);
+                            break;
+                        }
+                        case 3: {
+                            show_alert($('#profile_fail').html(), statusField, false);
+                            break;
+                        }
                     }
-                    result = resp;
                 }
             });
-        return result;
     }
 
     function checkChangePassword() {
@@ -217,12 +247,10 @@ $(document).ready(function () {
     /***************************************** book filters *************************************************/
 
     $('#filer_button').click(function () {
-        console.log("click");
         filterRequest();
     });
 
     function filterRequest() {
-        console.log("filterRequest");
         var titleFilter = $.trim($('#book_title').val());
         var authorFilter = $.trim($('#book_author').val());
         var yearFilter = $.trim($('#book_year').val());
@@ -232,7 +260,9 @@ $(document).ready(function () {
                 url: "/filters",
                 data: {title: titleFilter, author: authorFilter, year: yearFilter, genre: genreFilter},
                 dataType: "json",
-                success: function (resp) {filterOutput(resp)}
+                success: function (resp) {
+                    filterOutput(resp)
+                }
             });
     }
 
@@ -264,10 +294,27 @@ $(document).ready(function () {
             });
     }
 
+    $(".giveOrder").click(function () {
+        var id = getId($(this).attr("name"));
+        $.ajax(
+            {
+                url: "/addDelivery",
+                data: id,
+                success: function (resp) {
+                    if (resp) {
+                        alert($('#succ_delivery_created').html());
+                    }
+                    else if (!resp) {
+                        alert($('#error_delivery_created').html());
+                    }
+                }
+            });
+    });
+
+
     /******************************************** profile editing *****************************************/
     $('.deleteReader').click(function () {
         var id = getId($(this).attr("name"));
-        console.log(id);
         $.ajax(
             {
                 url: "/deleteReader",

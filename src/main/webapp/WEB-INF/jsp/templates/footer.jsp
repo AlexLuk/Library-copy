@@ -9,6 +9,10 @@
     <div id="error_email_req"><spring:message code="errorEmailReq" /></div>
     <div id="error_email"><spring:message code="errorEmail" /></div>
 
+    <div id="error_old_password"><spring:message code="errorOldPassword" /></div>
+    <div id="profile_succ"><spring:message code="profileSucc" /></div>
+    <div id="profile_fail"><spring:message code="profileFail" /></div>
+
     <div id="error_email_not_unique"><spring:message code="errorEmailNotUnique" /></div>
     <div id="error_contains_parts"><spring:message code="errorContainsParts" /></div>
     <div id="succ_register"><spring:message code="succRegister" /></div>
