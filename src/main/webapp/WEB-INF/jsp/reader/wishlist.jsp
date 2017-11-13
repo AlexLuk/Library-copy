@@ -29,8 +29,8 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th><spring:message code="fullName" /></th>
                     <th><spring:message code="title" /></th>
+                    <th><spring:message code="year" /></th>
                     <th><spring:message code="wishStatus" /></th>
                     <th></th>
                 </tr>
@@ -38,8 +38,8 @@
                 <tbody>
                     <%for (BookOrder order : orders) {%>
                         <tr>
-                            <td><%= order.getReader().getFullName() %></td>
                             <td><%= order.getBook().getTitle() %></td>
+                            <td><%= order.getBook().getYear() %></td>
                             <td width="20%">
                                 <select class="form-control" name="order_status" id="order_status">
                                     <% if(order.getOnHands()) { %>
