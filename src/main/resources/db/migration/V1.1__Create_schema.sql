@@ -41,8 +41,8 @@ DROP TABLE IF EXISTS `author_book`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `author_book` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `author` int(11) DEFAULT NULL,
-  `book` int(11) DEFAULT NULL,
+  `author` int(11) NOT NULL,
+  `book` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `author` (`author`),
   KEY `book` (`book`),
@@ -61,7 +61,7 @@ DROP TABLE IF EXISTS `book`;
 CREATE TABLE `book` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `shelf_code` varchar(30) COLLATE utf8_bin DEFAULT NULL,
-  `genre` int(11) DEFAULT NULL,
+  `genre` int(11) NOT NULL,
   `title` varchar(255) COLLATE utf8_bin NOT NULL,
   `language` char(2) COLLATE utf8_bin NOT NULL,
   `year` int(4) NOT NULL,
@@ -74,6 +74,20 @@ CREATE TABLE `book` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `item_status`
+--
+
+DROP TABLE IF EXISTS `item_status`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `item_status` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `book_item`
 --
 
@@ -82,9 +96,9 @@ DROP TABLE IF EXISTS `book_item`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `book_item` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `item_code` int(11) DEFAULT NULL,
-  `book` int(11) DEFAULT NULL,
-  `status` int(11) DEFAULT NULL,
+  `item_code` int(11) NOT NULL,
+  `book` int(11) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   UNIQUE KEY `book` (`book`,`item_code`),
   KEY `status` (`status`),
@@ -102,8 +116,8 @@ DROP TABLE IF EXISTS `book_order`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `book_order` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `reader` int(11) DEFAULT NULL,
-  `book` int(11) DEFAULT NULL,
+  `reader` int(11) NOT NULL,
+  `book` int(11) NOT NULL,
   `on_hands` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `reader` (`reader`),
@@ -122,8 +136,8 @@ DROP TABLE IF EXISTS `delivery`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `delivery` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `reader` int(11) DEFAULT NULL,
-  `book_item` int(11) DEFAULT NULL,
+  `reader` int(11) NOT NULL,
+  `book_item` int(11) NOT NULL,
   `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `reader` (`reader`),
@@ -145,20 +159,6 @@ CREATE TABLE `genre` (
   `name` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `item_status`
---
-
-DROP TABLE IF EXISTS `item_status`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `item_status` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8_bin NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
