@@ -3,6 +3,7 @@ package org.library.db.domain;
 import com.google.common.collect.Lists;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -49,7 +50,7 @@ public class Book extends Base {
         inverseJoinColumns = @JoinColumn(name = "author")
     )
     @OrderBy("last_name")
-    private Set<Author> authors = new HashSet<>();
+    private List<Author> authors = new ArrayList<>();
 
     public Book(String shelfCode, Genre genre, String title,
                 String language, Integer year, Short amount, Boolean isRare) {
@@ -112,11 +113,11 @@ public class Book extends Base {
     }
 
     public List<Author> getAuthors() {
-        return Lists.newArrayList(authors);
+        return authors;
     }
 
     public void setAuthors(List<Author> authors) {
-        this.authors = new HashSet<>(authors);
+        this.authors = authors;
     }
 
     public void addAuthor(Author author) {

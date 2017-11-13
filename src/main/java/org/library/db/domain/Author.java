@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import org.library.misc.Utils;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -29,7 +30,7 @@ public class Author extends Base {
 
     @ManyToMany(mappedBy = "authors")
     @OrderBy("title")
-    private Set<Book> books = new HashSet<>();
+    private List<Book> books = new ArrayList<>();
 
     public Author(){
     }
@@ -74,11 +75,11 @@ public class Author extends Base {
     }
 
     public List<Book> getBooks() {
-        return Lists.newArrayList(books);
+        return books;
     }
 
     public void setBooks(List<Book> books) {
-        this.books = new HashSet<>(books);
+        this.books = books;
     }
 
     public void addBook(Book book) {
