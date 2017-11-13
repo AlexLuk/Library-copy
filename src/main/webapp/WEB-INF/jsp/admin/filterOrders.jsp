@@ -1,4 +1,9 @@
+<%@ page import="java.time.LocalDate" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%
+    List<LocalDate> dates = libraryService.getAllDates(deliveredBooks);
+%>
 
 <form id="filter_form" class="scaled doNotProcess">
     <div class="form-group">
