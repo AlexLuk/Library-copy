@@ -17,14 +17,10 @@
                 <input type="text" class="form-control" name="book_title" id="book_title">
             </div>
             <div class="col-lg-2 col-md-2 col-xs-2">
-                <label for="time"><spring:message code="time" />:</label>
-                <select class="form-control" name="time" id="time">
-                    <option></option>
-                    <%for (LocalDate date : dates) {%>
-                    <option><%= date %></option>
-                    <%}%>
-                </select>
+                <label for="year"><spring:message code="time" />:</label>
+                <input type="text" name="year" id="year"><br/>
             </div>
+            <div class="delimeter"></div>
             <div class="col-lg-3 col-md-3 col-xs-3">
                 <label for="book_genre"><spring:message code="status" />:</label>
                 <select class="form-control" name="book_genre" id="book_genre" multiple="multiple">
@@ -33,8 +29,9 @@
                     <option><spring:message code="statusInLib" /></option>
                 </select>
             </div>
+            <div class="delimeter"></div>
             <div class="col-lg-2 col-md-2 col-xs-2">
-                <button type="submit" class="btn btn-primary" id="filer_button" name="filer_button">
+                <button type="submit" class="btn btn-primary" id="filter_button" name="filter_button">
                     <spring:message code="toFilter" />
                 </button>
             </div>

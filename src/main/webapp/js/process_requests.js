@@ -285,4 +285,19 @@ $(document).ready(function () {
                 }
             });
     });
+
+
+    /************************************** date picking **************************************************/
+
+    $('#year').daterangepicker({
+        locale: {
+            cancelLabel: $('#datapicker_clear').html(),
+            applyLabel: $('#datapicker_apply').html(),
+            format: $('#datapicker_format').html()
+        }
+    });
+
+    $('#year').on('cancel.daterangepicker', function(ev, picker) {
+        $(this).val('');
+    });
 });

@@ -17,6 +17,10 @@
     <div id="error_order_create"><spring:message code="errOrderCreate" /></div>
     <div id="succ_delete_account"><spring:message code="succAccountDeleted" /></div>
     <div id="error_delete_account"><spring:message code="errDeleteAccount" /></div>
+
+    <div id="datapicker_apply"><spring:message code="datapickerApply" /></div>
+    <div id="datapicker_clear"><spring:message code="datapickerClear" /></div>
+    <div id="datapicker_format"><spring:message code="datapickerFormat" /></div>
 </div>
 
 <!-- Start scripts -->
@@ -28,4 +32,6 @@
 <script src="${pageContext.request.contextPath}/js/utils.js"></script>
 <script src="${pageContext.request.contextPath}/js/process_requests.js"></script>
 <script src="${pageContext.request.contextPath}/js/html_output.js"></script>
+<script type="text/javascript" src="http://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="http://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
 <!-- end scripts -->
