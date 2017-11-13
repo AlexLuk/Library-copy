@@ -10,6 +10,8 @@ import java.util.Set;
 @Entity
 @Table(name = "book")
 public class Book extends Base {
+    //todo add annotations for serialisation
+
     @Basic
     @Column(name = "shelfCode")
     private String shelfCode;

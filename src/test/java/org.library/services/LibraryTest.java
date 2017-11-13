@@ -62,6 +62,7 @@ public class LibraryTest {
         bookItemsSetup();
         deliveriesSetup();
     }
+    //todo use array list
 
     private void genresSetup() {
         testGenres = new LinkedList<>();

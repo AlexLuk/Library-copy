@@ -139,6 +139,8 @@ public class LibraryController {
         return ADMIN_PATH + "authors";
     }
 
+    //todo delete
+
     /**
      * Process call for account deleting
      *
@@ -151,6 +153,8 @@ public class LibraryController {
     boolean deleteAccount() {
         return libraryService.deleteAccount();
     }
+
+    //todo move to accountController
 
     /**
      * Process call for account reader deleting

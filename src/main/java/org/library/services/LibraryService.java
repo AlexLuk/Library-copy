@@ -41,6 +41,7 @@ public class LibraryService {
     @Autowired
     ItemStatusRepository itemStatusRepository;
 
+    //todo add user filter
 
     /**
      * Search for books by list of params
@@ -66,6 +67,7 @@ public class LibraryService {
         return bookRepo.findAll();
     }
 
+    //todo add annotations for book serealization
     /**
      * Wrap list of books in form of json
      *
@@ -99,6 +101,7 @@ public class LibraryService {
         if (readerRepo.getOne(readerId).getIsAdmin()) {
             return false;
         } else {
+            //todo check for deliveries and orders and fines
             try {
                 readerRepo.delete(readerId);
                 logger.info("delete reader by id" + readerId);
@@ -111,6 +114,7 @@ public class LibraryService {
         }
     }
 
+    //todo replace
     /**
      * Wrapper class for book user interface
      */

@@ -18,6 +18,8 @@ import java.util.List;
 @Service
 public class DeliveryService {
 
+    //todo add delivery filter
+
     private final static Logger logger = LoggerFactory.getLogger(DeliveryService.class);
 
     @Autowired
@@ -32,6 +34,8 @@ public class DeliveryService {
     @Autowired
     ItemStatusRepository itemStatusRepository;
 
+    //todo refactor
+    //todo use status enum
     private int freeBook(BookOrder bookOrder) {
         int bookId = bookOrder.getBook().getId();
         List<BookItem> bookItems = bookItemRepository.findByBookId(bookId);
@@ -43,6 +47,7 @@ public class DeliveryService {
         return -1;
     }
 
+    //todo refactor
     public boolean addDeliveryByBookOrder(Integer bookOrderId) {
         BookOrder bookOrder = bookOrderRepository.getOne(bookOrderId);
         boolean toHand = bookOrder.getOnHands();
@@ -60,10 +65,13 @@ public class DeliveryService {
         return true;
     }
 
+    //todo refactor
     private boolean addDelivery(Reader reader, BookItem bookItem) {
         Delivery delivery = new Delivery(reader, bookItem);
         deliveryRepository.save(delivery);
         logger.info("add delivery" + delivery);
         return true;
-}
+    }
+
+    //todo return delivery
 }
