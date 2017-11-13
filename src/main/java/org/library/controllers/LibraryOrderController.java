@@ -33,4 +33,18 @@ public class LibraryOrderController {
         Reader reader = (Reader) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return orderService.addOrder(reader, bookId, toHand);
     }
+
+    /**
+     * Cancel order by orderId
+     *
+     * @param bookOrderId - order id
+     * @return - true if order deleted
+     */
+    @RequestMapping(value = {"/cancelOrder"}, method = RequestMethod.POST, produces = "application/json")
+    public
+    @ResponseBody
+    boolean cancelOrder(int bookOrderId) {
+        return orderService.cancelOrder(bookOrderId);
+    }
+
 }
