@@ -52,7 +52,9 @@ public class LibraryService {
      * @return
      */
     public List<Book> getBooksByComplexCondition(String title, String author, Integer year, Integer genre) {
-        return bookRepo.findByComplexQuery(title, year, genre, author);
+        List<String> authorCredentials = parseAuthorString(author);
+        return bookRepo.findByComplexQuery(title, year, genre,
+                authorCredentials.get(0), authorCredentials.get(1), authorCredentials.get(2));
     }
 
     /**
@@ -227,5 +229,26 @@ public class LibraryService {
             res.add(Utils.convertLocalDate(delivery.getTime()));
         }
         return res;
+    }
+
+    /**
+     * Parse author full name string to list of author credentials, split it by spaces and fill into credentials
+     *
+     * @param author - author full name string
+     * @return list of author last name, first name, patronymic name
+     */
+    public List<String> parseAuthorString(String author) {
+        List<String> authorCredentials = new ArrayList<>();
+        String[] authorArray = author.split(" ");
+        for (int i = 0; i < 3; i++) {
+            if (authorArray.length > i) {
+                authorCredentials.add(authorArray[i]);
+            } else {
+                authorCredentials.add("");
+            }
+        }
+        authorCredentials.forEach(s -> System.err.print(s + " "));
+        System.err.println(" ");
+        return authorCredentials;
     }
 }
