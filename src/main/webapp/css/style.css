@@ -18,7 +18,7 @@ link {
 }
 
 table {
-    width: 90% !important;
+    width: 100% !important;
 }
 
 button, link {
@@ -83,6 +83,15 @@ button, link {
     width: 90%;
 }
 
+.popupForm {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.modal-dialog {
+    max-width: 600px !important;
+}
 
 .fixedBlock {
     position: fixed;
@@ -118,4 +127,13 @@ button, link {
 #manageBooks {
     margin-right: 60px;
     margin-top: 92px;
+}
+
+.header-comps {
+    margin-top: 7px;
+    margin-bottom: 12px;
+}
+
+.jumbotron {
+    padding: 1rem 2rem !important;
 }

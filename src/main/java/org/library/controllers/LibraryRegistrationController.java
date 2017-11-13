@@ -6,6 +6,7 @@ import org.library.db.repo.ReaderRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -102,6 +103,39 @@ public class LibraryRegistrationController {
             request.login(email, password);
         } catch (Exception se) {
             logger.warn("Authorization error " + se);
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Change reader info in database for the the info from user profile form
+     *
+     * @param reader - reader object filled with user input
+     * @return - string for RequestMapping
+     */
+    @RequestMapping(value = {"/change_profile"}, method = RequestMethod.POST, produces = "application/json")
+    public @ResponseBody
+    Boolean changeUser(@ModelAttribute Reader reader) {
+        Reader curReader = new Reader((Reader) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+        String newPassword = reader.getPassword();
+        try {
+            if (!newPassword.equals("")) {
+                if (isPasswordComplicate(newPassword, curReader.getEmail())) {
+                    String md5Hex = DigestUtils.md5Hex(newPassword);
+                    curReader.setLastName(reader.getLastName());
+                    curReader.setFirstName(reader.getFirstName());
+                    curReader.setPatronymic(reader.getPatronymic());
+                    curReader.setPassword(md5Hex);
+                    readerRepository.save(curReader);
+                } else return false;
+            } else {
+                curReader.setLastName(reader.getLastName());
+                curReader.setFirstName(reader.getFirstName());
+                curReader.setPatronymic(reader.getPatronymic());
+                readerRepository.save(curReader);
+            }
+        } catch (Exception e) {
             return false;
         }
         return true;

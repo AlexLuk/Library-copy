@@ -8,6 +8,8 @@ import org.library.db.repo.BookItemRepository;
 import org.library.db.repo.BookOrderRepository;
 import org.library.db.repo.DeliveryRepository;
 import org.library.db.repo.ItemStatusRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,8 @@ import java.util.List;
 
 @Service
 public class DeliveryService {
+
+    private final static Logger logger = LoggerFactory.getLogger(DeliveryService.class);
 
     @Autowired
     DeliveryRepository deliveryRepository;
@@ -28,7 +32,7 @@ public class DeliveryService {
     @Autowired
     ItemStatusRepository itemStatusRepository;
 
-      private int freeBook(BookOrder bookOrder) {
+    private int freeBook(BookOrder bookOrder) {
         int bookId = bookOrder.getBook().getId();
         List<BookItem> bookItems = bookItemRepository.findByBookId(bookId);
         for (BookItem item : bookItems) {
@@ -59,6 +63,7 @@ public class DeliveryService {
     private boolean addDelivery(Reader reader, BookItem bookItem) {
         Delivery delivery = new Delivery(reader, bookItem);
         deliveryRepository.save(delivery);
+        logger.info("add delivery" + delivery);
         return true;
-    }
+}
 }

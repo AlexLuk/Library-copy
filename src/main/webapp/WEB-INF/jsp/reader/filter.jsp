@@ -1,5 +1,7 @@
 <%@ page import="org.library.db.domain.Genre" %>
 
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <form id="filter_form" class="scaled doNotProcess">
     <div class="form-group">
         <div class="row">
@@ -23,7 +25,9 @@
                 <select class="form-control" name="book_genre" id="book_genre">
                     <option id=""></option>
                     <%for (Genre genre : genres) {%>
-                        <option  id = "<%= genre.getId() %>"><spring:message code="<%= genre.getName() %>" /></option>
+                        <option id = "<%= genre.getId() %>">
+                            <spring:message code="<%= genre.getName() %>" />
+                        </option>
                     <%}%>
                 </select>
             </div>

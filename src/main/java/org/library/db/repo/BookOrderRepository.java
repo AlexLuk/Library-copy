@@ -6,9 +6,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface BookOrderRepository extends JpaRepository<BookOrder, Integer> {
-    List<BookOrder> findByReaderIdAndOnHands(int readerId, boolean status);
-
     List<BookOrder> findByReaderId(int readerId);
 
-    List<BookOrder> findByReaderIdAndBookId(Integer readerId, Integer bookId);
+    /**
+     * Count orders of book for reader
+     *
+     * @param readerId - reader id
+     * @param bookId   - book id
+     * @return - count of orders fof this reader
+     */
+    int countByReaderIdAndBookId(Integer readerId, Integer bookId);
 }

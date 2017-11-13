@@ -1,8 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
-<!DOCTYPE html>
 <%@ include file="templates/taglibs.jsp" %>
 
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -11,8 +10,7 @@
 </head>
 
 <body>
-<%@ include file="templates/nav.jsp" %>
-
+    <%@ include file="templates/nav.jsp" %>
     <div class="container">
         <div class="jumbotron">
             <sec:authorize access="!isAuthenticated()">
@@ -86,20 +84,5 @@
             <%@ include file="templates/footer.jsp" %>
         </div>
     </div>
-
-<div class="hidden">
-    <div id="error_firstname"><spring:message code="errorFirstname" /></div>
-    <div id="error_lastname"><spring:message code="errorLastname" /></div>
-    <div id="error_password"><spring:message code="errorPassword" /></div>
-    <div id="error_pwd_check"><spring:message code="errorPwdcheck" /></div>
-    <div id="error_pwd_minlen"><spring:message code="errorPwdMinLen" /></div>
-    <div id="error_email_req"><spring:message code="errorEmailReq" /></div>
-    <div id="error_email"><spring:message code="errorEmail" /></div>
-
-    <div id="error_email_not_unique"><spring:message code="errorEmailNotUnique" /></div>
-    <div id="error_contains_parts"><spring:message code="errorContainsParts" /></div>
-    <div id="succ_register"><spring:message code="succRegister" /></div>
-</div>
-
 </body>
 </html>

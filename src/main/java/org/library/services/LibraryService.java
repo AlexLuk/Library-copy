@@ -52,7 +52,9 @@ public class LibraryService {
      * @return
      */
     public List<Book> getBooksByComplexCondition(String title, String author, Integer year, Integer genre) {
-        return bookRepo.findByComplexQuery(title, year, genre, author);
+        List<String> authorCredentials = parseAuthorString(author);
+        return bookRepo.findByComplexQuery(title, year, genre,
+                authorCredentials.get(0), authorCredentials.get(1), authorCredentials.get(2));
     }
 
     /**
@@ -88,19 +90,25 @@ public class LibraryService {
     }
 
     /**
-     * Delete reader from database by readerId
+     * Delete reader from database by readerId if reader is not admin
      *
      * @param readerId - id of reader to delete
      * @return true if delete successful
      */
     public boolean deleteReaderById(int readerId) {
-        try {
-            readerRepo.delete(readerId);
-            return readerRepo.findOne(readerId) == null;
-        } catch (Exception e) {
-            logger.error(e.getMessage());
+        if (readerRepo.getOne(readerId).getIsAdmin()) {
+            return false;
+        } else {
+            try {
+                readerRepo.delete(readerId);
+                logger.info("delete reader by id" + readerId);
+                return readerRepo.findOne(readerId) == null;
+
+            } catch (Exception e) {
+                logger.error(e.getMessage());
+            }
+            return false;
         }
-        return false;
     }
 
     /**
@@ -139,6 +147,7 @@ public class LibraryService {
      * @param genreId - genre id
      * @return - genre name
      */
+
     public String getGenre(int genreId) {
         return genreRepo.findOne(genreId).getName();
     }
@@ -221,5 +230,26 @@ public class LibraryService {
             res.add(Utils.convertLocalDate(delivery.getTime()));
         }
         return res;
+    }
+
+    /**
+     * Parse author full name string to list of author credentials, split it by spaces and fill into credentials
+     *
+     * @param author - author full name string
+     * @return list of author last name, first name, patronymic name
+     */
+    public List<String> parseAuthorString(String author) {
+        List<String> authorCredentials = new ArrayList<>();
+        String[] authorArray = author.split(" ");
+        for (int i = 0; i < 3; i++) {
+            if (authorArray.length > i) {
+                authorCredentials.add(authorArray[i]);
+            } else {
+                authorCredentials.add("");
+            }
+        }
+        authorCredentials.forEach(s -> System.err.print(s + " "));
+        System.err.println(" ");
+        return authorCredentials;
     }
 }

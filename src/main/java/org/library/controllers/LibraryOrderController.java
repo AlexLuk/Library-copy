@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class LibraryOrderController {
 
-    private final static Logger logger = LoggerFactory.getLogger(LibraryOrderController.class);
 
     @Autowired
     OrderService orderService;
@@ -25,15 +24,27 @@ public class LibraryOrderController {
      *
      * @param bookId - id off book to add
      * @param toHand - true if book is ordered on hand
-     * @return - return false, if it was not possible to add book to order book
+     * @return - return 0, if it was not possible to add book to order book
      */
     @RequestMapping(value = {"/addOrder"}, method = RequestMethod.POST, produces = "application/json")
     public
     @ResponseBody
-    boolean addOrder(int bookId, boolean toHand) {
+    int addOrder(int bookId, boolean toHand) {
         Reader reader = (Reader) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return orderService.addOrder(reader, bookId, toHand);
     }
 
+    /**
+     * Cancel order by orderId
+     *
+     * @param bookOrderId - order id
+     * @return - true if order deleted
+     */
+    @RequestMapping(value = {"/cancelOrder"}, method = RequestMethod.POST, produces = "application/json")
+    public
+    @ResponseBody
+    boolean cancelOrder(int bookOrderId) {
+        return orderService.cancelOrder(bookOrderId);
+    }
 
 }

@@ -19,16 +19,25 @@ public class LibraryServiceTest extends LibraryTest {
     LibraryService libraryService;
 
     @Test
+    public void parseAuthorString() throws Exception {
+        assertThat(libraryService.parseAuthorString("d a s v"), containsInAnyOrder("d", "a", "s"));
+        assertThat(libraryService.parseAuthorString("d a s"), containsInAnyOrder("d", "a", "s"));
+        assertThat(libraryService.parseAuthorString("d a"), containsInAnyOrder("d", "a", ""));
+        assertThat(libraryService.parseAuthorString(""), containsInAnyOrder("", "", ""));
+    }
+
+    @Test
     public void simpleTest() throws Exception {
         saveTestData();
-        assertThat(bookRepository.findByComplexQuery("zzzzzzzzz", null, null, ""), empty());
-        assertThat(bookRepository.findByComplexQuery("", 9999, null, ""), empty());
-        assertThat(bookRepository.findByComplexQuery("", null, null, "zzzzzzz"), empty());
-        assertThat(bookRepository.findByComplexQuery("", null, null, ""), hasItems(bookRepository.findOne(1)));
-        assertThat(bookRepository.findByComplexQuery("", null, null, "оН"), hasItems(bookRepository.findOne(1)));
-        assertThat(bookRepository.findByComplexQuery("оро", null, null, ""), hasItems(bookRepository.findOne(1)));
-        assertThat(bookRepository.findByComplexQuery("", 1782, null, ""), hasItems(bookRepository.findOne(1)));
-        assertThat(bookRepository.findByComplexQuery("", null, 1, ""), hasItems(bookRepository.findOne(1)));
+        assertThat(bookRepository.findByComplexQuery("zzzzzzzzz", null, null, "", "", ""), empty());
+        assertThat(bookRepository.findByComplexQuery("", 9999, null, "", "", ""), empty());
+        assertThat(bookRepository.findByComplexQuery("", null, null, "zzzzzzz", "", ""), empty());
+        assertThat(bookRepository.findByComplexQuery("", null, null, "", "", ""), hasItems(bookRepository.findOne(1)));
+        assertThat(bookRepository.findByComplexQuery("", null, null, "оН", "", ""), hasItems(bookRepository.findOne(1)));
+        assertThat(bookRepository.findByComplexQuery("", null, null, "", "дж", ""), hasItems(bookRepository.findOne(3)));
+        assertThat(bookRepository.findByComplexQuery("оро", null, null, "", "", ""), hasItems(bookRepository.findOne(1)));
+        assertThat(bookRepository.findByComplexQuery("", 1782, null, "", "", ""), hasItems(bookRepository.findOne(1)));
+        assertThat(bookRepository.findByComplexQuery("", null, 1, "", "", ""), hasItems(bookRepository.findOne(1)));
     }
 
     @Test

@@ -4,7 +4,10 @@ import com.google.gson.Gson;
 import org.library.controllers.LibraryOrderController;
 import org.library.db.domain.*;
 import org.library.db.repo.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
@@ -12,6 +15,8 @@ import java.util.List;
 
 @Service
 public class OrderService {
+
+    private final static Logger logger = LoggerFactory.getLogger(OrderService.class);
 
     @Autowired
     BookOrderRepository bookOrderRepository;
@@ -28,59 +33,42 @@ public class OrderService {
     @Autowired
     BookRepository bookRepository;
 
-    public List<BookOrder> getByReaderByStatus(Reader reader, boolean isOnHands) {
-        return bookOrderRepository.findByReaderIdAndOnHands(reader.getId(), isOnHands);
-    }
-
-    public List<BookOrder> getByReader(Reader reader) {
-        return bookOrderRepository.findByReaderId(reader.getId());
-    }
-
     /**
-     * Search for list of orders for specific book and for specific reader
+     * Add book to reader orders, perform check for book in reader's orders and deliveries
      *
-     * @param reader - reader for search
-     * @param book   - book for search
-     * @return - list of book orders
+     * @param reader    - reader
+     * @param bookId    - bookId
+     * @param isOnHands - type of order
+     * @return - 0 - order added
+     * 1 - reader has book in orders
+     * 2 - reader has book in deliveries
      */
-    List<BookOrder> getByReaderAndBook(Reader reader, Book book) {
-        return bookOrderRepository.findByReaderIdAndBookId(reader.getId(), book.getId());
-    }
-
-    /**
-     * Search for deliveries for specific reader and for list of specific book items
-     *
-     * @param reader    - reader for search
-     * @param bookItems - items
-     * @return - list of deliveries
-     */
-    List<Delivery> getByReaderIdAndBookItemIdIn(Reader reader, List<BookItem> bookItems) {
-        List<Integer> bookItemIds = new LinkedList<>();
-        bookItems.forEach(bookItem -> bookItemIds.add(bookItem.getId()));
-        return deliveryRepository.findByReaderIdAndBookItemIdIn(reader.getId(), bookItemIds);
-    }
-
-    /**
-     * Search for list of book items for specific book
-     *
-     * @param book - book for search
-     * @return - list of book items
-     */
-    List<BookItem> getByBookId(Book book) {
-        return bookItemRepository.findByBookId(book.getId());
-    }
-
-    public boolean addOrder(Reader reader, int bookId, boolean isOnHands) {
-        Book book = bookRepository.findOne(bookId);
-        List<BookOrder> readerExactBook = getByReaderAndBook(reader, book);
-        List<BookItem> bookItems = getByBookId(book);
-        List<Delivery> readerDeliveries = getByReaderIdAndBookItemIdIn(reader, bookItems);
-        if (readerExactBook.size() == 0 && readerDeliveries.size() == 0) {
-            BookOrder bookOrder = new BookOrder(reader, book, isOnHands);
+    public int addOrder(Reader reader, int bookId, boolean isOnHands) {
+        int checkReaderForBook = checkReaderForBook(reader.getId(), bookId);
+        if (checkReaderForBook == 0) {
+            BookOrder bookOrder = new BookOrder(reader, bookRepository.findOne(bookId), isOnHands);
             bookOrderRepository.save(bookOrder);
-            return true;
+            logger.info("add order" + bookOrder);
+            return checkReaderForBook;
         } else {
-            return false;
+            return checkReaderForBook;
+        }
+    }
+
+    /**
+     * @param readerId - reader id
+     * @param bookId   - book id
+     * @return 0 - no book in orders and deliveries
+     * 1 - book  in orders
+     * 2 - book  in deliveries
+     */
+    public int checkReaderForBook(int readerId, int bookId) {
+        if (bookOrderRepository.countByReaderIdAndBookId(readerId, bookId) != 0) {
+            return 2;
+        } else if (deliveryRepository.countByReaderIdAndBookId(readerId, bookId) != 0) {
+            return 1;
+        } else {
+            return 0;
         }
     }
 
@@ -107,6 +95,23 @@ public class OrderService {
             bookId = bookOrder.getBook().getId();
             isOnHands = bookOrder.getOnHands();
         }
+    }
+
+    /**
+     * Cancel order by bookOrderId
+     *
+     * @param bookOrderId - book order id
+     * @return true - order successfully deleted
+     */
+    public boolean cancelOrder(int bookOrderId) {
+        try {
+            bookOrderRepository.delete(bookOrderId);
+        } catch (EmptyResultDataAccessException e) {
+            logger.error(e.getStackTrace().toString());
+            return false;
+        }
+        logger.info("delete order by orderId" + bookOrderId);
+        return true;
     }
 
 }
