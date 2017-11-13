@@ -83,6 +83,15 @@ button, link {
     width: 90%;
 }
 
+.popupForm {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.modal-dialog {
+    max-width: 600px !important;
+}
 
 .fixedBlock {
     position: fixed;
