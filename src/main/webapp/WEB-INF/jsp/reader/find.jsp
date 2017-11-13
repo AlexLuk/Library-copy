@@ -4,7 +4,7 @@
 <%@ page import="org.library.db.domain.Author" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ include file="../templates/taglibs.jsp" %>
 
 <%
     LibraryService libraryService = (LibraryService) request.getAttribute("lib_service");

@@ -1,8 +1,8 @@
 <%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
 <%@ page import="org.library.db.domain.Reader" %>
 
-<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ include file="../templates/taglibs.jsp" %>
 
 <%
     Reader curUser = (Reader) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

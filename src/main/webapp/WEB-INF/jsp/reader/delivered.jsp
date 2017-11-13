@@ -3,15 +3,14 @@
 <%@ page import="java.util.List" %>
 <%@ page import="org.library.db.domain.Reader" %>
 <%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
-<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ include file="../templates/taglibs.jsp" %>
 
 <%
     LibraryService libraryService = (LibraryService) request.getAttribute("lib_service");
-
-
+    Reader curUser = (Reader) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    List<Delivery> deliveredBooks = libraryService.getAllDeliveryItemsByReader(curUser.getId());
 %>
 
 <!DOCTYPE html>
@@ -37,6 +36,25 @@
                 </tr>
                 </thead>
                 <tbody>
+                <%for (Delivery delivery : deliveredBooks) {%>
+                <tr>
+                    <td><%= delivery.getBookItem().getBook().getTitle() %></td>
+                    <td>
+                        <% if(delivery.getBookItem().getStatus().getName().equals("on_hands")) { %>
+                        <spring:message code="statusForHome" />
+                        <%} else {%>
+                        <spring:message code="statusInLib" />
+                        <%}%>
+                    </td>
+                    <td><%= delivery.convertLocalDate() %></td>
+                    <td>
+                        <button type="submit" class="btn btn-primary"
+                                id="delete_<%= delivery.getId()%>" name="delete_<%= delivery.getId()%>">
+                            <spring:message code="toReturn" />
+                        </button>
+                    </td>
+                </tr>
+                <%}%>
                 </tbody>
             </table>
         </div>

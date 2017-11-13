@@ -1,5 +1,7 @@
 <%@ page import="org.library.db.domain.Genre" %>
 
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <form id="filter_form" class="scaled doNotProcess">
     <div class="form-group">
         <div class="row">
