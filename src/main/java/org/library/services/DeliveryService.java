@@ -39,8 +39,9 @@ public class DeliveryService {
         return -1;
     }
 
-    public boolean addDeliveryByBookOrder(Integer bookOrderId, boolean toHand) {
+    public boolean addDeliveryByBookOrder(Integer bookOrderId) {
         BookOrder bookOrder = bookOrderRepository.getOne(bookOrderId);
+        boolean toHand = bookOrder.getOnHands();
         int freeBookItem = freeBook(bookOrder);
         if (freeBookItem == -1) {
             return false;
