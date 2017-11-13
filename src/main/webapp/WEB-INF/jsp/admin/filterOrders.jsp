@@ -27,7 +27,7 @@
             </div>
             <div class="col-lg-3 col-md-3 col-xs-3">
                 <label for="book_genre"><spring:message code="status" />:</label>
-                <select class="form-control" name="book_genre" id="book_genre">
+                <select class="form-control" name="book_genre" id="book_genre" multiple="multiple">
                     <option></option>
                     <option><spring:message code="statusForHome" /></option>
                     <option><spring:message code="statusInLib" /></option>

@@ -31,8 +31,8 @@
                     <th><spring:message code="fullName" /></th>
                     <th><spring:message code="title" /></th>
                     <th><spring:message code="author" /></th>
-                    <th><spring:message code="status" /></th>
                     <th><spring:message code="time" /></th>
+                    <th><spring:message code="status" /></th>
                     <th></th>
                 </tr>
                 </thead>

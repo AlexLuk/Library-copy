@@ -103,6 +103,11 @@ button, link {
     margin-top: 17px;
 }
 
+#book_genre {
+    padding: 0px;
+    height: 60%;
+}
+
 .hidden {
     visibility: hidden;
 }
