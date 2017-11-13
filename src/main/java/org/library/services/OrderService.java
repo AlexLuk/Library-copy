@@ -96,4 +96,19 @@ public class OrderService {
         }
     }
 
+    /**
+     * Cancel order by bookOrderId
+     *
+     * @param bookOrderId - book order id
+     */
+    public boolean cancelOrder(int bookOrderId) {
+        bookOrderRepository.delete(bookOrderId);
+        if (bookOrderRepository.findOne(bookOrderId) == null) {
+            logger.info("delete order by orderId" + bookOrderId);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }
