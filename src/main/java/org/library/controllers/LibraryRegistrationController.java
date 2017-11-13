@@ -117,18 +117,24 @@ public class LibraryRegistrationController {
     @RequestMapping(value = {"/change_profile"}, method = RequestMethod.POST, produces = "application/json")
     public @ResponseBody
     Boolean changeUser(@ModelAttribute Reader reader) {
-        Reader curReader = (Reader) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Reader curReader = new Reader((Reader) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         String newPassword = reader.getPassword();
         try {
             if (!newPassword.equals("")) {
                 if (isPasswordComplicate(newPassword, curReader.getEmail())) {
                     String md5Hex = DigestUtils.md5Hex(newPassword);
-                    readerRepository.setReaderInfoById(reader.getFirstName(),
-                            reader.getLastName(), reader.getPatronymic(), md5Hex, reader.getEmail());
+                    curReader.setLastName(reader.getLastName());
+                    curReader.setFirstName(reader.getFirstName());
+                    curReader.setPatronymic(reader.getPatronymic());
                     curReader.setPassword(md5Hex);
+                    readerRepository.save(curReader);
                 } else return false;
-            } else readerRepository.setReaderInfoById(reader.getFirstName(),
-                    reader.getLastName(), reader.getPatronymic(), curReader.getPassword(), reader.getEmail());
+            } else {
+                curReader.setLastName(reader.getLastName());
+                curReader.setFirstName(reader.getFirstName());
+                curReader.setPatronymic(reader.getPatronymic());
+                readerRepository.save(curReader);
+            }
         } catch (Exception e) {
             return false;
         }
