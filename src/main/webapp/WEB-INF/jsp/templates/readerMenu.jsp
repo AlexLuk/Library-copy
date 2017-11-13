@@ -2,7 +2,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
 <li class="nav-item active">
-    <a class="nav-link" href="/account/reader/find"><spring:message code="findOrderBooks" /></a>
+    <a class="nav-link" href="/account"><spring:message code="findOrderBooks" /></a>
 </li>
 <li class="nav-item">
     <a class="nav-link" href="/account/reader/delivered"><spring:message code="currentOrders" /></a>

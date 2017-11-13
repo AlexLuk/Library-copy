@@ -57,18 +57,6 @@ public class LibraryController {
     }
 
     /**
-     * Processes requests to reader find page
-     *
-     * @param model - data model
-     * @return - jsp view name
-     */
-    @RequestMapping(value = {READER_URL + "find"})
-    public String showReaderFind(Model model) {
-        model.addAttribute("lib_service", libraryService);
-        return READER_PATH + "find";
-    }
-
-    /**
      * Processes requests to reader delivered orders page
      *
      * @param model - data model
@@ -102,18 +90,6 @@ public class LibraryController {
     public String showReaderProfile(Model model) {
         model.addAttribute("lib_service", libraryService);
         return READER_PATH + "profile";
-    }
-
-    /**
-     * Processes requests to admin pending orders page
-     *
-     * @param model - data model
-     * @return - jsp view name
-     */
-    @RequestMapping(value = {ADMIN_URL + "orders"})
-    public String showAdminPendingOrders(Model model) {
-        model.addAttribute("lib_service", libraryService);
-        return ADMIN_PATH + "orders";
     }
 
     /**
