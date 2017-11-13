@@ -36,25 +36,25 @@
                 </tr>
                 </thead>
                 <tbody>
-                <%for (Delivery delivery : deliveredBooks) {%>
-                <tr>
-                    <td><%= delivery.getBookItem().getBook().getTitle() %></td>
-                    <td>
-                        <% if(delivery.getBookItem().getStatus().getName().equals("on_hands")) { %>
-                        <spring:message code="statusForHome" />
-                        <%} else {%>
-                        <spring:message code="statusInLib" />
-                        <%}%>
-                    </td>
-                    <td><%= delivery.convertLocalDate() %></td>
-                    <td>
-                        <button type="submit" class="btn btn-primary"
-                                id="delete_<%= delivery.getId()%>" name="delete_<%= delivery.getId()%>">
-                            <spring:message code="toReturn" />
-                        </button>
-                    </td>
-                </tr>
-                <%}%>
+                    <%for (Delivery delivery : deliveredBooks) {%>
+                        <tr>
+                            <td><%= delivery.getBookItem().getBook().getTitle() %></td>
+                            <td>
+                                <% if(delivery.getBookItem().getStatus().getName().equals("on_hands")) { %>
+                                <spring:message code="statusForHome" />
+                                <%} else {%>
+                                <spring:message code="statusInLib" />
+                                <%}%>
+                            </td>
+                            <td><%= delivery.convertLocalDate() %></td>
+                            <td>
+                                <button type="submit" class="btn btn-primary"
+                                        id="delete_<%= delivery.getId()%>" name="delete_<%= delivery.getId()%>">
+                                    <spring:message code="toReturn" />
+                                </button>
+                            </td>
+                        </tr>
+                    <%}%>
                 </tbody>
             </table>
         </div>

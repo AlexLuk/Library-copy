@@ -33,19 +33,19 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <%for (Book book : books) {%>
-                        <tr>
-                            <td><%= book.getTitle() %></td>
-                            <td>
-                                <form method="post" class="doNotProcess">
-                                    <button type="submit" class="btn btn-primary"
-                                            id="edit_<%= book.getId()%>" name="edit_<%= book.getId()%>">
-                                        <spring:message code="toEdit" />
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
-                        <%}%>
+                            <%for (Book book : books) {%>
+                                <tr>
+                                    <td><%= book.getTitle() %></td>
+                                    <td>
+                                        <form method="post" class="doNotProcess">
+                                            <button type="submit" class="btn btn-primary"
+                                                    id="edit_<%= book.getId()%>" name="edit_<%= book.getId()%>">
+                                                <spring:message code="toEdit" />
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            <%}%>
                         </tbody>
                     </table>
                 </div>
@@ -123,19 +123,19 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <%for (Author author : authors) {%>
-                            <tr>
-                                <td><%= author.getFullName() %></td>
-                                <td>
-                                    <form method="post" class="doNotProcess">
-                                        <button type="submit" class="btn btn-primary"
-                                                id="add_<%= author.getId()%>" name="add_<%= author.getId()%>">
-                                            <spring:message code="toAdd" />
-                                        </button>
-                                    </form>
-                                </td>
-                            </tr>
-                            <%}%>
+                                <%for (Author author : authors) {%>
+                                    <tr>
+                                        <td><%= author.getFullName() %></td>
+                                        <td>
+                                            <form method="post" class="doNotProcess">
+                                                <button type="submit" class="btn btn-primary"
+                                                        id="add_<%= author.getId()%>" name="add_<%= author.getId()%>">
+                                                    <spring:message code="toAdd" />
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                <%}%>
                             </tbody>
                         </table>
                     </div>

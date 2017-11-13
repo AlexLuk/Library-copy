@@ -33,19 +33,19 @@
                 </tr>
                 </thead>
                 <tbody>
-                <%for (Reader reader : readers) {%>
-                <tr>
-                    <td><%= reader.getFullName() %></td>
-                    <td><%= reader.convertLocalDate().toString() %></td>
-                    <td><%= reader.getFines() %>&nbsp;&#x20bd;</td>
-                    <td>
-                        <button type="submit" class="btn btn-primary deleteReader"
-                                id="deleteReader_<%= reader.getId()%>" name="deleteReader_<%= reader.getId()%>">
-                            <spring:message code="toDeleteReader" />
-                        </button>
-                    </td>
-                </tr>
-                <%}%>
+                    <%for (Reader reader : readers) {%>
+                        <tr>
+                            <td><%= reader.getFullName() %></td>
+                            <td><%= reader.convertLocalDate().toString() %></td>
+                            <td><%= reader.getFines() %>&nbsp;&#x20bd;</td>
+                            <td>
+                                <button type="submit" class="btn btn-primary deleteReader"
+                                        id="deleteReader_<%= reader.getId()%>" name="deleteReader_<%= reader.getId()%>">
+                                    <spring:message code="toDeleteReader" />
+                                </button>
+                            </td>
+                        </tr>
+                    <%}%>
                 </tbody>
             </table>
         </div>

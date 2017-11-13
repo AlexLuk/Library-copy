@@ -36,25 +36,25 @@
                 </tr>
                 </thead>
                 <tbody>
-                <%for (BookOrder order : orders) {%>
-                <tr>
-                    <td><%= order.getReader().getFullName() %></td>
-                    <td><%= order.getBook().getTitle() %></td>
-                    <td>
-                        <% if(order.getOnHands()) { %>
-                        <spring:message code="wishStatusForHome" />
-                        <%} else {%>
-                        <spring:message code="wishStatusInLib" />
-                        <%}%>
-                    </td>
-                    <td>
-                        <button type="submit" class="btn btn-primary"
-                                id="delete_<%= order.getId()%>" name="delete_<%= order.getId()%>">
-                            <spring:message code="toDelete" />
-                        </button>
-                    </td>
-                </tr>
-                <%}%>
+                    <%for (BookOrder order : orders) {%>
+                        <tr>
+                            <td><%= order.getReader().getFullName() %></td>
+                            <td><%= order.getBook().getTitle() %></td>
+                            <td>
+                                <% if(order.getOnHands()) { %>
+                                <spring:message code="wishStatusForHome" />
+                                <%} else {%>
+                                <spring:message code="wishStatusInLib" />
+                                <%}%>
+                            </td>
+                            <td>
+                                <button type="submit" class="btn btn-primary"
+                                        id="delete_<%= order.getId()%>" name="delete_<%= order.getId()%>">
+                                    <spring:message code="toDelete" />
+                                </button>
+                            </td>
+                        </tr>
+                    <%}%>
                 </tbody>
             </table>
         </div>

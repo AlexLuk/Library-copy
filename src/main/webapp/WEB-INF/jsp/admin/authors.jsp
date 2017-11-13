@@ -33,19 +33,19 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <%for (Author author : authors) {%>
-                                <tr>
-                                    <td><%= author.getFullName() %></td>
-                                    <td>
-                                        <form method="post" class="doNotProcess">
-                                            <button type="submit" class="btn btn-primary"
-                                                    id="edit_<%= author.getId()%>" name="edit_<%= author.getId()%>">
-                                                <spring:message code="toEdit" />
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>
-                                <%}%>
+                                    <%for (Author author : authors) {%>
+                                    <tr>
+                                        <td><%= author.getFullName() %></td>
+                                        <td>
+                                            <form method="post" class="doNotProcess">
+                                                <button type="submit" class="btn btn-primary"
+                                                        id="edit_<%= author.getId()%>" name="edit_<%= author.getId()%>">
+                                                    <spring:message code="toEdit" />
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    <%}%>
                                 </tbody>
                             </table>
                         </div>

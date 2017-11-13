@@ -35,20 +35,20 @@
                 </tr>
                 </thead>
                 <tbody>
-                <%for (Delivery delivery : deliveredBooks) {%>
-                <tr>
-                    <td><%= delivery.getReader().getFullName() %></td>
-                    <td><%= delivery.getBookItem().getBook().getTitle() %></td>
-                    <td><%= delivery.convertLocalDate() %></td>
-                    <td>
-                        <% if(delivery.getBookItem().getStatus().getName().equals("on_hands")) { %>
-                        <spring:message code="statusForHome" />
-                        <%} else {%>
-                        <spring:message code="statusInLib" />
-                        <%}%>
-                    </td>
-                </tr>
-                <%}%>
+                    <%for (Delivery delivery : deliveredBooks) {%>
+                        <tr>
+                            <td><%= delivery.getReader().getFullName() %></td>
+                            <td><%= delivery.getBookItem().getBook().getTitle() %></td>
+                            <td><%= delivery.convertLocalDate() %></td>
+                            <td>
+                                <% if(delivery.getBookItem().getStatus().getName().equals("on_hands")) { %>
+                                <spring:message code="statusForHome" />
+                                <%} else {%>
+                                <spring:message code="statusInLib" />
+                                <%}%>
+                            </td>
+                        </tr>
+                    <%}%>
                 </tbody>
             </table>
         </div>
