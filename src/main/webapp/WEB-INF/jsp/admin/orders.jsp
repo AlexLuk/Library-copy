@@ -26,6 +26,7 @@
                 <tr>
                     <th><spring:message code="fullName" /></th>
                     <th><spring:message code="title" /></th>
+                    <th><spring:message code="author" /></th>
                     <th><spring:message code="shelfCode" /></th>
                     <th><spring:message code="wishStatus" /></th>
                     <th></th>
@@ -36,6 +37,12 @@
                         <tr>
                             <td><%= order.getReader().getFullName() %></td>
                             <td><%= order.getBook().getTitle() %></td>
+                            <td>
+                                <%  List<Author> authors = order.getBook().getAuthors();
+                                    for (Author author : authors) { %>
+                                <%= author.getFullName() %><br/>
+                                <%}%>
+                            </td>
                             <td><%= order.getBook().getShelfCode() %></td>
                             <td>
                                 <% if(order.getOnHands()) { %>

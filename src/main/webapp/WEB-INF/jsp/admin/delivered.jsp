@@ -1,6 +1,7 @@
 <%@ page import="org.library.services.LibraryService" %>
 <%@ page import="org.library.db.domain.Delivery" %>
 <%@ page import="java.util.List" %>
+<%@ page import="org.library.db.domain.Author" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="../templates/taglibs.jsp" %>
 
@@ -29,6 +30,7 @@
                 <tr>
                     <th><spring:message code="fullName" /></th>
                     <th><spring:message code="title" /></th>
+                    <th><spring:message code="author" /></th>
                     <th><spring:message code="status" /></th>
                     <th><spring:message code="time" /></th>
                     <th></th>
@@ -39,6 +41,12 @@
                         <tr>
                             <td><%= delivery.getReader().getFullName() %></td>
                             <td><%= delivery.getBookItem().getBook().getTitle() %></td>
+                            <td>
+                                <%  List<Author> authors = delivery.getBookItem().getBook().getAuthors();
+                                    for (Author author : authors) { %>
+                                    <%= author.getFullName() %><br/>
+                                <%}%>
+                            </td>
                             <td><%= delivery.convertLocalDate() %></td>
                             <td>
                                 <% if(delivery.getBookItem().getStatus().getName().equals("on_hands")) { %>
