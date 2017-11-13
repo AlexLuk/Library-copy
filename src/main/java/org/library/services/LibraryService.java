@@ -101,6 +101,7 @@ public class LibraryService {
         } else {
             try {
                 readerRepo.delete(readerId);
+                logger.info("delete reader by id" + readerId);
                 return readerRepo.findOne(readerId) == null;
 
             } catch (Exception e) {

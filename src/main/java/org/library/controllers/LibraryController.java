@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class LibraryController {
-    private final static Logger logger = LoggerFactory.getLogger(LibraryController.class);
 
     @Autowired
     LibraryService libraryService;

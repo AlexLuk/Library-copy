@@ -4,6 +4,8 @@ import com.google.gson.Gson;
 import org.library.controllers.LibraryOrderController;
 import org.library.db.domain.*;
 import org.library.db.repo.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +14,8 @@ import java.util.List;
 
 @Service
 public class OrderService {
+
+    private final static Logger logger = LoggerFactory.getLogger(OrderService.class);
 
     @Autowired
     BookOrderRepository bookOrderRepository;
@@ -43,6 +47,7 @@ public class OrderService {
         if (checkReaderForBook == 0) {
             BookOrder bookOrder = new BookOrder(reader, bookRepository.findOne(bookId), isOnHands);
             bookOrderRepository.save(bookOrder);
+            logger.info("add order" + bookOrder);
             return checkReaderForBook;
         } else {
             return checkReaderForBook;
