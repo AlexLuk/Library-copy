@@ -24,6 +24,6 @@ public class LibraryDeliveryController {
      */
     @RequestMapping(value = {"/addDelivery"}, method = RequestMethod.POST, produces = "application/json")
     public boolean addDelivery(Integer orderId, boolean toHand) {
-        return deliveryService.addDeliveryByBookOrder(orderId, toHand);
+        return deliveryService.addDeliveryByBookOrder(orderId);
     }
 }
