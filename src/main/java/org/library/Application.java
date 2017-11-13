@@ -15,8 +15,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @EnableJpaRepositories(basePackages = "org.library.db.repo")
 @EntityScan(basePackages = "org.library.db.domain")
 public class Application extends WebMvcConfigurerAdapter {
-    private static final String READER = "/reader/";
-    private static final String ADMIN = "/admin/";
+    private static final String READER_URL = "/account/reader/";
+    private static final String READER_PATH = "/reader/";
+    private static final String ADMIN_URL = "/account/admin/";
+    private static final String ADMIN_PATH = "/admin/";
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
@@ -24,15 +26,15 @@ public class Application extends WebMvcConfigurerAdapter {
 
     @Override
     public void addViewControllers (ViewControllerRegistry registry) {
-        registry.addViewController(READER + "find").setViewName(READER + "find");
-        registry.addViewController(READER + "delivered").setViewName(READER + "delivered");
-        registry.addViewController(READER + "wishlist").setViewName(READER + "wishlist");
-        registry.addViewController(READER + "profile").setViewName(READER + "profile");
+        registry.addViewController(READER_URL + "find").setViewName(READER_PATH + "find");
+        registry.addViewController(READER_URL + "delivered").setViewName(READER_PATH + "delivered");
+        registry.addViewController(READER_URL + "wishlist").setViewName(READER_PATH + "wishlist");
+        registry.addViewController(READER_URL + "profile").setViewName(READER_PATH + "profile");
 
-        registry.addViewController(ADMIN + "orders").setViewName(ADMIN + "orders");
-        registry.addViewController(ADMIN + "delivered").setViewName(ADMIN + "delivered");
-        registry.addViewController(ADMIN + "readers").setViewName(ADMIN + "readers");
-        registry.addViewController(ADMIN + "add/books").setViewName(ADMIN + "books");
-        registry.addViewController(ADMIN + "add/authors").setViewName(ADMIN + "authors");
+        registry.addViewController(ADMIN_URL + "orders").setViewName(ADMIN_PATH + "orders");
+        registry.addViewController(ADMIN_URL + "delivered").setViewName(ADMIN_PATH + "delivered");
+        registry.addViewController(ADMIN_URL + "readers").setViewName(ADMIN_PATH + "readers");
+        registry.addViewController(ADMIN_URL + "add/books").setViewName(ADMIN_PATH + "books");
+        registry.addViewController(ADMIN_URL + "add/authors").setViewName(ADMIN_PATH + "authors");
     }
 }

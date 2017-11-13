@@ -4,7 +4,8 @@
             <div class="col-lg-6 col-sm-6 col-xs-12">
                 <h3>
                     <a class="navbar-brand" href="${pageContext.request.contextPath}/">
-                        <img src="${pageContext.request.contextPath}/img/favicon.ico" width="16" height="16" alt="Home page">Library Online&trade;
+                        <img src="${pageContext.request.contextPath}/img/favicon.ico"
+                             width="16" height="16" alt="Home page">Library Online&trade;
                     </a>
                 </h3>
             </div>

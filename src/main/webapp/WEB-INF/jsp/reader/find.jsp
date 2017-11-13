@@ -6,11 +6,17 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
+<%
+    LibraryService libraryService = (LibraryService) request.getAttribute("lib_service");
+    List<Book> books = libraryService.getAllBooks();
+    List<Genre> genres = libraryService.getAllGenres();
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Library Online - Find books</title>
+    <title><spring:message code="findOrderBooks" /> - Library Online&trade;</title>
     <%@ include file="../templates/meta.jsp" %>
 </head>
 
@@ -19,7 +25,6 @@
     <div class="container">
         <div class="jumbotron">
             <div id="status_message" class="bg-danger"></div>
-            <br/>
             <%@ include file="filter.jsp" %>
             <table class="table table-striped">
                 <thead>
@@ -36,7 +41,7 @@
                         List<Author> authors = libraryService.getAllAuthors(book.getId());
                     %>
                         <tr>
-                            <td><%= book.getTitle() %></td>
+                            <td width="20%"><%= book.getTitle() %></td>
                             <td>
                                 <%for (Author author : authors) {%>
                                 <%= author.getFullName() %><br/>
