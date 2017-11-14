@@ -56,7 +56,7 @@ public class LibraryTest {
         authorsSetup();
         booksSetup();
         authorBooksSetup();
-        readesSetup();
+        readersSetup();
         bookOrdersSetup();
         itemStatusesSetup();
         bookItemsSetup();
@@ -65,15 +65,15 @@ public class LibraryTest {
     //todo use array list
 
     private void genresSetup() {
-        testGenres = new LinkedList<>();
+        testGenres = new ArrayList<>();
         testGenres.add(new Genre("aaa"));
         testGenres.add(new Genre("aaababb"));
         testGenres.add(new Genre("bbb bbb"));
-        testGenresEmpty = new LinkedList<>();
+        testGenresEmpty = new ArrayList<>();
     }
 
     private void authorsSetup() {
-        testAuthors = new LinkedList<>();
+        testAuthors = new ArrayList<>();
         testAuthors.add(new Author("AAA", "BBB", "CCC", 1731));
         testAuthors.add(new Author("AAA", "BBB", "AAA", 1732));
         testAuthors.add(new Author("CCC", "BBB", "BBB", 1732));
@@ -84,7 +84,7 @@ public class LibraryTest {
         testBooks.add(new Book("l1", testGenres.get(0), "BOok book1", "RU", 2189, (short) 6, false));
         testBooks.add(new Book("l1", testGenres.get(1), "book BOok2", "RU", 2189, (short) 6, false));
         testBooks.add(new Book("l1", testGenres.get(2), "bookbook", "RU", 2178, (short) 6, false));
-        testBookIdsEmpty = new LinkedList<>();
+        testBookIdsEmpty = new ArrayList<>();
     }
 
     private void authorBooksSetup() {
@@ -93,28 +93,28 @@ public class LibraryTest {
         testAuthors.get(2).addBook(testBooks.get(2));
     }
 
-    private void readesSetup() {
-        testReaders = new LinkedList<>();
+    private void readersSetup() {
+        testReaders = new ArrayList<>();
         testReaders.add(new Reader("amma@mail.ru","pwd","am","ma","",new Date(System.currentTimeMillis()),0.0,false));
         testReaders.add(new Reader("maam@mail.ru","pwd","ma","am","",new Date(System.currentTimeMillis()),0.0,false));
     }
 
     private void bookOrdersSetup() {
-        testBookOrders = new LinkedList<>();
+        testBookOrders = new ArrayList<>();
         testBookOrders.add(new BookOrder(testReaders.get(0),testBooks.get(0),true));
         testBookOrders.add(new BookOrder(testReaders.get(0),testBooks.get(1),true));
         testBookOrders.add(new BookOrder(testReaders.get(1),testBooks.get(2),true));
     }
 
     private void itemStatusesSetup() {
-        testItemStatuses = new LinkedList<>();
+        testItemStatuses = new ArrayList<>();
         testItemStatuses.add(new ItemStatus("free"));
         testItemStatuses.add(new ItemStatus("on hands"));
         testItemStatuses.add(new ItemStatus("stydy"));
     }
 
     private void bookItemsSetup() {
-        testBookItems = new LinkedList<>();
+        testBookItems = new ArrayList<>();
         testBookItems.add(new BookItem(1,testBooks.get(0),testItemStatuses.get(1)));
         testBookItems.add(new BookItem(2,testBooks.get(1),testItemStatuses.get(1)));
         testBookItems.add(new BookItem(3,testBooks.get(2),testItemStatuses.get(1)));
@@ -127,7 +127,7 @@ public class LibraryTest {
     }
 
     private void deliveriesSetup() {
-        testDeliveries = new LinkedList<>();
+        testDeliveries = new ArrayList<>();
         testDeliveries.add(new Delivery(testReaders.get(0),testBookItems.get(0)));
         testDeliveries.add(new Delivery(testReaders.get(0),testBookItems.get(1)));
         testDeliveries.add(new Delivery(testReaders.get(0),testBookItems.get(2)));
