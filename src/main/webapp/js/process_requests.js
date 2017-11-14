@@ -270,19 +270,21 @@ $(document).ready(function () {
     /********************************************* delivery **********************************************/
 
     $(".orderHands").click(function () {
-        console.log("Clicked!");
         var id = getId($(this).attr("name"));
         addOrder(id, true);
+        reloadWithDelay(1000);
     });
 
     $(".orderLib").click(function () {
         var id = getId($(this).attr("name"));
         addOrder(id, false);
+        reloadWithDelay(1000);
     });
 
     $(".cancelOrder").click(function () {
         var id = getId($(this).attr("name"));
         cancelOrder(id, false);
+        reloadWithDelay(1000);
     });
 
     function addOrder(id, onHands) {
@@ -355,6 +357,7 @@ $(document).ready(function () {
                     else {
                         show_alert($('#error_return_book').html(), statusField, false);
                     }
+                    reloadWithDelay(1000);
                 }
             });
     });
@@ -395,6 +398,7 @@ $(document).ready(function () {
                            break;
                        }
                    }
+                    reloadWithDelay(1000);
                 }
             });
     });
@@ -413,6 +417,7 @@ $(document).ready(function () {
                     } else {
                         show_alert($('#error_fines_set').html(), statusField, false);
                     }
+                    reloadWithDelay(1000);
                 }
             });
     });
@@ -430,5 +435,4 @@ $(document).ready(function () {
         .on('cancel.daterangepicker', function (ev, picker) {
             $(this).val('');
         });
-
 });

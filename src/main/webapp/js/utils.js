@@ -71,6 +71,10 @@ function getId(attrName) {
     return "";
 }
 
+function reloadWithDelay(delay) {
+    setTimeout(location.reload.bind(location), delay);
+}
+
 // http://totalprogus.blogspot.ru/2013/12/bootstrap-add-active-class-to-li.html
 $('a[href="' + this.location.pathname + '"]').parents('li,ul').addClass('active');
 
@@ -78,3 +82,4 @@ $('a[href="' + this.location.pathname + '"]').parents('li,ul').addClass('active'
 $('.close').click(function() {
     $('.tooltip').hide();
 });
+
