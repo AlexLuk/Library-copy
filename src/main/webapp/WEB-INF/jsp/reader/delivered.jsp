@@ -1,8 +1,8 @@
 <%@ page import="org.library.db.domain.Delivery" %>
-<%@ page import="org.library.services.LibraryService" %>
-<%@ page import="java.util.List" %>
 <%@ page import="org.library.db.domain.Reader" %>
+<%@ page import="org.library.services.LibraryService" %>
 <%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
+<%@ page import="java.util.List" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="../templates/taglibs.jsp" %>
@@ -48,7 +48,7 @@
                             </td>
                             <td><%= delivery.convertLocalDate() %></td>
                             <td>
-                                <button type="submit" class="btn btn-primary"
+                                <button type="submit" class="btn btn-primary returnBook"
                                         id="delete_<%= delivery.getId()%>" name="delete_<%= delivery.getId()%>">
                                     <spring:message code="toReturn" />
                                 </button>

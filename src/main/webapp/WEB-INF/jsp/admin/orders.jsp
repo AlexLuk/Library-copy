@@ -53,7 +53,7 @@
                             </td>
                             <td>
                                 <input type="hidden" id="order_id" name="order_id" value="<%= order.getId()%>" />
-                                <button type="submit" class="btn btn-primary"
+                                <button type="submit" class="btn btn-primary giveOrder"
                                         id="giveOrderHands_<%= order.getId()%>" name="giveOrderHands_<%= order.getId()%>">
                                     <spring:message code="toServe" />
                                 </button>

@@ -1,6 +1,6 @@
-<%@ page import="org.library.services.LibraryService" %>
 <%@ page import="org.library.db.domain.BookOrder" %>
 <%@ page import="org.library.db.domain.Reader" %>
+<%@ page import="org.library.services.LibraryService" %>
 <%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
 <%@ page import="java.util.List" %>
 
@@ -60,7 +60,7 @@
                                 </select>
                             </td>
                             <td>
-                                <button type="submit" class="btn btn-primary"
+                                <button type="submit" class="btn btn-primary cancelOrder"
                                         id="delete_<%= order.getId()%>" name="delete_<%= order.getId()%>">
                                     <spring:message code="toDelete" />
                                 </button>

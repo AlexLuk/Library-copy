@@ -270,25 +270,54 @@ $(document).ready(function () {
 
     $(".orderHands").click(function () {
         var id = getId($(this).attr("name"));
-        processOrder(id, true);
+        addOrder(id, true);
     });
 
     $(".orderLib").click(function () {
         var id = getId($(this).attr("name"));
-        processOrder(id, false);
+        addOrder(id, false);
     });
 
-    function processOrder(id, onHands) {
+    $(".cancelOrder").click(function () {
+        var id = getId($(this).attr("name"));
+        cancelOrder(id, false);
+    });
+
+    function addOrder(id, onHands) {
         $.ajax(
             {
                 url: "/addOrder",
                 data: {bookId: id, toHand: onHands},
                 success: function (resp) {
+                    switch (resp) {
+                        case 0: {
+                            show_alert($('#succ_order_created').html(), statusField, true);
+                            break;
+                        }
+                        case 1: {
+                            show_alert($('#error_order_create_ordered').html(), statusField, false);
+                            break;
+                        }
+                        case 2: {
+                            show_alert($('#error_order_create_delivered').html(), statusField, false);
+                            break;
+                        }
+                    }
+                }
+            });
+    }
+
+    function cancelOrder(id) {
+        $.ajax(
+            {
+                url: "/cancelOrder",
+                data: {bookOrderId: id},
+                success: function (resp) {
                     if (resp) {
-                        alert($('#succ_order_created').html());
+                        show_alert($('#succ_order_canceled').html(), statusField, true);
                     }
                     else if (!resp) {
-                        alert($('#error_order_create').html());
+                        show_alert($('#error_order_canceled').html(), statusField, false);
                     }
                 }
             });
@@ -299,13 +328,13 @@ $(document).ready(function () {
         $.ajax(
             {
                 url: "/addDelivery",
-                data: id,
+                data: {orderId: id},
                 success: function (resp) {
                     if (resp) {
-                        alert($('#succ_delivery_created').html());
+                        show_alert($('#succ_delivery_created').html(), statusField, true);
                     }
                     else if (!resp) {
-                        alert($('#error_delivery_created').html());
+                        show_alert($('#error_delivery_created').html(), statusField, false);
                     }
                 }
             });
@@ -322,12 +351,10 @@ $(document).ready(function () {
                 async: false,
                 success: function (resp) {
                     if (!resp) {
-                        // show_alert($('#error_delete_account').html(), statusField, false);
-                        alert($('#error_delete_account').html());
+                        show_alert($('#error_delete_account').html(), statusField, false);
                     }
                     else {
-                        // show_alert($('#succ_account_deleted').html(), statusField, true);
-                        alert($('#succ_account_deleted').html());
+                        show_alert($('#succ_account_deleted').html(), statusField, true);
                     }
                 }
             });
@@ -344,7 +371,7 @@ $(document).ready(function () {
         }
     });
 
-    $('#year_picker').on('cancel.daterangepicker', function(ev, picker) {
+    $('#year_picker').on('cancel.daterangepicker', function (ev, picker) {
         $(this).val('');
     });
 
