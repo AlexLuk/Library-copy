@@ -33,23 +33,24 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <%for (Reader reader : readers) {%>
-                        <tr>
-                            <td><%= reader.getFullName() %></td>
-                            <td><%= reader.convertLocalDate().toString() %></td>
-                            <td>
-                                <input type="number" class = "setFines" id="fines_<%= reader.getId()%>" name="fines_<%= reader.getId()%>" min="0" value="<%= reader.getFines() %>"/>&nbsp;&#x20bd;
-                            </td>
-                            <td>
-                                <%if (!reader.getFirstName().equals("admin")) {%>
+                    <%for (Reader reader : readers) {
+                        if (!reader.getFirstName().equals("admin")) {%>
+                            <tr>
+                                <td><%= reader.getFullName() %></td>
+                                <td><%= reader.convertLocalDate().toString() %></td>
+                                <td>
+                                    <input type="number" class = "setFines" id="fines_<%= reader.getId()%>"
+                                           name="fines_<%= reader.getId()%>" min="0"
+                                           value="<%= reader.getFines() %>"/>&nbsp;&#x20bd;
+                                </td>
+                                <td>
                                     <button type="submit" class="btn btn-primary deleteReader"
                                             id="deleteReader_<%= reader.getId()%>" name="deleteReader_<%= reader.getId()%>">
                                         <spring:message code="toDeleteReader" />
                                     </button>
-                                <%}%>
-                            </td>
-                        </tr>
-                    <%}%>
+                                </td>
+                            </tr>
+                    <%}}%>
                 </tbody>
             </table>
         </div>
