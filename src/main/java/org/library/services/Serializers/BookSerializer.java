@@ -25,6 +25,8 @@ public class BookSerializer extends StdSerializer<Book> {
         jsonGenerator.writeStringField("authors",book.getAuthorsFullnames().stream().collect(Collectors.joining("</br>")));
         jsonGenerator.writeNumberField("year",book.getYear());
         jsonGenerator.writeStringField("genre",book.getGenre().getName());
+        jsonGenerator.writeBooleanField("isRare",book.getIsRare());
+        jsonGenerator.writeNumberField("amount",book.getAmount());
         jsonGenerator.writeNumberField("book_id",book.getId());
         jsonGenerator.writeEndObject();
     }
