@@ -21,8 +21,22 @@ public class LibraryDeliveryController {
      * @return - false, if it was not possible to add delivery
      */
     @RequestMapping(value = {"/addDelivery"}, method = RequestMethod.POST, produces = "application/json")
-    public @ResponseBody
+    public
+    @ResponseBody
     boolean addDelivery(Integer orderId) {
         return deliveryService.addDeliveryByBookOrder(orderId);
+    }
+
+    /**
+     * Return delivery by id.
+     *
+     * @param deliveryId - delivery id
+     * @return - true, if delivery was successfully deleted
+     */
+    @RequestMapping(value = {"/returnDelivery"}, method = RequestMethod.POST, produces = "application/json")
+    public
+    @ResponseBody
+    boolean returnDelivery(Integer deliveryId) {
+        return deliveryService.returnDelivery(deliveryId);
     }
 }
