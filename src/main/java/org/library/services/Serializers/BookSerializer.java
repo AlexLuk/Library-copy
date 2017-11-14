@@ -22,7 +22,7 @@ public class BookSerializer extends StdSerializer<Book> {
     public void serialize(Book book, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException, JsonProcessingException {
         jsonGenerator.writeStartObject();
         jsonGenerator.writeStringField("title",book.getTitle());
-        jsonGenerator.writeStringField("authors",book.getAuthorsFullnames().stream().collect(Collectors.joining("\n")));
+        jsonGenerator.writeStringField("authors",book.getAuthorsFullnames().stream().collect(Collectors.joining("</br>")));
         jsonGenerator.writeNumberField("year",book.getYear());
         jsonGenerator.writeStringField("genre",book.getGenre().getName());
         jsonGenerator.writeNumberField("book_id",book.getId());
