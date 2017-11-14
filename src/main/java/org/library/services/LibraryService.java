@@ -83,41 +83,6 @@ public class LibraryService {
         return gson.toJson(bookJsons);
     }
 
-    /**
-     * Delete reader from database by readerId
-     *
-     * @param readerId - id of reader to delete
-     * @return 0 - successful delete
-     * 1- delete rejected, user is admin
-     * 2- delete rejected, user has fines
-     * 3- delete rejected, user has orders
-     * 4- delete rejected, user has deliveries on hand
-     * 5- delete rejected, delete error
-     */
-    public int deleteReaderById(int readerId) {
-        try {
-            Reader reader = readerRepo.getOne(readerId);
-            if (reader.getIsAdmin()) {
-                return 1;
-            }
-            if (reader.getFines() >0) {
-                return 2;
-            }
-            if (bookOrderRepo.countByReaderId(readerId) > 0) {
-                return 3;
-            }
-            if (deliveryRepo.countByReaderId(readerId) > 0){
-                return 4;
-            }
-            readerRepo.delete(readerId);
-            logger.info("delete reader by id" + readerId);
-            return 0;
-        } catch (EntityNotFoundException e) {
-            logger.error(e.getStackTrace().toString());
-        }
-        return 5;
-    }
-
     //todo replace
 
     /**
