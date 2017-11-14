@@ -1,5 +1,7 @@
 package org.library.services;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import org.library.db.domain.*;
 import org.library.db.repo.*;
@@ -68,8 +70,6 @@ public class LibraryService {
         return bookRepo.findAll();
     }
 
-    //todo add annotations for book serealization
-
     /**
      * Wrap list of books in form of json
      *
@@ -77,31 +77,13 @@ public class LibraryService {
      * @return - json string
      */
     public String jsonBooks(List<Book> books) {
-        List<BookJson> bookJsons = new LinkedList<>();
-        books.forEach(book -> bookJsons.add(new BookJson(book)));
-        Gson gson = new Gson();
-        return gson.toJson(bookJsons);
-    }
-
-    //todo replace
-
-    /**
-     * Wrapper class for book user interface
-     */
-    private class BookJson {
-        String title;
-        List<String> authors = new LinkedList<>();
-        int year;
-        String genre;
-        int book_id;
-
-        BookJson(Book book) {
-            title = book.getTitle();
-            year = book.getYear();
-            book_id = book.getId();
-            genre = book.getGenre().getName();
-            getAllAuthors(book.getId()).forEach(author -> authors.add(author.getFullName()));
+        String booksJson = "";
+        try {
+            booksJson = new ObjectMapper().writeValueAsString(books);
+        } catch (JsonProcessingException e) {
+            logger.error(e.getStackTrace().toString());
         }
+        return booksJson;
     }
 
     /**

@@ -1,11 +1,16 @@
 package org.library.services;
 
+import com.google.gson.Gson;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.library.db.domain.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.LinkedList;
+import java.util.List;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -38,5 +43,14 @@ public class LibraryServiceTest extends LibraryTest {
         assertThat(bookRepository.findByComplexQuery("оро", null, null, "", "", ""), hasItems(bookRepository.findOne(1)));
         assertThat(bookRepository.findByComplexQuery("", 1782, null, "", "", ""), hasItems(bookRepository.findOne(1)));
         assertThat(bookRepository.findByComplexQuery("", null, 1, "", "", ""), hasItems(bookRepository.findOne(1)));
+    }
+
+    @Test
+    public void testSerealization() throws Exception {
+        List<Book> books = new LinkedList<>();
+        books.add(bookRepository.getOne(8));
+        assertThat(libraryService.jsonBooks(books), is("[{\"title\":\"Несколько авторов\"," +
+                "\"authors\":\"Иванов Иван Иванович \\nПетров Петр Петрович \\nСергеев Сергей Сергеевич " +
+                "\",\"year\":2000,\"genre\":\"fantasy\",\"book_id\":8}]"));
     }
 }

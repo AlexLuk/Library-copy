@@ -1,15 +1,15 @@
 package org.library.db.domain;
 
-import com.google.common.collect.Lists;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import org.library.services.Serializers.BookSerializer;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "book")
+@JsonSerialize(using = BookSerializer.class)
 public class Book extends Base {
     //todo add annotations for serialisation
 
@@ -114,6 +114,12 @@ public class Book extends Base {
 
     public List<Author> getAuthors() {
         return authors;
+    }
+
+    public List<String> getAuthorsFullnames(){
+        List<String> authorsFullNames = new ArrayList<>();
+        authors.forEach(author -> authorsFullNames.add(author.getFullName()));
+        return authorsFullNames;
     }
 
     public void setAuthors(List<Author> authors) {
