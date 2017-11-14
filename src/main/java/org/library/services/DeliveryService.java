@@ -67,7 +67,7 @@ public class DeliveryService {
     private boolean addDelivery(Reader reader, BookItem bookItem) {
         Delivery delivery = new Delivery(reader, bookItem);
         deliveryRepository.save(delivery);
-        logger.info("add delivery" + delivery);
+        logger.info("add delivery {}",delivery);
         return true;
     }
 
@@ -86,12 +86,12 @@ public class DeliveryService {
             deliveryRepository.delete(deliveryId);
             return true;
         } catch (EntityNotFoundException e) {
-            logger.error(e.getStackTrace().toString());
+            logger.error("Return delivery error", e);
             return false;
         }
     }
 
-    public List<Delivery> getDeliveriesByComplexCondition(){
+    public List<Delivery> getDeliveriesByComplexCondition() {
         return deliveryRepository.findByComplexQuery();
     }
 }

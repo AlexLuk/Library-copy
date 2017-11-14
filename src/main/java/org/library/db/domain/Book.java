@@ -11,7 +11,6 @@ import java.util.List;
 @Table(name = "book")
 @JsonSerialize(using = BookSerializer.class)
 public class Book extends Base {
-    //todo add annotations for serialisation
 
     @Basic
     @Column(name = "shelfCode")

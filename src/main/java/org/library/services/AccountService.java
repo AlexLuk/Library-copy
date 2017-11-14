@@ -189,6 +189,7 @@ public class AccountService {
         }
     }
 
+    //todo return string property instead of int
     /**
      * Delete reader from database by readerId
      *
@@ -216,12 +217,10 @@ public class AccountService {
                 return 4;
             }
             readerRepository.delete(readerId);
-            logger.info("delete reader by id" + readerId);
+            logger.info("delete reader by id {}",readerId);
             return 0;
         } catch (EntityNotFoundException | EmptyResultDataAccessException e) {
-            for (StackTraceElement element : e.getStackTrace()) {
-                logger.error(element.toString());
-            }
+            logger.error("reader delete error", e);
         }
         return 5;
     }

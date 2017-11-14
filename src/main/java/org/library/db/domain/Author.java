@@ -1,13 +1,10 @@
 package org.library.db.domain;
 
-import com.google.common.collect.Lists;
 import org.library.misc.Utils;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "author")

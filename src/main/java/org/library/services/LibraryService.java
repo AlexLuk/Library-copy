@@ -81,7 +81,7 @@ public class LibraryService {
         try {
             booksJson = new ObjectMapper().writeValueAsString(books);
         } catch (JsonProcessingException e) {
-            logger.error(e.getStackTrace().toString());
+            logger.error("json processing error",e);
         }
         return booksJson;
     }
@@ -204,8 +204,6 @@ public class LibraryService {
                 authorCredentials.add("");
             }
         }
-        authorCredentials.forEach(s -> System.err.print(s + " "));
-        System.err.println(" ");
         return authorCredentials;
     }
 }

@@ -50,7 +50,7 @@ public class OrderService {
         if (checkReaderForBook == 0) {
             BookOrder bookOrder = new BookOrder(reader, bookRepository.findOne(bookId), isOnHands);
             bookOrderRepository.save(bookOrder);
-            logger.info("add order" + bookOrder);
+            logger.info("add order {}" + bookOrder);
             return checkReaderForBook;
         } else {
             return checkReaderForBook;
@@ -120,10 +120,10 @@ public class OrderService {
         try {
             bookOrderRepository.delete(bookOrderId);
         } catch (EmptyResultDataAccessException e) {
-            logger.error(e.getStackTrace().toString());
+            logger.error("cancel order error", e);
             return false;
         }
-        logger.info("delete order by orderId" + bookOrderId);
+        logger.info("delete order by orderId {}", bookOrderId);
         return true;
     }
 
