@@ -35,6 +35,10 @@ $(document).ready(function () {
                 required: true,
                 pwdcheck: true,
                 minlength: 8
+            },
+            confirmPassword: {
+                required: true,
+                pwdconfirm: true
             }
         },
         messages: {
@@ -48,13 +52,18 @@ $(document).ready(function () {
             email: {
                 required: $('#error_email_req').html(),
                 email: $('#error_email').html()
-            }
-        },
+            },
+            confirmPassword: $('#errorConfirmPassword').html()
+        }
     });
 
     $.validator.addMethod("pwdcheck",
         function (value, element) {
             return /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!?.,/@#$%^&+=])(?=\S+$).{8,}$/.test(value);
+        });
+    $.validator.addMethod("pwdconfirm",
+        function (value) {
+            return value === $('#password').val();
         });
 
     $('#register').click(function () {
@@ -140,10 +149,10 @@ $(document).ready(function () {
             firstName: "required",
             lastName: "required",
             changePassword: {
-                required: false,
                 pwdchange: true,
                 minlength: 8
-            }
+            },
+            confirmPassword: "pwdregconfirm"
         },
         messages: {
             firstName: $('#error_firstname').html(),
@@ -151,13 +160,21 @@ $(document).ready(function () {
             changePassword: {
                 pwdchange: $('#error_pwd_check').html(),
                 minlength: $('#error_pwd_minlen').html()
+            },
+            confirmPassword: {
+                pwdregconfirm: $('#errorConfirmPassword').html()
             }
         }
     });
 
     $.validator.addMethod("pwdchange",
-        function (value, element) {
+        function (value) {
             return value === '' || /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!?.,/@#$%^&+=])(?=\S+$).{8,}$/.test(value);
+        });
+
+    $.validator.addMethod("pwdregconfirm",
+        function (value) {
+            return value === $('#changePassword').val();
         });
 
     $('#saveProfile').click(function () {
@@ -272,19 +289,16 @@ $(document).ready(function () {
     $(".orderHands").click(function () {
         var id = getId($(this).attr("name"));
         addOrder(id, true);
-        reloadWithDelay(1000);
     });
 
     $(".orderLib").click(function () {
         var id = getId($(this).attr("name"));
         addOrder(id, false);
-        reloadWithDelay(1000);
     });
 
     $(".cancelOrder").click(function () {
         var id = getId($(this).attr("name"));
-        cancelOrder(id, false);
-        reloadWithDelay(1000);
+        cancelOrder(id);
     });
 
     function addOrder(id, onHands) {
@@ -296,14 +310,17 @@ $(document).ready(function () {
                     switch (resp) {
                         case 0: {
                             show_alert($('#succ_order_created').html(), statusField, true);
+                            reloadWithDelay(1000);
                             break;
                         }
                         case 1: {
-                            show_alert($('#error_order_create_ordered').html(), statusField, false);
+                            show_alert($('#error_order_create_delivered').html(), statusField, false);
+                            reloadWithDelay(2000);
                             break;
                         }
                         case 2: {
-                            show_alert($('#error_order_create_delivered').html(), statusField, false);
+                            show_alert($('#error_order_create_ordered').html(), statusField, false);
+                            reloadWithDelay(2000);
                             break;
                         }
                     }
@@ -319,9 +336,11 @@ $(document).ready(function () {
                 success: function (resp) {
                     if (resp) {
                         show_alert($('#succ_order_canceled').html(), statusField, true);
+                        reloadWithDelay(1000);
                     }
                     else {
                         show_alert($('#error_order_canceled').html(), statusField, false);
+                        reloadWithDelay(2000);
                     }
                 }
             });
@@ -336,9 +355,11 @@ $(document).ready(function () {
                 success: function (resp) {
                     if (resp) {
                         show_alert($('#succ_delivery_created').html(), statusField, true);
+                        reloadWithDelay(1000);
                     }
                     else {
                         show_alert($('#error_delivery_created').html(), statusField, false);
+                        reloadWithDelay(2000);
                     }
                 }
             });
@@ -353,11 +374,12 @@ $(document).ready(function () {
                 success: function (resp) {
                     if (resp) {
                         show_alert($('#succ_return_book').html(), statusField, true);
+                        reloadWithDelay(1000);
                     }
                     else {
                         show_alert($('#error_return_book').html(), statusField, false);
+                        reloadWithDelay(2000);
                     }
-                    reloadWithDelay(1000);
                 }
             });
     });
@@ -372,33 +394,38 @@ $(document).ready(function () {
                 data: {readerId: id},
                 async: false,
                 success: function (resp) {
-                   switch(resp){
-                       case 0:{
-                           show_alert($('#succ_delete_account').html(), statusField, true);
-                           break;
-                       }
-                       case 1:{
-                           show_alert($('#error_delete_account_admin').html(), statusField, false);
-                           break;
-                       }
-                       case 2:{
-                           show_alert($('#error_delete_account_fines').html(), statusField, false);
-                           break;
-                       }
-                       case 3:{
-                           show_alert($('#error_delete_account_order').html(), statusField, false);
-                           break;
-                       }
-                       case 4:{
-                           show_alert($('#error_delete_account_delivery').html(), statusField, false);
-                           break;
-                       }
-                       case 5:{
-                           show_alert($('#error_delete_account').html(), statusField, false);
-                           break;
-                       }
-                   }
-                    reloadWithDelay(1000);
+                    switch (resp) {
+                        case 0: {
+                            show_alert($('#succ_delete_account').html(), statusField, true);
+                            reloadWithDelay(1000);
+                            break;
+                        }
+                        case 1: {
+                            show_alert($('#error_delete_account_admin').html(), statusField, false);
+                            reloadWithDelay(2000);
+                            break;
+                        }
+                        case 2: {
+                            show_alert($('#error_delete_account_fines').html(), statusField, false);
+                            reloadWithDelay(2000);
+                            break;
+                        }
+                        case 3: {
+                            show_alert($('#error_delete_account_order').html(), statusField, false);
+                            reloadWithDelay(2000);
+                            break;
+                        }
+                        case 4: {
+                            show_alert($('#error_delete_account_delivery').html(), statusField, false);
+                            reloadWithDelay(2000);
+                            break;
+                        }
+                        case 5: {
+                            show_alert($('#error_delete_account').html(), statusField, false);
+                            reloadWithDelay(2000);
+                            break;
+                        }
+                    }
                 }
             });
     });
@@ -414,10 +441,11 @@ $(document).ready(function () {
                 success: function (resp) {
                     if (resp) {
                         show_alert($('#succ_fines_set').html(), statusField, true);
+                        reloadWithDelay(1000);
                     } else {
                         show_alert($('#error_fines_set').html(), statusField, false);
+                        reloadWithDelay(2000);
                     }
-                    reloadWithDelay(1000);
                 }
             });
     });

@@ -59,6 +59,9 @@
                                             <input type="password" class="form-control" name="password"
                                                    id="password"
                                                    value=""><br/>
+                                            <label for="confirmPassword" class="required"><b><spring:message code="confirmPassword"/>:</label>
+                                            <input type="password" class="form-control" name="confirmPassword"
+                                                   id="confirmPassword" value=""><br/>
                                             <label for="firstName" class="required"><spring:message code="firstName" />:</label>
                                             <input type="text" class="form-control" name="firstName" id="firstName" value=""><br/>
                                             <label for="lastName" class="required"><spring:message code="lastName" />:</label>
