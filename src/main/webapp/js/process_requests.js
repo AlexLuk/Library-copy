@@ -270,6 +270,7 @@ $(document).ready(function () {
     /********************************************* delivery **********************************************/
 
     $(".orderHands").click(function () {
+        console.log("Clicked!");
         var id = getId($(this).attr("name"));
         addOrder(id, true);
     });

@@ -58,6 +58,7 @@
                             <td>
                                 <form method="post" class="doNotProcess">
                                     <button type="submit" class="btn btn-primary orderHands"
+                                            <%= book.getIsRare() ? "disabled" : ""%>
                                             id="orderHands_<%= book.getId()%>" name="orderHands_<%= book.getId()%>">
                                         <spring:message code="toOrderOnHands" />
                                     </button>
@@ -78,14 +79,14 @@
         </div>
 
         <div class="hidden">
-            <div id="orderOnHandsForm">
+            <div class="orderOnHandsForm">
                 <form method="post" class="doNotProcess">
                     <button type="submit" class="btn btn-primary orderHands" id="orderHands" name="orderHands">
                         <spring:message code="toOrderOnHands" />
                     </button>
                 </form>
             </div>
-            <div id="orderInLibForm">
+            <div class="orderInLibForm">
                 <form method="post" class="doNotProcess">
                     <button type="submit" class="btn btn-primary orderLib" id="orderLib" name="orderLib">
                         <spring:message code="toOrderInLib" />

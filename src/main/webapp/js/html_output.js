@@ -3,15 +3,14 @@ function filterOutput(resp) {
     contentBody.empty();
 
     $.each(resp, function (key, data) {
-        var onHands = $('#orderOnHandsForm').clone();
-        var inLib = $('#orderInLibForm').clone();
+        var onHands = $('.orderOnHandsForm').clone();
+        var inLib = $('.orderInLibForm').clone();
 
-        var htmlContent = '';
-        htmlContent +=
-            '<tr><td>' + data.title + '</td>' +
-            '<td>' + data.authors + '</td>' +
-            '<td>' + data.year + '</td>' +
-            '<td>' + data.genre + '</td>';
+        var htmlContent = $('<tr></tr>');
+        htmlContent.append($('<td>' + data.title + '</td>'));
+        htmlContent.append($('<td>' + data.authors + '</td>'));
+        htmlContent.append($('<td>' + data.year + '</td>'));
+        htmlContent.append($('<td>' + data.genre + '</td>'));
 
         var button = onHands.find('button');
         addId(button, 'name', data.book_id);
@@ -21,10 +20,10 @@ function filterOutput(resp) {
         addId(button, 'name', data.book_id);
         addId(button, 'id', data.book_id);
 
-        htmlContent += '<td>' + onHands.html() + '</td>';
-        htmlContent += '<td>' + inLib.html() + '</td></tr>';
+        htmlContent.append($('<td>' + onHands.html() + '</td>'));
+        $(htmlContent).find('.orderHands').attr('disabled', true);
+        htmlContent.append($('<td>' + inLib.html() + '</td>'));
 
         contentBody.append($(htmlContent));
     });
-
 }
