@@ -12,6 +12,15 @@ function filterOutput(resp) {
         htmlContent.append($('<td>' + data.year + '</td>'));
         htmlContent.append($('<td>' + data.genre + '</td>'));
 
+        var msg = $('<td></td>');
+        if (data.isRare) {
+            msg.append($('#msg_is_rare'));
+        } else {
+            msg.append($('#msg_not_rare'));
+        }
+        htmlContent.append(msg);
+        htmlContent.append($('<td>' + data.amount + '</td>'));
+
         var button = onHands.find('button');
         addId(button, 'name', data.book_id);
         addId(button, 'id', data.book_id);

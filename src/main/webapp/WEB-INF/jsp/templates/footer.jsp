@@ -47,6 +47,9 @@
     <div id="datapicker_apply"><spring:message code="datapickerApply" /></div>
     <div id="datapicker_clear"><spring:message code="datapickerClear" /></div>
     <div id="datapicker_format"><spring:message code="datapickerFormat" /></div>
+
+    <div id="msg_is_rare"><spring:message code="yes" /></div>
+    <div id="msg_not_rare"><spring:message code="no" /></div>
 </div>
 
 <!-- Start scripts -->
