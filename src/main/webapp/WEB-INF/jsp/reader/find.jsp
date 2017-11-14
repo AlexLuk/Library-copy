@@ -9,7 +9,6 @@
 <%
     LibraryService libraryService = (LibraryService) request.getAttribute("lib_service");
     List<Book> books = libraryService.getAllBooks();
-    List<Genre> genres = libraryService.getAllGenres();
 %>
 
 <!DOCTYPE html>
@@ -48,9 +47,7 @@
                                 <%}%>
                             </td>
                             <td><%= book.getYear() %></td>
-                            <td>
-                                <spring:message code="<%= libraryService.getGenre(book.getGenre().getId()) %>" />
-                            </td>
+                            <td><%= book.getGenre().getVals().get("en") %></td>
                             <td>
                                 <form method="post" class="doNotProcess">
                                     <button type="submit" class="btn btn-primary orderHands"

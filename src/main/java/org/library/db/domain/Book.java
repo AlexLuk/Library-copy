@@ -1,12 +1,10 @@
 package org.library.db.domain;
 
 import com.google.common.collect.Lists;
+import org.library.misc.Utils;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "book")
@@ -17,8 +15,7 @@ public class Book extends Base {
     @Column(name = "shelfCode")
     private String shelfCode;
 
-    @ManyToOne
-    @JoinColumn(name = "genre" )
+    @Enumerated(EnumType.ORDINAL)
     private Genre genre;
 
     @Basic
@@ -123,4 +120,62 @@ public class Book extends Base {
     public void addAuthor(Author author) {
         authors.add(author);
     }
+
+    public enum Genre {
+        EMPTY (new HashMap<String, String>()
+        {{
+            put("", "");
+            put("", "");
+        }}),
+        COMEDY (new HashMap<String, String>()
+        {{
+            put("en", "comedy");
+            put("ru", "комедия");
+        }}),
+        DRAMA (new HashMap<String, String>()
+        {{
+            put("en", "drama");
+            put("ru", "драма");
+        }}),
+        ROMANCE (new HashMap<String, String>()
+        {{
+            put("en", "romance");
+            put("ru", "романтика");
+        }}),
+
+        SATIRE (new HashMap<String, String>()
+        {{
+            put("en", "satire");
+            put("ru", "сатира");
+        }}),
+
+        TRAGEDY (new HashMap<String, String>()
+        {{
+            put("en", "tragedy");
+            put("ru", "трагедия");
+        }}),
+
+        FANTASY (new HashMap<String, String>()
+        {{
+            put("en", "fantasy");
+            put("ru", "фантастика");
+        }}),
+
+        NOVEL (new HashMap<String, String>()
+        {{
+            put("en", "novel");
+            put("ru", "роман");
+        }});
+
+        private final HashMap<String, String> vals;
+
+        Genre(HashMap<String, String> vals) {
+            this.vals = vals;
+        }
+
+        public HashMap<String, String> getVals() {
+            return vals;
+        }
+    }
 }
+
