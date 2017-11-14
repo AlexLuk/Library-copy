@@ -75,6 +75,6 @@ function getId(attrName) {
 $('a[href="' + this.location.pathname + '"]').parents('li,ul').addClass('active');
 
 // hides tooltips after closing the registration form
-$('.close').click(function() {
+$('.close').click(function () {
     $('.tooltip').hide();
 });

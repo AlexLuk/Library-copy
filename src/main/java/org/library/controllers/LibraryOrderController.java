@@ -22,7 +22,9 @@ public class LibraryOrderController {
      *
      * @param bookId - id off book to add
      * @param toHand - true if book is ordered on hand
-     * @return - return 0, if it was not possible to add book to order book
+     * @return - 0 - order added
+     * 1 - reader has book in deliveries     *
+     * 2 - reader has book in orders
      */
     @RequestMapping(value = {"/addOrder"}, method = RequestMethod.POST, produces = "application/json")
     public
@@ -54,8 +56,8 @@ public class LibraryOrderController {
     @RequestMapping(value = {"/setOrderStatus"}, method = RequestMethod.POST, produces = "application/json")
     public
     @ResponseBody
-    boolean setOrderStatus(int bookOrderId, boolean status ) {
-        return orderService.setOrderStatus(bookOrderId,status);
+    boolean setOrderStatus(int bookOrderId, boolean status) {
+        return orderService.setOrderStatus(bookOrderId, status);
     }
 
 }
