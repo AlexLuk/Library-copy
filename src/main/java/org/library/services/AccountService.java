@@ -7,6 +7,7 @@ import org.library.db.repo.ReaderRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
@@ -55,8 +56,10 @@ public class AccountService {
             readerRepository.delete(readerId);
             logger.info("delete reader by id" + readerId);
             return 0;
-        } catch (EntityNotFoundException e) {
-            logger.error(e.getStackTrace().toString());
+        } catch (EntityNotFoundException | EmptyResultDataAccessException e) {
+            for (StackTraceElement element : e.getStackTrace()) {
+                logger.error(element.toString());
+            }
         }
         return 5;
     }
