@@ -333,6 +333,7 @@ $(document).ready(function () {
                 success: function (resp) {
                     if (resp) {
                         show_alert($('#succ_order_canceled').html(), statusField, true);
+                        setTimeout(location.reload.bind(location), 2000);
                     }
                     else {
                         show_alert($('#error_order_canceled').html(), statusField, false);
@@ -350,6 +351,7 @@ $(document).ready(function () {
                 success: function (resp) {
                     if (resp) {
                         show_alert($('#succ_delivery_created').html(), statusField, true);
+                        setTimeout(location.reload.bind(location), 2000);
                     }
                     else {
                         show_alert($('#error_delivery_created').html(), statusField, false);
@@ -367,6 +369,7 @@ $(document).ready(function () {
                 success: function (resp) {
                     if (resp) {
                         show_alert($('#succ_return_book').html(), statusField, true);
+                        setTimeout(location.reload.bind(location), 2000);
                     }
                     else {
                         show_alert($('#error_return_book').html(), statusField, false);
@@ -388,6 +391,7 @@ $(document).ready(function () {
                     switch (resp) {
                         case 0: {
                             show_alert($('#succ_delete_account').html(), statusField, true);
+                            setTimeout(location.reload.bind(location), 2000);
                             break;
                         }
                         case 1: {
