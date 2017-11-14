@@ -152,6 +152,11 @@ $(document).ready(function () {
                 pwdchange: $('#error_pwd_check').html(),
                 minlength: $('#error_pwd_minlen').html()
             }
+        },
+        tooltip_options: {
+            changePassword: { placement: 'top', trigger:'focus' },
+            firstName: { placement: 'top', trigger:'focus' },
+            lastName: { placement: 'top', trigger:'focus' }
         }
     });
 
@@ -363,18 +368,16 @@ $(document).ready(function () {
 
     /************************************** date picking **************************************************/
 
-    $('#year_picker').daterangepicker({
-        locale: {
-            cancelLabel: $('#datapicker_clear').html(),
-            applyLabel: $('#datapicker_apply').html(),
-            format: $('#datapicker_format').html()
-        }
-    });
+    $('#year_picker')
+        .daterangepicker({
+            locale: {
+                cancelLabel: $('#datapicker_clear').html(),
+                applyLabel: $('#datapicker_apply').html(),
+                format: $('#datapicker_format').html()
+            }
+        })
+        .on('cancel.daterangepicker', function (ev, picker) {
+            $(this).val('');
+        });
 
-    $('#year_picker').on('cancel.daterangepicker', function (ev, picker) {
-        $(this).val('');
-    });
-
-    // http://totalprogus.blogspot.ru/2013/12/bootstrap-add-active-class-to-li.html
-    $('a[href="' + this.location.pathname + '"]').parents('li,ul').addClass('active');
 });

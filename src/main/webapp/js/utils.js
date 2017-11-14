@@ -70,3 +70,11 @@ function getId(attrName) {
     }
     return "";
 }
+
+// http://totalprogus.blogspot.ru/2013/12/bootstrap-add-active-class-to-li.html
+$('a[href="' + this.location.pathname + '"]').parents('li,ul').addClass('active');
+
+// hides tooltips after closing the registration form
+$('.close').click(function() {
+    $('.tooltip').hide();
+});

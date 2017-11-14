@@ -45,6 +45,7 @@
 <script src="${pageContext.request.contextPath}/js/utils.js"></script>
 <script src="${pageContext.request.contextPath}/js/process_requests.js"></script>
 <script src="${pageContext.request.contextPath}/js/html_output.js"></script>
-<script type="text/javascript" src="http://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-<script type="text/javascript" src="http://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery-validate.bootstrap-tooltip.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/moment.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/daterangepicker.js"></script>
 <!-- end scripts -->

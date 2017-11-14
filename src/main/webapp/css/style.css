@@ -150,3 +150,7 @@ button, link {
 .nav-link:hover {
     color: #85bbf5 !important;
 }
+
+.form-control.error {
+    border-color: #FF0D56 !important;
+}
