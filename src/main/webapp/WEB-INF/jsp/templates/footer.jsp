@@ -31,6 +31,10 @@
     <div id="succ_delete_account"><spring:message code="succAccountDeleted" /></div>
     <div id="error_delete_account"><spring:message code="errDeleteAccount" /></div>
 
+    <div id="succ_fines_set"><spring:message code="succFinesSet" /></div>
+    <div id="error_fines_set"><spring:message code="errorFinesSet" /></div>
+
+
     <div id="datapicker_apply"><spring:message code="datapickerApply" /></div>
     <div id="datapicker_clear"><spring:message code="datapickerClear" /></div>
     <div id="datapicker_format"><spring:message code="datapickerFormat" /></div>

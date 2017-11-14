@@ -171,4 +171,20 @@ public class LibraryRegistrationController {
         curReader.setPatronymic(reader.getPatronymic());
         readerRepository.save(new Reader(curReader));
     }
+
+    @RequestMapping(value = {"/setFines"}, method = RequestMethod.POST, produces = "application/json")
+    public @ResponseBody
+    boolean setFines(int readerId, double fines) {
+        System.out.println("setFines");
+        System.out.println(readerId);
+        System.out.println(fines);
+        try {
+            Reader reader = readerRepository.getOne(readerId);
+            reader.setFines(fines);
+            readerRepository.save(reader);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }
