@@ -144,12 +144,17 @@ public class LibraryController {
     /**
      * Process call for account reader deleting
      *
-     * @return true if account is deleted successfully
+     * @return 0 - successful delete
+     * 1- delete rejected, user is admin
+     * 2- delete rejected, user has fines
+     * 3- delete rejected, user has orders on hand
+     * 4- delete rejected, user has deliveries on hand
+     * 5- delete rejected, delete error
      */
     @RequestMapping(value = {"/deleteReader"}, method = RequestMethod.POST, produces = "application/json")
     public
     @ResponseBody
-    boolean deleteReader(int readerId) {
+    int deleteReader(int readerId) {
         return libraryService.deleteReaderById(readerId);
     }
 }

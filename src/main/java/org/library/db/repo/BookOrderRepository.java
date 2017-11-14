@@ -16,4 +16,6 @@ public interface BookOrderRepository extends JpaRepository<BookOrder, Integer> {
      * @return - count of orders fof this reader
      */
     int countByReaderIdAndBookId(Integer readerId, Integer bookId);
+
+    int countByReaderId(Integer readerId);
 }

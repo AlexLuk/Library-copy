@@ -28,4 +28,6 @@ public interface DeliveryRepository extends JpaRepository<Delivery, Integer> {
             "select bookItem.id from BookItem bookItem where book.id = :bookId" +
             ")")
     int countByReaderIdAndBookId(@Param("readerId") Integer readerId, @Param("bookId") Integer bookId);
+
+    int countByReaderId(Integer readerId);
 }

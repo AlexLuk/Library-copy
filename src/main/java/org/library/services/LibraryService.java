@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -68,6 +69,7 @@ public class LibraryService {
     }
 
     //todo add annotations for book serealization
+
     /**
      * Wrap list of books in form of json
      *
@@ -82,39 +84,42 @@ public class LibraryService {
     }
 
     /**
-     * Delete current user from database
-     *
-     * @return true if delete successful
-     */
-    public boolean deleteAccount() {
-        Reader reader = (Reader) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return deleteReaderById(reader.getId());
-    }
-
-    /**
-     * Delete reader from database by readerId if reader is not admin
+     * Delete reader from database by readerId
      *
      * @param readerId - id of reader to delete
-     * @return true if delete successful
+     * @return 0 - successful delete
+     * 1- delete rejected, user is admin
+     * 2- delete rejected, user has fines
+     * 3- delete rejected, user has orders
+     * 4- delete rejected, user has deliveries on hand
+     * 5- delete rejected, delete error
      */
-    public boolean deleteReaderById(int readerId) {
-        if (readerRepo.getOne(readerId).getIsAdmin()) {
-            return false;
-        } else {
-            //todo check for deliveries and orders and fines
-            try {
-                readerRepo.delete(readerId);
-                logger.info("delete reader by id" + readerId);
-                return readerRepo.findOne(readerId) == null;
-
-            } catch (Exception e) {
-                logger.error(e.getMessage());
+    public int deleteReaderById(int readerId) {
+        try {
+            Reader reader = readerRepo.getOne(readerId);
+            if (reader.getIsAdmin()) {
+                return 1;
             }
-            return false;
+            if (reader.getFines() >0) {
+                return 2;
+            }
+            if (bookOrderRepo.countByReaderId(readerId) > 0) {
+                return 3;
+            }
+            if (deliveryRepo.countByReaderId(readerId) > 0){
+                return 4;
+            }
+            readerRepo.delete(readerId);
+            logger.info("delete reader by id" + readerId);
+            return 0;
+        } catch (EntityNotFoundException e) {
+            logger.error(e.getStackTrace().toString());
         }
+        return 5;
     }
 
     //todo replace
+
     /**
      * Wrapper class for book user interface
      */
