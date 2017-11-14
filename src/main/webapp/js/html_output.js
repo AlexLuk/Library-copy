@@ -11,6 +11,8 @@ function filterOutput(resp) {
         htmlContent.append($('<td>' + data.authors + '</td>'));
         htmlContent.append($('<td>' + data.year + '</td>'));
         htmlContent.append($('<td>' + data.genre + '</td>'));
+        htmlContent.append($('<td>' + data.isRare + '</td>'));
+        htmlContent.append($('<td>' + data.amount + '</td>'));
 
         var button = onHands.find('button');
         addId(button, 'name', data.book_id);
