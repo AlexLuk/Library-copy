@@ -35,14 +35,18 @@
                             <table class="table table-striped">
                                 <thead>
                                 <tr>
-                                    <th><spring:message code="author" /></th>
+                                    <th><spring:message code="firstName" /></th>
+                                    <th><spring:message code="lastName" /></th>
+                                    <th><spring:message code="patronymic" /></th>
                                     <th><spring:message code="yearOfBirth" /></th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                     <%for (Author author : authors) {%>
                                     <tr>
-                                        <td><%= author.getFullName() %></td>
+                                        <td><%= author.getFirstName() %></td>
+                                        <td><%= author.getLastName() %></td>
+                                        <td><%= author.getPatronymic() %></td>
                                         <td><%= author.getYearOfBirth() %></td>
                                         <td>
                                             <button type="submit" class="btn btn-primary"

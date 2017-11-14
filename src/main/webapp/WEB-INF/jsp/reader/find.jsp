@@ -34,6 +34,7 @@
                     <th><spring:message code="year" /></th>
                     <th><spring:message code="genre" /></th>
                     <th><spring:message code="rare" /></th>
+                    <th><spring:message code="amount" /></th>
                     <th></th>
                 </tr>
                 </thead>
@@ -42,8 +43,8 @@
                         List<Author> authors = libraryService.getAllAuthors(book.getId());
                     %>
                         <tr>
-                            <td width="20%"><%= book.getTitle() %></td>
-                            <td>
+                            <td><%= book.getTitle() %></td>
+                            <td width="20%">
                                 <%for (Author author : authors) {%>
                                 <%= author.getFullName() %><br/>
                                 <%}%>
@@ -53,6 +54,7 @@
                                 <spring:message code="<%= libraryService.getGenre(book.getGenre().getId()) %>" />
                             </td>
                             <td><%= book.getIsRare() ? "yes" : "no" %></td>
+                            <td><%= book.getAmount() %><br/></td>
                             <td>
                                 <form method="post" class="doNotProcess">
                                     <button type="submit" class="btn btn-primary orderHands"
