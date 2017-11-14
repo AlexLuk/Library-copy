@@ -47,12 +47,6 @@
                                 <%}%>
                             </td>
                             <td><%= delivery.convertLocalDate() %></td>
-                            <td>
-                                <button type="submit" class="btn btn-primary returnBook"
-                                        id="delete_<%= delivery.getId()%>" name="delete_<%= delivery.getId()%>">
-                                    <spring:message code="toReturn" />
-                                </button>
-                            </td>
                         </tr>
                     <%}%>
                 </tbody>

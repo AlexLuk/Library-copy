@@ -1,7 +1,7 @@
-<%@ page import="org.library.services.LibraryService" %>
-<%@ page import="org.library.db.domain.Delivery" %>
-<%@ page import="java.util.List" %>
 <%@ page import="org.library.db.domain.Author" %>
+<%@ page import="org.library.db.domain.Delivery" %>
+<%@ page import="org.library.services.LibraryService" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="../templates/taglibs.jsp" %>
 
@@ -54,6 +54,12 @@
                                 <%} else {%>
                                 <spring:message code="statusInLib" />
                                 <%}%>
+                            </td>
+                            <td>
+                                <button type="submit" class="btn btn-primary returnBook"
+                                        id="delete_<%= delivery.getId()%>" name="delete_<%= delivery.getId()%>">
+                                    <spring:message code="toReturn" />
+                                </button>
                             </td>
                         </tr>
                     <%}%>

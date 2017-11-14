@@ -334,8 +334,25 @@ $(document).ready(function () {
                     if (resp) {
                         show_alert($('#succ_delivery_created').html(), statusField, true);
                     }
-                    else if (!resp) {
+                    else {
                         show_alert($('#error_delivery_created').html(), statusField, false);
+                    }
+                }
+            });
+    });
+
+    $(".returnBook").click(function () {
+        var id = getId($(this).attr("name"));
+        $.ajax(
+            {
+                url: "/returnDelivery",
+                data: {deliveryId: id},
+                success: function (resp) {
+                    if (resp) {
+                        show_alert($('#succ_return_book').html(), statusField, true);
+                    }
+                    else {
+                        show_alert($('#error_return_book').html(), statusField, false);
                     }
                 }
             });
@@ -351,11 +368,32 @@ $(document).ready(function () {
                 data: {readerId: id},
                 async: false,
                 success: function (resp) {
-                    if (resp) {
-                        show_alert($('#succ_account_deleted').html(), statusField, true);
-                    } else {
-                        show_alert($('#error_delete_account').html(), statusField, false);
-                    }
+                   switch(resp){
+                       case 0:{
+                           show_alert($('#succ_delete_account').html(), statusField, true);
+                           break;
+                       }
+                       case 1:{
+                           show_alert($('#error_delete_account_admin').html(), statusField, false);
+                           break;
+                       }
+                       case 2:{
+                           show_alert($('#error_delete_account_fines').html(), statusField, false);
+                           break;
+                       }
+                       case 3:{
+                           show_alert($('#error_delete_account_order').html(), statusField, false);
+                           break;
+                       }
+                       case 4:{
+                           show_alert($('#error_delete_account_delivery').html(), statusField, false);
+                           break;
+                       }
+                       case 5:{
+                           show_alert($('#error_delete_account').html(), statusField, false);
+                           break;
+                       }
+                   }
                 }
             });
     });

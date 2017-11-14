@@ -112,7 +112,7 @@ button, link {
     visibility: hidden;
 }
 
-#year {
+#year_picker {
     border: 1px solid #ced4da;
     padding: 5px 12px 5px 5px;
 }
