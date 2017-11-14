@@ -11,6 +11,10 @@ public interface DeliveryRepository extends JpaRepository<Delivery, Integer> {
 
     List<Delivery> findByReaderId(int readerId);
 
+    @Query("select delivery from Delivery delivery")
+    //todo - write full filter
+    List<Delivery> findByComplexQuery();
+
     /**
      * Count deliveries of exact book for exact reader
      *
@@ -24,4 +28,6 @@ public interface DeliveryRepository extends JpaRepository<Delivery, Integer> {
             "select bookItem.id from BookItem bookItem where book.id = :bookId" +
             ")")
     int countByReaderIdAndBookId(@Param("readerId") Integer readerId, @Param("bookId") Integer bookId);
+
+    int countByReaderId(Integer readerId);
 }

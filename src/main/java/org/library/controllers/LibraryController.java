@@ -1,15 +1,11 @@
 package org.library.controllers;
 
-import org.library.Application;
 import org.library.services.LibraryService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class LibraryController {
@@ -139,17 +135,4 @@ public class LibraryController {
         return ADMIN_PATH + "authors";
     }
 
-    //todo move to accountController
-
-    /**
-     * Process call for account reader deleting
-     *
-     * @return true if account is deleted successfully
-     */
-    @RequestMapping(value = {"/deleteReader"}, method = RequestMethod.POST, produces = "application/json")
-    public
-    @ResponseBody
-    boolean deleteReader(int readerId) {
-        return libraryService.deleteReaderById(readerId);
-    }
 }

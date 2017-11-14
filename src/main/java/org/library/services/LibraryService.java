@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -68,6 +69,7 @@ public class LibraryService {
     }
 
     //todo add annotations for book serealization
+
     /**
      * Wrap list of books in form of json
      *
@@ -81,40 +83,8 @@ public class LibraryService {
         return gson.toJson(bookJsons);
     }
 
-    /**
-     * Delete current user from database
-     *
-     * @return true if delete successful
-     */
-    public boolean deleteAccount() {
-        Reader reader = (Reader) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return deleteReaderById(reader.getId());
-    }
-
-    /**
-     * Delete reader from database by readerId if reader is not admin
-     *
-     * @param readerId - id of reader to delete
-     * @return true if delete successful
-     */
-    public boolean deleteReaderById(int readerId) {
-        if (readerRepo.getOne(readerId).getIsAdmin()) {
-            return false;
-        } else {
-            //todo check for deliveries and orders and fines
-            try {
-                readerRepo.delete(readerId);
-                logger.info("delete reader by id" + readerId);
-                return readerRepo.findOne(readerId) == null;
-
-            } catch (Exception e) {
-                logger.error(e.getMessage());
-            }
-            return false;
-        }
-    }
-
     //todo replace
+
     /**
      * Wrapper class for book user interface
      */

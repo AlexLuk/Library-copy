@@ -27,7 +27,7 @@ public class LibraryServiceTest extends LibraryTest {
     }
 
     @Test
-    public void simpleTest() throws Exception {
+    public void findByComplexQuery() throws Exception {
         saveTestData();
         assertThat(bookRepository.findByComplexQuery("zzzzzzzzz", null, null, "", "", ""), empty());
         assertThat(bookRepository.findByComplexQuery("", 9999, null, "", "", ""), empty());
@@ -38,13 +38,5 @@ public class LibraryServiceTest extends LibraryTest {
         assertThat(bookRepository.findByComplexQuery("оро", null, null, "", "", ""), hasItems(bookRepository.findOne(1)));
         assertThat(bookRepository.findByComplexQuery("", 1782, null, "", "", ""), hasItems(bookRepository.findOne(1)));
         assertThat(bookRepository.findByComplexQuery("", null, 1, "", "", ""), hasItems(bookRepository.findOne(1)));
-    }
-
-    @Test
-    public void deleteReader() throws Exception {
-        saveTestData();
-        assertThat(readerRepository.getOne(testReaders.get(0).getId()), is(readerRepository.getOne(testReaders.get(0).getId())));
-        libraryService.deleteReaderById(testReaders.get(0).getId());
-        assertThat(readerRepository.findOne(testReaders.get(0).getId()), nullValue());
     }
 }

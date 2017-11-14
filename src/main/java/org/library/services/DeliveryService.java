@@ -1,9 +1,6 @@
 package org.library.services;
 
-import org.library.db.domain.BookItem;
-import org.library.db.domain.BookOrder;
-import org.library.db.domain.Delivery;
-import org.library.db.domain.Reader;
+import org.library.db.domain.*;
 import org.library.db.repo.BookItemRepository;
 import org.library.db.repo.BookOrderRepository;
 import org.library.db.repo.DeliveryRepository;
@@ -13,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @Service
@@ -73,5 +71,27 @@ public class DeliveryService {
         return true;
     }
 
-    //todo return delivery
+    /**
+     * Return book item to library and delete delivery
+     *
+     * @param deliveryId - delivery id
+     * @return - true if delivery deleted successfully
+     */
+    public boolean returnDelivery(int deliveryId) {
+        //todo replace status with enum
+        try {
+            Delivery delivery = deliveryRepository.getOne(deliveryId);
+            BookItem bookItem = delivery.getBookItem();
+            bookItem.setStatus(itemStatusRepository.getOne(1));
+            deliveryRepository.delete(deliveryId);
+            return true;
+        } catch (EntityNotFoundException e) {
+            logger.error(e.getStackTrace().toString());
+            return false;
+        }
+    }
+
+    public List<Delivery> getDeliveriesByComplexCondition(){
+        return deliveryRepository.findByComplexQuery();
+    }
 }
