@@ -11,14 +11,12 @@ function filterOutput(resp) {
         htmlContent.append($('<td>' + data.authors + '</td>'));
         htmlContent.append($('<td>' + data.year + '</td>'));
         htmlContent.append($('<td>' + data.genre + '</td>'));
-        htmlContent.append($('<td>' + data.isRare + '</td>'));
-        htmlContent.append($('<td>' + data.amount + '</td>'));
 
         var td = $('<td></td>');
         if (data.isRare) {
-            td.append($('#msg_is_rare'));
+            td.append($('#msg_is_rare').text());
         } else {
-            td.append($('#msg_not_rare'));
+            td.append($('#msg_not_rare').text());
         }
         htmlContent.append(td);
         htmlContent.append($('<td>' + data.amount + '</td>'));
@@ -31,11 +29,11 @@ function filterOutput(resp) {
         addId(button, 'name', data.book_id);
         addId(button, 'id', data.book_id);
 
-        htmlContent.append($('<td></td>').append(onHands));
+        htmlContent.append($('<td>' + onHands.html() + '</td>'));
         if (data.isRare) {
             $(htmlContent).find('.orderHands').attr('disabled', true);
         }
-        htmlContent.append($('<td></td>').append(inLib));
+        htmlContent.append($('<td>' + inLib.html() + '</td>'));
         contentBody.append($(htmlContent));
     });
 }

@@ -53,7 +53,12 @@
                             <td>
                                 <spring:message code="<%= libraryService.getGenre(book.getGenre().getId()) %>" />
                             </td>
-                            <td><%= book.getIsRare() ? "yes" : "no" %></td>
+                            <td><% if (book.getIsRare()) {%>
+                                <spring:message code="yes" />
+                                <%} else {%>
+                                <spring:message code="no" />
+                                <%}%>
+                            </td>
                             <td><%= book.getAmount() %><br/></td>
                             <td>
                                 <form method="post" class="doNotProcess">
