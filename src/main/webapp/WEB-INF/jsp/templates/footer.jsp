@@ -18,7 +18,16 @@
     <div id="succ_register"><spring:message code="succRegister" /></div>
 
     <div id="succ_order_created"><spring:message code="succOrderCreated" /></div>
-    <div id="error_order_create"><spring:message code="errOrderCreate" /></div>
+    <div id="error_order_create_ordered"><spring:message code="errorOrderCreateOrdered" /></div>
+    <div id="error_order_create_delivered"><spring:message code="errorOrderCreateDelivered" /></div>
+
+    <div id="error_order_canceled"><spring:message code="errorOrderCanceled" /></div>
+    <div id="succ_order_canceled"><spring:message code="succOrderCanceled" /></div>
+
+    <div id="succ_delivery_created"><spring:message code="succDeliveryCreated" /></div>
+    <div id="error_delivery_created"><spring:message code="errorDeliveryCreated" /></div>
+
+
     <div id="succ_delete_account"><spring:message code="succAccountDeleted" /></div>
     <div id="error_delete_account"><spring:message code="errDeleteAccount" /></div>
 
