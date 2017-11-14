@@ -2,9 +2,10 @@ package org.library.db.domain;
 
 import org.library.misc.Utils;
 
-import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "author")
@@ -25,11 +26,7 @@ public class Author extends Base {
     @Column(name = "year_of_birth")
     private Integer yearOfBirth;
 
-    @ManyToMany(mappedBy = "authors")
-    @OrderBy("title")
-    private List<Book> books = new ArrayList<>();
-
-    public Author(){
+    public Author() {
     }
 
     public Author(String firstName, String patronymic, String lastName, int yearOfBirth) {
@@ -42,6 +39,7 @@ public class Author extends Base {
     public String getFirstName() {
         return firstName;
     }
+
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
@@ -49,6 +47,7 @@ public class Author extends Base {
     public String getLastName() {
         return lastName;
     }
+
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
@@ -56,6 +55,7 @@ public class Author extends Base {
     public String getPatronymic() {
         return patronymic;
     }
+
     public void setPatronymic(String patronymic) {
         this.patronymic = patronymic;
     }
@@ -67,19 +67,8 @@ public class Author extends Base {
     public Integer getYearOfBirth() {
         return yearOfBirth;
     }
+
     public void setYearOfBirth(Integer yearOfBirth) {
         this.yearOfBirth = yearOfBirth;
-    }
-
-    public List<Book> getBooks() {
-        return books;
-    }
-
-    public void setBooks(List<Book> books) {
-        this.books = books;
-    }
-
-    public void addBook(Book book) {
-        books.add(book);
     }
 }
