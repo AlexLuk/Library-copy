@@ -16,6 +16,7 @@ public class AccountServiceTest extends LibraryTest{
     public void deleteReaderById() throws Exception {
         saveTestData();
         assertThat(accountService.deleteReaderById(110),is(0));
+        assertThat(accountService.deleteReaderById(110),is(5));
         assertThat(accountService.deleteReaderById(1),is(1));
         assertThat(accountService.deleteReaderById(10),is(2));
         assertThat(accountService.deleteReaderById(2),is(3));
