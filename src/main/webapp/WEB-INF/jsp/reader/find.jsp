@@ -33,6 +33,7 @@
                     <th><spring:message code="author" /></th>
                     <th><spring:message code="year" /></th>
                     <th><spring:message code="genre" /></th>
+                    <th><spring:message code="rare" /></th>
                     <th></th>
                 </tr>
                 </thead>
@@ -51,6 +52,7 @@
                             <td>
                                 <spring:message code="<%= libraryService.getGenre(book.getGenre().getId()) %>" />
                             </td>
+                            <td><%= book.getIsRare() ? "yes" : "no" %></td>
                             <td>
                                 <form method="post" class="doNotProcess">
                                     <button type="submit" class="btn btn-primary orderHands"

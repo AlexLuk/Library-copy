@@ -41,23 +41,11 @@
                             <td><%= order.getBook().getTitle() %></td>
                             <td><%= order.getBook().getYear() %></td>
                             <td width="20%">
-                                <select class="form-control order_status" name="orderStatus_<%= order.getId()%>" id="orderStatus_<%= order.getId()%>">
-                                    <% if(order.getOnHands()) { %>
-                                        <option id="statusHome_1">
-                                            <spring:message code="wishStatusForHome" />
-                                        </option>
-                                        <option id="statusLib_0">
-                                            <spring:message code="wishStatusInLib" />
-                                        </option>
-                                    <%} else {%>
-                                        <option id="statusLib_0">
-                                            <spring:message code="wishStatusInLib" />
-                                        </option>
-                                        <option id="statusHome_1">
-                                            <spring:message code="wishStatusForHome" />
-                                        </option>
-                                    <%}%>
-                                </select>
+                                <% if(order.getOnHands()) { %>
+                                    <spring:message code="wishStatusForHome" />
+                                <%} else {%>
+                                    <spring:message code="wishStatusInLib" />
+                                <%}%>
                             </td>
                             <td>
                                 <button type="submit" class="btn btn-primary cancelOrder"
