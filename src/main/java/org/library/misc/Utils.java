@@ -13,10 +13,10 @@ public class Utils {
      */
     public static String getFullName(String lastName, String firstName, String patronymic) {
         StringBuilder name = new StringBuilder();
-        name.append(lastName).append(" ");
-        name.append(firstName).append(" ");
+        name.append(lastName.trim()).append(" ");
+        name.append(firstName.trim()).append(" ");
         if (patronymic != null && !patronymic.equals("")) {
-            name.append(patronymic).append(" ");
+            name.append(patronymic.trim()).append(" ");
         }
         return name.toString();
     }
