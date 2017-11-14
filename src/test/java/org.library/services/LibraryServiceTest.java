@@ -39,15 +39,4 @@ public class LibraryServiceTest extends LibraryTest {
         assertThat(bookRepository.findByComplexQuery("", 1782, null, "", "", ""), hasItems(bookRepository.findOne(1)));
         assertThat(bookRepository.findByComplexQuery("", null, 1, "", "", ""), hasItems(bookRepository.findOne(1)));
     }
-
-    @Test
-    public void deleteReader() throws Exception {
-        saveTestData();
-        assertThat(libraryService.deleteReaderById(110),is(0));
-        assertThat(libraryService.deleteReaderById(1),is(1));
-        assertThat(libraryService.deleteReaderById(10),is(2));
-        assertThat(libraryService.deleteReaderById(2),is(3));
-        assertThat(libraryService.deleteReaderById(3),is(4));
-        assertThat(libraryService.deleteReaderById(9999),is(5));
-    }
 }
