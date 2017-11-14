@@ -33,6 +33,10 @@
 
     <div id="succ_delete_account"><spring:message code="succAccountDeleted" /></div>
     <div id="error_delete_account"><spring:message code="errDeleteAccount" /></div>
+    <div id="error_delete_account_fines"><spring:message code="errDeleteAccountFines" /></div>
+    <div id="error_delete_account_order"><spring:message code="errDeleteAccountOrder" /></div>
+    <div id="error_delete_account_delivery"><spring:message code="errDeleteAccountDelivery" /></div>
+    <div id="error_delete_account_admin"><spring:message code="errDeleteAccountAdmin" /></div>
 
     <div id="succ_fines_set"><spring:message code="succFinesSet" /></div>
     <div id="error_fines_set"><spring:message code="errorFinesSet" /></div>
