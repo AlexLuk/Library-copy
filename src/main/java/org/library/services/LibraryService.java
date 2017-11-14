@@ -2,20 +2,14 @@ package org.library.services;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
 import org.library.db.domain.*;
 import org.library.db.repo.*;
-import org.library.misc.Utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityNotFoundException;
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 @Service
@@ -81,7 +75,7 @@ public class LibraryService {
         try {
             booksJson = new ObjectMapper().writeValueAsString(books);
         } catch (JsonProcessingException e) {
-            logger.error("json processing error",e);
+            logger.error("json processing error", e);
         }
         return booksJson;
     }
@@ -171,21 +165,6 @@ public class LibraryService {
      */
     public List<Delivery> getAllDeliveryItemsByReader(int id) {
         return deliveryRepo.findByReaderId(id);
-    }
-
-
-    /**
-     * Gets all dates
-     *
-     * @return - list of delivery dates
-     */
-    public List<LocalDate> getAllDates(List<Delivery> list) {
-        List<LocalDate> res = new ArrayList<>();
-
-        for (Delivery delivery : list) {
-            res.add(Utils.convertLocalDate(delivery.getTime()));
-        }
-        return res;
     }
 
     /**

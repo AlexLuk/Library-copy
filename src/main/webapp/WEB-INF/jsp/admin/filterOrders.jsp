@@ -1,9 +1,4 @@
-<%@ page import="java.time.LocalDate" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
-<%
-    List<LocalDate> dates = libraryService.getAllDates(deliveredBooks);
-%>
 
 <form id="filter_form" class="scaled doNotProcess">
     <div class="form-group">
@@ -24,9 +19,8 @@
             <div class="col-lg-3 col-md-3 col-xs-3">
                 <label for="book_genre"><spring:message code="status" />:</label>
                 <select class="form-control" name="book_genre" id="book_genre" multiple="multiple">
-                    <option></option>
-                    <option><spring:message code="statusForHome" /></option>
-                    <option><spring:message code="statusInLib" /></option>
+                    <option selected><spring:message code="statusForHome" /></option>
+                    <option selected><spring:message code="statusInLib" /></option>
                 </select>
             </div>
             <div class="delimeter"></div>
