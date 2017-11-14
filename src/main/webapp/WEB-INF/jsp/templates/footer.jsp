@@ -30,6 +30,8 @@
     <div id="succ_delivery_created"><spring:message code="succDeliveryCreated" /></div>
     <div id="error_delivery_created"><spring:message code="errorDeliveryCreated" /></div>
 
+    <div id="succ_return_book"><spring:message code="succReturnBook" /></div>
+    <div id="error_return_book"><spring:message code="errorReturnBook" /></div>
 
     <div id="succ_delete_account"><spring:message code="succAccountDeleted" /></div>
     <div id="error_delete_account"><spring:message code="errDeleteAccount" /></div>

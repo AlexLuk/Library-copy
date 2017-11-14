@@ -334,8 +334,25 @@ $(document).ready(function () {
                     if (resp) {
                         show_alert($('#succ_delivery_created').html(), statusField, true);
                     }
-                    else if (!resp) {
+                    else {
                         show_alert($('#error_delivery_created').html(), statusField, false);
+                    }
+                }
+            });
+    });
+
+    $(".returnBook").click(function () {
+        var id = getId($(this).attr("name"));
+        $.ajax(
+            {
+                url: "/returnDelivery",
+                data: {deliveryId: id},
+                success: function (resp) {
+                    if (resp) {
+                        show_alert($('#succ_return_book').html(), statusField, true);
+                    }
+                    else {
+                        show_alert($('#error_return_book').html(), statusField, false);
                     }
                 }
             });
