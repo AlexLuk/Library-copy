@@ -93,7 +93,6 @@ $(document).ready(function () {
         if (form_data !== '') {
             $.ajax(
                 {
-
                     url: "/register",
                     data: form_data,
                     async: false,
@@ -121,7 +120,8 @@ $(document).ready(function () {
                     data: {password: userPas, email: userEmail},
                     async: false,
                     success: function (resp) {
-                        if (!resp) {
+                        if (resp) {
+                        } else {
                             show_alert($('#error_contains_parts').html(), statusField, false);
                         }
                         result = resp;
@@ -152,7 +152,7 @@ $(document).ready(function () {
                 pwdchange: $('#error_pwd_check').html(),
                 minlength: $('#error_pwd_minlen').html()
             }
-        },
+        }
     });
 
     $.validator.addMethod("pwdchange",
@@ -161,9 +161,10 @@ $(document).ready(function () {
         });
 
     $('#saveProfile').click(function () {
+        var password = $.trim($('#changePassword').val());
         hideMsgs();
         if ($('#profileForm').valid()) {
-            if ($.trim($('#changePassword').val()) === '' || checkChangePassword()) {
+            if (password === '' || checkChangePassword()) {
                 changeProfile();
             }
         }
@@ -177,11 +178,10 @@ $(document).ready(function () {
                     url: "/checks/oldpassword",
                     data: {oldPassword: oldPassword},
                     success: function (resp) {
-                        if (!resp) {
-                            show_alert($('#error_old_password').html(), statusField, false);
-                        }
-                        else {
+                        if (resp) {
                             hideMsgs();
+                        } else {
+                            show_alert($('#error_old_password').html(), statusField, false);
                         }
                     }
                 });
@@ -235,10 +235,11 @@ $(document).ready(function () {
                 data: {password: userPas, email: userEmail},
                 async: false,
                 success: function (resp) {
-                    if (!resp) {
+                    if (resp) {
+                        result = resp;
+                    } else {
                         show_alert($('#error_contains_parts').html(), statusField, false);
                     }
-                    result = resp;
                 }
             });
         return result;
@@ -316,7 +317,7 @@ $(document).ready(function () {
                     if (resp) {
                         show_alert($('#succ_order_canceled').html(), statusField, true);
                     }
-                    else if (!resp) {
+                    else {
                         show_alert($('#error_order_canceled').html(), statusField, false);
                     }
                 }
@@ -350,16 +351,32 @@ $(document).ready(function () {
                 data: {readerId: id},
                 async: false,
                 success: function (resp) {
-                    if (!resp) {
-                        show_alert($('#error_delete_account').html(), statusField, false);
-                    }
-                    else {
+                    if (resp) {
                         show_alert($('#succ_account_deleted').html(), statusField, true);
+                    } else {
+                        show_alert($('#error_delete_account').html(), statusField, false);
                     }
                 }
             });
     });
 
+    $('.setFines').blur(function () {
+        var id = getId($(this).attr("name"));
+        var fines = $(this).val();
+        $.ajax(
+            {
+                url: "/setFines",
+                data: {readerId: id, fines: fines},
+                async: false,
+                success: function (resp) {
+                    if (resp) {
+                        show_alert($('#succ_fines_set').html(), statusField, true);
+                    } else {
+                        show_alert($('#error_fines_set').html(), statusField, false);
+                    }
+                }
+            });
+    });
 
     /************************************** date picking **************************************************/
 

@@ -1,6 +1,6 @@
 <%@ page import="org.library.db.domain.Reader" %>
-<%@ page import="java.util.List" %>
 <%@ page import="org.library.services.LibraryService" %>
+<%@ page import="java.util.List" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="../templates/taglibs.jsp" %>
@@ -38,7 +38,7 @@
                             <td><%= reader.getFullName() %></td>
                             <td><%= reader.convertLocalDate().toString() %></td>
                             <td>
-                                <input type="number" id="fines" min="0" value="<%= reader.getFines() %>"/>&nbsp;&#x20bd;
+                                <input type="number" class = "setFines" id="fines_<%= reader.getId()%>" name="fines_<%= reader.getId()%>" min="0" value="<%= reader.getFines() %>"/>&nbsp;&#x20bd;
                             </td>
                             <td>
                                 <%if (!reader.getFirstName().equals("admin")) {%>
