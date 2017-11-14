@@ -49,7 +49,7 @@ $(document).ready(function () {
                 required: $('#error_email_req').html(),
                 email: $('#error_email').html()
             }
-        }
+        },
     });
 
     $.validator.addMethod("pwdcheck",
@@ -153,11 +153,6 @@ $(document).ready(function () {
                 minlength: $('#error_pwd_minlen').html()
             }
         },
-        tooltip_options: {
-            changePassword: { placement: 'top', trigger:'focus' },
-            firstName: { placement: 'top', trigger:'focus' },
-            lastName: { placement: 'top', trigger:'focus' }
-        }
     });
 
     $.validator.addMethod("pwdchange",
