@@ -20,9 +20,23 @@ import java.sql.Timestamp;
 @Service
 public class AccountService {
 
+    public static final String ERR_DELETE_ACCOUNT_ORDER = "errDeleteAccountOrder";
+    public static final String ERR_DELETE_ACCOUNT_DELIVERY = "errDeleteAccountDelivery";
     private final static Logger logger = LoggerFactory.getLogger(AccountService.class);
 
     public static final String passwordREGEXP = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!?.,/@#$%^&+=])(?=\\S+$).{8,}$";
+    public static final String ERR_DELETE_ACCOUNT_ADMIN = "errDeleteAccountAdmin";
+    public static final String ERR_DELETE_ACCOUNT_FINES = "errDeleteAccountFines";
+    public static final String SUCC_ACCOUNT_DELETED = "succAccountDeleted";
+    public static final String ERR_DELETE_ACCOUNT = "errDeleteAccount";
+    public static final String SUCC_FINES_SET = "succFinesSet";
+    public static final String ERROR_FINES_SET = "errorFinesSet";
+    public static final String PROFILE_FAIL = "profileFail";
+    public static final String PROFILE_SUCC = "profileSucc";
+    public static final String PROFILE_SUCC1 = "profileSucc";
+    public static final String ERROR_OLD_PASSWORD = "errorOldPassword";
+    public static final String ERROR_CONTAINS_PARTS = "errorContainsParts";
+    public static final String SUCC_REGISTER = "succRegister";
 
     @Autowired
     ReaderRepository readerRepository;
@@ -38,9 +52,9 @@ public class AccountService {
      *
      * @param reader  - new reader data
      * @param request
-     * @return true if operation was successful
+     * @return result message param
      */
-    public boolean registerUser(@ModelAttribute Reader reader, HttpServletRequest request) {
+    public String registerUser(@ModelAttribute Reader reader, HttpServletRequest request) {
         String password = reader.getPassword();
         String email = reader.getEmail();
 
@@ -53,9 +67,15 @@ public class AccountService {
 
             readerRepository.save(reader);
 
-            return loginInSystem(request, password, email);
+            if (loginInSystem(request, password, email)) {
+                logger.info("Reader successfully redistricted with id {}", reader.getId());
+                return SUCC_REGISTER;
+            } else {
+                //todo fix message
+                return "unsuccessful";
+            }
         } else {
-            return false;
+            return "unsuccessful";
         }
     }
 
@@ -118,32 +138,30 @@ public class AccountService {
      * Change reader info in database for the the info from user profile form
      *
      * @param reader - reader object filled with user input
-     * @return - 0 - success,
-     * 1 - failure because old password is wrong,
-     * 2 - failure because email is in password
-     * 3 - exception in process
+     * @return - result message param
      */
-    public int changeReader(@ModelAttribute Reader reader, String oldPassword) {
+    public String changeReader(@ModelAttribute Reader reader, String oldPassword) {
         Reader curReader = (Reader) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String newPassword = reader.getPassword();
         try {
             if (newPassword.equals("")) {
                 saveReader(reader, curReader);
-                return 0;
+                return PROFILE_SUCC;
             }
             if (isPasswordComplicate(newPassword, curReader.getEmail())) {
                 if (checkOldPassword(oldPassword)) {
                     curReader.setPassword(DigestUtils.md5Hex(newPassword));
                     saveReader(reader, curReader);
-                    return 0;
+                    return PROFILE_SUCC1;
                 } else {
-                    return 1;
+                    return ERROR_OLD_PASSWORD;
                 }
             } else {
-                return 2;
+                return ERROR_CONTAINS_PARTS;
             }
         } catch (Exception e) {
-            return 3;
+            logger.info("Error savind changes for reader {}", reader.getId());
+            return PROFILE_FAIL;
         }
     }
 
@@ -169,6 +187,7 @@ public class AccountService {
         curReader.setFirstName(reader.getFirstName());
         curReader.setPatronymic(reader.getPatronymic());
         readerRepository.save(new Reader(curReader));
+        logger.info("Change and save info for reader {}", reader.getId());
     }
 
     /**
@@ -176,53 +195,48 @@ public class AccountService {
      *
      * @param readerId - id of user which need to be modified
      * @param fines    - amount of fines to change
-     * @return true if operation was successful
+     * @return result message param
      */
-    public boolean setFines(int readerId, double fines) {
+    public String setFines(int readerId, double fines) {
         try {
             Reader reader = readerRepository.getOne(readerId);
             reader.setFines(fines);
             readerRepository.save(reader);
-            return true;
+            logger.info("Fines set successfully {} for reader", fines, readerId);
+            return SUCC_FINES_SET;
         } catch (Exception e) {
-            return false;
+            logger.info("Set fines error {}", readerId);
         }
+        return ERROR_FINES_SET;
     }
-
-    //todo return string property instead of int
 
     /**
      * Delete reader from database by readerId
      *
      * @param readerId - id of reader to delete
-     * @return 0 - successful delete
-     * 1- delete rejected, user is admin
-     * 2- delete rejected, user has fines
-     * 3- delete rejected, user has orders
-     * 4- delete rejected, user has deliveries on hand
-     * 5- delete rejected, delete error
+     * @return result message param
      */
-    public int deleteReaderById(int readerId) {
+    public String deleteReaderById(int readerId) {
         try {
             Reader reader = readerRepository.getOne(readerId);
             if (reader.getIsAdmin()) {
-                return 1;
+                return ERR_DELETE_ACCOUNT_ADMIN;
             }
             if (reader.getFines() > 0) {
-                return 2;
+                return ERR_DELETE_ACCOUNT_FINES;
             }
             if (bookOrderRepository.countByReaderId(readerId) > 0) {
-                return 3;
+                return ERR_DELETE_ACCOUNT_ORDER;
             }
             if (deliveryRepository.countByReaderId(readerId) > 0) {
-                return 4;
+                return ERR_DELETE_ACCOUNT_DELIVERY;
             }
             readerRepository.delete(readerId);
-            logger.info("delete reader by id {}", readerId);
-            return 0;
+            logger.info("Delete reader by id {}", readerId);
+            return SUCC_ACCOUNT_DELETED;
         } catch (EntityNotFoundException | EmptyResultDataAccessException e) {
-            logger.error("reader delete error", e);
+            logger.info("Reader delete error {}", readerId);
         }
-        return 5;
+        return ERR_DELETE_ACCOUNT;
     }
 }

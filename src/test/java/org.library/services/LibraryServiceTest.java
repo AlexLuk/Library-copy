@@ -20,6 +20,15 @@ import static org.hamcrest.Matchers.*;
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class LibraryServiceTest extends LibraryTest {
+    @Test
+    public void jsonBooks() throws Exception {
+        List<Book> books = new LinkedList<>();
+        assertThat(libraryService.jsonBooks(books), is("[]"));
+        books.add(bookRepository.getOne(8));
+        assertThat(libraryService.jsonBooks(books), is("[{\"title\":\"Несколько авторов\",\"authors\":\"Иванов Иван Иванович </br>Петров Петр Петрович </br>Сергеев Сергей Сергеевич \",\"year\":2000,\"genre\":\"fantasy\",\"isRare\":false,\"amount\":1,\"book_id\":8}]"));
+
+    }
+
     @Autowired
     LibraryService libraryService;
 
@@ -34,6 +43,9 @@ public class LibraryServiceTest extends LibraryTest {
     @Test
     public void findByComplexQuery() throws Exception {
         assertThat(bookRepository.findByComplexQuery("zzzzzzzzz", null, null, "", "", ""), empty());
+        bookRepository.findByComplexQuery("у", null, null, "", "", "").forEach(book -> System.err.println(book.getTitle()));
+        System.err.println("//");
+        bookRepository.findByComplexQuery("", null, null, "", "", "").forEach(book -> System.err.println(book.getTitle()));
         assertThat(bookRepository.findByComplexQuery("", 9999, null, "", "", ""), empty());
         assertThat(bookRepository.findByComplexQuery("", null, null, "zzzzzzz", "", ""), empty());
         assertThat(bookRepository.findByComplexQuery("", null, null, "", "", ""), hasItems(bookRepository.findOne(1)));
@@ -42,14 +54,5 @@ public class LibraryServiceTest extends LibraryTest {
         assertThat(bookRepository.findByComplexQuery("оро", null, null, "", "", ""), hasItems(bookRepository.findOne(1)));
         assertThat(bookRepository.findByComplexQuery("", 1782, null, "", "", ""), hasItems(bookRepository.findOne(1)));
         assertThat(bookRepository.findByComplexQuery("", null, 1, "", "", ""), hasItems(bookRepository.findOne(1)));
-    }
-
-    @Test
-    public void testSerealization() throws Exception {
-        List<Book> books = new LinkedList<>();
-        books.add(bookRepository.getOne(8));
-        assertThat(libraryService.jsonBooks(books), is("[{\"title\":\"Несколько авторов\"," +
-                "\"authors\":\"Иванов Иван Иванович \\nПетров Петр Петрович \\nСергеев Сергей Сергеевич " +
-                "\",\"year\":2000,\"genre\":\"fantasy\",\"book_id\":8}]"));
     }
 }

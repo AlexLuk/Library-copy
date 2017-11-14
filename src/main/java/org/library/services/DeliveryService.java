@@ -22,6 +22,10 @@ public class DeliveryService {
     //todo add delivery filter
 
     private final static Logger logger = LoggerFactory.getLogger(DeliveryService.class);
+    public static final String SUCC_DELIVERY_CREATED = "succDeliveryCreated";
+    public static final String ERROR_DELIVERY_CREATED = "errorDeliveryCreated";
+    public static final String SUCC_RETURN_BOOK = "succReturnBook";
+    public static final String ERROR_RETURN_BOOK = "errorReturnBook";
 
     @Autowired
     DeliveryRepository deliveryRepository;
@@ -49,12 +53,13 @@ public class DeliveryService {
     }
 
     //todo refactor
-    public boolean addDeliveryByBookOrder(Integer bookOrderId) {
+    public String addDeliveryByBookOrder(Integer bookOrderId) {
         BookOrder bookOrder = bookOrderRepository.getOne(bookOrderId);
         boolean toHand = bookOrder.getOnHands();
         int freeBookItem = freeBook(bookOrder);
         if (freeBookItem == -1) {
-            return false;
+
+            return ERROR_DELIVERY_CREATED;
         }
 
         boolean wasAdd = addDelivery(bookOrder.getReader(), bookItemRepository.getOne(freeBook(bookOrder)));
@@ -63,14 +68,14 @@ public class DeliveryService {
             bookItemRepository.getOne(freeBookItem)
                     .setStatus(toHand ? itemStatusRepository.getOne(2) : itemStatusRepository.getOne(3));
         }
-        return true;
+        return SUCC_DELIVERY_CREATED;
     }
 
     //todo refactor
     private boolean addDelivery(Reader reader, BookItem bookItem) {
         Delivery delivery = new Delivery(reader, bookItem);
         deliveryRepository.save(delivery);
-        logger.info("add delivery {}", delivery);
+        logger.info("Add delivery {}", delivery.getId());
         return true;
     }
 
@@ -80,18 +85,18 @@ public class DeliveryService {
      * @param deliveryId - delivery id
      * @return - true if delivery deleted successfully
      */
-    public boolean returnDelivery(int deliveryId) {
+    public String returnDelivery(int deliveryId) {
         //todo replace status with enum
         try {
             Delivery delivery = deliveryRepository.getOne(deliveryId);
             BookItem bookItem = delivery.getBookItem();
             bookItem.setStatus(itemStatusRepository.getOne(1));
             deliveryRepository.delete(deliveryId);
-            return true;
+            return SUCC_RETURN_BOOK;
         } catch (EntityNotFoundException e) {
-            logger.error("Return delivery error", e);
-            return false;
+            logger.info("Return delivery error {}", deliveryId);
         }
+        return ERROR_RETURN_BOOK;
     }
 
     public List<Delivery> getDeliveriesByComplexCondition() {

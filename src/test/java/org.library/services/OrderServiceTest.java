@@ -16,14 +16,20 @@ public class OrderServiceTest extends LibraryTest {
 
     @Test
     public void cancelOrder() throws Exception {
-        assertThat(orderService.cancelOrder(1), is(true));
-        assertThat(orderService.cancelOrder(555), is(false));
+        assertThat(orderService.cancelOrder(1), is(OrderService.SUCC_ORDER_CANCELED));
+        assertThat(orderService.cancelOrder(555), is(OrderService.ERROR_ORDER_CANCELED));
+    }
+
+    @Test
+    public void editOrder() throws Exception{
+        assertThat(orderService.setOrderStatus(1,true), is(OrderService.SUCC_STATUS_CHANGE));
+        assertThat(orderService.setOrderStatus(999,true), is(OrderService.ERROR_STATUS_CHANGE));
     }
 
     @Test
     public void countByReaderIdAndBookId() {
-        assertThat(deliveryRepository.countByReaderIdAndBookId(3, 2), is(1));
-        assertThat(deliveryRepository.countByReaderIdAndBookId(3, 1), is(0));
+        assertThat(deliveryRepository.countByReaderIdAndBookId(3, 2), is(0));
+        assertThat(deliveryRepository.countByReaderIdAndBookId(3, 1), is(1));
     }
 
     @Test

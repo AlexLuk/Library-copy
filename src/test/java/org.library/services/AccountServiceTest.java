@@ -16,13 +16,13 @@ public class AccountServiceTest extends LibraryTest{
 
     @Test
     public void deleteReaderById() throws Exception {
-        assertThat(accountService.deleteReaderById(110),is(0));
-        assertThat(accountService.deleteReaderById(110),is(5));
-        assertThat(accountService.deleteReaderById(1),is(1));
-        assertThat(accountService.deleteReaderById(10),is(2));
-        assertThat(accountService.deleteReaderById(2),is(3));
-        assertThat(accountService.deleteReaderById(3),is(4));
-        assertThat(accountService.deleteReaderById(9999),is(5));
+        assertThat(accountService.deleteReaderById(110),is(accountService.SUCC_ACCOUNT_DELETED));
+        assertThat(accountService.deleteReaderById(110),is(accountService.ERR_DELETE_ACCOUNT));
+        assertThat(accountService.deleteReaderById(1),is(accountService.ERR_DELETE_ACCOUNT_ADMIN));
+        assertThat(accountService.deleteReaderById(10),is(accountService.ERR_DELETE_ACCOUNT_FINES));
+        assertThat(accountService.deleteReaderById(2),is(accountService.ERR_DELETE_ACCOUNT_ORDER));
+        assertThat(accountService.deleteReaderById(3),is(accountService.ERR_DELETE_ACCOUNT_DELIVERY));
+        assertThat(accountService.deleteReaderById(9999),is(accountService.ERR_DELETE_ACCOUNT));
     }
 
     @Test

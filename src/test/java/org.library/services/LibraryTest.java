@@ -30,4 +30,6 @@ public class LibraryTest {
     @Autowired
     ItemStatusRepository itemStatusRepository;
 
+    @Test
+    public void initialTest(){}
 }

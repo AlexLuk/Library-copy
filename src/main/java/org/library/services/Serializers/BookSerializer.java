@@ -18,6 +18,9 @@ public class BookSerializer extends StdSerializer<Book> {
         this(null);
     }
 
+    /**
+     * Serialize book to json
+     */
     @Override
     public void serialize(Book book, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException, JsonProcessingException {
         jsonGenerator.writeStartObject();

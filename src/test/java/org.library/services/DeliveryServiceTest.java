@@ -16,9 +16,9 @@ import static org.junit.Assert.assertThat;
 public class DeliveryServiceTest extends LibraryTest {
     @Test
     public void returnDelivery() throws Exception {
-        assertThat(deliveryService.returnDelivery(1),is(true));
+        assertThat(deliveryService.returnDelivery(1),is(deliveryService.SUCC_RETURN_BOOK));
         assertThat(bookItemRepository.getOne(2).getStatus(),is(itemStatusRepository.getOne(1)));
-        assertThat(deliveryService.returnDelivery(5555),is(false));
+        assertThat(deliveryService.returnDelivery(5555),is(deliveryService.ERROR_RETURN_BOOK));
     }
 
     @Test

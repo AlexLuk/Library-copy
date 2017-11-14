@@ -25,8 +25,9 @@ public class AccountController {
      * @return - string for RequestMapping
      */
     @RequestMapping(value = {"/register"}, method = RequestMethod.POST, produces = "application/json")
-    public @ResponseBody
-    boolean registerUser(@ModelAttribute Reader reader, HttpServletRequest request) {
+    public
+    @ResponseBody
+    String registerUser(@ModelAttribute Reader reader, HttpServletRequest request) {
         return accountService.registerUser(reader, request);
     }
 
@@ -37,7 +38,8 @@ public class AccountController {
      * @return true if there is no such mail in database
      */
     @RequestMapping(value = {"/checks/email"}, method = RequestMethod.POST, produces = "application/json")
-    public @ResponseBody
+    public
+    @ResponseBody
     Boolean isEmailUnique(String email) {
         return accountService.isEmailUnique(email);
     }
@@ -50,8 +52,9 @@ public class AccountController {
      * @return true if password valid for our
      */
     @RequestMapping(value = {"/checks/password"}, method = RequestMethod.POST, produces = "application/json")
-    public @ResponseBody
-    boolean isPasswordComplicate(String password, String email) {
+    public
+    @ResponseBody
+    Boolean isPasswordComplicate(String password, String email) {
         return accountService.isPasswordComplicate(password, email);
     }
 
@@ -59,12 +62,12 @@ public class AccountController {
      * Change reader info in database for the the info from user profile form
      *
      * @param reader - reader object filled with user input
-     * @return - 0 - success, 1 - failure because old password is wrong, 2 - failure because email is in password
-     * 3 - exception in process
+     * @return - result message param
      */
     @RequestMapping(value = {"/change_profile"}, method = RequestMethod.POST, produces = "application/json")
-    public @ResponseBody
-    int changeUser(@ModelAttribute Reader reader, String oldPassword) {
+    public
+    @ResponseBody
+    String changeUser(@ModelAttribute Reader reader, String oldPassword) {
         return accountService.changeReader(reader, oldPassword);
     }
 
@@ -75,7 +78,8 @@ public class AccountController {
      * @return true if password is right
      */
     @RequestMapping(value = {"/checks/oldpassword"}, method = RequestMethod.POST, produces = "application/json")
-    public @ResponseBody
+    public
+    @ResponseBody
     boolean checkOldPassword(String oldPassword) {
         return accountService.checkOldPassword(oldPassword);
     }
@@ -83,17 +87,12 @@ public class AccountController {
     /**
      * Process call for account reader deleting
      *
-     * @return 0 - successful delete
-     * 1- delete rejected, user is admin
-     * 2- delete rejected, user has fines
-     * 3- delete rejected, user has orders on hand
-     * 4- delete rejected, user has deliveries on hand
-     * 5- delete rejected, delete error
+     * @return result message param
      */
     @RequestMapping(value = {"/deleteReader"}, method = RequestMethod.POST, produces = "application/json")
     public
     @ResponseBody
-    int deleteReader(int readerId) {
+    String deleteReader(int readerId) {
         return accountService.deleteReaderById(readerId);
     }
 
@@ -102,11 +101,12 @@ public class AccountController {
      *
      * @param readerId - id of user which need to be modified
      * @param fines    - amount of fines to change
-     * @return true if operation was successful
+     * @return result message param
      */
     @RequestMapping(value = {"/setFines"}, method = RequestMethod.POST, produces = "application/json")
-    public @ResponseBody
-    boolean setFines(int readerId, double fines) {
+    public
+    @ResponseBody
+    String setFines(int readerId, double fines) {
         return accountService.setFines(readerId, fines);
     }
 }

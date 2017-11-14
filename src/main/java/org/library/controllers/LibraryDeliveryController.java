@@ -23,7 +23,7 @@ public class LibraryDeliveryController {
     @RequestMapping(value = {"/addDelivery"}, method = RequestMethod.POST, produces = "application/json")
     public
     @ResponseBody
-    boolean addDelivery(Integer orderId) {
+    String addDelivery(Integer orderId) {
         return deliveryService.addDeliveryByBookOrder(orderId);
     }
 
@@ -36,7 +36,7 @@ public class LibraryDeliveryController {
     @RequestMapping(value = {"/returnDelivery"}, method = RequestMethod.POST, produces = "application/json")
     public
     @ResponseBody
-    boolean returnDelivery(Integer deliveryId) {
+    String returnDelivery(Integer deliveryId) {
         return deliveryService.returnDelivery(deliveryId);
     }
 }

@@ -17,6 +17,14 @@ import java.util.List;
 public class OrderService {
 
     private final static Logger logger = LoggerFactory.getLogger(OrderService.class);
+    public static final String SUCC_STATUS_CHANGE = "succStatusChange";
+    public static final String ERROR_STATUS_CHANGE = "errorStatusChange";
+    public static final String SUCC_ORDER_CANCELED = "succOrderCanceled";
+    public static final String ERROR_ORDER_CANCELED = "errorOrderCanceled";
+    public static final String SUCC_ORDER_CREATED = "succOrderCreated";
+    public static final String ERROR_ORDER_CREATE_ORDERED = "errorOrderCreateOrdered";
+    public static final String ERROR_ORDER_CREATE_DELIVERED = "errorOrderCreateDelivered";
+    public static final String SUCC_ORDER_CREATED1 = "succOrderCreated";
 
     @Autowired
     BookOrderRepository bookOrderRepository;
@@ -45,15 +53,20 @@ public class OrderService {
      * 1 - reader has book in deliveries     *
      * 2 - reader has book in orders
      */
-    public int addOrder(Reader reader, int bookId, boolean isOnHands) {
+    public String addOrder(Reader reader, int bookId, boolean isOnHands) {
         int checkReaderForBook = checkReaderForBook(reader.getId(), bookId);
-        if (checkReaderForBook == 0) {
-            BookOrder bookOrder = new BookOrder(reader, bookRepository.findOne(bookId), isOnHands);
-            bookOrderRepository.save(bookOrder);
-            logger.info("add order {}" + bookOrder);
-            return checkReaderForBook;
-        } else {
-            return checkReaderForBook;
+        switch (checkReaderForBook) {
+            case 0:
+                BookOrder bookOrder = new BookOrder(reader, bookRepository.findOne(bookId), isOnHands);
+                bookOrderRepository.save(bookOrder);
+                logger.info("Add order {}" + bookOrder.getId());
+                return SUCC_ORDER_CREATED;
+            case 1:
+                return ERROR_ORDER_CREATE_ORDERED;
+            case 2:
+                return ERROR_ORDER_CREATE_DELIVERED;
+            default:
+                return SUCC_ORDER_CREATED1;
         }
     }
 
@@ -81,15 +94,17 @@ public class OrderService {
         return gson.toJson(bookOrders);
     }
 
-    public boolean setOrderStatus(int bookOrderId, boolean status) {
+    public String setOrderStatus(int bookOrderId, boolean status) {
         try {
             BookOrder order = bookOrderRepository.findOne(bookOrderId);
             order.setOnHands(status);
             bookOrderRepository.save(order);
+            logger.info("Order status changed {}", bookOrderId);
+            return SUCC_STATUS_CHANGE;
         } catch (Exception e) {
-            return false;
+            logger.info("Error during order edit {}", bookOrderId);
         }
-        return true;
+        return ERROR_STATUS_CHANGE;
     }
 
     private class BookOrderJson {
@@ -114,17 +129,17 @@ public class OrderService {
      * Cancel order by bookOrderId
      *
      * @param bookOrderId - book order id
-     * @return true - order successfully deleted
+     * @return return message param
      */
-    public boolean cancelOrder(int bookOrderId) {
+    public String cancelOrder(int bookOrderId) {
         try {
             bookOrderRepository.delete(bookOrderId);
+            logger.info("delete order by orderId {}", bookOrderId);
+            return SUCC_ORDER_CANCELED;
         } catch (EmptyResultDataAccessException e) {
-            logger.error("cancel order error", e);
-            return false;
+            logger.error("Cancel order error", e);
         }
-        logger.info("delete order by orderId {}", bookOrderId);
-        return true;
+        return ERROR_ORDER_CANCELED;
     }
 
 }

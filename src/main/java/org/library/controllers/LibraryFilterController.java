@@ -13,6 +13,16 @@ public class LibraryFilterController {
     @Autowired
     LibraryService libraryService;
 
+
+    /**
+     * Filter list of books by params
+     *
+     * @param title  - book title string for search
+     * @param author author full name string for parse and search
+     * @param year   - full year for search
+     * @param genre  - genre for search
+     * @return - filtered list of books
+     */
     @RequestMapping(value = {"/filters"}, method = RequestMethod.POST, produces = "application/json")
     public
     @ResponseBody

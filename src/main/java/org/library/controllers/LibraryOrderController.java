@@ -22,14 +22,12 @@ public class LibraryOrderController {
      *
      * @param bookId - id off book to add
      * @param toHand - true if book is ordered on hand
-     * @return - 0 - order added
-     * 1 - reader has book in deliveries     *
-     * 2 - reader has book in orders
+     * @return - result message param
      */
     @RequestMapping(value = {"/addOrder"}, method = RequestMethod.POST, produces = "application/json")
     public
     @ResponseBody
-    int addOrder(int bookId, boolean toHand) {
+    String addOrder(int bookId, boolean toHand) {
         Reader reader = (Reader) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return orderService.addOrder(reader, bookId, toHand);
     }
@@ -38,12 +36,12 @@ public class LibraryOrderController {
      * Cancel order by orderId
      *
      * @param bookOrderId - order id
-     * @return - true if order deleted
+     * @return - result message param
      */
     @RequestMapping(value = {"/cancelOrder"}, method = RequestMethod.POST, produces = "application/json")
     public
     @ResponseBody
-    boolean cancelOrder(int bookOrderId) {
+    String cancelOrder(int bookOrderId) {
         return orderService.cancelOrder(bookOrderId);
     }
 
@@ -56,7 +54,7 @@ public class LibraryOrderController {
     @RequestMapping(value = {"/setOrderStatus"}, method = RequestMethod.POST, produces = "application/json")
     public
     @ResponseBody
-    boolean setOrderStatus(int bookOrderId, boolean status) {
+    String setOrderStatus(int bookOrderId, boolean status) {
         return orderService.setOrderStatus(bookOrderId, status);
     }
 
