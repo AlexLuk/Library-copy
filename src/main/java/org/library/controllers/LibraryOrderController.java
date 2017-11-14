@@ -2,8 +2,6 @@ package org.library.controllers;
 
 import org.library.db.domain.Reader;
 import org.library.services.OrderService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -45,6 +43,19 @@ public class LibraryOrderController {
     @ResponseBody
     boolean cancelOrder(int bookOrderId) {
         return orderService.cancelOrder(bookOrderId);
+    }
+
+    /**
+     * Change order status by reader
+     *
+     * @param bookOrderId - order id, status - selected status of order
+     * @return - true if order was changed
+     */
+    @RequestMapping(value = {"/setOrderStatus"}, method = RequestMethod.POST, produces = "application/json")
+    public
+    @ResponseBody
+    boolean setOrderStatus(int bookOrderId, boolean status ) {
+        return orderService.setOrderStatus(bookOrderId,status);
     }
 
 }

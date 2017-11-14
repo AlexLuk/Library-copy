@@ -41,19 +41,19 @@
                             <td><%= order.getBook().getTitle() %></td>
                             <td><%= order.getBook().getYear() %></td>
                             <td width="20%">
-                                <select class="form-control" name="order_status" id="order_status">
+                                <select class="form-control order_status" name="orderStatus_<%= order.getId()%>" id="orderStatus_<%= order.getId()%>">
                                     <% if(order.getOnHands()) { %>
-                                        <option id="status_home">
+                                        <option id="statusHome_1">
                                             <spring:message code="wishStatusForHome" />
                                         </option>
-                                        <option id="status_lib">
+                                        <option id="statusLib_0">
                                             <spring:message code="wishStatusInLib" />
                                         </option>
                                     <%} else {%>
-                                        <option id="status_lib">
+                                        <option id="statusLib_0">
                                             <spring:message code="wishStatusInLib" />
                                         </option>
-                                        <option id="status_home">
+                                        <option id="statusHome_1">
                                             <spring:message code="wishStatusForHome" />
                                         </option>
                                     <%}%>

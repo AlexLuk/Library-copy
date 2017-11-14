@@ -24,6 +24,9 @@
     <div id="error_order_canceled"><spring:message code="errorOrderCanceled" /></div>
     <div id="succ_order_canceled"><spring:message code="succOrderCanceled" /></div>
 
+    <div id="error_status_change"><spring:message code="errorStatusChange" /></div>
+    <div id="succ_status_change"><spring:message code="succStatusChange" /></div>
+
     <div id="succ_delivery_created"><spring:message code="succDeliveryCreated" /></div>
     <div id="error_delivery_created"><spring:message code="errorDeliveryCreated" /></div>
 

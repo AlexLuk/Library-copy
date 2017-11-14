@@ -1,8 +1,8 @@
 package org.library.services;
 
 import com.google.gson.Gson;
-import org.library.controllers.LibraryOrderController;
-import org.library.db.domain.*;
+import org.library.db.domain.BookOrder;
+import org.library.db.domain.Reader;
 import org.library.db.repo.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -79,6 +79,17 @@ public class OrderService {
         bookOrders.forEach(bookOrder -> bookOrdersJsons.add(new BookOrderJson(bookOrder)));
         Gson gson = new Gson();
         return gson.toJson(bookOrders);
+    }
+
+    public boolean setOrderStatus(int bookOrderId, boolean status) {
+        try {
+            BookOrder order = bookOrderRepository.findOne(bookOrderId);
+            order.setOnHands(status);
+            bookOrderRepository.save(order);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
     }
 
     private class BookOrderJson {
