@@ -31,11 +31,13 @@ public class LibraryController {
      */
     @RequestMapping(value = {"/login", "/"}, method = RequestMethod.GET)
     public String welcome(Model model, String error, String logout) {
-        if (error != null)
+        if (error != null) {
             model.addAttribute("error", "Your username or password is invalid.");
+        }
 
-        if (logout != null)
+        if (logout != null) {
             model.addAttribute("msg", "You have been successfully logged out.");
+        }
         return "login";
     }
 

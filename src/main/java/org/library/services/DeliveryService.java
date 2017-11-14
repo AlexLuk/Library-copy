@@ -1,6 +1,9 @@
 package org.library.services;
 
-import org.library.db.domain.*;
+import org.library.db.domain.BookItem;
+import org.library.db.domain.BookOrder;
+import org.library.db.domain.Delivery;
+import org.library.db.domain.Reader;
 import org.library.db.repo.BookItemRepository;
 import org.library.db.repo.BookOrderRepository;
 import org.library.db.repo.DeliveryRepository;
@@ -67,7 +70,7 @@ public class DeliveryService {
     private boolean addDelivery(Reader reader, BookItem bookItem) {
         Delivery delivery = new Delivery(reader, bookItem);
         deliveryRepository.save(delivery);
-        logger.info("add delivery {}",delivery);
+        logger.info("add delivery {}", delivery);
         return true;
     }
 

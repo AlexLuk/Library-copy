@@ -42,8 +42,8 @@ public class OrderService {
      * @param bookId    - bookId
      * @param isOnHands - type of order
      * @return - 0 - order added
-     * 1 - reader has book in orders
-     * 2 - reader has book in deliveries
+     * 1 - reader has book in deliveries     *
+     * 2 - reader has book in orders
      */
     public int addOrder(Reader reader, int bookId, boolean isOnHands) {
         int checkReaderForBook = checkReaderForBook(reader.getId(), bookId);
@@ -60,9 +60,9 @@ public class OrderService {
     /**
      * @param readerId - reader id
      * @param bookId   - book id
-     * @return 0 - no book in orders and deliveries
-     * 1 - book  in orders
-     * 2 - book  in deliveries
+     * @return 0 - no book in orders and deliveries     *
+     * 1 - book  in deliveries
+     * 2 - book  in orders
      */
     public int checkReaderForBook(int readerId, int bookId) {
         if (bookOrderRepository.countByReaderIdAndBookId(readerId, bookId) != 0) {
