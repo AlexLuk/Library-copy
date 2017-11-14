@@ -16,7 +16,6 @@ public class AccountServiceTest extends LibraryTest{
 
     @Test
     public void deleteReaderById() throws Exception {
-        saveTestData();
         assertThat(accountService.deleteReaderById(110),is(0));
         assertThat(accountService.deleteReaderById(110),is(5));
         assertThat(accountService.deleteReaderById(1),is(1));
@@ -26,10 +25,6 @@ public class AccountServiceTest extends LibraryTest{
         assertThat(accountService.deleteReaderById(9999),is(5));
     }
 
-    @Before
-    public void setTests() {
-        accountService = new AccountService();
-    }
     @Test
     public void isPasswordComplicate() throws Exception {
         assertThat(accountService.isPasswordComplicate("", "login@mail.ru"), CoreMatchers.is(false));

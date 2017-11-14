@@ -33,7 +33,6 @@ public class LibraryServiceTest extends LibraryTest {
 
     @Test
     public void findByComplexQuery() throws Exception {
-        saveTestData();
         assertThat(bookRepository.findByComplexQuery("zzzzzzzzz", null, null, "", "", ""), empty());
         assertThat(bookRepository.findByComplexQuery("", 9999, null, "", "", ""), empty());
         assertThat(bookRepository.findByComplexQuery("", null, null, "zzzzzzz", "", ""), empty());

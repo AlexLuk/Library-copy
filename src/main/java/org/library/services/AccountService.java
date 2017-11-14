@@ -161,8 +161,8 @@ public class AccountService {
     /**
      * Save changed reader in the database
      *
-     * @param reader - reader which need to be modified
-     * @param curReader    - reader which need to be modified
+     * @param reader    - reader which need to be modified
+     * @param curReader - reader which need to be modified
      */
     private void saveReader(@ModelAttribute Reader reader, Reader curReader) {
         curReader.setLastName(reader.getLastName());
