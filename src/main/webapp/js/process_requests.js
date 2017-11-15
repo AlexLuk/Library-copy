@@ -21,6 +21,90 @@ $(document).ready(function () {
             type: "POST"
         });
 
+    /********************************************* button click events *********************************************/
+
+    $('body').on('click', '.orderHands', function (){
+        var id = getId($(this).attr("name"));
+        addOrder(id, true);
+    })
+        .on('click', '.orderLib', function (){
+            var id = getId($(this).attr("name"));
+            addOrder(id, false);
+        })
+        .on('click', '.cancelOrder', function (){
+            var id = getId($(this).attr("name"));
+            cancelOrder(id);
+        })
+        .on('click', '.giveOrder', function (){
+            var id = getId($(this).attr("name"));
+            $.ajax(
+                {
+                    url: "/addDelivery",
+                    data: {orderId: id},
+                    success: function (resp) {
+                        if (resp) {
+                            show_alert($('#succ_delivery_created').html(), statusField, true);
+                        }
+                        else {
+                            show_alert($('#error_delivery_created').html(), statusField, false);
+                        }
+                    }
+                });
+        })
+        .on('click', '.returnBook', function () {
+            var id = getId($(this).attr("name"));
+            $.ajax(
+                {
+                    url: "/returnDelivery",
+                    data: {deliveryId: id},
+                    success: function (resp) {
+                        if (resp) {
+                            show_alert($('#succ_return_book').html(), statusField, true);
+                        }
+                        else {
+                            show_alert($('#error_return_book').html(), statusField, false);
+                        }
+                    }
+                });
+        })
+        .on('click', '.deleteReader', function () {
+            var id = getId($(this).attr("name"));
+            $.ajax(
+                {
+                    url: "/deleteReader",
+                    data: {readerId: id},
+                    async: false,
+                    success: function (resp) {
+                        switch (resp) {
+                            case 0: {
+                                show_alert($('#succ_delete_account').html(), statusField, true);
+                                break;
+                            }
+                            case 1: {
+                                show_alert($('#error_delete_account_admin').html(), statusField, false);
+                                break;
+                            }
+                            case 2: {
+                                show_alert($('#error_delete_account_fines').html(), statusField, false);
+                                break;
+                            }
+                            case 3: {
+                                show_alert($('#error_delete_account_order').html(), statusField, false);
+                                break;
+                            }
+                            case 4: {
+                                show_alert($('#error_delete_account_delivery').html(), statusField, false);
+                                break;
+                            }
+                            case 5: {
+                                show_alert($('#error_delete_account').html(), statusField, false);
+                                break;
+                            }
+                        }
+                    }
+                });
+        });
+
     /********************************************* registration form ************************************************/
 
     $('#registerForm').validate({
@@ -286,21 +370,6 @@ $(document).ready(function () {
 
     /********************************************* delivery **********************************************/
 
-    $(".orderHands").click(function () {
-        var id = getId($(this).attr("name"));
-        addOrder(id, true);
-    });
-
-    $(".orderLib").click(function () {
-        var id = getId($(this).attr("name"));
-        addOrder(id, false);
-    });
-
-    $(".cancelOrder").click(function () {
-        var id = getId($(this).attr("name"));
-        cancelOrder(id);
-    });
-
     function addOrder(id, onHands) {
         $.ajax(
             {
@@ -310,17 +379,14 @@ $(document).ready(function () {
                     switch (resp) {
                         case 0: {
                             show_alert($('#succ_order_created').html(), statusField, true);
-                            reloadWithDelay(1000);
                             break;
                         }
                         case 1: {
                             show_alert($('#error_order_create_delivered').html(), statusField, false);
-                            reloadWithDelay(2000);
                             break;
                         }
                         case 2: {
                             show_alert($('#error_order_create_ordered').html(), statusField, false);
-                            reloadWithDelay(2000);
                             break;
                         }
                     }
@@ -336,99 +402,15 @@ $(document).ready(function () {
                 success: function (resp) {
                     if (resp) {
                         show_alert($('#succ_order_canceled').html(), statusField, true);
-                        reloadWithDelay(1000);
                     }
                     else {
                         show_alert($('#error_order_canceled').html(), statusField, false);
-                        reloadWithDelay(2000);
                     }
                 }
             });
     }
 
-    $(".giveOrder").click(function () {
-        var id = getId($(this).attr("name"));
-        $.ajax(
-            {
-                url: "/addDelivery",
-                data: {orderId: id},
-                success: function (resp) {
-                    if (resp) {
-                        show_alert($('#succ_delivery_created').html(), statusField, true);
-                        reloadWithDelay(1000);
-                    }
-                    else {
-                        show_alert($('#error_delivery_created').html(), statusField, false);
-                        reloadWithDelay(2000);
-                    }
-                }
-            });
-    });
-
-    $(".returnBook").click(function () {
-        var id = getId($(this).attr("name"));
-        $.ajax(
-            {
-                url: "/returnDelivery",
-                data: {deliveryId: id},
-                success: function (resp) {
-                    if (resp) {
-                        show_alert($('#succ_return_book').html(), statusField, true);
-                        reloadWithDelay(1000);
-                    }
-                    else {
-                        show_alert($('#error_return_book').html(), statusField, false);
-                        reloadWithDelay(2000);
-                    }
-                }
-            });
-    });
-
-
     /******************************************** profile editing *****************************************/
-    $('.deleteReader').click(function () {
-        var id = getId($(this).attr("name"));
-        $.ajax(
-            {
-                url: "/deleteReader",
-                data: {readerId: id},
-                async: false,
-                success: function (resp) {
-                    switch (resp) {
-                        case 0: {
-                            show_alert($('#succ_delete_account').html(), statusField, true);
-                            reloadWithDelay(1000);
-                            break;
-                        }
-                        case 1: {
-                            show_alert($('#error_delete_account_admin').html(), statusField, false);
-                            reloadWithDelay(2000);
-                            break;
-                        }
-                        case 2: {
-                            show_alert($('#error_delete_account_fines').html(), statusField, false);
-                            reloadWithDelay(2000);
-                            break;
-                        }
-                        case 3: {
-                            show_alert($('#error_delete_account_order').html(), statusField, false);
-                            reloadWithDelay(2000);
-                            break;
-                        }
-                        case 4: {
-                            show_alert($('#error_delete_account_delivery').html(), statusField, false);
-                            reloadWithDelay(2000);
-                            break;
-                        }
-                        case 5: {
-                            show_alert($('#error_delete_account').html(), statusField, false);
-                            reloadWithDelay(2000);
-                            break;
-                        }
-                    }
-                }
-            });
-    });
 
     $('.setFines').blur(function () {
         var id = getId($(this).attr("name"));
@@ -441,10 +423,8 @@ $(document).ready(function () {
                 success: function (resp) {
                     if (resp) {
                         show_alert($('#succ_fines_set').html(), statusField, true);
-                        reloadWithDelay(1000);
                     } else {
                         show_alert($('#error_fines_set').html(), statusField, false);
-                        reloadWithDelay(2000);
                     }
                 }
             });

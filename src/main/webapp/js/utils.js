@@ -26,10 +26,14 @@ function has_empty_fields(data, msgField) {
 }
 
 function show_alert(msg, msgField, isSuccess) {
-    if (isSuccess)
+    if (isSuccess) {
         msgField.removeClass('bg-danger').addClass('bg-success');
-    else
+        reloadWithDelay(1000);
+    }
+    else {
         msgField.removeClass('bg-success').addClass('bg-danger');
+        reloadWithDelay(2000);
+    }
     msgField.toggle(true).text(msg);
 }
 
