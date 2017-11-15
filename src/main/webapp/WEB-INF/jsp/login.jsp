@@ -87,6 +87,7 @@
             <div class="hidden">
                 <div id="error_firstname"><spring:message code="errorFirstname" /></div>
                 <div id="error_lastname"><spring:message code="errorLastname" /></div>
+                <div id="error_сonfirm_assword"><spring:message code="errorConfirmPassword" /></div>
                 <div id="error_password"><spring:message code="errorPassword" /></div>
                 <div id="error_pwd_check"><spring:message code="errorPwdcheck" /></div>
                 <div id="error_pwd_minlen"><spring:message code="errorPwdMinLen" /></div>

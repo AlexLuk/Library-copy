@@ -147,7 +147,7 @@ $(document).ready(function () {
                 required: $('#error_email_req').html(),
                 email: $('#error_email').html()
             },
-            confirmPassword: $('#errorConfirmPassword').html()
+            confirmPassword: $('#error_сonfirm_assword').html()
         }
     });
 
@@ -256,7 +256,7 @@ $(document).ready(function () {
                 minlength: $('#error_pwd_minlen').html()
             },
             confirmPassword: {
-                pwdregconfirm: $('#errorConfirmPassword').html()
+                pwdregconfirm: $('#error_сonfirm_assword').html()
             }
         }
     });

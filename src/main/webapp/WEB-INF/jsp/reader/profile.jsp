@@ -77,7 +77,7 @@
     </div>
     <div class="hidden">
         <div id="error_old_password"><spring:message code="errorOldPassword" /></div>
-        <div id="errorConfirmPassword"><spring:message code="errorConfirmPassword" /></div>
+        <div id="error_сonfirm_assword"><spring:message code="errorConfirmPassword" /></div>
         <div id="profile_succ"><spring:message code="profileSucc" /></div>
         <div id="profile_fail"><spring:message code="profileFail" /></div>
 
