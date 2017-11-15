@@ -64,6 +64,10 @@
             </table>
         </div>
     </div>
+    <dic class="hidden">
+        <div id="succ_delivery_created"><spring:message code="succDeliveryCreated" /></div>
+        <div id="error_delivery_created"><spring:message code="errorDeliveryCreated" /></div>
+    </dic>
     <%@ include file="../templates/footer.jsp" %>
 </body>
 </html>

@@ -59,6 +59,10 @@
             </table>
         </div>
     </div>
+    <div class="hidden">
+        <div id="error_order_canceled"><spring:message code="errorOrderCanceled" /></div>
+        <div id="succ_order_canceled"><spring:message code="succOrderCanceled" /></div>
+    </div>
     <%@ include file="../templates/footer.jsp" %>
 </body>
 </html>
