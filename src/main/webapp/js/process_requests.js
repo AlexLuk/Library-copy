@@ -306,7 +306,7 @@ $(document).ready(function () {
                     switch (resp) {
                         case 0: {
                             show_alert($('#profile_succ').html(), statusField, true);
-                            $('#profileForm').hide();
+                            reloadWithDelay(1000);
                             break;
                         }
                         case 1: {
