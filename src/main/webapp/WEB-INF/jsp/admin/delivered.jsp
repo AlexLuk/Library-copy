@@ -67,6 +67,14 @@
             </table>
         </div>
     </div>
+    <div class="hidden">
+        <div id="datapicker_apply"><spring:message code="datapickerApply" /></div>
+        <div id="datapicker_clear"><spring:message code="datapickerClear" /></div>
+        <div id="datapicker_format"><spring:message code="datapickerFormat" /></div>
+
+        <div id="succ_return_book"><spring:message code="succReturnBook" /></div>
+        <div id="error_return_book"><spring:message code="errorReturnBook" /></div>
+    </div>
     <%@ include file="../templates/footer.jsp" %>
 </body>
 </html>

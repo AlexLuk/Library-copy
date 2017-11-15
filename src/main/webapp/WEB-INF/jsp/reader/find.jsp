@@ -100,6 +100,14 @@
             </div>
         </div>
     </div>
+    <div class="hidden">
+        <div id="msg_is_rare"><spring:message code="yes" /></div>
+        <div id="msg_not_rare"><spring:message code="no" /></div>
+
+        <div id="succ_order_created"><spring:message code="succOrderCreated" /></div>
+        <div id="error_order_create_ordered"><spring:message code="errorOrderCreateOrdered" /></div>
+        <div id="error_order_create_delivered"><spring:message code="errorOrderCreateDelivered" /></div>
+    </div>
     <%@ include file="../templates/footer.jsp" %>
 </body>
 </html>
