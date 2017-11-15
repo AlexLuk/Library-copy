@@ -221,8 +221,7 @@ $(document).ready(function () {
                 success: function (resp) {
                     switch (resp) {
                         case 0: {
-                            show_alert($('#profile_succ').html(), statusField, true);
-                            reloadWithDelay(1000);
+                           showMessage(resp);
                             break;
                         }
                         case 1: {
@@ -251,6 +250,7 @@ $(document).ready(function () {
                 url: "/checks/password",
                 data: {password: userPas, email: userEmail},
                 async: false,
+                dataType:"text",
                 success: function (resp) {
                     if (resp) {
                         result = resp;
@@ -306,24 +306,9 @@ $(document).ready(function () {
             {
                 url: "/addOrder",
                 data: {bookId: id, toHand: onHands},
+                dataType:"text",
                 success: function (resp) {
-                    switch (resp) {
-                        case 0: {
-                            show_alert($('#succ_order_created').html(), statusField, true);
-                            reloadWithDelay(1000);
-                            break;
-                        }
-                        case 1: {
-                            show_alert($('#error_order_create_delivered').html(), statusField, false);
-                            reloadWithDelay(2000);
-                            break;
-                        }
-                        case 2: {
-                            show_alert($('#error_order_create_ordered').html(), statusField, false);
-                            reloadWithDelay(2000);
-                            break;
-                        }
-                    }
+                    showMessage(resp);
                 }
             });
     }
@@ -333,15 +318,9 @@ $(document).ready(function () {
             {
                 url: "/cancelOrder",
                 data: {bookOrderId: id},
+                dataType:"text",
                 success: function (resp) {
-                    if (resp) {
-                        show_alert($('#succ_order_canceled').html(), statusField, true);
-                        reloadWithDelay(1000);
-                    }
-                    else {
-                        show_alert($('#error_order_canceled').html(), statusField, false);
-                        reloadWithDelay(2000);
-                    }
+                    showMessage(resp);
                 }
             });
     }
@@ -352,15 +331,9 @@ $(document).ready(function () {
             {
                 url: "/addDelivery",
                 data: {orderId: id},
+                dataType:"text",
                 success: function (resp) {
-                    if (resp) {
-                        show_alert($('#succ_delivery_created').html(), statusField, true);
-                        reloadWithDelay(1000);
-                    }
-                    else {
-                        show_alert($('#error_delivery_created').html(), statusField, false);
-                        reloadWithDelay(2000);
-                    }
+                    showMessage(resp);
                 }
             });
     });
@@ -372,14 +345,7 @@ $(document).ready(function () {
                 url: "/returnDelivery",
                 data: {deliveryId: id},
                 success: function (resp) {
-                    if (resp) {
-                        show_alert($('#succ_return_book').html(), statusField, true);
-                        reloadWithDelay(1000);
-                    }
-                    else {
-                        show_alert($('#error_return_book').html(), statusField, false);
-                        reloadWithDelay(2000);
-                    }
+                    showMessage(resp);
                 }
             });
     });
@@ -392,40 +358,10 @@ $(document).ready(function () {
             {
                 url: "/deleteReader",
                 data: {readerId: id},
+                dataType:"text",
                 async: false,
                 success: function (resp) {
-                    switch (resp) {
-                        case 0: {
-                            show_alert($('#succ_delete_account').html(), statusField, true);
-                            reloadWithDelay(1000);
-                            break;
-                        }
-                        case 1: {
-                            show_alert($('#error_delete_account_admin').html(), statusField, false);
-                            reloadWithDelay(2000);
-                            break;
-                        }
-                        case 2: {
-                            show_alert($('#error_delete_account_fines').html(), statusField, false);
-                            reloadWithDelay(2000);
-                            break;
-                        }
-                        case 3: {
-                            show_alert($('#error_delete_account_order').html(), statusField, false);
-                            reloadWithDelay(2000);
-                            break;
-                        }
-                        case 4: {
-                            show_alert($('#error_delete_account_delivery').html(), statusField, false);
-                            reloadWithDelay(2000);
-                            break;
-                        }
-                        case 5: {
-                            show_alert($('#error_delete_account').html(), statusField, false);
-                            reloadWithDelay(2000);
-                            break;
-                        }
-                    }
+                        showMessage(resp);
                 }
             });
     });
@@ -437,15 +373,10 @@ $(document).ready(function () {
             {
                 url: "/setFines",
                 data: {readerId: id, fines: fines},
+                dataType:"text",
                 async: false,
                 success: function (resp) {
-                    if (resp) {
-                        show_alert($('#succ_fines_set').html(), statusField, true);
-                        reloadWithDelay(1000);
-                    } else {
-                        show_alert($('#error_fines_set').html(), statusField, false);
-                        reloadWithDelay(2000);
-                    }
+                    showMessage(resp);
                 }
             });
     });

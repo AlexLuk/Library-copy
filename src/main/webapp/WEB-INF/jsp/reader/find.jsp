@@ -1,7 +1,7 @@
-<%@ page import="org.library.db.domain.Book" %>
-<%@ page import="java.util.List" %>
-<%@ page import="org.library.services.LibraryService" %>
 <%@ page import="org.library.db.domain.Author" %>
+<%@ page import="org.library.db.domain.Book" %>
+<%@ page import="org.library.services.LibraryService" %>
+<%@ page import="java.util.List" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="../templates/taglibs.jsp" %>
@@ -104,9 +104,9 @@
         <div id="msg_is_rare"><spring:message code="yes" /></div>
         <div id="msg_not_rare"><spring:message code="no" /></div>
 
-        <div id="succ_order_created"><spring:message code="succOrderCreated" /></div>
-        <div id="error_order_create_ordered"><spring:message code="errorOrderCreateOrdered" /></div>
-        <div id="error_order_create_delivered"><spring:message code="errorOrderCreateDelivered" /></div>
+        <div id="succOrderCreated"><spring:message code="succOrderCreated" /></div>
+        <div id="errorOrderCreateOrdered"><spring:message code="errorOrderCreateOrdered" /></div>
+        <div id="errorOrderCreateDelivered"><spring:message code="errorOrderCreateDelivered" /></div>
     </div>
     <%@ include file="../templates/footer.jsp" %>
 </body>

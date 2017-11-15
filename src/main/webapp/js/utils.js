@@ -75,6 +75,17 @@ function reloadWithDelay(delay) {
     setTimeout(location.reload.bind(location), delay);
 }
 
+function showMessage(resp){
+    if (resp !== ''){
+        if(resp.substr(0,2)==='su'){
+            show_alert('<spring:message code="resp" />', statusField, true);
+        } else {
+            show_alert('<spring:message code="resp" />', statusField, false);
+        }
+        reloadWithDelay(4000);
+    }
+}
+
 // http://totalprogus.blogspot.ru/2013/12/bootstrap-add-active-class-to-li.html
 $('a[href="' + this.location.pathname + '"]').parents('li,ul').addClass('active');
 
