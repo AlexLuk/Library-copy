@@ -1,5 +1,6 @@
 var statusField = $('#status_message');
 var contentField = $('.content_result');
+var curLocale = $('#curLocale');
 
 function getFormArray(elem, msgField) {
     // serializing all elements of the form
