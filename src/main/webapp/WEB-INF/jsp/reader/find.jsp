@@ -9,7 +9,6 @@
 <%
     LibraryService libraryService = (LibraryService) request.getAttribute("lib_service");
     List<Book> books = libraryService.getAllBooks();
-    List<Genre> genres = libraryService.getAllGenres();
 %>
 
 <!DOCTYPE html>
@@ -60,10 +59,10 @@
                                 <%}%>
                             </td>
                             <td><%= book.getAmount() %><br/></td>
+                            <td><%= book.getGenre().getVals().get("en") %></td>
                             <td>
                                 <form method="post" class="doNotProcess">
                                     <button type="submit" class="btn btn-primary orderHands"
-                                            <%= book.getIsRare() ? "disabled" : ""%>
                                             id="orderHands_<%= book.getId()%>" name="orderHands_<%= book.getId()%>">
                                         <spring:message code="toOrderOnHands" />
                                     </button>
@@ -84,14 +83,14 @@
         </div>
 
         <div class="hidden">
-            <div class="orderOnHandsForm">
+            <div id="orderOnHandsForm">
                 <form method="post" class="doNotProcess">
                     <button type="submit" class="btn btn-primary orderHands" id="orderHands" name="orderHands">
                         <spring:message code="toOrderOnHands" />
                     </button>
                 </form>
             </div>
-            <div class="orderInLibForm">
+            <div id="orderInLibForm">
                 <form method="post" class="doNotProcess">
                     <button type="submit" class="btn btn-primary orderLib" id="orderLib" name="orderLib">
                         <spring:message code="toOrderInLib" />

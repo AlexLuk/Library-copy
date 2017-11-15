@@ -1,6 +1,7 @@
 package org.library.db.domain;
 
 import javax.persistence.*;
+import java.util.HashMap;
 
 @Entity
 @Table(name = "book_item")
@@ -13,8 +14,7 @@ public class BookItem extends Base {
     @JoinColumn(name = "book")
     private Book book;
 
-    @ManyToOne
-    @JoinColumn(name = "status")
+    @Enumerated(EnumType.ORDINAL)
     private ItemStatus status;
 
     public BookItem() {
@@ -48,5 +48,41 @@ public class BookItem extends Base {
 
     public void setStatus(ItemStatus status) {
         this.status = status;
+    }
+
+    public enum ItemStatus {
+        EMPTY (new HashMap<String, String>()
+        {{
+            put("", "");
+            put("", "");
+        }}),
+        FREE (new HashMap<String, String>()
+        {{
+            put("en", "free");
+            put("ru", "свободна");
+            put("db", "free");
+        }}),
+        ON_HANDS (new HashMap<String, String>()
+        {{
+            put("en", "on hands");
+            put("ru", "на руках");
+            put("db", "on_hands");
+        }}),
+        IN_STUDY (new HashMap<String, String>()
+        {{
+            put("en", "in library");
+            put("ru", "в читальном зале");
+            put("db", "in_study");
+        }});
+
+        private final HashMap<String, String> vals;
+
+        ItemStatus (HashMap<String, String> vals) {
+            this.vals = vals;
+        }
+
+        public HashMap<String, String> getVals() {
+            return vals;
+        }
     }
 }
