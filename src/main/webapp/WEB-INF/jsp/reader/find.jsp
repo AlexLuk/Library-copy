@@ -101,7 +101,6 @@
         </div>
     </div>
     <div class="hidden">
-        <div id="genre"><spring:message code="genre" /></div>
         <div id="msg_is_rare"><spring:message code="yes" /></div>
         <div id="msg_not_rare"><spring:message code="no" /></div>
 
